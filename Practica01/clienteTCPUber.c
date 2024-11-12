@@ -6,83 +6,96 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <time.h>
 
-#define BUF_SIZE 400
+char datos_recibidos[1024];
 
-/*
- *  sintaxis: cliente <direccion IP> <# puerto>
- */
+void recepcion_datos(int fd) {
+    ssize_t bytes_recibidos = recv(fd, datos_recibidos, sizeof(datos_recibidos) - 1, 0);
+    if (bytes_recibidos == -1) {
+        perror("\nError al recibir los datos del servidor.\n");
+        close(fd);
+        exit(-1);
+    }
+    datos_recibidos[bytes_recibidos] = '\0';
+    printf("Datos recibidos: %s\n", datos_recibidos);
+}
 
+int main(int argc, char *argv[]) {
+    char request[255];
 
-int main(int argc, char *argv[])
-{
-    char request[50];
-    char buffer[BUF_SIZE];
-
-    if (argc != 3)
-    {
-        puts("\nModo de uso: ./clienteTCP <direccion IP> <# puerto>");
+    if (argc != 3) {
+        puts("\nModo de uso: ./clienteTCPUber <direccion IP> <# puerto>");
         exit(-1);
     }
 
-    printf("\nAbriendo el socket...\n");
     int fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (fd == -1)
+    if (fd == -1) {
         perror("\nError, no se pudo abrir el socket.\n\n");
-    else
-        perror("\nSocket abierto.\n");
+        exit(-1);
+    }
 
-    printf("\nAsignando atributos al socket...\n");
     struct sockaddr_in serv;
-    memset(&serv, sizeof serv, 0);
+    memset(&serv, 0, sizeof(serv));
     serv.sin_family = AF_INET;
-    /* inet_addr convierte de cadena de caracteres (formato puntado
-     * "128.112.123.1") a
-     * octetos.
-     */
     serv.sin_addr.s_addr = inet_addr(argv[1]);
-
-    /* htons convierte un entero largo en octetos cuyo orden entienden
-     * las funciones de los sockets
-     */
     serv.sin_port = htons(atoi(argv[2]));
 
-    if (connect(fd, (struct sockaddr *)&serv, sizeof serv) < 0)
-    {
-        printf("\nNo se pudo realizar la conexión remota.\n");
+    if (connect(fd, (struct sockaddr *)&serv, sizeof(serv)) < 0) {
+        perror("\nNo se pudo realizar la conexión remota.\n");
+        close(fd);
         exit(-1);
     }
 
-    printf("\nConexión establecida con el servidor.\n");
+    int opcion, placas;
+    do {
+        printf("\nSelecciona una opción:\n");
+        printf("1. Solicitar viaje\n");
+        printf("2. Solicitar estado\n");
+        printf("3. Salir\n");
+        printf("Opción: ");
+        scanf("%d", &opcion);
+        getchar();
 
-    printf("Bienvenido a Ubercito\n");
-    
-    printf("Selecciona una opción:\n");
-    printf("1. Solicitar viaje\n");
-    printf("2. Solicitar estado\n");
-    printf("3. Salir\n");
+        if (opcion == 1) {
+            snprintf(request, sizeof(request), "{\"tipo\": \"viaje\"}");
+            send(fd, request, strlen(request), 0);
+            recepcion_datos(fd);
 
-    int opcion;
-    scanf("%d", &opcion);
-    
-    switch (opcion)
-    {
-    case 1:
-        sprintf(request, "viaje");
-        send(fd, request, strlen(request), 0);
-        read(fd, buffer, BUF_SIZE);
-        // TODO: Solicitar datos del viaje
-        break;
-    case 2:
-        sprintf(request, "estado");
-        send(fd, request, strlen(request), 0);
-        read(fd, buffer, BUF_SIZE);
-        // TODO: Solicitar estado del uber
-        break;
-    default:
-        printf("Opcion no valida\n");
-        break;
-    }
+            // if (strcmp(datos_recibidos, "{\"tipo\": \"viaje_rechazado\"}") == 0) {
+            if (strcmp(datos_recibidos, "{\"error\": \"No hay conductores\"}") == 0) {
+                printf("\nNo hay conductores. Saliendo...\n");
+                close(fd);
+                exit(0);
+            }
+            
+            // Simulación del viaje
+            printf("\nSimulando viaje...\n");
+            sleep(3);  // Tiempo de viaje simulado
+            printf("\nViaje completado. Solicitando fin del viaje.\n");
+            
+            snprintf(request, sizeof(request), "{\"tipo\": \"viaje_terminado\", \"placas\": %d}", placas);
+            printf("Placas del auto: %d\n", placas);
+            send(fd, request, strlen(request), 0);
+            recepcion_datos(fd);
+            close(fd);
+            exit(0);
 
+        } else if (opcion == 2) {
+            snprintf(request, sizeof(request), "{\"tipo\": \"estado\"}");
+            send(fd, request, strlen(request), 0);
+            recepcion_datos(fd);
+            close(fd);
+            exit(0);
+
+        } else if (opcion == 3) {
+            printf("Saliendo...\n");
+        } else {
+            printf("Opción no válida\n");
+        }
+        
+    } while (opcion != 3);
+
+    close(fd);
     return 0;
 }
