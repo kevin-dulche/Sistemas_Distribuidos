@@ -3,7 +3,7 @@ import json
 import random
 import time
 
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 PORT = 8000
 NUM_AUTOS = 2  # Puedes cambiar el número de autos
 
