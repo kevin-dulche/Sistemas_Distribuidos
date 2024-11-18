@@ -1,0 +1,4 @@
+Archivos finales:
+estructura.x
+estructura_server.c
+estructura_client.c
