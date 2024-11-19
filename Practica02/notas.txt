@@ -2,3 +2,8 @@ Archivos finales:
 estructura.x
 estructura_server.c
 estructura_client.c
+
+rpcgen -Na estructura.x
+
+gcc estructura_client.c estructura_clnt.c estructura_xdr.c -I/usr/include/tirpc -ltirpc -o cliente
+gcc estructura_server.c estructura_svc.c estructura_xdr.c -I/usr/include/tirpc -ltirpc -lm -o servidor

@@ -65,7 +65,7 @@ main (int argc, char *argv[])
         solicitarviaje_1_arg.pos_x = rand() % 100;
         solicitarviaje_1_arg.pos_y = rand() % 100;
 
-        printf("Posición del pasajero: (%d, %d)\n", solicitarviaje_1_arg.pos_x, solicitarviaje_1_arg.pos_y);
+        //printf("Posición del pasajero: (%d, %d)\n", solicitarviaje_1_arg.pos_x, solicitarviaje_1_arg.pos_y);
 
         // Crear cliente RPC
         CLIENT *clnt;
@@ -74,7 +74,7 @@ main (int argc, char *argv[])
             clnt_pcreateerror(host);
             exit(1);
         }
-        printf("Cliente creado\n");
+        //printf("Cliente creado\n");
 
         // Llamar a la función RPC para solicitar un viaje
         result_1 = solicitarviaje_1(solicitarviaje_1_arg, clnt);
@@ -100,9 +100,9 @@ main (int argc, char *argv[])
         // Calcular costo del viaje (suponiendo que se mide la distancia)
         terminarviaje_1_arg.costo_viaje = result_1->tarifa;
 
-        printf("Costo del viaje: %d\n", terminarviaje_1_arg.costo_viaje);
-        printf("Posición final: (%d, %d)\n", terminarviaje_1_arg.posicion_final.pos_x, terminarviaje_1_arg.posicion_final.pos_y);
-        printf("Placa: %s\n", terminarviaje_1_arg.placa);
+        //printf("Costo del viaje: %d\n", terminarviaje_1_arg.costo_viaje);
+        //printf("Posición final: (%d, %d)\n", terminarviaje_1_arg.posicion_final.pos_x, terminarviaje_1_arg.posicion_final.pos_y);
+        //printf("Placa: %s\n", terminarviaje_1_arg.placa);
 
         
         // Realizar llamada para terminar el viaje
@@ -121,7 +121,7 @@ main (int argc, char *argv[])
 				clnt_pcreateerror(host);
 				exit(1);
 			}
-			printf("Cliente creado\n");
+			//printf("Cliente creado\n");
 
 			InfoServicio *result_1;
 

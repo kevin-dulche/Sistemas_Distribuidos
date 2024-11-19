@@ -24,8 +24,6 @@ typedef struct {
     int posicion_y;
 } vehiculo;
 
-
-
 vehiculo vehiculos[N];
 int ganancias = 0;
 int viajes = 0;
@@ -59,7 +57,7 @@ solicitarviaje_1_svc(PosicionPasajero arg1,  struct svc_req *rqstp)
         vehiculos_inicializados = true;
     }
     printf("Solicitud de viaje recibida\n");
-    printf("Posición del pasajero: (%d, %d)\n", arg1.pos_x, arg1.pos_y);
+    //printf("Posición del pasajero: (%d, %d)\n", arg1.pos_x, arg1.pos_y);
     // Verificar si hay vehículos disponibles
     int vehiculos_disponibles = 0;
     int vehiculos_disponibles_indices[N];
@@ -76,7 +74,7 @@ solicitarviaje_1_svc(PosicionPasajero arg1,  struct svc_req *rqstp)
         return NULL;
     }
 
-    printf("Vehículos disponibles: %d\n", vehiculos_disponibles);
+    //printf("Vehículos disponibles: %d\n", vehiculos_disponibles);
     // Encontrar el vehículo más cercano
     int vehiculo_mas_cercano = 0;
     double distancia_minima = DBL_MAX;
@@ -90,15 +88,15 @@ solicitarviaje_1_svc(PosicionPasajero arg1,  struct svc_req *rqstp)
         }
     }
 
-    printf("Vehículo más cercano: %s\n", vehiculos[vehiculo_mas_cercano].placa);
+    //printf("Vehículo más cercano: %s\n", vehiculos[vehiculo_mas_cercano].placa);
     // Preparar y retornar la información del viaje
     InfoAuto *info_auto = (InfoAuto *)malloc(sizeof(InfoAuto));
-    printf("Vehículo asignado\n");
+    //printf("Vehículo asignado\n");
 
     info_auto->pos_x = vehiculos[vehiculo_mas_cercano].posicion_x;
     info_auto->pos_y = vehiculos[vehiculo_mas_cercano].posicion_y;
 
-    printf("Tipo de vehículo: %s\n", vehiculos[vehiculo_mas_cercano].tipo);
+    //printf("Tipo de vehículo: %s\n", vehiculos[vehiculo_mas_cercano].tipo);
     
     if (strcmp(vehiculos[vehiculo_mas_cercano].tipo, "UberPlanet") == 0) {
         info_auto->tarifa = 10;
@@ -108,8 +106,8 @@ solicitarviaje_1_svc(PosicionPasajero arg1,  struct svc_req *rqstp)
         info_auto->tarifa = 25;
     }
 
-    printf("Tarifa: %d\n", info_auto->tarifa);
-    printf("vehiculo_mas_cercano: %d\n", vehiculo_mas_cercano);
+    //printf("Tarifa: %d\n", info_auto->tarifa);
+    //printf("vehiculo_mas_cercano: %d\n", vehiculo_mas_cercano);
 
     strcpy(info_auto->tipo, vehiculos[vehiculo_mas_cercano].tipo);
 
@@ -147,14 +145,15 @@ terminarviaje_1_svc(TerminarViajeArgs arg1,  struct svc_req *rqstp)
 
     if (!encontrado) {
         printf("Error: Vehículo con placa %s no encontrado.\n", arg1.placa);
+        return NULL;
     }
 
     int costo_viaje = distancia_del_viaje * arg1.costo_viaje;
 
 	printf("Terminar viaje\n");
     printf("Placa: %s\n", arg1.placa);
-    printf("Posición final: (%d, %d)\n", arg1.posicion_final.pos_x, arg1.posicion_final.pos_y);
-    printf("Costo del viaje: %d\n", costo_viaje);
+    //printf("Posición final: (%d, %d)\n", arg1.posicion_final.pos_x, arg1.posicion_final.pos_y);
+    //printf("Costo del viaje: %d\n", costo_viaje);
 
     ganancias += costo_viaje;
     viajes++;
@@ -165,6 +164,11 @@ terminarviaje_1_svc(TerminarViajeArgs arg1,  struct svc_req *rqstp)
 InfoServicio *
 estadoservicio_1_svc(struct svc_req *rqstp)
 {
+    if (!vehiculos_inicializados) {
+        inicializar_vehiculos(vehiculos);
+        vehiculos_inicializados = true;
+    }
+
 	static InfoServicio  info_servicio;
 
 	/*
