@@ -27,7 +27,6 @@ int posicionesAleatorias () {
 
 void inicializarAutos () {
     srand (time (NULL));
-    printf ("\n\n\t\tReady, UBER Cars? Go!\n");
 
     for ( int i = 0; i < NUM_AUTOS; i++ ) {
         autos[i].disponible = 1; 
@@ -62,8 +61,8 @@ int calcularTarifa (int tipoUBER, int kilometro) {
 
 InfoAuto *solicitarviaje_1_svc(struct Posicion *posicionPasajero, struct svc_req *rqstp) {
     system ("clear");
-    printf ("\n\t\t--------------- Serious UBER Application --------------- \n");
-    printf ("\n\nLocalized Position! Passenger is in (%d, %d) Coordinates.", posicionPasajero->x, posicionPasajero->y);
+    printf ("\n\t\t--------------- Aplicacion Uber --------------- \n");
+    printf ("\n\nEl pasajero se encuentra en las coordenadas (%d, %d).", posicionPasajero->x, posicionPasajero->y);
 
     if ( isFirstTime == true ) {
         inicializarAutos ();
