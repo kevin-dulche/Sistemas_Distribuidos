@@ -80,7 +80,7 @@ def serve():
     port = "50051"
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
-    server.add_insecure_port(str(ip_local) + ":" + port)
+    server.add_insecure_port("0.0.0.0:" + port) 
     server.start()
     print(f"Server started, listening on {ip_local}:{port}...")
     try:
