@@ -1,0 +1,27 @@
+ #
+ # $Id: .common,v 1.2 1998/11/04 03:18:07 alc Exp $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) sor.o
+
+sor.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+sor.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+sor.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+sor.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+sor.o: ../src/sor.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/sor.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll

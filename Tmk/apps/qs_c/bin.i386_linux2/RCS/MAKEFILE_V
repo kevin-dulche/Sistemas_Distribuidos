@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	98.09.13.06.11.04;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Quicksort Makefile for i386/Linux.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= i386_linux2
+
+CC	= gcc
+CFLAGS	= -g -O2
+
+MACHDEP_OBJS= getopt.o
+MACHDEP_LIBS=
+
+all: qs.udp
+
+include ../.common
+
+getopt.o: $(TmkLIB)/support/getopt.c
+	$(CC) $(CFLAGS) -c $(TmkLIB)/support/getopt.c
+@

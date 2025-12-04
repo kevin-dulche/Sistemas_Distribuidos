@@ -1,0 +1,2967 @@
+head	11.7;
+access;
+symbols
+	Tmk-1_0_3_2R:10.16.1.18
+	Tmk-1_0_3_1R:10.16.1.18
+	Tmk-2_0:10.16.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.16.1.21
+	Tmk-1_0_3R:10.16.1.18
+	Tmk-1_2:10.16.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.16.1.18
+	Tmk-1_0_1R:10.16.1.5
+	Tmk-1_1:11
+	Tmk-1_0:10.16.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.16
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.7
+date	97.11.09.06.53.44;	author alc;	state Exp;
+branches;
+next	11.6;
+
+11.6
+date	97.09.27.06.50.43;	author alc;	state Exp;
+branches;
+next	11.5;
+
+11.5
+date	97.09.26.19.57.14;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	97.09.26.07.12.18;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.07.24.18.56.26;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.06.06.23.15.48;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.05.26.22.04.01;	author alc;	state Exp;
+branches;
+next	10.16;
+
+10.16
+date	97.05.24.17.41.22;	author alc;	state Exp;
+branches
+	10.16.1.1;
+next	10.15;
+
+10.15
+date	97.05.22.07.52.53;	author alc;	state Exp;
+branches;
+next	10.14;
+
+10.14
+date	97.05.19.05.32.58;	author alc;	state Exp;
+branches;
+next	10.13;
+
+10.13
+date	97.05.19.05.10.23;	author alc;	state Exp;
+branches;
+next	10.12;
+
+10.12
+date	97.04.12.21.07.32;	author alc;	state Exp;
+branches;
+next	10.11;
+
+10.11
+date	97.03.18.08.12.39;	author alc;	state Exp;
+branches;
+next	10.10;
+
+10.10
+date	97.02.21.17.53.02;	author alc;	state Exp;
+branches;
+next	10.9;
+
+10.9
+date	96.10.05.23.00.51;	author alc;	state Exp;
+branches;
+next	10.8;
+
+10.8
+date	96.10.04.23.29.48;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	96.10.03.06.20.35;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	96.09.25.04.05.12;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	96.09.24.05.21.10;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.08.25.20.39.36;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.07.28.07.23.56;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.07.26.20.02.04;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.43.36;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	10.0.2.2;
+
+10.0.2.2
+date	96.04.21.05.56.14;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.1.2.2;
+
+10.0.2.1.2.2
+date	96.03.30.07.06.14;	author alc;	state Exp;
+branches;
+next	10.0.2.1.2.3;
+
+10.0.2.1.2.3
+date	96.03.30.21.50.03;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	10.1.4.2;
+
+10.1.4.2
+date	96.07.30.20.52.50;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.07.02.00.09.02;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.16.1.1
+date	97.07.03.19.15.37;	author alc;	state Exp;
+branches;
+next	10.16.1.2;
+
+10.16.1.2
+date	97.07.03.20.58.04;	author alc;	state Exp;
+branches;
+next	10.16.1.3;
+
+10.16.1.3
+date	97.09.26.07.13.12;	author alc;	state Exp;
+branches;
+next	10.16.1.4;
+
+10.16.1.4
+date	97.09.27.06.52.20;	author alc;	state Exp;
+branches;
+next	10.16.1.5;
+
+10.16.1.5
+date	97.11.09.06.54.20;	author alc;	state Exp;
+branches;
+next	10.16.1.6;
+
+10.16.1.6
+date	98.05.14.20.10.16;	author alc;	state Exp;
+branches;
+next	10.16.1.7;
+
+10.16.1.7
+date	98.06.11.21.57.57;	author alc;	state Exp;
+branches;
+next	10.16.1.8;
+
+10.16.1.8
+date	98.06.11.22.22.55;	author alc;	state Exp;
+branches;
+next	10.16.1.9;
+
+10.16.1.9
+date	98.06.12.19.22.19;	author alc;	state Exp;
+branches;
+next	10.16.1.10;
+
+10.16.1.10
+date	98.06.12.20.21.08;	author alc;	state Exp;
+branches;
+next	10.16.1.11;
+
+10.16.1.11
+date	98.06.13.18.39.11;	author alc;	state Exp;
+branches;
+next	10.16.1.12;
+
+10.16.1.12
+date	98.06.14.06.17.47;	author alc;	state Exp;
+branches;
+next	10.16.1.13;
+
+10.16.1.13
+date	98.06.15.04.22.46;	author alc;	state Exp;
+branches;
+next	10.16.1.14;
+
+10.16.1.14
+date	98.06.15.05.06.03;	author alc;	state Exp;
+branches;
+next	10.16.1.15;
+
+10.16.1.15
+date	98.06.15.22.00.51;	author alc;	state Exp;
+branches;
+next	10.16.1.16;
+
+10.16.1.16
+date	98.06.15.22.09.01;	author alc;	state Exp;
+branches;
+next	10.16.1.17;
+
+10.16.1.17
+date	98.06.16.22.10.06;	author alc;	state Exp;
+branches;
+next	10.16.1.18;
+
+10.16.1.18
+date	98.06.16.22.29.32;	author alc;	state Exp;
+branches;
+next	10.16.1.19;
+
+10.16.1.19
+date	98.07.26.17.26.32;	author alc;	state Exp;
+branches;
+next	10.16.1.20;
+
+10.16.1.20
+date	98.08.10.19.49.08;	author alc;	state Exp;
+branches;
+next	10.16.1.21;
+
+10.16.1.21
+date	98.08.24.03.06.56;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.7
+log
+@HP-UX 10.x doesn't support SA_RESTART.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: sigio.c,v 11.6 1997/09/27 06:50:43 alc Exp alc $
+ *
+ * Description:    
+ *	handle asynchronous request messages
+ *
+ * External Functions:
+ *			Tmk_sigio_initialize
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Apr-1993	Alan L. Cox	Created
+ *
+ *	Version 0.9.1
+ *
+ *	10-Dec-1994	Alan L. Cox	Changed to a single seqno counter
+ *					 (suggested by Pete Keleher)
+ *	14-Jan-1995	Alan L. Cox	Adapted for STREAMS
+ *
+ *	Version 0.9.2
+ *
+ *	15-Jun-1995	Cristiana Amza	Adapted for HPPA/HPUX
+ *
+ *	Version 0.9.3
+ *
+ *	 3-Jul-1995	Alan L. Cox	Adapted for Power Challenge
+ *
+ *	17-Jul-1995	Alan L. Cox	Eliminated the message size parameter
+ *					 to the barrier duplicate handler
+ *	Version 0.9.4
+ *
+ *	17-Dec-1995	Alan L. Cox	Simplified the sigio handler
+ *
+ *	Version 0.9.7
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigvec with sigaction
+ *
+ *	Version 0.10
+ *
+ *	19-Apr-1996	Robert J. Fowler
+ *					Adapted for Linux 1.2.13
+ *	Version 0.10.1
+ */
+#include "Tmk.h"
+
+static	struct	timeval	timeout = { 0, 0 };
+
+/*
+ * In order to load the vadr pointer in Tmk_distribute_sigio_handler,
+ * the Power Challenge needs 64-bit alignment for the message buffer.
+ */
+static	long	sigio_req_[NPROCS][MTU/sizeof(long)];
+static	long   *sigio_req = sigio_req_[0];
+
+#if  defined(MPL)
+
+static	int	MPL_id;
+
+static	int	MPL_type = MPL_REQ;
+
+static	void	MPL_rnc_handler(int *id)
+{
+static	struct	req_typ *req = (struct req_typ *) sigio_req_[0];
+
+	size_t	size;
+
+	if (0 > mpc_wait(id, &size)) 
+		Tmk_MPLerrexit("<mpc_wait>MPL_rnc_handler");
+
+	Tmk_stat.messages++;
+	Tmk_stat.bytes += size;
+
+	switch (req->type) {
+	case REQ_ARRIVAL:
+	case REQ_ARRIVAL_REPO:
+		(*Tmk_barrier_sigio_handler)(req, size + sizeof(req->seqno));
+		break;
+	case REQ_COND_BROADCAST:
+		Tmk_cond_broadcast_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_COND_SIGNAL:
+		Tmk_cond_signal_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_COND_WAIT:
+		Tmk_cond_wait_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_CONNECT:
+		Tmk_errexit("sigio_handler: unexpected REQ_CONNECT\n");
+	case REQ_DIFF:
+		Tmk_diff_sigio_handler(req, size + sizeof(req->seqno));
+
+		goto recycle_buffer;
+	case REQ_DISTRIBUTE:
+		Tmk_distribute_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_EXIT:
+		Tmk_exit_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_JOIN:
+	case REQ_JOIN_REPO:
+		(*Tmk_sched_sigio_handler)(req, size + sizeof(req->seqno));
+		break;
+	case REQ_LOCK:
+		Tmk_lock_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_OWNERSHIP:
+		Tmk_ownership_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_PAGE:
+		Tmk_page_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_REPO:
+		Tmk_repo_sigio_handler(req);
+
+		goto recycle_buffer;
+	case REQ_SPAWN:
+		Tmk_errexit("sigio_handler: unexpected REQ_SPAWN\n");
+	}
+	if ((struct req_typ *) sigio_req == req)
+		sigio_req += MTU/sizeof(long);
+
+recycle_buffer:
+
+	req = (struct req_typ *) sigio_req;
+
+	req->seqno = DONTCARE;
+
+	if (0 > mpc_rcvncall(&req->from, MTU - sizeof(req->seqno), req, &MPL_type, &MPL_id, MPL_rnc_handler))
+		Tmk_MPLerrexit("<mpc_rcvncall>MPL_rnc_handler");
+}
+#endif
+
+/*
+ * Called by sigio and Tmk_barrier
+ */
+void	sigio_handler(int sig)
+{
+#if  defined(MPL)
+	MPL_rnc_handler(&MPL_id);
+#else
+	fd_set	readfds;
+	int	er, fd, i, size;
+
+	/*
+	 * While select is non-zero, ...
+	 */
+ redo:
+	readfds = rep_fds;
+
+	if ((er = select(rep_maxfdp1, (fd_set_t)&readfds, NULL, NULL, &timeout)) == 0)
+		return;
+	else if (er < 0)
+		Tmk_perrexit("<select>sigio_handler");
+
+	for (i = 0; i < Tmk_nprocs; i++) {
+		if (i == Tmk_proc_id)
+			continue;
+
+		fd = rep_fd_[i];
+
+		if (FD_ISSET(fd, &readfds)) {
+
+			struct	req_typ	   *req = (struct req_typ *) sigio_req;
+
+			if ((size = recv(fd, (char *) req, MTU, 0)) < 0)
+				Tmk_perrexit("<recv>sigio_handler");
+
+			if (rep_seqno_[req->from] < req->seqno) {
+
+				rep_seqno_[req->from] = req->seqno;
+
+				switch (req->type) {
+				case REQ_ARRIVAL:
+				case REQ_ARRIVAL_REPO:
+					(*Tmk_barrier_sigio_handler)(req, size);
+
+					sigio_req = (long *)((caddr_t) req + MTU);
+
+					break;
+				case REQ_COND_BROADCAST:
+					Tmk_cond_broadcast_sigio_handler(req);
+					break;
+				case REQ_COND_SIGNAL:
+					Tmk_cond_signal_sigio_handler(req);
+                                        break;
+				case REQ_COND_WAIT:
+					Tmk_cond_wait_sigio_handler(req);
+                                        break;
+				case REQ_CONNECT:
+					Tmk_errexit("sigio_handler: unexpected REQ_CONNECT\n");
+				case REQ_DIFF:
+					Tmk_diff_sigio_handler(req, size);
+					break;
+				case REQ_DISTRIBUTE:
+					Tmk_distribute_sigio_handler(req);
+					break;
+				case REQ_EXIT:
+					Tmk_exit_sigio_handler(req);
+					break;
+				case REQ_JOIN:
+				case REQ_JOIN_REPO:
+					(*Tmk_sched_sigio_handler)(req, size);
+
+					sigio_req = (long *)((caddr_t) req + MTU);
+
+					break;
+				case REQ_LOCK:
+					Tmk_lock_sigio_handler(req);
+					break;
+				case REQ_OWNERSHIP:
+					Tmk_ownership_sigio_handler(req);
+					break;
+				case REQ_PAGE:
+					Tmk_page_sigio_handler(req);
+					break;
+				case REQ_REPO:
+					Tmk_repo_sigio_handler(req);
+					break;
+				case REQ_SPAWN:
+					Tmk_spawn_sigio_handler(req);
+					break;
+				}
+			}
+			else
+				switch (req->type) {
+				case REQ_ARRIVAL:
+				case REQ_ARRIVAL_REPO:
+					Tmk_barrier_sigio_duplicate_handler(req);
+					break;
+				case REQ_COND_BROADCAST:
+				case REQ_COND_SIGNAL:
+				case REQ_DISTRIBUTE:
+					if (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+						Tmk_perrexit("sigio_handler<send>");
+                                        break;
+				case REQ_COND_WAIT:
+					Tmk_cond_wait_sigio_duplicate_handler(req);
+					break;
+				case REQ_CONNECT:
+					Tmk_connect_sigio_duplicate_handler(req);
+					break;
+				case REQ_DIFF:
+					Tmk_diff_sigio_handler(req, size);
+					break;
+				case REQ_EXIT:
+					Tmk_exit_sigio_handler(req);
+					break;
+				case REQ_JOIN:
+				case REQ_JOIN_REPO:
+					Tmk_sched_sigio_duplicate_handler(req);
+					break;
+				case REQ_LOCK:
+					Tmk_lock_sigio_duplicate_handler(req);
+					break;
+				case REQ_OWNERSHIP:
+					Tmk_ownership_sigio_duplicate_handler(req);
+					break;
+				case REQ_PAGE:
+					Tmk_page_sigio_handler(req);
+					break;
+				case REQ_REPO:
+					Tmk_repo_sigio_duplicate_handler(req);
+					break;
+				case REQ_SPAWN:
+					Tmk_spawn_sigio_duplicate_handler(req);
+					break;
+				}
+
+			Tmk_stat.messages++;
+			Tmk_stat.bytes += size;
+
+			if (--er == 0)
+				goto redo;
+		}
+	}
+	if (Tmk_debug)
+		Tmk_err("<readfds>sigio_handler: er == %d\n", er);
+#endif
+}
+
+void	sigio_buffer_initialize()
+{
+	sigio_req = sigio_req_[0];
+}
+
+void	Tmk_sigio_initialize()
+{
+#if defined(MPL)
+	struct	req_typ *req = (struct req_typ *) sigio_req;
+
+	req->seqno = DONTCARE;
+
+	if (0 > mpc_rcvncall(&req->from, MTU - sizeof(req->seqno), req, &MPL_type, &MPL_id, MPL_rnc_handler))
+		Tmk_MPLerrexit("<mpc_rcvncall>Tmk_sigio_initialize");
+#else
+	struct	sigaction sa;
+#if defined(__linux)
+	sa.sa_handler = (__sighandler_t) sigio_handler;
+#else
+	sa.sa_handler = sigio_handler;
+#endif
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGALRM);
+#if defined(__hpux) || (defined(__sun) && ! defined(__SVR4))
+	sa.sa_flags = 0;
+#else
+	sa.sa_flags = SA_RESTART;
+#endif
+	sigaction(SIGIO, &sa, NULL);
+#endif
+}
+@
+
+
+11.6
+log
+@MPL-specific change: Update the message and byte counts in the receive
+and call handler.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 11.5 1997/09/26 19:57:14 alc Exp alc $
+d349 1
+a349 1
+#if defined(__sun) && ! defined(__SVR4)
+@
+
+
+11.5
+log
+@MPL-specific change: Tmk_spawn isn't supported under MPL.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 11.4 1997/09/26 07:12:18 alc Exp alc $
+d106 3
+@
+
+
+11.4
+log
+@Added three MPL-specific casts to pacify the AIX 3.2 C compiler.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 11.3 1997/07/24 18:56:26 alc Exp alc $
+d159 1
+a159 3
+		Tmk_spawn_sigio_handler(req);
+
+		goto recycle_buffer;
+@
+
+
+11.3
+log
+@Eliminated the Ultrix-specific code.  (Identical to revision 10.16.1.1.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 11.2 1997/06/06 23:15:48 alc Exp alc $
+d163 1
+a163 1
+	if (sigio_req == req)
+d168 1
+a168 1
+	req = sigio_req;
+d332 2
+a333 2
+#if  defined(MPL)
+	struct	req_typ *req = sigio_req;
+@
+
+
+11.2
+log
+@Added support for the adaptive protocol, specifically, the ownership
+request protocol.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 11.1 1997/05/26 22:04:01 alc Exp alc $
+d208 1
+a208 4
+#if defined(ultrix)
+			if ((size = read(fd, req, MTU)) < 0)
+				Tmk_perrexit("<read>sigio_handler");
+#else
+d211 1
+a211 1
+#endif
+@
+
+
+11.1
+log
+@Added support for Tmk_spawn.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16 1997/05/24 17:41:22 alc Exp alc $
+d146 4
+d257 3
+d301 3
+@
+
+
+10.16
+log
+@Handle simple duplicate requests, requiring an ack, and nothing else,
+inline in sigio_handler.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.15 1997/05/22 07:52:53 alc Exp alc $
+d154 4
+d259 3
+d300 3
+@
+
+
+10.16.1.1
+log
+@Eliminated the Ultrix-specific code.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16 1997/05/24 17:41:22 alc Exp alc $
+d200 4
+a203 1
+
+d206 1
+a206 1
+
+@
+
+
+10.16.1.2
+log
+@Added basic Pthreads support.
+@
+text
+@a82 4
+#if defined(PTHREADS)
+pthread_mutex_t Tmk_sigio_lock = PTHREAD_MUTEX_INITIALIZER;
+#endif
+
+a304 12
+#if defined(PTHREADS)
+static
+void	sigio_handler_pthreads(int sig)
+{
+	pthread_mutex_lock(&Tmk_sigio_lock);
+
+	sigio_handler(sig);
+
+	pthread_mutex_unlock(&Tmk_sigio_lock);
+}
+#endif
+
+a320 7
+#if defined(PTHREADS)
+#if defined(__linux)
+	sa.sa_handler = (__sighandler_t) sigio_handler_pthreads;
+#else
+	sa.sa_handler = sigio_handler_pthreads;
+#endif
+#else
+a324 1
+#endif
+@
+
+
+10.16.1.3
+log
+@Added three MPL-specific casts to pacify the AIX 3.2 C compiler.
+(Identical to revision 11.4.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.2 1997/07/03 20:58:04 alc Exp alc $
+d159 1
+a159 1
+	if ((struct req_typ *) sigio_req == req)
+d164 1
+a164 1
+	req = (struct req_typ *) sigio_req;
+d328 2
+a329 2
+#if defined(MPL)
+	struct	req_typ *req = (struct req_typ *) sigio_req;
+@
+
+
+10.16.1.4
+log
+@MPL-specific change: Update the message and byte counts in the receive
+and call handler.  (Identical to revision 11.6.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.3 1997/09/26 07:13:12 alc Exp alc $
+a109 3
+
+	Tmk_stat.messages++;
+	Tmk_stat.bytes += size;
+@
+
+
+10.16.1.5
+log
+@HP-UX 10.x doesn't support SA_RESTART.  (Identical to revision 11.7.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.4 1997/09/27 06:52:20 alc Exp alc $
+d355 1
+a355 1
+#if defined(__hpux) || (defined(__sun) && ! defined(__SVR4))
+@
+
+
+10.16.1.6
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.5 1997/11/09 06:54:20 alc Exp alc $
+d270 2
+a271 2
+					while (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+						Tmk_errno_check("sigio_handler<send>");
+@
+
+
+10.16.1.7
+log
+@Added req_from_[NPROCS].
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.6 1998/05/14 20:10:16 alc Exp alc $
+a85 2
+
+req_entry_t	req_from_[NPROCS];
+@
+
+
+10.16.1.8
+log
+@Use the global req_from_[] instead of the (now defunct) private arrival_[].
+req_from_[] is updated by the sigio handler instead of the individual
+barrier and sched sigio handlers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.7 1998/06/11 21:57:57 alc Exp alc $
+a221 3
+					req_from_[req->from].req  = req;
+					req_from_[req->from].size = size;
+
+a247 3
+
+					req_from_[req->from].req  = req;
+					req_from_[req->from].size = size;
+@
+
+
+10.16.1.9
+log
+@Update the global req_from_[] in the MPL "sigio" handler.  Cast
+the req_typ to req_syn in the assignment.  Consolidate the buffer
+management.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.8 1998/06/11 22:22:55 alc Exp alc $
+a163 3
+	req_from_[req->from].req  = (struct req_syn *) req;
+	req_from_[req->from].size = size;
+
+d221 2
+a222 2
+				hold_buffer:
+					req_from_[req->from].req  = (struct req_syn *) req;
+d251 7
+a257 1
+					goto hold_buffer;
+@
+
+
+10.16.1.10
+log
+@Replace the giant switch/case statement by a dispatch table for vectoring
+duplicate requests.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.9 1998/06/12 19:22:19 alc Exp alc $
+a181 33
+ * Used by duplicate REQ_COND_BROADCAST, REQ_COND_SIGNAL, and REQ_DISTRIBUTE.
+ */
+void
+Tmk_ack(
+	struct req_typ *req,
+	int		size)
+{
+	while (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_errno_check("sigio_handler<send>");
+}
+
+/*
+ * Used by sigio_handler to vector duplicate requests.
+ */
+static
+void  (*const sigio_duplicate_handlers_[])() = {
+	Tmk_barrier_sigio_duplicate_handler,
+	Tmk_barrier_sigio_duplicate_handler,
+	Tmk_ack,
+	Tmk_ack,
+	Tmk_cond_wait_sigio_duplicate_handler,
+	Tmk_connect_sigio_duplicate_handler,
+	Tmk_diff_sigio_handler,
+	Tmk_ack,
+	Tmk_exit_sigio_handler,
+	Tmk_sched_sigio_duplicate_handler,
+	Tmk_sched_sigio_duplicate_handler,
+	Tmk_lock_sigio_duplicate_handler,
+	Tmk_page_sigio_handler,
+	Tmk_repo_sigio_duplicate_handler
+};
+
+/*
+d267 37
+a303 1
+				(*sigio_duplicate_handlers_[req->type])(req, size);
+@
+
+
+10.16.1.11
+log
+@Made changes to barrier and sched to facilitate integration
+of the FASTLINK barriers:
+
+1. Use a single sigio handler for barriers and scheds (regardless
+of whether the manager has arrived or not).
+
+2. Use barrier->mask and sched->mask to determine whether or not
+the manager has arrived/joined.
+
+3. Redefine Tmk_spinmask to include the "host" processor.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.10 1998/06/12 20:21:08 alc Exp alc $
+d119 1
+a119 1
+		Tmk_barrier_sigio_handler(req, size + sizeof(req->seqno));
+d149 1
+a149 1
+		Tmk_sched_sigio_handler(req, size + sizeof(req->seqno));
+d256 1
+a256 1
+					Tmk_barrier_sigio_handler(req, size);
+d286 1
+a286 1
+					Tmk_sched_sigio_handler(req, size);
+@
+
+
+10.16.1.12
+log
+@Change error messages to the (new) canonical form.
+
+Use ANSI C-style parameter definitions.  Make minor style changes.
+
+Move statistics counters in MPL code.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.11 1998/06/13 18:39:11 alc Exp alc $
+d104 1
+a104 3
+static	void
+MPL_rnc_handler(
+	int	        *id)
+d111 4
+a114 1
+		Tmk_MPLerrexit("MPL_rnc_handler<mpc_wait>");
+d172 1
+a172 2
+	Tmk_stat.messages++;
+	Tmk_stat.bytes += size;
+a173 1
+	req = (struct req_typ *) sigio_req;
+d177 1
+a177 1
+		Tmk_MPLerrexit("MPL_rnc_handler<mpc_rcvncall>");
+d190 1
+a190 1
+		Tmk_errno_check("Tmk_ack<send>");
+d217 1
+a217 2
+void
+sigio_handler(int sig)
+d234 1
+a234 1
+		Tmk_perrexit("sigio_handler<select>");
+d247 1
+a247 1
+				Tmk_perrexit("sigio_handler<recv>");
+d310 1
+a310 1
+		Tmk_err("sigio_handler: er == %d\n", er);
+d315 2
+a316 5
+/*
+ *
+ */
+static	void
+sigio_handler_pthreads(int sig)
+d331 1
+a331 5
+/*
+ *
+ */
+void
+Tmk_sigio_initialize( void )
+d339 1
+a339 1
+		Tmk_MPLerrexit("Tmk_sigio_initialize<mpc_rcvncall>");
+@
+
+
+10.16.1.13
+log
+@Two changes:
+
+1. Use dispatch table to vector sigio handlers.
+
+2. Use SIGIO_BUFFER_HOLD to determine which handlers must hold
+their buffer.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.12 1998/06/14 06:17:47 alc Exp alc $
+a97 38
+/*
+ *
+ */
+static	void
+Tmk_connect_sigio_handler(
+	const struct req_typ *req,
+	int		size)
+{
+	Tmk_errexit("sigio_handler: unexpected REQ_CONNECT\n");
+}
+
+/*
+ *
+ */
+static
+void  (*const sigio_handlers_[])() = {
+	Tmk_barrier_sigio_handler,
+	Tmk_barrier_sigio_handler,
+	Tmk_cond_broadcast_sigio_handler,
+	Tmk_cond_signal_sigio_handler,
+	Tmk_cond_wait_sigio_handler,
+	Tmk_connect_sigio_handler,
+	Tmk_diff_sigio_handler,
+	Tmk_distribute_sigio_handler,
+	Tmk_exit_sigio_handler,
+	Tmk_sched_sigio_handler,
+	Tmk_sched_sigio_handler,
+	Tmk_lock_sigio_handler,
+	Tmk_page_sigio_handler,
+	Tmk_repo_sigio_handler
+};
+
+/*
+ *
+ */
+#define SIGIO_BUFFER_HOLD	((1 << REQ_ARRIVAL)|(1 << REQ_ARRIVAL_REPO)|\
+				 (1 << REQ_JOIN)|(1 << REQ_JOIN_REPO))
+
+d115 45
+a159 1
+	if ((1 << req->type) & SIGIO_BUFFER_HOLD) {
+d161 4
+a164 1
+		req_entry_t    *entry = &req_from_[req->from];
+d166 2
+a167 6
+		entry->req  = (struct req_syn *) req;
+		entry->size = size;
+
+		if ((struct req_typ *) sigio_req == req)
+			sigio_req += MTU/sizeof(long);
+	}
+d169 1
+a169 1
+	(*sigio_handlers_[req->type])(req, size + sizeof(req->seqno));
+d246 1
+a246 2
+			struct req_typ *req = (struct req_typ *) sigio_req;
+			unsigned	seqno, type;
+d251 1
+a251 1
+			seqno = req->seqno;
+d253 1
+a253 1
+			if (rep_seqno_[req->from] < seqno) {
+d255 7
+a261 1
+				rep_seqno_[req->from] = seqno;
+d263 1
+a263 8
+				type = req->type;
+
+				if ((1 << type) & SIGIO_BUFFER_HOLD) {
+
+					req_entry_t    *entry = &req_from_[req->from];
+
+					entry->req  = (struct req_syn *) req;
+					entry->size = size;
+d265 34
+a298 1
+					sigio_req = (long *)((caddr_t) req + MTU);
+a299 2
+
+				(*sigio_handlers_[type])(req, size);
+d343 1
+a343 1
+	struct	req_typ *req;
+a344 1
+	req = (struct req_typ *) sigio_req;
+@
+
+
+10.16.1.14
+log
+@Moved the timeout definition.  Added a couple comments.  Changed
+the sigio handler definition to canonical form.
+Added the "static" attribute to Tmk_ack.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.13 1998/06/15 04:22:46 alc Exp alc $
+d89 2
+d110 1
+a110 1
+ * Used by sigio_handler to vector requests.
+d131 1
+a131 1
+ * Request types that require the buffer to persist.
+d180 1
+a180 1
+static	void
+d211 1
+a211 6
+ * Passed by sigio_handler to select.
+ */
+static	struct	timeval	timeout = { 0, 0 };
+
+/*
+ * Called by SIGIO, Tmk_barrier, and Tmk_sched_*.
+d214 1
+a214 2
+sigio_handler(
+	int	sig)
+@
+
+
+10.16.1.15
+log
+@Added Tmk_sigio_buffer_release.  Deleted sigio_buffer_initialize.
+Implemented a stack-based allocator for sigio/request buffers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.14 1998/06/15 05:06:03 alc Exp alc $
+d93 2
+a94 13
+static	long	sigio_buffer_[NPROCS][MTU/sizeof(long)];
+static	long   *sigio_buffer_stack_[NPROCS];
+static	long  **sigio_buffer_tos = sigio_buffer_stack_;
+
+/*
+ * Pushes the supplied buffer onto the free buffer stack.
+ */
+void
+Tmk_sigio_buffer_release(
+	long	*req)
+{
+	*--sigio_buffer_tos = req;
+}
+d245 1
+a245 1
+			struct req_typ *req = (struct req_typ *) *sigio_buffer_tos;
+d266 1
+a266 1
+					sigio_buffer_tos++;
+d301 5
+a311 1
+	int	i;
+a343 6
+	/*
+	 * Initializes the free buffer stack.  The top of stack is
+	 * statically initialized.
+	 */
+	for (i = 0; i < NPROCS; i++)
+		sigio_buffer_stack_[i] = sigio_buffer_[i];
+@
+
+
+10.16.1.16
+log
+@Check sigaction's return value for an error.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.15 1998/06/15 22:00:51 alc Exp alc $
+a327 3
+	/*
+	 * Installs the SIGIO handler.
+	 */
+d349 1
+a349 2
+	if (0 > sigaction(SIGIO, &sa, NULL))
+		Tmk_perrexit("Tmk_sigio_initialize<sigaction>");
+@
+
+
+10.16.1.17
+log
+@Update the MPL-specific code to use the new stack-based allocator
+for sigio/request buffers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.16 1998/06/15 22:09:01 alc Exp alc $
+d145 1
+a145 5
+#if defined(MPL)
+
+static	int		MPL_id;
+
+static	struct req_typ *MPL_req;
+d147 1
+a147 1
+static	int		MPL_type = MPL_REQ;
+d149 1
+a149 1
+static	void		MPL_rnc_initialize( void );
+d153 1
+a153 1
+	int	       *id)
+d155 1
+a155 1
+	struct req_typ *req = MPL_req;
+d157 1
+a157 1
+	size_t		size;
+d167 1
+a167 1
+		entry->size = size + sizeof(req->seqno);
+d169 2
+a170 1
+		MPL_req = (struct req_typ *) *sigio_buffer_tos++;
+d178 1
+a178 8
+	MPL_rnc_initialize();
+}
+
+static	void
+MPL_rnc_initialize( void )
+{
+	struct req_typ *req = MPL_req;
+
+d181 2
+a182 2
+	if (0 > mpc_rcvncall(&req->from, MTU - sizeof(req->seqno), (int *) req, &MPL_type, &MPL_id, MPL_rnc_handler))
+		Tmk_MPLerrexit("MPL_rnc_initialize<mpc_rcvncall>");
+d231 3
+a233 1
+#if ! defined(MPL)
+a293 2
+#else
+	MPL_rnc_handler(&MPL_id);
+d319 5
+a323 9
+#if ! defined(MPL)
+	struct	sigaction sa;
+#endif
+	/*
+	 * Initializes the free buffer stack.  The top of stack is
+	 * statically initialized.
+	 */
+	for (i = 0; i < NPROCS; i++)
+		sigio_buffer_stack_[i] = sigio_buffer_[i];
+d325 3
+a327 1
+#if ! defined(MPL)
+d331 1
+d354 1
+a354 1
+#else
+d356 2
+a357 1
+	 * Installs the RNC handler.
+d359 2
+a360 4
+	MPL_req = (struct req_typ *) *sigio_buffer_tos++;
+
+	MPL_rnc_initialize();
+#endif
+@
+
+
+10.16.1.18
+log
+@Tmk_connect_sigio_duplicate_handler duplicates Tmk_ack.  Delete it.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.17 1998/06/16 22:10:06 alc Exp alc $
+d204 1
+a204 1
+	while (0 > send(rep_fd_[req->from], (char *)&req->seqno, sizeof(req->seqno), 0))
+d218 1
+a218 1
+	Tmk_ack,
+@
+
+
+10.16.1.19
+log
+@Tweaked the MPL vs. sockets definition for sigio_handler.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.18 1998/06/16 22:29:32 alc Exp alc $
+a239 5
+#if	defined(MPL)
+{
+	MPL_rnc_handler(&MPL_id);
+}
+#else
+d241 1
+d302 3
+a305 1
+#endif
+@
+
+
+10.16.1.20
+log
+@Added support for reduction barriers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.19 1998/07/26 17:26:32 alc Exp alc $
+a135 2
+	Tmk_reduction_sigio_handler,
+	Tmk_reduction_sigio_handler,
+d143 1
+a143 2
+				 (1 << REQ_JOIN)|(1 << REQ_JOIN_REPO)|\
+				 (1 << REQ_REDUCTION)|(1 << REQ_REDUCTION_REPO))
+a225 2
+	Tmk_reduction_sigio_duplicate_handler,
+	Tmk_reduction_sigio_duplicate_handler,
+@
+
+
+10.16.1.21
+log
+@1.  Tmk_barrier_reduce replaces Tmk_barrier.  Tmk_barrier is now
+a stub that calls Tmk_barrier_reduce.  2.  The file barrier.c is
+dropped.  3.  The file reduction.c is renamed barrier_reduce.c.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.16.1.20 1998/08/10 19:49:08 alc Exp alc $
+d136 2
+d145 2
+a146 1
+				 (1 << REQ_JOIN)|(1 << REQ_JOIN_REPO))
+d229 2
+@
+
+
+10.15
+log
+@Split the condition signal handler into separate signal and broadcast
+handlers.  Renamed the condition signal duplicate handler "generic".
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.14 1997/05/19 05:32:58 alc Exp alc $
+d265 3
+a267 1
+					Tmk_cond_generic_sigio_duplicate_handler(req);
+a276 3
+					break;
+				case REQ_DISTRIBUTE:
+					Tmk_distribute_sigio_duplicate_handler(req);
+@
+
+
+10.14
+log
+@Changed the monolithic monitor duplicate handler to separate signal and
+wait duplicate handlers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.13 1997/05/19 05:10:23 alc Exp alc $
+d113 3
+d220 2
+d265 1
+a265 1
+					Tmk_cond_signal_sigio_duplicate_handler(req);
+@
+
+
+10.13
+log
+@Changed the monolithic monitor handler to separate signal and wait
+handlers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.12 1997/04/12 21:07:32 alc Exp alc $
+d260 2
+d263 1
+a263 1
+					Tmk_monitor_sigio_duplicate_handler(req);
+@
+
+
+10.12
+log
+@Eliminated the implicit binding (mis)feature of the condition variable
+code.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.11 1997/03/18 08:12:39 alc Exp alc $
+d112 5
+d118 3
+a120 4
+	case REQ_COND_SIGNAL:
+	case REQ_COND_BROADCAST:
+		Tmk_monitor_sigio_handler(req);
+		break;	/* XXX */
+d218 2
+d221 1
+a221 1
+                                        Tmk_monitor_sigio_handler(req);
+@
+
+
+10.11
+log
+@Added support for condition variables.  The MPL implementation is
+probably broken.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.10 1997/02/21 17:53:02 alc Exp alc $
+a111 3
+	case REQ_COND_BIND:
+		Tmk_monitor_bind_handler(req);
+		break;	/* XXX */
+a211 3
+				case REQ_COND_BIND:
+					Tmk_monitor_bind_handler(req);
+					break;
+a250 3
+					break;
+				case REQ_COND_BIND:
+					Tmk_monitor_bind_handler(req);
+@
+
+
+10.10
+log
+@Added dummy argument to sigio_handler to satisfy the requirements
+of the ANSI spec.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.9 1996/10/05 23:00:51 alc Exp alc $
+d112 8
+d215 8
+d257 8
+@
+
+
+10.9
+log
+@Eliminated the MPL barrier.  This barrier is performed
+by Tmk_connect_initialize instead.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.8 1996/10/04 23:29:48 alc Exp alc $
+d160 1
+a160 1
+void	sigio_handler( void )
+@
+
+
+10.8
+log
+@Eliminated the use of multiple, simultaneous rcvncall operations.  (Only
+one is ever outstanding at a time.)  There are still buffer allocation
+problems in the MPL version.  (To be fixed later.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.7 1996/10/03 06:20:35 alc Exp alc $
+a294 3
+
+	if (0 > mpc_sync(ALLGRP))
+		Tmk_MPLerrexit("<mpc_sync>Tmk_sigio_initialize");
+@
+
+
+10.7
+log
+@Changed the MPL buffering scheme.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.6 1996/09/25 04:05:12 alc Exp $
+d92 1
+a92 8
+#if defined(MPL)
+static	int	id_[NPROCS];
+
+static	void	MPL_rnc_handler(int *id);
+
+static	void	MPL_set_handler(int i)
+{
+static	int	type = MPL_REQ;
+d94 1
+a94 1
+	long   *req = sigio_req_[i];
+d96 1
+a96 3
+	if (0 > mpc_rcvncall(&req[1], MTU - sizeof(req[0]), req, &type, &id_[i], MPL_rnc_handler))
+	        Tmk_MPLerrexit("<mpc_rcvncall>MPL_set_handler");
+}
+d100 1
+a100 1
+static	int	type = MPL_REQ;
+a103 2
+	int	i;
+
+d107 33
+a139 3
+	for (i = 0; i < Tmk_nprocs; i++) {
+		if (i == Tmk_proc_id)
+			continue;
+d141 4
+a144 1
+		if (id_[i] == *id) {
+d146 1
+a146 1
+			struct	req_typ *req = sigio_req_[i];
+d148 1
+a148 1
+			size += sizeof(unsigned);
+d150 1
+a150 32
+			switch (req->type) {
+			case REQ_ARRIVAL:
+			case REQ_ARRIVAL_REPO:
+				(*Tmk_barrier_sigio_handler)(req, size);
+				break;
+			case REQ_CONNECT:
+				Tmk_errexit("sigio_handler: unexpected REQ_CONNECT\n");
+			case REQ_DIFF:
+				Tmk_diff_sigio_handler(req, size);
+				break;
+			case REQ_DISTRIBUTE:
+				Tmk_distribute_sigio_handler(req);
+				break;
+			case REQ_EXIT:
+				Tmk_exit_sigio_handler(req);
+				break;
+			case REQ_JOIN:
+			case REQ_JOIN_REPO:
+				(*Tmk_sched_sigio_handler)(req, size);
+				break;
+			case REQ_LOCK:
+				Tmk_lock_sigio_handler(req);
+				break;
+			case REQ_PAGE:
+				Tmk_page_sigio_handler(req);
+				break;
+			case REQ_REPO:
+				Tmk_repo_sigio_handler(req);
+				break;
+			}
+			if (0 > mpc_rcvncall(&req->from, MTU - sizeof(req->seqno), req, &type, &id_[i], MPL_rnc_handler))
+				Tmk_MPLerrexit("<mpc_rcvncall>MPL_rnc_handler");
+d152 2
+a153 3
+			return;
+		}
+	}
+d163 1
+a163 3
+	int	id = DONTCARE;
+
+	MPL_rnc_handler(&id);
+d288 2
+a289 4
+#if defined(MPL)
+	int	i;
+
+	for (i = 0; i < Tmk_nprocs; i++) {
+d291 1
+a291 1
+		id_[i] = -1;
+d293 2
+a294 2
+		if (i == Tmk_proc_id)
+			continue;
+d296 2
+a297 4
+		sigio_req_[i][0] = i;
+
+		MPL_set_handler(i);
+	}
+@
+
+
+10.6
+log
+@Eliminated the global "reqsource" variable.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.5 1996/09/24 05:21:10 alc Exp alc $
+d93 1
+d95 1
+a95 1
+static	long   *rncbuffer = 0;
+d97 5
+a101 2
+static	int	reqtype = MPL_REQ;
+static	int	tmk_mpl_reqid = -1;
+d103 3
+a105 2
+static
+long   *sigio_buffer_head;
+d107 1
+a107 1
+void	sigio_buffer_free(long **sigio_buffer)
+d109 1
+a109 1
+	*sigio_buffer = sigio_buffer_head;
+d111 6
+a116 2
+	sigio_buffer_head = (long *) sigio_buffer;
+}
+d118 3
+a120 4
+static
+long   *sigio_buffer_alloc()
+{
+	long   *req = sigio_buffer_head;
+d122 1
+a122 1
+	sigio_buffer_head = *(long **) req;
+d124 1
+a124 3
+	return req;
+}
+#endif
+d126 1
+a126 4
+void	sigio_buffer_initialize()
+{
+#if  defined(MPL)
+	int	i;
+d128 32
+a159 3
+	for (i = 0; i < NPROCS; i++)
+		if (sigio_req_[i] != rncbuffer) /* don't recover active buffer */
+			sigio_buffer_free((u_char **) sigio_req_[i]);
+d161 4
+a164 4
+	if (rncbuffer == 0)
+		sigio_req = sigio_buffer_alloc();
+#else
+	sigio_req = sigio_req_[0];
+a165 1
+}
+a166 1
+#if !defined(MPL)
+d172 5
+d290 1
+a290 34
+}
+#else
+static
+void	dispatch_req(struct req_typ *req, int size)
+{
+	switch (req->type) {
+	case REQ_ARRIVAL:
+	case REQ_ARRIVAL_REPO:
+		(*Tmk_barrier_sigio_handler)(req, size);
+	    
+		sigio_req = sigio_buffer_alloc();
+
+		break;
+	case REQ_CONNECT:
+		Tmk_errexit("sigio_handler: unexpected REQ_CONNECT\n");
+	case REQ_DIFF:
+		Tmk_diff_sigio_handler(req, size);
+		break;
+	case REQ_DISTRIBUTE:
+		Tmk_distribute_sigio_handler(req);
+		break;
+	case REQ_EXIT:
+		Tmk_exit_sigio_handler(req);
+		break;
+	case REQ_LOCK:
+		Tmk_lock_sigio_handler(req);
+		break;
+	case REQ_PAGE:
+		Tmk_page_sigio_handler(req);
+		break;
+	case REQ_REPO:
+		Tmk_repo_sigio_handler(req);
+		break;
+	}
+d293 1
+a293 5
+static
+void	mpl_rnc_handler(int *msgid);
+
+static
+void	set_MPLhandler( void )
+d295 1
+a295 8
+	int *buf = sigio_req;
+
+	buf[0] = DONTCARE;
+
+	rncbuffer = sigio_req;
+
+	if (0 > mpc_rcvncall(&buf[1], MTU - sizeof(buf[0]), buf, &reqtype, &tmk_mpl_reqid, mpl_rnc_handler))
+	        Tmk_MPLerrexit("<mpc_rcvncall>set_MPLhandler");
+d298 1
+a298 2
+static
+void	mpl_request_dispatch(int *msgid)
+d300 2
+a301 1
+	size_t	reqsize;
+d303 1
+a303 2
+	if (0 > mpc_wait(msgid, &reqsize)) 
+		Tmk_MPLerrexit("<mpc_wait>mpl_request_handler");
+d305 1
+a305 5
+	if (sigio_req != rncbuffer)
+		Tmk_err("*** Buffer changed out from under rnchandler\n"
+			" sigio_req %x rncb %x recvb %x *msgid %d reqid %d size %d **\n",
+			sigio_req,  rncbuffer, 0, *msgid,
+			tmk_mpl_reqid, reqsize);
+d307 2
+a308 2
+	rncbuffer = 0;  /* allow it to be recovered by initialize */
+	tmk_mpl_reqid = -1;
+d310 1
+a310 10
+	dispatch_req(sigio_req, reqsize + 4);
+}
+
+static
+void	mpl_rnc_handler(int *msgid)
+{
+	mpl_request_dispatch(msgid);
+
+	set_MPLhandler();
+}
+d312 1
+a312 17
+/*
+ * export sigio_handler for calls from barrier and repo w/o src changes
+ */
+void	sigio_handler( void )
+{
+	if (tmk_mpl_reqid == -1) { /* There's no outstanding recvncall */
+
+		int *buf = (int *) sigio_req;
+
+		buf[0] = DONTCARE;
+
+		/* Note that this code fakes the Tmk seqnos */
+
+		if (0 > mpc_recv(&buf[1], MTU - sizeof(buf[0]), buf, &reqtype, &tmk_mpl_reqid)) 
+			Tmk_MPLerrexit("<mpc_rcvncall>Tmk_get_request");
+
+		rncbuffer = sigio_req;
+a313 19
+	mpl_request_dispatch(&tmk_mpl_reqid);
+}
+
+/*
+ * Called from repo and barrier
+ */
+void	tmk_rnc_initialize( void )
+{
+	if (tmk_mpl_reqid == -1)  /* i.e. no handler currently waiting */
+		set_MPLhandler();
+}
+#endif
+
+void	Tmk_sigio_initialize()
+{
+#if defined(MPL)
+	sigio_buffer_initialize();
+
+	set_MPLhandler();
+@
+
+
+10.5
+log
+@Added MPL support.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.4 1996/08/25 20:39:36 alc Exp alc $
+a95 1
+static	int	reqsource;
+d299 1
+a299 1
+	reqsource = DONTCARE;
+d303 2
+a304 2
+	if (0 > mpc_rcvncall(&buf[1], MTU - sizeof(int), &reqsource, &reqtype, &tmk_mpl_reqid, mpl_rnc_handler))
+	        Tmk_MPLerrexit("<mpc_rcvncall>set_MPLhandler:");
+d310 1
+a310 3
+	size_t		reqsize;
+
+	struct req_typ *req;
+d324 1
+a324 4
+	req = (struct req_typ *) sigio_req;
+	req->seqno = reqsource;
+
+	dispatch_req(req, reqsize + 4);
+d344 1
+a344 1
+		reqsource = DONTCARE;
+d348 1
+a348 1
+		if (0 > mpc_recv(&buf[1], MTU - sizeof(int), &reqsource, &reqtype, &tmk_mpl_reqid)) 
+@
+
+
+10.4
+log
+@Standardize the sigio handler interfaces.  Specifically, eliminate
+the "fd" parameter.
+@
+text
+@d39 1
+a39 1
+ * $Id: sigio.c,v 10.3 1996/07/28 07:23:56 alc Exp alc $
+d92 46
+d257 50
+d308 58
+a365 1
+void	sigio_buffer_initialize()
+d367 2
+a368 1
+	sigio_req = sigio_req_[0];
+d370 1
+d374 5
+d393 1
+@
+
+
+10.3
+log
+@Create req_typ_type REQ_JOIN, replacing NEW_REQ_ARRIVAL.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d142 1
+a142 1
+					Tmk_diff_sigio_handler(fd, req, size);
+d161 1
+a161 1
+					Tmk_page_sigio_handler(fd, req);
+d178 1
+a178 1
+					Tmk_diff_sigio_handler(fd, req, size);
+d194 1
+a194 1
+					Tmk_page_sigio_handler(fd, req);
+@
+
+
+10.2
+log
+@Initial integration of the loop scheduling routines.
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		sigio.c
+d80 1
+a80 4
+ *
+ * $Id: sigio.c,v 10.1 1996/05/27 04:43:36 alc Rel alc $
+ *
+ *****************************************************************************/
+d150 7
+a165 7
+				case NEW_REQ_ARRIVAL:
+				case NEW_REQ_ARRIVAL_REPO:
+					(*Tmk_sched_sigio_handler)(req, size);
+
+					sigio_req = (long *)((caddr_t) req + MTU);
+
+					break;
+d186 4
+a197 4
+					break;
+				case NEW_REQ_ARRIVAL:
+				case NEW_REQ_ARRIVAL_REPO:
+					Tmk_sched_sigio_duplicate_handler(req);
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d79 1
+a79 1
+ * $Id: sigio.c,v 10.0.2.2 1996/04/21 05:56:14 alc Exp $
+d160 7
+d195 4
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@d79 1
+a79 1
+ * $Id: sigio.c,v 10.1 1996/05/27 04:43:36 alc Rel $
+@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@a43 5
+ *			sigio_handler
+ *		(MPL specific external fns)
+ *			sigio_buffer_free
+ *			sigio_buffer_initialize
+ *			tmk_rnc_initialize
+a44 1
+ *
+a77 1
+ *	July-1996	Rob Fowler	MPL (extensive restructuring)
+d79 1
+a79 1
+ * $Id: sigio.c,v 10.1.5.3 1996/07/02 00:09:02 tmiller Exp $
+d91 1
+d93 4
+a96 131
+static long *sigio_req;
+
+static  long *sigio_buffer_head;
+
+#if defined(MPL)
+
+static long *rncbuffer = 0;
+
+static long *recvbuffer;
+
+static  int  reqsource;
+static  int  reqtype;
+static  int  tmk_mpl_reqid;
+static  size_t  reqsize;
+
+
+
+#endif
+
+void  sigio_buffer_free(long **sigio_buffer)
+{
+  *sigio_buffer = sigio_buffer_head;
+
+  sigio_buffer_head = (long *) sigio_buffer;
+}
+
+static long *sigio_buffer_alloc()
+{
+  long *req = sigio_buffer_head;
+
+  sigio_buffer_head = *(long **) req;
+
+  return req;
+}
+
+void sigio_buffer_initialize()
+{
+  int i;
+
+  for (i = 0; i < NPROCS; i++)
+#if defined(MPL)
+      if (sigio_req_[i] != rncbuffer) /* don't recover active buffer */
+#endif
+    sigio_buffer_free((u_char **) sigio_req_[i]);
+
+#if defined(MPL)
+  if ( rncbuffer == 0)  
+#endif
+      sigio_req = sigio_buffer_alloc();
+
+}
+
+
+
+#if defined(THREADS)
+pthread_mutex_t sigio_lock = PTHREAD_MUTEX_INITIALIZER;
+#endif
+
+static dispatch_req(req,size,fd)
+    struct req_typ *req;
+    int size, fd;
+{
+    if (rep_seqno_[req->from] < req->seqno) {
+	
+	rep_seqno_[req->from] = req->seqno;
+	
+	switch (req->type) {
+	case REQ_ARRIVAL:
+	case REQ_ARRIVAL_REPO:
+	    (*Tmk_barrier_sigio_handler)(req, size);
+	    
+	    sigio_req = sigio_buffer_alloc();
+
+	    break;
+	case REQ_CONNECT:
+	    Tmk_errexit("sigio_handler: unexpected REQ_CONNECT\n");
+	case REQ_DIFF:
+	    Tmk_diff_sigio_handler(fd, req, size);
+	    break;
+	case REQ_DISTRIBUTE:
+	    Tmk_distribute_sigio_handler(req);
+	    break;
+	case REQ_EXIT:
+	    Tmk_exit_sigio_handler(req);
+	    break;
+	case REQ_LOCK:
+	    Tmk_lock_sigio_handler(req);
+	    break;
+	case REQ_PAGE:
+	    Tmk_page_sigio_handler(fd, req);
+	    break;
+	case REQ_REPO:
+	    Tmk_repo_sigio_handler(req);
+	    break;
+	}
+    }
+    else
+	switch (req->type) {
+	case REQ_ARRIVAL:
+	case REQ_ARRIVAL_REPO:
+	    Tmk_barrier_sigio_duplicate_handler(req)	;
+	    break;
+	case REQ_CONNECT:
+	    Tmk_connect_sigio_duplicate_handler(req);
+	    break;
+	case REQ_DIFF:
+	    Tmk_diff_sigio_handler(fd, req, size);
+	    break;
+	case REQ_DISTRIBUTE:
+	    Tmk_distribute_sigio_duplicate_handler(req);
+	    break;
+	case REQ_EXIT:
+	    Tmk_exit_sigio_handler(req);
+	    break;
+	case REQ_LOCK:
+	    Tmk_lock_sigio_duplicate_handler(req);
+	    break;
+	case REQ_PAGE:
+	    Tmk_page_sigio_handler(fd, req);
+	    break;
+	case REQ_REPO:
+	    Tmk_repo_sigio_duplicate_handler(req);
+	    break;
+	}
+
+}
+
+
+#if !defined(MPL)
+
+void	sigio_handler( )
+d128 3
+d132 58
+a189 1
+			dispatch_req(req,size,fd);
+d202 1
+a202 2
+#if defined(THREADS)
+void	sigio_handler_threads()
+d204 1
+a204 5
+	pthread_mutex_lock(&sigio_lock);
+
+	sigio_handler();
+
+	pthread_mutex_unlock(&sigio_lock);
+a205 1
+#endif
+d210 1
+a210 3
+#if defined(THREADS)
+	sa.sa_handler = sigio_handler_threads;
+#elif defined(__linux)
+a222 98
+
+	sigio_buffer_initialize();
+}
+
+#else /* MPL branch */
+
+static void mpl_rnc_handler(int*);
+
+static void set_MPLhandler()
+{
+    reqsource = DONTCARE;
+    reqtype = MPL_REQ;
+
+    rncbuffer = sigio_req;
+    recvbuffer = 0;
+    if (0 > mpc_rcvncall(sigio_req, MTU, &reqsource, &reqtype, &tmk_mpl_reqid, 
+                          mpl_rnc_handler))
+        Tmk_MPLerrexit("<mpc_rcvncall>set_MPLhandler:");
+  }
+
+
+static void mpl_request_dispatch(msgid)
+    int *msgid;
+{
+    struct	req_typ	*req;
+    int fd;  /* for MPL this gets set to the task id */
+    int size;
+
+    if( 0 > mpc_wait(msgid, &reqsize)) 
+	Tmk_MPLerrexit("<mpc_wait>mpl_request_handler:");
+
+    if(sigio_req != rncbuffer)
+      Tmk_err("*** Buffer changed out from under rnchandler\n"
+	      " sigio_req %x rncb %x recvb %x *msgid %d reqid %d size %d **\n",
+	      sigio_req,  rncbuffer, recvbuffer, *msgid,
+	      tmk_mpl_reqid, reqsize);
+
+    rncbuffer = 0;  /* allow it to be recovered by initialize */
+    tmk_mpl_reqid = -1;
+
+    req = (struct req_typ *) sigio_req;
+    fd = req->from;
+
+    size = reqsize;
+
+#if defined(MPL_DEBUG)
+	Tmk_err("*rnc %d <-- %d %08x %08x\n",
+		 Tmk_proc_id, fd, sigio_req[0], sigio_req[1]);
+#endif
+    fd = fd | 0x80;
+    dispatch_req(req,size, fd);
+
+}
+
+static void mpl_rnc_handler(msgid)
+     int *msgid;
+{
+
+  mpl_request_dispatch(msgid);
+  set_MPLhandler();
+
+}
+
+static void mpl_get_request()
+{
+  if(tmk_mpl_reqid == -1) /* There's no outstanding recvncall */
+    {
+      reqsource = DONTCARE;
+      reqtype = MPL_REQ;
+
+      if (0 > mpc_recv(sigio_req, MTU, &reqsource, &reqtype, &tmk_mpl_reqid)) 
+	Tmk_MPLerrexit("<mpc_rcvncall>Tmk_get_request:");
+      rncbuffer = recvbuffer = sigio_req;
+    }
+
+      mpl_request_dispatch(&tmk_mpl_reqid);
+}
+
+/* export sigio_handler for calls from barrier and repo w/o src changes */
+void sigio_handler() { mpl_get_request();}
+
+
+void	tmk_rnc_initialize()
+{
+
+/* Called from repo  and barrier*/
+	if( tmk_mpl_reqid == -1)  /* i.e. no handler currently waiting */
+	  set_MPLhandler();
+}
+
+
+void	Tmk_sigio_initialize()  /* MPL version */
+{
+
+    sigio_buffer_initialize();
+    tmk_mpl_reqid = -1;
+    set_MPLhandler();
+
+a223 3
+
+#endif
+
+@
+
+
+10.1.4.2
+log
+@Eliminated seqno and extra copying from MPL messages.
+@
+text
+@a90 2
+/* #define MPL_DEBUG */
+
+a160 1
+#if !defined(MPL)
+d164 1
+a164 1
+#endif	
+a193 1
+#if !defined(MPL)
+d223 1
+a223 1
+#endif
+a313 1
+    int *buf = sigio_req;
+d319 1
+a319 2
+    if (0 > mpc_rcvncall(&(buf[1]), MTU - sizeof(int),
+			 &reqsource, &reqtype, &tmk_mpl_reqid, 
+a330 1
+    int * buf;
+a343 3
+    buf = (int *) sigio_req;
+    buf[0] = reqsource;
+
+d347 1
+a347 1
+    size = reqsize + 4;
+d350 2
+a351 2
+	Tmk_err("*rnc %d <-- %d %08x %08x %08x \n",
+		 Tmk_proc_id, fd, buf[0], buf[1], buf[2] );
+a370 1
+	int * buf;
+d374 1
+a374 6
+/* Note that this code fakes the Tmk seqnos */
+
+	buf = (int *) sigio_req;
+      if (0 > mpc_recv( &(buf[1]),
+		       MTU - sizeof(int),
+		       &reqsource, &reqtype, &tmk_mpl_reqid)) 
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@d79 1
+a79 1
+ * $Id: sigio.c,v 10.1 1996/05/27 04:43:36 alc Rel $
+@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@d79 1
+a79 1
+ * $Id: sigio.c,v 10.1.5.1 1996/06/27 16:38:16 tmiller Exp tmiller $
+a92 4
+#if defined(THREADS)
+pthread_mutex_t sigio_lock;
+#endif
+
+a201 11
+#if defined(THREADS)
+void	sigio_handler_threads()
+{
+	pthread_mutex_lock(&sigio_lock);
+
+	sigio_handler();
+
+	pthread_mutex_unlock(&sigio_lock);
+}
+#endif
+
+d210 1
+a210 5
+#if defined(THREADS)
+	pthread_mutex_init(&sigio_lock, NULL);
+
+	sa.sa_handler = sigio_handler_threads;
+#elif defined(__linux)
+@
+
+
+10.1.5.3
+log
+@Use static initializers for pthread mutexes
+@
+text
+@d79 1
+a79 1
+ * $Id: sigio.c,v 10.1.5.2 1996/06/27 23:05:15 tmiller Exp $
+d94 1
+a94 1
+pthread_mutex_t sigio_lock = PTHREAD_MUTEX_INITIALIZER;
+d226 2
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@d79 1
+a79 1
+ * $Id: sigio.c,v 10.1 1996/05/27 04:43:36 alc Rel $
+@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@d75 6
+d210 3
+a212 1
+
+d214 1
+a214 1
+
+@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@a74 1
+ *	Apr-1996	Rob Fowler	Linux version
+a100 4
+#if defined(linux)
+	/* Maybe linux trashes timeout, maybe it doesn't */
+	timeout.tv_sec = timeout.tv_usec = 0;
+#endif
+d205 1
+a210 4
+	sa.sa_handler = sigio_handler;
+#elif defined(linux)
+	sa.sa_flags = SA_RESTART;
+	sa.sa_handler = (void (*)()) sigio_handler;
+a212 1
+	sa.sa_handler = sigio_handler;
+@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.2
+log
+@Ported to Linux 1.2.13.  Changes provided by Robert J. Fowler.
+@
+text
+@a74 6
+ *	19-Apr-1996	Robert J. Fowler
+ *					Adapted for Linux 1.2.13
+ *	Version 0.10.1
+ *
+ * $Id$
+ *
+d204 1
+a204 3
+#if defined(__linux)
+	sa.sa_handler = (__sighandler_t) sigio_handler;
+#else
+d206 1
+a206 1
+#endif
+@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.1.2.2
+log
+@Added the sigio lock. <SMP>
+@
+text
+@a85 3
+#if  defined(__sgi)	/* SMP */
+abilock_t	sigio_lock;
+#endif
+a214 3
+#if  defined(__sgi)	/* SMP */
+	init_lock(&sigio_lock);
+#endif
+@
+
+
+10.0.2.1.2.3
+log
+@Built a wrapper around the sigio handler that performs
+sigio locking. <SMP>
+@
+text
+@a198 14
+#if defined(__sgi)
+/*
+ * SMP
+ */
+void	sigio_handler_sgi( void )
+{
+	spin_lock(&sigio_lock);
+
+	sigio_handler();
+
+	release_lock(&sigio_lock);
+}
+#endif
+
+d208 1
+a208 2
+#if  defined(__sgi)
+	init_lock(&sigio_lock);
+a209 4
+	sa.sa_handler = sigio_handler_sgi;	/* SMP */
+#else
+	sa.sa_handler = sigio_handler;
+#endif
+d218 3
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@d85 1
+d114 1
+a114 1
+			struct	req_typ	   *req = (struct req_typ *) sigio_req_[i];
+d129 4
+a132 1
+					Tmk_barrier_sigio_handler(req, size);
+d194 5
+@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d71 4
+d119 1
+a119 1
+			if ((size = recv(fd, req, MTU, 0)) < 0)
+d203 1
+a203 1
+	struct	sigvec	vec;
+d205 1
+a205 3
+	vec.sv_handler = sigio_handler;
+	vec.sv_mask = sigmask(SIGALRM);
+	vec.sv_flags = 0;
+d207 8
+a214 1
+	sigvec(SIGIO, &vec, NULL);
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@a128 3
+					
+					Tmk_stat.barrier_child_request++;
+					Tmk_stat.barrier_child_request_bytes += size;
+a129 14
+
+
+
+					break;
+				case NEW_REQ_ARRIVAL:
+				case NEW_REQ_ARRIVAL_REPO:
+					(*Tmk_barrier_sigio_new_handler)(req, size);
+
+
+					sigio_req = (long *)((caddr_t) req + MTU);
+
+					Tmk_stat.newbarrier_child_request++;
+					Tmk_stat.newbarrier_child_request_bytes += size;
+
+a132 4
+
+					Tmk_stat.connect_request++;
+					Tmk_stat.connect_request_bytes += size;
+
+a134 5
+
+					Tmk_stat.diff_request++;
+					Tmk_stat.diff_request_bytes += size;
+
+
+a137 5
+
+					Tmk_stat.distribute_request++;
+					Tmk_stat.distribute_request_bytes += size;
+
+
+a140 5
+
+					Tmk_stat.exit_request++;
+					Tmk_stat.exit_request_bytes += size;
+
+
+a143 5
+
+					Tmk_stat.lock_request++;
+					Tmk_stat.lock_request_bytes += size;
+
+
+a146 5
+
+					Tmk_stat.page_request++;
+					Tmk_stat.page_request_bytes += size;
+
+
+a149 5
+
+					Tmk_stat.repo_request++;
+					Tmk_stat.repo_request_bytes += size;
+
+
+a157 2
+					Tmk_stat.barrier_child_resend++;
+					Tmk_stat.barrier_child_resendbytes += size;
+a158 6
+				case NEW_REQ_ARRIVAL:
+				case NEW_REQ_ARRIVAL_REPO:
+					Tmk_barrier_sigio_duplicate_new_handler(req);
+					Tmk_stat.newbarrier_child_resend++;
+					Tmk_stat.newbarrier_child_resendbytes += size;
+					break;
+a160 5
+
+
+					Tmk_stat.connect_request++;
+					Tmk_stat.connect_request_bytes += size;
+
+a163 4
+
+					Tmk_stat.diff_request++;
+					Tmk_stat.diff_request_bytes += size;
+
+a166 7
+
+
+					Tmk_stat.distribute_request++;
+					Tmk_stat.distribute_request_bytes += size;
+
+
+
+a169 6
+
+
+					Tmk_stat.exit_request++;
+					Tmk_stat.exit_request_bytes += size;
+
+
+a172 6
+
+
+					Tmk_stat.lock_request++;
+					Tmk_stat.lock_request_bytes += size;
+
+
+a175 6
+
+
+					Tmk_stat.page_request++;
+					Tmk_stat.page_request_bytes += size;
+
+
+a178 6
+
+					Tmk_stat.repo_request++;
+					Tmk_stat.repo_request_bytes += size;
+
+
+
+@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d68 4
+d84 3
+d89 1
+a89 1
+	struct	req_typ	   *req;
+d92 14
+a105 5
+	do {
+		fd_set readfds = rep_fds;
+
+		if ((er = select(rep_maxfdp1, (fd_set_t)&readfds, NULL, NULL, &timeout)) < 0)
+			Tmk_perrexit("<select>sigio_handler");
+d107 1
+a107 4
+		for (i = 0; er; i++, er--) {
+			for ( ; i < Tmk_nprocs; i++) {
+				if (i == Tmk_proc_id)
+					continue;
+d109 1
+a109 1
+				fd = rep_fd_[i];
+d111 1
+a111 9
+				if (FD_ISSET(fd, &readfds))
+					goto receive;
+			}
+			if (Tmk_debug)
+				Tmk_err("<readfds>sigio_handler: er == %d\n", er);
+
+			return;
+		receive:
+			req = (struct req_typ *) sigio_req;
+d184 3
+d188 3
+a190 1
+	} while (i > 0);
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@d78 1
+d106 1
+a106 1
+			req = (struct req_typ *) sigio_req_[i];
+d121 4
+a124 1
+					Tmk_barrier_sigio_handler(req, size);
+d181 5
+@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@d71 2
+d78 1
+a78 2
+
+static	struct	timeval	timeout = { 0, 0 };
+d106 1
+a106 1
+			req = (struct req_typ *) sigio_req_[i];
+d121 4
+a124 1
+					Tmk_barrier_sigio_handler(req, size);
+d181 5
+@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

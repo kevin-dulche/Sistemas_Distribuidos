@@ -1,0 +1,87 @@
+head	1.1;
+access;
+symbols
+	Tmk-1_0_3_2R:1.1
+	Tmk-1_0_3_1R:1.1
+	Tmk-1_0:1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.23.22.05.13;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Common include file for the machine-dependent Makefiles.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) water.o bndry.o cnstnt.o cshift.o initia.o interf.o intraf.o kineti.o poteng.o predcor.o redsync.o syscns.o
+
+water.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+water.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+water.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+water.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+water.o: ../src/water.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/water.c
+
+bndry.o: ../src/bndry.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/bndry.c
+
+cnstnt.o: ../src/cnstnt.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/cnstnt.c
+
+cshift.o: ../src/cshift.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/cshift.c
+
+initia.o: ../src/initia.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/initia.c
+
+interf.o: ../src/interf.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/interf.c
+
+intraf.o: ../src/intraf.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/intraf.c
+
+kineti.o: ../src/kineti.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/kineti.c
+
+poteng.o: ../src/poteng.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/poteng.c
+
+predcor.o: ../src/predcor.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/predcor.c
+
+redsync.o: ../src/redsync.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/redsync.c
+
+syscns.o: ../src/syscns.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/syscns.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@

@@ -1,0 +1,58 @@
+head	9.5;
+access
+	alc
+	zhenghua;
+symbols
+	Tmk-0_9_5R:9.5
+	Tmk-0_9_4R:9.4;
+locks; strict;
+comment	@# @;
+
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+
+desc
+@Fortran common block support: replaced in version 0.9.6
+@
+
+
+9.5
+log
+@Tmk-0.9.5R
+@
+text
+@	.data
+tmk_shared_common_ .equ 0x78000000
+	.export tmk_shared_common_
+@
+
+
+9.5.1.1
+log
+@Tmk-0.9.5R: FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@Tmk-0.9.4R
+@
+text
+@@

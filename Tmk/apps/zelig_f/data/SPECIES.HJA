@@ -1,0 +1,34 @@
+   7  Species parameters for H.J. Andrews (version 2.4)             
+ 400  65     * XTree, XCht for these species
+ABam  Abies amabilis          Pacific silver fir      
+  600 200 62.465 -0.0195 1.4244 1450  1   118 1815  5 2 2 -5 0   0
+  1.10084 -1.50585  0.40401    4.7 -0.0341   0.64  -2.4897 2.4970
+ABpr  Abies procera           Noble fir               
+  600 275 85.382 -0.0077 0.8947 1160  1   442 1408  2 3 2  3 0   0
+  1.00511 -1.33944  0.33433    4.7 -0.0341   0.27  -2.6310 2.6043
+ACma  Acer macrophyllum       Big-leaf maple          
+  300 250 28.909 -0.0257 0.5598 1780  2   478 2361  4 2 2  3 1 250
+  0.95997 -1.46336  0.50339   15.1 -0.0314   0.21  -2.7885 2.6272
+ALru  Alnus rubra             Red alder               
+  100 150 32.792 -0.0276 0.7382 2609  2   400 3080  2 2 0  3 1 100
+  0.97576 -1.22922  0.25347   15.1 -0.0314   0.21  -2.0702 2.6780
+PSme  Pseudotsuga menziesii   Douglas-fir             
+ 1100 300 84.120 -0.0085 0.9262 2429  1   441 2461  2 4 2  5 0   0
+  0.87150 -1.50058  0.62908    8.9 -0.0191   0.54  -1.7383 2.3320
+THpl  Thuja plicata           Western redcedar        
+ 1500 300 60.134 -0.0082 0.7839 2502  1   292 2481  4 3 2  3 0   0
+  1.19210 -2.38420  1.19210    4.7 -0.0341   0.46  -2.3383 2.3420
+TShe  Tsuga heterophylla      Western hemlock         
+  500 225 63.625 -0.0139 1.0149 1456  1   311 2480  5 3 2  5 0   0
+  1.13877 -1.66358  0.52481   16.3 -0.0178   0.46  -2.5095 2.5638
+
+___________
+
+Parameters are:  
+
+  (1) MSP, scientific name, common name;
+  (2) Amax, Dmax, Hmax, H2, H3; G; LF; DDmin,max; L,M,N; 
+        Seed, NSprt, SDmax; 
+  (3) T0, T1, T2; S1, S2; SLR; AW0, AW1.
+
+Allometries are from BioLib (updated and verified for version 3).

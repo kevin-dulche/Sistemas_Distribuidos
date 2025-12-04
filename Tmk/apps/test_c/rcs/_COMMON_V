@@ -1,0 +1,134 @@
+head	1.2;
+access;
+symbols
+	Tmk-1_0_3_2R:1.2
+	Tmk-1_0_3_1R:1.2
+	Tmk-1_0:1;
+locks
+	alc:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	97.04.12.08.41.24;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.03.18.08.19.56;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Common makefile.
+@
+
+
+1.2
+log
+@Added cond.{o,udp} to the set of targets.  Added dependency
+on $(TmkDIR)/include/Tmk.h to the .o targets.
+@
+text
+@ #
+ # $Id: .common,v 10.3 1997/03/18 20:54:10 alc Exp $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS)
+
+barrier.atm: $(MACHDEP_OBJS) barrier.o $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) barrier.o -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+diff.atm: $(MACHDEP_OBJS) diff.o $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) diff.o -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+lock.atm: $(MACHDEP_OBJS) lock.o $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) lock.o -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+page.atm: $(MACHDEP_OBJS) page.o $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) page.o -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+barrier.mpl: $(MACHDEP_OBJS) barrier.o $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) barrier.o -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+diff.mpl: $(MACHDEP_OBJS) diff.o $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) diff.o -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+lock.mpl: $(MACHDEP_OBJS) lock.o $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) lock.o -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+page.mpl: $(MACHDEP_OBJS) page.o $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) page.o -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+barrier.udp: $(MACHDEP_OBJS) barrier.o $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) barrier.o -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+cond.udp: $(MACHDEP_OBJS) cond.o $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) cond.o -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+diff.udp: $(MACHDEP_OBJS) diff.o $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) diff.o -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+lock.udp: $(MACHDEP_OBJS) lock.o $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) lock.o -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+page.udp: $(MACHDEP_OBJS) page.o $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) page.o -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+barrier.udp_ll: $(MACHDEP_OBJS) barrier.o $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) barrier.o -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+diff.udp_ll: $(MACHDEP_OBJS) diff.o $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) diff.o -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+lock.udp_ll: $(MACHDEP_OBJS) lock.o $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) lock.o -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+page.udp_ll: $(MACHDEP_OBJS) page.o $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) page.o -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+barrier.o: ../src/barrier.c $(TmkDIR)/include/Tmk.h
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/barrier.c
+
+cond.o: ../src/cond.c $(TmkDIR)/include/Tmk.h
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/cond.c
+
+diff.o: ../src/diff.c $(TmkDIR)/include/Tmk.h
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/diff.c
+
+lock.o: ../src/lock.c $(TmkDIR)/include/Tmk.h
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/lock.c
+
+page.o: ../src/page.c $(TmkDIR)/include/Tmk.h
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/page.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+d38 3
+d62 1
+a62 1
+barrier.o: ../src/barrier.c
+d65 4
+a68 1
+diff.o: ../src/diff.c
+d71 1
+a71 1
+lock.o: ../src/lock.c
+d74 1
+a74 1
+page.o: ../src/page.c
+@

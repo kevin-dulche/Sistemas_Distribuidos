@@ -1,0 +1,1090 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.4
+date	96.07.26.15.18.27;	author zhenghua;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	96.07.26.14.51.14;	author zhenghua;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	96.07.25.20.36.59;	author zhenghua;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	96.07.25.20.13.53;	author zhenghua;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@new interface
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id$
+ *
+ * Description:    
+ *	loop scheduling routines
+ *
+ * External Functions:
+ *			Tmk_sched_start,
+ *			Tmk_sched_fork,
+ *                      Tmk_sched_terminate
+ *
+ * External Variables:
+ *			Tmk_sched_sigio_handler
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Jul-1996	Zheng-Hua Li	Created
+ *
+ *	Version 0.10.2
+ */
+#include "Tmk.h"
+
+#define DOWORK          1
+#define NOWORK_CONTINUE 2
+#define NOWORK_EXIT     3
+
+static	struct	barrier	{
+	unsigned char		manager;
+	unsigned volatile	mask;
+}			barrier_[NPROCS];
+
+static	struct	arrival	{
+	struct	req_syn	       *req;
+	unsigned		size;
+}			arrival_[NPROCS];
+
+
+static	struct	req_typ	req_typ;
+
+static	char		req_data[MTU - sizeof(req_typ) - sizeof(proc_vector_time_)];
+
+static	struct	iovec	req_iov[3] = {
+	{ (caddr_t)&req_typ, sizeof(req_typ) },
+	{ (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) },
+	{ req_data, 0 } };
+#if ! defined(ultrix)
+static	struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+#endif
+
+struct	reply_struct	{
+        unsigned	seqno;
+	unsigned short	repo;
+	struct	Tmk_sched_arg   sharedArg;
+	unsigned        startWork;   /* tells children there is work to do */
+	void            (*functionPtr)(); /* the function pointer */
+};
+
+static	struct	rep_typ	{
+        unsigned	seqno;
+	unsigned short	repo;
+	struct	Tmk_sched_arg   sharedArg;
+	unsigned        startWork;   /* tells children there is work to do */
+	void            (*functionPtr)(); /* the function pointer */
+	char		data[MTU - sizeof(struct reply_struct)];
+}			rep_msg;
+
+static	unsigned	spinmask;
+
+static  unsigned        replymask; /* only reply if this mask is set */
+
+static	void	default_handler(req, size)
+	struct req_syn *req;
+	int		size;
+{
+	int		pid = req->from;
+
+	struct arrival *arrival = &arrival_[pid];
+
+	barrier_[req->id].mask |= 1 << pid;
+
+	arrival->req = req;
+	arrival->size = size;
+}
+
+static	void	special_handler(req, size)
+	struct req_syn *req;
+	int		size;
+{
+	int		pid = req->from;
+
+	struct arrival *arrival = &arrival_[pid];
+
+	barrier_[req->id].mask |= 1 << pid;
+
+	arrival->req = req;
+
+	if (req->type == NEW_REQ_ARRIVAL_REPO)
+	  rep_msg.repo = 1;
+
+
+	Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], size - sizeof(struct req_syn), 0);
+}
+
+void  (*Tmk_sched_sigio_handler)() = default_handler;
+
+void	Tmk_sched_sigio_duplicate_handler(req)
+	struct req_syn *req;
+{
+	int		pid = req->from;
+	struct barrier *barrier = &barrier_[req->id];
+
+	if (((barrier->mask & (1 << pid)) == 0) && replymask) {
+
+		int	size = Tmk_interval_request(rep_msg.data, req->vector_time) - (caddr_t)&rep_msg;
+
+		rep_msg.seqno = req->seqno;
+	/*	rep_msg.repo = ? */
+
+#if defined(ultrix)
+		/*
+		 * The ATM driver doesn't check the message size.
+		 */
+		if (size > tmk_MTU)
+			Tmk_errexit("<size == %d>Tmk_barrier_sigio_duplicate_handler\n", size);
+
+		if (0 > write(rep_fd_[pid], &rep_msg, size))
+			Tmk_perrexit("<write>Tmk_barrier_sigio_duplicate_handler");
+#else
+		if (0 > send(rep_fd_[pid], &rep_msg, size, 0))
+			Tmk_perrexit("<send>Tmk_barrier_sigio_duplicate_handler");
+#endif
+		if (Tmk_debug)
+			Tmk_err("<repeated seqno: %d>Tmk_barrier_sigio_duplicate_handler: seqno == %d\n", pid, req->seqno);
+	}
+}
+
+/*
+ * master process calls this
+ */
+static	void	Tmk_barrier_gather_proc( void )
+{
+	struct req_syn *req;
+	struct barrier *barrier = &barrier_[Tmk_proc_id];
+	int		mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+	int		j, manager, size, t;
+	
+	Tmk_interval_create(proc_vector_time_);
+
+	if ((t = Tmk_diff_repo_test()) == 0)
+		t = Tmk_interval_repo_test();
+
+	rep_msg.repo = t;
+
+	Tmk_sched_sigio_handler = special_handler;
+
+	for (j = 0; j < Tmk_nprocs; j++) {
+		if (j == Tmk_proc_id)
+			continue;
+
+		if ((1 << j) & barrier->mask) {
+
+			struct arrival *arrival = &arrival_[j];
+
+			if ((req = arrival->req)->type == NEW_REQ_ARRIVAL_REPO)
+				rep_msg.repo = 1;
+
+			Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], 
+						 arrival->size - sizeof(struct req_syn), 0);
+		}
+	}
+	while (spinmask ^ barrier->mask)
+		sigio_handler();
+
+	barrier->mask = 0;
+
+	replymask = 0;
+
+	/*
+	 * Perform the merged mprotects.
+	 */
+	Tmk_page_inval_perform();
+
+	Tmk_sched_sigio_handler = default_handler;
+
+	sigsetmask(mask);
+}
+
+/*
+ *
+ */
+int	Tmk_sched_start(proc_id)
+	unsigned	proc_id;
+{
+	if (Tmk_debug)
+		Tmk_err("sched: %d ", proc_id);
+  
+	if (proc_id < Tmk_nprocs) {
+
+		struct barrier *barrier = &barrier_[proc_id];
+		int		manager;
+
+		if ((manager = barrier->manager) == Tmk_proc_id) {
+	
+			Tmk_barrier_gather_proc();
+
+			return 1;
+		}
+		else {
+			int		mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+			int		j, size, t;
+			unsigned	getout;
+
+		requestLoop:
+
+			getout = 0;
+
+			Tmk_interval_create(proc_vector_time_);
+
+			if ((t = Tmk_diff_repo_test()) == 0)
+				t = Tmk_interval_repo_test();
+			
+			req_typ.type = t ? NEW_REQ_ARRIVAL_REPO : NEW_REQ_ARRIVAL;
+			req_typ.id = proc_id;
+			
+			req_iov[2].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, MAX(inverse_time_[manager], proc_array_[manager].prev->vector_time_[Tmk_proc_id])) - req_data;
+#if defined(ultrix)
+			/*
+			 * The ATM driver doesn't check the message size.
+			 */
+			if (req_iov[2].iov_len + sizeof(struct req_syn) > tmk_MTU)
+				Tmk_errexit("<size == %d>Tmk_barrier\n", req_iov[2].iov_len);
+#endif
+			req_typ.seqno = req_seqno += NPROCS;
+		rexmit:
+#if defined(ultrix)
+			if (0 > writev(req_fd_[manager], req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+				Tmk_perrexit("<writev>Tmk_barrier");
+#else
+			if (0 > sendmsg(req_fd_[manager], &req_hdr, 0))
+				Tmk_perrexit("<sendmsg>Tmk_barrier");
+#endif
+			Tmk_tout_flag = 0;
+			
+			setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+			
+			sigsetmask(mask);
+		retry:
+#if defined(ultrix)
+			if ((size = read(req_fd_[manager], &rep_msg, sizeof(rep_msg))) < 0)
+#else
+			if ((size = recv(req_fd_[manager], &rep_msg, sizeof(rep_msg), 0)) < 0)
+#endif
+				if (Tmk_tout_flag) {
+
+					if (Tmk_debug)
+						Tmk_err("<timeout: %d>Tmk_barrier: seqno == %d\n", manager, req_typ.seqno);
+
+					sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+#if defined(ultrix)
+					Tmk_perrexit("<read>Tmk_barrier");
+#else
+					Tmk_perrexit("<recv>Tmk_barrier");
+#endif
+			if (rep_msg.seqno != req_typ.seqno) {
+
+				if (Tmk_debug)
+					Tmk_err("<bad seqno: %d>Tmk_barrier: seqno == %d (received: %d)\n", manager, req_typ.seqno, rep_msg.seqno);
+
+				goto retry;
+			}
+			sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+			
+			getout = rep_msg.startWork;
+#if 0			
+			Tmk_stat.get_work++;
+#endif /* alc */
+			Tmk_stat.messages++;
+			Tmk_stat.bytes += (size - sizeof(struct reply_struct) + 6);	/* XXX */
+#if 0			
+			Tmk_stat.newbarrier_reply++;
+			Tmk_stat.newbarrier_reply_bytes += (size - sizeof(struct reply_struct) + 6);
+#endif /* alc */
+			Tmk_interval_incorporate(rep_msg.data, 
+						 size - sizeof(struct reply_struct),
+						 proc_vector_time_);
+			
+			for (j = 0; j < Tmk_nprocs; j++) {
+				if (j == Tmk_proc_id)
+					continue;
+
+				inverse_time_[j] = proc_vector_time_[Tmk_proc_id];
+			}
+			if (rep_msg.repo)
+				Tmk_repo();
+			
+			sigsetmask(mask);
+			
+			if(getout == DOWORK){ /* there is some work to do*/
+				(*rep_msg.functionPtr)(&rep_msg.sharedArg);	/* XXX is this still valid - repo/sigsetmask */
+			}
+			else if (getout == NOWORK_EXIT)
+				goto out;
+#if 0			
+			Tmk_stat.gather++;
+#endif /* alc */
+			goto requestLoop;
+		out:
+			return 0;
+		}
+	}
+	else
+		Tmk_errexit("Tmk_barrier_gather: id == %d\n", proc_id);
+}
+
+static	void	Tmk_barrier_distribute(functionPtr, sharedArg, flag)
+	void (*functionPtr)(Tmk_sched_arg_t);
+	Tmk_sched_arg_t sharedArg;
+	int flag;
+{
+	int j, size;
+	struct req_syn *req;
+	int t;
+
+	int	mask =  sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+
+	Tmk_interval_create(proc_vector_time_);
+#if 0
+	if ((t = Tmk_diff_repo_test()) == 0)
+		t = Tmk_interval_repo_test();
+			
+	if (t == 1)
+		rep_msg.repo = 1;
+#endif
+	if (functionPtr == NULL) {
+		if(flag != -1)
+			rep_msg.startWork = NOWORK_CONTINUE;
+		else
+			rep_msg.startWork = NOWORK_EXIT;
+	}
+	else {
+		rep_msg.functionPtr = functionPtr;
+
+		if (sharedArg != NULL)
+			rep_msg.sharedArg = *sharedArg;
+
+		rep_msg.startWork = DOWORK;
+	}
+	replymask = 1;
+
+	for (j = 0; j < Tmk_nprocs; j++) {
+		if (j == Tmk_proc_id)
+			continue;
+
+		rep_msg.seqno = (req = arrival_[j].req)->seqno;
+
+		size = Tmk_interval_request(rep_msg.data, req->vector_time) - (caddr_t)&rep_msg;
+#if defined(ultrix)
+		/*
+		 * The ATM driver doesn't check the message size.
+		 */
+		if (size > tmk_MTU)
+			Tmk_errexit("<size == %d>Tmk_barrier (proc: %d)\n", size, j);
+
+		if (0 > write(rep_fd_[j], &rep_msg, size))
+			Tmk_perrexit("<write>Tmk_barrier (proc: %d)", j);
+#else
+		if (0 > send(rep_fd_[j], &rep_msg, size, 0))
+			Tmk_perrexit("<send>Tmk_barrier (proc: %d)", j);
+#endif
+	}
+	Tmk_sched_sigio_handler = default_handler;
+
+	sigio_buffer_initialize();
+
+	for (j = 0; j < Tmk_nprocs; j++) {
+		if (j == Tmk_proc_id)
+			continue;
+
+		inverse_time_[j] = proc_vector_time_[Tmk_proc_id];
+	}
+#if 1
+	if (rep_msg.repo)
+		Tmk_repo();
+#endif
+	sigsetmask(mask);
+
+	if (rep_msg.startWork != NOWORK_EXIT) {
+
+		if(functionPtr != NULL)
+			(*functionPtr)(sharedArg);
+#if 0
+		Tmk_stat.gather++;
+#endif /* alc */
+		Tmk_barrier_gather_proc();	/* XXX ? */
+	}
+}
+
+/*
+ * tell everyone to stop
+ */
+void	Tmk_sched_exit( void )
+{
+#if 0
+	Tmk_stat.distribute_work++;
+#endif /* alc */
+	Tmk_barrier_distribute(NULL, NULL, -1);
+}
+
+/*
+ * give work to everyone
+ */
+void	Tmk_sched_fork(functionPtr, Arg)
+	void	      (*functionPtr)(Tmk_sched_arg_t);
+	Tmk_sched_arg_t	Arg;
+{
+#if 0
+	Tmk_stat.distribute_work++;
+#endif /* alc */
+	Tmk_barrier_distribute(functionPtr, Arg, 0);
+}
+
+/*
+ *
+ */
+void	Tmk_sched_initialize( void )
+{
+	int	i;
+
+	for (i = 0; i < NBARRIERS; i++)
+		barrier_[i].manager = i % Tmk_nprocs;
+
+	spinmask = ((1 << Tmk_nprocs) - 1) &~ (1 << Tmk_proc_id);
+
+	replymask = 0;
+
+	req_typ.from = Tmk_proc_id;
+}
+@
+
+
+1.3
+log
+@changed the interface
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d37 4
+a40 2
+/*****************************************************************************
+ * File:		newbarrier.c
+d42 1
+a42 1
+ *	barrier synchronization routines
+d45 3
+a47 3
+ *			Tmk_sched_fork
+ *			Tmk_sched_start
+ *                      Tmk_sched_finish
+d50 1
+a50 1
+ *			Tmk_barrier_sigio_new_handler
+d54 1
+a54 4
+ *	15-Apr-1993	Alan L. Cox	Created
+ *	26-Jul-1993	Alan L. Cox	Added reliable message protocol
+ *	26-Oct-1993	Alan L. Cox	Update inverse time in barrier
+ *	 7-Jan-1994	Alan L. Cox	Shrink data structures
+d56 2
+a57 23
+ *	Version 0.9.0
+ *
+ *	Version 0.9.1
+ *
+ *	14-Jan-1995	Alan L. Cox	Adapted for STREAMS
+ *
+ *	Version	0.9.2
+ *
+ *	21-May-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *
+ *	Version 0.9.3
+ *
+ *	17-Jul-1995	Alan L. Cox	Eliminated the message size parameter
+ *					 to the barrier duplicate handler
+ *	22-Jul-1995	Alan L. Cox	#ifdef'ed the Ultrix/ATM specific code
+ *
+ *	Version 0.9.4
+ *
+ *	16-Nov-1995	Alan L. Cox	Modified the barrier to merge (and
+ *					  delay) the mprotects
+ *	Version 0.9.6
+ *
+ *****************************************************************************/
+d67 1
+a67 1
+}			barrier_[NBARRIERS];
+d87 7
+a93 7
+struct reply_struct {
+        unsigned	       seqno;
+	unsigned short	       repo;
+	struct Tmk_sched_arg   sharedArg;
+	unsigned               startWork;   /* tells children there is work to do */
+	void                   (*functionPtr)(); /* the function pointer */
+      } ;
+d96 6
+a101 6
+        unsigned        	seqno;
+	unsigned short   	repo;
+	struct Tmk_sched_arg    sharedArg;
+	unsigned                startWork;   /* tells children there is work to do */
+	void                    (*functionPtr)(); /* the function pointer */
+	char		        data[MTU - sizeof(struct reply_struct)];
+a107 1
+
+d141 1
+a141 1
+void  (*Tmk_barrier_sigio_new_handler)() = default_handler;
+d143 1
+a143 2
+
+void	Tmk_barrier_sigio_duplicate_new_handler(req)
+a173 1
+
+d177 8
+d186 2
+a187 1
+static void Tmk_barrier_gather_proc(id)
+d189 1
+a189 1
+  unsigned id;
+d191 1
+a191 5
+{
+  struct req_syn *req;
+  struct barrier *barrier = &barrier_[id];
+  int		mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+  int		j, manager, size, t;
+d193 3
+d197 1
+a197 1
+  if(Tmk_proc_id == id){
+d199 1
+a199 1
+    Tmk_interval_create(proc_vector_time_);
+d201 2
+a202 2
+    if ((t = Tmk_diff_repo_test()) == 0)
+      t = Tmk_interval_repo_test();
+d204 6
+a209 1
+    rep_msg.repo = t;
+d211 1
+d213 1
+a213 5
+    Tmk_barrier_sigio_new_handler = special_handler;
+
+    for (j = 0; j < Tmk_nprocs; j++) {
+      if (j == Tmk_proc_id)
+	continue;
+d215 4
+a218 3
+      if ((1 << j) & barrier->mask) {
+      
+	struct arrival *arrival = &arrival_[j];
+d220 1
+a220 3
+	if ((req = arrival->req)->type == NEW_REQ_ARRIVAL_REPO)
+	  rep_msg.repo = 1;
+      
+d222 1
+a222 23
+	Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], 
+				 arrival->size - sizeof(struct req_syn), 0);
+      }
+    }
+    while (spinmask ^ barrier->mask)
+      sigio_handler();
+
+    barrier->mask = 0;
+
+    replymask = 0;
+
+    /*
+     * Perform the merged mprotects.
+     */
+    Tmk_page_inval_perform();
+
+    Tmk_barrier_sigio_new_handler = default_handler;
+
+    sigsetmask(mask);
+  }
+  else
+    Tmk_errexit("In barrier gather proc: %d", id);
+	
+d228 2
+a229 2
+int	Tmk_sched_start(id)
+  unsigned	id;
+d231 4
+d236 2
+a237 7
+  
+  if (Tmk_debug)
+    Tmk_err("barrier: %d ", id);
+  
+  if (id < NBARRIERS) {
+    struct barrier *barrier = &barrier_[id];
+    int manager;
+d239 1
+a239 1
+			if ((manager = barrier->manager) == Tmk_proc_id) {
+d241 1
+a241 8
+			  Tmk_barrier_gather_proc(Tmk_proc_id);
+			  return Tmk_proc_id;  /* id == Tmk_proc_id?? */
+			}
+			else {
+			  int		mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+			  int		j, size, t;
+			  void          (*function)();
+			  unsigned      getout;
+d243 6
+a248 1
+			requestLoop:
+d250 1
+a250 2
+			  getout = 0;
+			  Tmk_interval_create(proc_vector_time_);
+d252 1
+a252 2
+			  if ((t = Tmk_diff_repo_test()) == 0)
+			    t = Tmk_interval_repo_test();
+d254 1
+a254 2
+			  req_typ.type = t ? NEW_REQ_ARRIVAL_REPO : NEW_REQ_ARRIVAL;
+			  req_typ.id = id;
+d256 7
+a262 1
+			  req_iov[2].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, MAX(inverse_time_[manager], proc_array_[manager].prev->vector_time_[Tmk_proc_id])) - req_data;
+d264 5
+a268 5
+			       /*
+				* The ATM driver doesn't check the message size.
+				*/
+			  if (req_iov[2].iov_len + sizeof(struct req_syn) > tmk_MTU)
+			    Tmk_errexit("<size == %d>Tmk_barrier\n", req_iov[2].iov_len);
+d270 2
+a271 2
+			  req_typ.seqno = req_seqno += NPROCS;
+			rexmit:
+d273 2
+a274 2
+			  if (0 > writev(req_fd_[manager], req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+			    Tmk_perrexit("<writev>Tmk_barrier");
+d276 2
+a277 2
+			  if (0 > sendmsg(req_fd_[manager], &req_hdr, 0))
+			    Tmk_perrexit("<sendmsg>Tmk_barrier");
+d279 6
+a284 6
+			  Tmk_tout_flag = 0;
+
+			  setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+			  sigsetmask(mask);
+			retry:
+d286 1
+a286 1
+			  if ((size = read(req_fd_[manager], &rep_msg, sizeof(rep_msg))) < 0)
+d288 1
+a288 1
+			    if ((size = recv(req_fd_[manager], &rep_msg, sizeof(rep_msg), 0)) < 0)
+d290 1
+a290 1
+			      if (Tmk_tout_flag) {
+d292 2
+a293 2
+				if (Tmk_debug)
+				  Tmk_err("<timeout: %d>Tmk_barrier: seqno == %d\n", manager, req_typ.seqno);
+d295 1
+a295 1
+				sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d297 5
+a301 5
+				goto rexmit;
+			      }
+			      else if (errno == EINTR)
+				goto retry;
+			      else
+d303 1
+a303 1
+				Tmk_perrexit("<read>Tmk_barrier");
+d305 1
+a305 1
+			  Tmk_perrexit("<recv>Tmk_barrier");
+d307 1
+a307 1
+			  if (rep_msg.seqno != req_typ.seqno) {
+d309 2
+a310 2
+			    if (Tmk_debug)
+			      Tmk_err("<bad seqno: %d>Tmk_barrier: seqno == %d (received: %d)\n", manager, req_typ.seqno, rep_msg.seqno);
+d312 21
+a332 3
+			    goto retry;
+			  }
+			  sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d334 9
+a342 39
+			  function = rep_msg.functionPtr;
+			  getout = rep_msg.startWork;
+
+			  Tmk_stat.get_work++;
+
+			  Tmk_stat.messages++;
+			  Tmk_stat.bytes += (size - sizeof(struct reply_struct) + 6);
+
+			  Tmk_stat.newbarrier_reply++;
+			  Tmk_stat.newbarrier_reply_bytes += (size - sizeof(struct reply_struct) + 6);
+			  Tmk_interval_incorporate(rep_msg.data, 
+						   size - sizeof(struct reply_struct),
+						   proc_vector_time_);
+
+			  for (j = 0; j < Tmk_nprocs; j++) {
+			    if (j == Tmk_proc_id)
+			      continue;
+
+			    inverse_time_[j] = proc_vector_time_[Tmk_proc_id];
+			  }
+
+			  if (rep_msg.repo)
+			    Tmk_repo();
+
+			  sigsetmask(mask);
+
+			  if(getout == DOWORK){ /* there is some work to do*/
+			    (*function)((struct Tmk_sched_arg *)(&(rep_msg.sharedArg)));
+			  }
+
+
+			  else if (getout == NOWORK_EXIT)
+			    goto out;
+
+			  Tmk_stat.gather++;
+			  goto requestLoop;
+			out:
+			  return Tmk_proc_id;
+		  
+d344 12
+a355 3
+  }
+  else
+    Tmk_errexit("Tmk_barrier_gather: id == %d\n", id);
+d358 4
+a361 5
+
+static void Tmk_barrier_distribute(functionPtr, sharedArg, flag)
+  void (*functionPtr)();
+  struct Tmk_sched_arg *sharedArg;
+  int flag;
+d363 3
+a365 3
+  int j, size;
+  struct req_syn *req;
+  int t;
+d367 1
+a367 4
+                        int mask =  sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+
+
+			Tmk_interval_create(proc_vector_time_);
+d369 1
+d371 2
+a372 2
+			if ((t = Tmk_diff_repo_test()) == 0)
+			  t = Tmk_interval_repo_test();
+d374 2
+a375 2
+			if ( t == 1)
+			  rep_msg.repo = 1;
+d377 8
+a384 8
+			if(functionPtr == NULL){
+			  if(flag != -1)
+			    rep_msg.startWork = NOWORK_CONTINUE;
+			  else
+			    rep_msg.startWork = NOWORK_EXIT;
+			}
+			else{
+			  rep_msg.functionPtr = functionPtr;
+d386 2
+a387 4
+			  if(sharedArg != NULL)
+			    rep_msg.sharedArg = (struct Tmk_sched_arg)(*sharedArg);
+			  rep_msg.startWork = DOWORK;
+			}
+d389 3
+a391 1
+                        replymask = 1;
+d393 3
+a395 3
+			for (j = 0; j < Tmk_nprocs; j++) {
+				if (j == Tmk_proc_id)
+					continue;
+d397 1
+a397 1
+				rep_msg.seqno = (req = arrival_[j].req)->seqno;
+d399 1
+a399 1
+				size = Tmk_interval_request(rep_msg.data, req->vector_time) - (caddr_t)&rep_msg;
+d401 5
+a405 5
+				/*
+				 * The ATM driver doesn't check the message size.
+				 */
+				if (size > tmk_MTU)
+					Tmk_errexit("<size == %d>Tmk_barrier (proc: %d)\n", size, j);
+d407 2
+a408 2
+				if (0 > write(rep_fd_[j], &rep_msg, size))
+					Tmk_perrexit("<write>Tmk_barrier (proc: %d)", j);
+d410 2
+a411 2
+				if (0 > send(rep_fd_[j], &rep_msg, size, 0))
+					Tmk_perrexit("<send>Tmk_barrier (proc: %d)", j);
+d413 2
+a414 1
+			}
+d416 1
+a416 1
+			Tmk_barrier_sigio_new_handler = default_handler;
+d418 3
+a420 1
+			sigio_buffer_initialize();
+d422 2
+a423 6
+			for (j = 0; j < Tmk_nprocs; j++) {
+			  if (j == Tmk_proc_id)
+			    continue;
+
+			  inverse_time_[j] = proc_vector_time_[Tmk_proc_id];
+			}
+d425 2
+a426 2
+			if (rep_msg.repo)
+			  Tmk_repo();
+d428 1
+a428 1
+			sigsetmask(mask);
+d430 1
+a430 8
+			if( rep_msg.startWork != NOWORK_EXIT){
+			  if(functionPtr != NULL)
+			    (*functionPtr)((struct Tmk_sched_arg *)sharedArg);
+
+			  Tmk_stat.gather++;
+			  Tmk_barrier_gather_proc(Tmk_proc_id);
+
+			}
+d432 7
+a440 1
+
+d444 1
+a444 2
+
+void Tmk_sched_finish()
+d446 4
+a449 3
+
+  Tmk_stat.distribute_work++;
+  Tmk_barrier_distribute(NULL, NULL, -1);
+d455 3
+a457 5
+
+
+void Tmk_sched_fork( functionPtr, sharedArg)
+  void (*functionPtr)();
+  struct Tmk_sched_arg *sharedArg;
+d459 4
+a462 4
+
+  Tmk_stat.distribute_work++;
+  Tmk_barrier_distribute(functionPtr, sharedArg, 0);
+
+a464 1
+
+d468 1
+a468 9
+int	Tmk_barrier_allocate_new(ip)
+	unsigned       *ip;
+{
+	*ip = 0;
+
+	return -1;
+}
+
+void	Tmk_barrier_initialize_new( void )
+a480 3
+
+
+
+@
+
+
+1.2
+log
+@changed passing of argument to reference
+@
+text
+@d43 3
+a45 3
+ *			Tmk_barrier_distribute_work,
+ *			Tmk_barrier_gather,
+ *                      Tmk_barrier_exit
+d110 5
+a114 5
+        unsigned	seqno;
+	unsigned short	repo;
+	struct TmkArg   sharedArg;
+	unsigned        startWork;   /* tells children there is work to do */
+	void            (*functionPtr)(); /* the function pointer */
+d118 6
+a123 6
+        unsigned	seqno;
+	unsigned short	repo;
+	struct TmkArg   sharedArg;
+	unsigned        startWork;   /* tells children there is work to do */
+	void            (*functionPtr)(); /* the function pointer */
+	char		data[MTU - sizeof(struct reply_struct)];
+d266 1
+a266 1
+void	Tmk_barrier_gather(id)
+d281 1
+a281 1
+
+d381 1
+a381 1
+			    (*function)(&(rep_msg.sharedArg));
+d391 1
+a391 1
+			  return;
+d394 1
+a394 1
+		      }
+d400 1
+a400 2
+static void Tmk_barrier_distribute(id, functionPtr, sharedArg, flag)
+  unsigned id;
+d402 1
+a402 1
+  struct TmkArg *sharedArg;
+a408 1
+  if ( Tmk_proc_id == id){
+d431 1
+a431 1
+			    rep_msg.sharedArg = (struct TmkArg)(*sharedArg);
+d477 1
+a477 1
+			    (*functionPtr)(sharedArg));
+d483 1
+a483 3
+		      }
+  else
+    Tmk_errexit("Tmk_barrier_distribute: id == %d\n", id);
+d491 1
+a491 2
+void Tmk_barrier_exit(id)
+  unsigned id;
+d495 1
+a495 5
+  if(Tmk_proc_id == id){
+    Tmk_barrier_distribute(id, NULL, NULL, -1);
+  }
+  else
+    Tmk_errexit("Tmk_barrier_exit: id == %d\n", id);
+d503 1
+a503 2
+void Tmk_barrier_distribute_work(id, functionPtr, sharedArg)
+  unsigned id;
+d505 1
+a505 1
+  struct TmkArg *sharedArg;
+d509 2
+a510 5
+  if (Tmk_proc_id == id){
+    Tmk_barrier_distribute(id, functionPtr, sharedArg, 0);
+  }
+  else
+    Tmk_errexit("Tmk_barrier_distribute_work: id == %d\n", id);
+a511 2
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d381 1
+a381 2
+			    (*function)( rep_msg.sharedArg );
+
+d479 1
+a479 1
+			    (*functionPtr)( (struct TmkArg)(*sharedArg));
+@

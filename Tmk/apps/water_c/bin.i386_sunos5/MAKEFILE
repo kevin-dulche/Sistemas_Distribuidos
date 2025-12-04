@@ -1,0 +1,14 @@
+ #
+ # $Id: Makefile,v 1.1 1997/12/21 06:18:22 alc Exp $
+ #
+ARCH	= i386_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lsocket -lnsl -lm
+
+all: water.udp
+
+include ../.common

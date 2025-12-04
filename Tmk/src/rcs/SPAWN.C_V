@@ -1,0 +1,332 @@
+head	11.4;
+access;
+symbols
+	Tmk-1_1:11;
+locks; strict;
+comment	@ * @;
+
+
+11.4
+date	97.07.30.02.28.47;	author pparker;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.07.24.19.53.33;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.05.27.07.17.00;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.05.27.05.01.01;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Spawn new processes AFTER Tmk_startup.
+@
+
+
+11.4
+log
+@Fixed Tmk_nprocs and -h addition for spawn
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1997						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: spawn.c,v 11.3 1997/07/24 19:53:33 alc Exp pparker $
+ *
+ * Description:
+ *	spawn new processes AFTER Tmk_startup
+ *
+ * External Functions:
+ *			Tmk_spawn,
+ *			Tmk_spawn_sigio_handler,
+ *			Tmk_spawn_sigio_duplicate_handler,
+ *			Tmk_spawn_initialize
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	26-May-1997	Alan L. Cox	Created
+ *
+ *	Version 1.1
+ */
+#include "Tmk.h"
+
+static
+struct	req_typ	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_SPAWN };
+
+static
+struct	iovec	req_iov[] = {
+    { (caddr_t)&req_typ, sizeof(req_typ) },
+    {                 0, 0 } };
+
+static
+struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+
+struct	rep_s {
+  unsigned seqno;
+  unsigned short port;
+};
+
+/*
+ * Check that we're not bypassing the license and that we're not beyond the maximum
+ * number of processors.  Worry about sync managers?
+ */
+void	Tmk_spawn(hostname, argc, argv)
+	char   *hostname;
+	int	argc;
+	char   *argv[];
+{
+	int	i;
+
+	struct	rep_s	rep;
+
+	sigset_t	mask;
+
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+	if (Tmk_debug)
+		Tmk_err("Tmk_spawn: hostname == \"%s\"\n", hostname);
+
+	/*
+	 *
+	 */
+	req_iov[1].iov_base = hostname;
+	req_iov[1].iov_len = 1 + strlen(hostname);
+
+	for (i = 0; i < Tmk_nprocs; i++) {
+		if (i == Tmk_proc_id)
+			continue;
+
+		/*
+		 *
+		 */
+		req_typ.seqno = req_seqno += SEQNO_INCR;
+	rexmit:
+		if (0 > sendmsg(req_fd_[i], &req_hdr, 0))
+			Tmk_perrexit("Tmk_spawn<sendmsg>");
+
+		Tmk_tout_flag = 0;
+
+		setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+		sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+	retry:
+		if (0 > recv(req_fd_[i], (char *)&rep, sizeof(rep), 0))
+			if (Tmk_tout_flag) {
+
+				if (Tmk_debug)
+					Tmk_err("Tmk_spawn<timeout: %d>: seqno == %d\n", i, req_typ.seqno);
+
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+				goto rexmit;
+			}
+			else if (errno == EINTR)
+				goto retry;
+			else
+				Tmk_perrexit("Tmk_spawn<recv>");
+
+		if (rep.seqno != req_typ.seqno) {
+
+			if (Tmk_debug)
+				Tmk_err("Tmk_spawn<bad seqno: %d>: seqno == %d (received: %d)\n", i, req_typ.seqno, rep.seqno);
+
+			goto retry;
+		}
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+		Tmk_port_[i][Tmk_nprocs] = rep.port;
+
+		Tmk_stat.messages++;
+		Tmk_stat.bytes += sizeof(rep);
+	}
+	strcpy(Tmk_hostlist[i], hostname);
+
+	Tmk_nprocs++;
+
+	Tmk_spinmask |= 1 << i;
+
+	Tmk_accept_initialize(i);
+	{
+		int   nargc;
+		int   maxargs = argc + 2 * Tmk_nprocs + 2;  /* NULL, -- */
+		char **nargv = (char**) malloc (sizeof(char *) * maxargs);
+		int j;
+		
+		for (nargc = 0; nargc < argc; nargc++)
+			nargv[nargc] = argv[nargc];
+		
+		if (nargc==1)
+			nargv[nargc++] = "--";
+		
+		for(j=Tmk_nhosts_listed_cmdline; j < Tmk_nprocs; j++) {
+			nargv[nargc++] = "-h";
+			nargv[nargc++] = Tmk_hostlist[j];
+		}
+		
+		nargv[nargc  ] = NULL;
+		
+		Tmk_start_process(i, nargc, nargv);
+	}
+	Tmk_accept(i);
+
+	Tmk_connect(i);
+
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+}
+
+/*
+ *
+ */
+void	Tmk_spawn_sigio_duplicate_handler(req)
+	struct	req_typ	*req;
+{
+	struct	rep_s	rep;
+
+	rep.seqno = req->seqno;
+	rep.port = Tmk_port_[Tmk_proc_id][Tmk_nprocs - 1];
+
+	if (0 > send(rep_fd_[req->from], (char *)&rep, sizeof(rep), 0))
+		Tmk_perrexit("Tmk_spawn_sigio_duplicate_handler<send>");
+}
+
+/*
+ *
+ */
+void	Tmk_spawn_sigio_handler(req)
+	struct	req_typ	*req;
+{
+  int	i = 
+	Tmk_nprocs++;
+
+	Tmk_spinmask |= 1 << i;
+
+	strcpy(Tmk_hostlist[i], (char *) req + sizeof(*req));
+
+	Tmk_accept_initialize(i);
+
+	Tmk_spawn_sigio_duplicate_handler(req);
+
+	Tmk_accept(i);
+
+	Tmk_connect(i);
+}
+
+/*
+ *
+ */
+void	Tmk_spawn_initialize()
+{
+	req_typ.from = Tmk_proc_id;
+}
+@
+
+
+11.3
+log
+@Don't bother checking tmk_stat_flag for cheap to collect statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: spawn.c,v 11.2 1997/05/27 07:17:00 alc Exp alc $
+d155 19
+a173 11
+	  int   nargc;
+	  char *nargv[64];
+
+	  for (nargc = 0; nargc < argc; nargc++)
+	    nargv[nargc] = argv[nargc];
+
+	  nargv[nargc++] = "-h";
+	  nargv[nargc++] = Tmk_hostlist[i];
+	  nargv[nargc  ] = NULL;
+
+	  Tmk_start_process(i, nargc, nargv);
+@
+
+
+11.2
+log
+@Added code to communicate the hostname from the spawning processor
+to the other processors.  Spawning from a multiprocess state now
+works.
+
+We still need to write code to handle all the possible argument
+combinations, and check for errors.
+
+What if you don't want to provide a host name?
+@
+text
+@d39 1
+a39 1
+ * $Id: spawn.c,v 11.1 1997/05/27 05:01:01 alc Exp alc $
+d144 2
+a145 4
+		if (tmk_stat_flag) {
+			Tmk_stat.messages++;
+			Tmk_stat.bytes += sizeof(rep);
+		}
+@
+
+
+11.1
+log
+@Initially, support spawning from a single process application.
+@
+text
+@d39 1
+a39 1
+ * $Id: startup.c,v 11.1 1997/05/25 19:18:22 alc Exp alc $
+d58 1
+d61 8
+d94 6
+d109 2
+a110 2
+		if (0 > send(req_fd_[i], &req_typ, sizeof(req_typ), 0))
+			Tmk_perrexit("<sendmsg>Tmk_spawn");
+d201 2
+@

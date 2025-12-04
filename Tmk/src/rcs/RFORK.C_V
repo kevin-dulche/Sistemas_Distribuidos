@@ -1,0 +1,99 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	96.07.26.14.53.26;	author zhenghua;	state Exp;
+branches;
+next	;
+
+
+desc
+@no change
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@@ * @@;
+
+
+1.1
+date	96.07.25.20.36.59;	author zhenghua;	state Exp;
+branches;
+next	;
+
+
+desc
+@@@@
+
+
+1.1
+log
+@@Initial revision
+@@
+text
+@@#include "Tmk.h"
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <memory.h>
+#include <sys/mman.h>
+
+unsigned	Tmk_proc_id;
+extern          edata;
+extern          end;
+
+void Tmk_rfork()
+  
+{
+	FILE *fd1;
+	int fd2;
+	caddr_t addr;
+	int err;
+
+	if ( Tmk_proc_id == 0){
+
+	  fd1 = fopen("junk", "w");
+	  fwrite (&edata, 4,(&end-&edata),fd1);
+	  fclose(fd1);
+	}
+
+	Tmk_barrier(0);
+
+	if ( Tmk_proc_id != 0){
+
+	  if((fd2 = open("junk", O_RDWR)) < 0){
+	    exit(-1);
+	  }
+
+	  if((addr = mmap(&(edata), (&end-&edata)*4, PROT_READ, MAP_PRIVATE, fd2, 0))
+	     == (caddr_t) -1L){
+	    printf(" Cannot map!\n");
+	    exit(-1);
+	  }
+	  else{
+
+	   bcopy((char *)addr, (char *)(&edata), (&end-&edata)*4); 
+	   if((err = munmap(addr, (&end-&edata)*4)) != 0){
+	     printf("Cannot unmap!\n");
+             exit(-1);
+	   }
+	 }
+	}
+      }
+
+
+
+
+@@
+@

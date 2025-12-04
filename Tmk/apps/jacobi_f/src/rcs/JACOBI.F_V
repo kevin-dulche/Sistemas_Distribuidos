@@ -1,0 +1,137 @@
+head	10.2;
+access;
+symbols;
+locks; strict;
+comment	@c @;
+
+
+10.2
+date	97.06.02.05.28.37;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.01.05.29.07;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Jacobi iteration program
+@
+
+
+10.2
+log
+@Changed to match the new API.
+@
+text
+@C
+C $Id: Jacobi.f,v 1.1 1997/06/01 05:29:07 alc Exp alc $
+C
+      program jacobi
+
+      include 'Tmk_fortran.h'
+
+      integer SIZE
+      integer SIZE_1
+
+      parameter (ITER = 100)
+      parameter (SIZE = 1022)
+      parameter (SIZE_1 = SIZE + 1)
+
+      real a(0:SIZE_1, 0:SIZE_1)
+      real b(0:SIZE_1, 0:SIZE_1)
+
+      common /Tmk_shared_common/ b
+
+      integer begin, end
+
+      integer i, j, k
+
+      real*8 time, timer
+
+      call Tmk_startup()
+
+      begin = (SIZE*Tmk_proc_id)/Tmk_nprocs + 1
+      end   = (SIZE*(1 + Tmk_proc_id))/Tmk_nprocs
+C
+C       -- Initialization --
+C
+      if (Tmk_proc_id.eq.0) then
+         do j = 0, SIZE+1
+            b(j,      0) = 1.0
+            b(j, SIZE+1) = 1.0
+         enddo
+         do i = 1, SIZE
+            b(0,      i) = 1.0
+            b(SIZE+1, i) = 1.0
+         enddo
+      endif
+
+      write (6, 1) ITER, SIZE, SIZE
+ 1    format ('Performing ', I4, ' iterations on a ', I4, ' by ', I4,
+     *' array')
+C
+C	-- Timing starts before the main loop --
+C
+      call Tmk_barrier(0)
+
+      time = timer()
+
+      do k = 1, ITER
+
+         do j = begin, end
+            do i = 1, SIZE
+               a(i, j) = (b(i - 1, j) + b(i + 1, j) + b(i, j - 1) + b(i, 
+     *j + 1)) / 4
+            enddo
+         enddo
+
+         call Tmk_barrier(0)
+
+         do j = begin, end
+            do i = 1, SIZE
+               b(i, j) = a(i, j)
+            enddo
+         enddo
+
+         call Tmk_barrier(0)
+
+      enddo
+
+      write (6, 2) timer() - time
+ 2    format ('Test completed'/'Elapsed time = ', F6.2)
+
+      call Tmk_exit(0)
+
+      end
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+C $Id$
+a15 3
+
+      character*4096 start_pad, end_pad
+
+d18 1
+a18 1
+      common /Tmk_shared_common/ start_pad, b, end_pad
+d26 1
+a26 1
+      call Tmk_startup(start_pad, end_pad)
+d28 2
+a29 2
+      begin = (SIZE*Tmk_proc_id())/Tmk_nprocs() + 1
+      end   = (SIZE*(1 + Tmk_proc_id()))/Tmk_nprocs()
+d33 1
+a33 1
+      if (Tmk_proc_id().eq.0) then
+@

@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.08.03.25.40;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Initial revision
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= alpha_linux2
+
+CC	= gcc
+CFLAGS	= -g -O2
+
+MACHDEP_OBJS= getopt.o
+MACHDEP_LIBS= -lm
+
+all: raytrace.udp
+
+include	../.common
+
+getopt.o: $(TmkLIB)/support/getopt.c
+	$(CC) $(CFLAGS) -c $(TmkLIB)/support/getopt.c
+@

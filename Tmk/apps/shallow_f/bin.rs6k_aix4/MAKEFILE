@@ -1,0 +1,24 @@
+ #
+ # $Id: Makefile,v 1.1 1998/09/13 07:33:30 alc Exp $
+ #
+ARCH	= rs6k_aix4
+
+CC	= xlc
+CFLAGS	= -g -O
+
+FC	= xlf
+FFLAGS	= -g -O -qextname
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS=
+
+LL	= /usr/lpp/LoadL/nfs
+
+all:
+	@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE) shallow.udp    ; fi
+	@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE) shallow.udp_ll ; fi
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol
+	cp $(TmkLIB)/support/common_symbol $@

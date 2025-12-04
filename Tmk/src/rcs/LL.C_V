@@ -1,0 +1,359 @@
+head	10.1;
+access;
+symbols
+	Tmk-1_0_3_2R:10.1
+	Tmk-1_0_3_1R:10.1
+	Tmk-1_0_3R:10.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.1
+	Tmk-1_0_1R:10.1
+	Tmk-1_1:11
+	Tmk-1_0:10
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.1
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+10.1
+date	96.05.27.04.48.40;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.11.08;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.08.07.17.32.02;	author tmiller;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1995						     *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+ *									     *
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+ *                                                                           *
+ *****************************************************************************/
+/*****************************************************************************
+ * File:		ll.c
+ * Description:    
+ *	IBM LoadLeveler support
+ *
+ * External Functions:
+ *
+ * External Variables:
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *
+ *	10-Jun-1995	Rob Fowler	Created
+ *
+ *	Version 0.9.5
+ *
+ *****************************************************************************/
+#include "Tmk.h"
+
+#include <llapi.h>
+
+/*
+ * Tmk_ll_error
+ *
+ * This code is taken from the example in the LoadL manual.  It prints error
+ * messages from the ll_get_hostlist and the ll_start_host API's.
+ */
+void	Tmk_ll_errexit(int code)
+{
+	switch (code) {
+	case PARALLEL_CANT_FORK:
+		Tmk_errexit("Remote host can't fork new process.\n");
+	case PARALLEL_BAD_ENVIRONMENT:
+		Tmk_errexit("Cannot get ll job id from environment.\n");
+	case PARALLEL_CANT_GET_HOSTNAME:
+		Tmk_errexit("Cannot get my hostname.\n");
+	case PARALLEL_CANT_RESOLVE_HOST:
+		Tmk_errexit("Nameserve can't resolve host.\n");
+	case PARALLEL_CANT_MAKE_SOCKET:
+		Tmk_errexit("Can't make socket.\n");
+	case PARALLEL_CANT_CONNECT:
+		Tmk_errexit("Cannot connect to host.\n");
+	case PARALLEL_CANT_PASS_SOCKET:
+		Tmk_errexit("Cannot send PASS_OPEN_SOCKET command to remote startd.\n");
+	case PARALLEL_CANT_GET_HOSTLIST:
+		Tmk_errexit("Cannot get hostlist.\n");
+	case PARALLEL_CANT_START_CMD:
+		Tmk_errexit("Cannot start command.\n");
+	default:
+		Tmk_errexit("Unknown error code: %d\n", code);
+	}
+} 
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@Added $Id$
+@
+text
+@a53 2
+ * $Id$
+ *
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@

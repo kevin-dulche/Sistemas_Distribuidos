@@ -1,0 +1,86 @@
+\documentstyle[11pt]{article}
+
+\textheight 9in         % 1in top and bottom margin for U.S. letter paper
+\textwidth 6.5in        % 1in left and right margin
+\oddsidemargin 0in      % Both side margins are now 1in
+\evensidemargin 0in
+\topmargin -.5in \headsep .5in
+
+\begin{document}
+
+\begin{center}
+\Large \bf TreadMarks$^{\rm TM}$ Installation -- Demo Version
+\end{center}
+
+This demo version consists of the TreadMarks$^{\rm TM}$ library
+compiled for a specific architecture, documentation for the library,
+and some example programs that use TreadMarks$^{\rm TM}$.  To make
+this demo version function, you will need a demo license key.  To
+obtain a demo license key, send a request by e-mail to {\tt
+tmk@cs.rice.edu}.  During the period for which the demo license key is
+valid, you can run both the example programs and your own programs on
+up to eight machines.  When the license expires, the library will
+continue to function, but only on a single machine.
+
+\noindent
+{\bf Hardware/Software Requirements:}
+\begin{itemize}
+\item A minimum of 72~MBytes of available swap space on each of your machines
+\item A file system that is shared by all of your machines and mounted
+at the {\em same directory\/} on each one
+\item A C or C++ compiler, either gcc version 2.x or the machine
+manufacturer's compiler
+\end{itemize}
+
+\noindent
+{\bf Instructions:}
+You have received a uuencoded, compressed tar file.  To install the
+TreadMarks$^{\rm TM}$ library and example programs:
+\begin{enumerate}
+\item
+Uudecode, uncompress, and untar the TreadMarks$^{\rm TM}$ distribution
+file on a file system shared by all of the machines on which you
+intend to run TreadMarks$^{\rm TM}$ programs.
+This will create a directory called ``Tmk-i.j.k.demo'', where
+``i.j.k'' is the version number.
+There are subdirectories for the library, for the example programs,
+for the documentation, and for the TreadMarks$^{\rm TM}$ header files.
+
+\item
+If your shell is a {\tt csh}-variant, define the environment variable
+{\tt TMK\_DEMO\_KEY} in your {\tt .cshrc} file.  Warning: {\em defining {\tt
+TMK\_DEMO\_KEY} in {\tt .login} won't work!}  If you use a different
+shell, e.g., {\tt bash}, define {\tt TMK\_DEMO\_KEY} in the equivalent
+file, e.g., {\tt .bashrc}.  Don't forget to update the environment
+of your current interactive shell.
+
+\item
+Verify that {\tt rsh\/} can start a process on each machine that you
+intend to use.  A good test is {\tt rsh machine echo '\$\{TMK\_DEMO\_KEY\}'}.
+If it succeeds, it will display the demo license key.
+
+\end{enumerate}
+At this point, you are ready to run the example programs.
+You can ``cd'' into the platform-specific subdirectory (e.g.,
+``Tmk-i.j.k.demo/apps/tsp\_c/bin.i386\_freebsd2'') and type the name of
+the executable (e.g.,
+``tsp.udp'') followed by ``-- -- --h machine0 --h machine1 ...''.
+
+You must start the programs from a shell on the first machine
+listed on the command line.  Otherwise, an error message will be
+printed and the program will terminate.
+
+In addition, you can ``make'' the example programs after changing them
+or experiment with programs of your own design.
+For more details, please refer to the documentation
+in the ``Tmk-i.j.k.demo/doc'' directory.
+
+\vfill
+
+\noindent
+Copyright \copyright 1998 by ParallelTools, L.L.C.
+
+\noindent
+All rights reserved.
+
+\end{document}

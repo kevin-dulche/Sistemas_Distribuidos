@@ -1,0 +1,62 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	98.09.13.21.19.56;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	98.09.13.07.33.30;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@NAS CG Makefile for RS6K/AIX.
+@
+
+
+2.1
+log
+@Build cg_r.udp by default.
+@
+text
+@ #
+ # $Id: Makefile,v 1.1 1998/09/13 07:33:30 alc Exp alc $
+ #
+ARCH	= rs6k_aix4
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm
+
+LL	= /usr/lpp/LoadL/nfs
+
+all:
+	@@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE) cg.udp    cg_r.udp    ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE) cg.udp_ll cg_r.udp_ll ; fi
+
+include ../.common
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d15 2
+a16 2
+	@@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE) cg.udp    ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE) cg.udp_ll ; fi
+@

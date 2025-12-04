@@ -1,0 +1,94 @@
+head	10.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.4
+date	98.09.13.07.02.29;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.06.03.05.15.49;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.06.03.05.09.50;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.03.05.08.45;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Jacobi Makefile for DEC UNIX
+@
+
+
+10.4
+log
+@Added $Id$.
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= alpha_osf4
+
+CC	= cc
+CFLAGS	= -g3 -O
+
+FC	= f77
+FFLAGS	= -g3 -O
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS=
+
+all: Jacobi.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) -o $@@ $(TmkLIB)/support/common_symbol.s
+@
+
+
+10.3
+log
+@Corrected the executable name.
+@
+text
+@d1 3
+@
+
+
+10.2
+log
+@Enabled: Working Version
+@
+text
+@d12 1
+a12 1
+all: Gauss.udp
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 1
+a9 1
+MACHDEP_OBJS=
+d12 1
+a12 1
+all:
+d15 3
+@

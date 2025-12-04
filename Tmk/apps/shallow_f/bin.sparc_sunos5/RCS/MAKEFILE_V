@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	98.09.13.07.33.30;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Shallow water simulation Makefile for SPARC/Solaris.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= sparc_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+FC	= f77
+FFLAGS  = -g -O
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS= -lsocket -lnsl
+
+all: shallow.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.S
+	$(AS) -P -DNPAGES=8192 -o $@@ $(TmkLIB)/support/common_symbol.S
+@

@@ -1,0 +1,36 @@
+head	1.1;
+access
+	rrk
+	alc;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	97.06.02.07.23.41;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Timer
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include <sys/time.h>
+
+double	timer_()
+{
+	struct	timeval	time;
+
+	gettimeofday(&time, 0);
+
+	return time.tv_sec + time.tv_usec/1000000.0;
+}
+@

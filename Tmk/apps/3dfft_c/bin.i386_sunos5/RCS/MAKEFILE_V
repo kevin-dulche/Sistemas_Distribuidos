@@ -1,0 +1,60 @@
+head	2.1;
+access;
+symbols
+	Tmk-1_2:2
+	Tmk-1_0_3R:1.1
+	Tmk-1_0:1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	98.09.13.23.01.23;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	98.09.13.07.33.30;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@NAS 3D FFT Makefile for SPARC/Solaris.
+@
+
+
+2.1
+log
+@Build "fft_r.udp" by default.
+@
+text
+@ #
+ # $Id: Makefile,v 1.1 1998/09/13 07:33:30 alc Exp alc $
+ #
+ARCH	= i386_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lsocket -lnsl -lm
+
+all: fft.udp fft_r.udp
+
+include	../.common
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d12 1
+a12 1
+all: fft.udp
+@

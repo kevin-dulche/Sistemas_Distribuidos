@@ -1,0 +1,392 @@
+head	10.1;
+access;
+symbols
+	Tmk-1_0_3_2R:10.1.1.1
+	Tmk-1_0_3_1R:10.1.1.1
+	Tmk-1_0_3R:10.1.1.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.1.1.1
+	Tmk-1_0_1R:10.1.1.1
+	Tmk-1_1:11
+	Tmk-1_0:10.1.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.1
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+10.1
+date	96.05.27.04.48.40;	author alc;	state Rel;
+branches
+	10.1.1.1
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.1.1
+date	97.07.03.20.41.51;	author alc;	state Exp;
+branches;
+next	10.1.1.2;
+
+10.1.1.2
+date	99.08.03.05.17.33;	author alc;	state Exp;
+branches;
+next	10.1.1.3;
+
+10.1.1.3
+date	99.08.03.05.29.31;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.07.01.23.12.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.08.07.17.43.16;	author tmiller;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@/*  Calls gettime of day and prints out the seconds portion.
+    The standard date (1) command doesn't provide this option.
+
+     16 January 1995     R. Fowler         Created
+*/
+
+#include <stdio.h>
+#include <sys/time.h>
+
+void	main()
+{
+	struct timeval now;
+
+	if (0 > gettimeofday(&now, NULL)) {
+		perror("gettimeofday");
+		exit(1);
+	}
+	printf("%d", now.tv_sec);
+	exit(0);
+}
+@
+
+
+10.1.1.1
+log
+@Added basic Pthreads support: Simply made the code compatible
+with the Pthreads compilation options.
+@
+text
+@d1 6
+a6 13
+/*
+ * Calls gettimeofday and prints the seconds field.
+ *
+ * The standard date (1) command doesn't provide this option.
+ *
+ * History:
+ *	16-Jan-1995	R. Fowler	Created
+ */
+#if defined(PTHREADS)
+#if defined(__sun) && defined(__SVR4)
+#define __EXTENSIONS__
+#endif
+#endif
+@
+
+
+10.1.1.2
+log
+@Added $Id$.
+@
+text
+@a1 2
+ * $Id$
+ *
+@
+
+
+10.1.1.3
+log
+@Correct the definition of "main".
+@
+text
+@d2 1
+a2 1
+ * $Id: timestamp.c,v 10.1.1.2 1999/08/03 05:17:33 alc Exp alc $
+d19 1
+a19 2
+int
+main(void)
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@a7 1
+#define __EXTENSIONS__
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@#define __EXTENSIONS__
+@
+text
+@a7 1
+#define __EXTENSIONS__
+@
+
+
+10.1.5.3
+log
+@Added $Id$
+@
+text
+@d2 4
+a5 7
+ *  The standard date (1) command doesn't provide this option.
+ *
+ *   16 January 1995     R. Fowler         Created
+ *
+ * $Id$
+ *
+ */
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

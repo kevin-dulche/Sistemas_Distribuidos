@@ -1,0 +1,9 @@
+cliente
+Makefile.suma_2args
+servidor
+suma_2args_clnt.c
+suma_2args.h
+suma_2args_server.c
+suma_2args_xdr.c
+suma_2args_svc.c
+suma_2args_client.c

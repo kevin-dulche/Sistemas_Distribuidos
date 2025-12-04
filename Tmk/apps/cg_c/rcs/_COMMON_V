@@ -1,0 +1,171 @@
+head	2.2;
+access;
+symbols
+	Tmk-1_2:2
+	Tmk-1_0_3_2R:1.3.0.1
+	Tmk-1_0_3_1R:1.3
+	Tmk-1_0_3R:1.1
+	Tmk-1_0:1.3.0;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	98.09.13.23.48.12;	author alc;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	98.09.13.21.21.48;	author alc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	98.09.13.19.25.03;	author alc;	state Exp;
+branches
+	1.3.0.1;
+next	1.2;
+
+1.2
+date	98.09.13.19.12.56;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	98.08.07.03.32.52;	author alc;	state Exp;
+branches;
+next	;
+
+1.3.0.1
+date	98.09.13.23.42.08;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Architecture independent portion of the Makefile.
+@
+
+
+2.2
+log
+@Added "cg.mpl" and "cg_r.mpl" rules.
+@
+text
+@ #
+ # $Id: .common,v 2.1 1998/09/13 21:21:48 alc Exp alc $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+cg.mpl: $(MACHDEP_OBJS) cg.o $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) cg.o -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+cg.udp: $(MACHDEP_OBJS) cg.o $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) cg.o -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+cg.udp_ll: $(MACHDEP_OBJS) cg.o $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) cg.o -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+cg_r.mpl: $(MACHDEP_OBJS) cg_r.o $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) cg_r.o -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+cg_r.udp: $(MACHDEP_OBJS) cg_r.o $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) cg_r.o -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+cg_r.udp_ll: $(MACHDEP_OBJS) cg.o $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(MACHDEP_OBJS) cg_r.o -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+cg.o: ../src/cg.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/cg.c
+
+cg_r.o: ../src/cg_r.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/cg_r.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@
+
+
+2.1
+log
+@Added support for building "cg_r.*".
+@
+text
+@d2 1
+a2 1
+ # $Id: .common,v 1.3 1998/09/13 19:25:03 alc Exp alc $
+d9 3
+d17 3
+@
+
+
+1.3
+log
+@Fixed another "OBJ" vs. "OBJS" confusion.
+@
+text
+@d2 1
+a2 1
+ # $Id: .common,v 1.2 1998/09/13 19:12:56 alc Exp alc $
+d9 2
+a10 1
+OBJS	= $(MACHDEP_OBJS) cg.o
+d12 2
+a13 2
+cg.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+d15 5
+a19 2
+cg.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+d23 3
+@
+
+
+1.3.0.1
+log
+@Added "cg.mpl" rule.
+@
+text
+@d2 1
+a2 1
+ # $Id: .common,v 1.3 1998/09/13 19:25:03 alc Exp alc $
+a9 3
+
+cg.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+@
+
+
+1.2
+log
+@Fixed an "OBJ" vs. "OBJS" confusion.
+@
+text
+@d2 1
+a2 1
+ # $Id: .common,v 1.1 1998/08/07 03:32:52 alc Exp alc $
+d11 1
+a11 1
+cg.udp: $(OBJ) $(TmkLIB)/libTmk_udp.a
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d9 1
+a9 1
+OBJ	= $(MACHDEP_OBJS) cg.o
+d12 1
+a12 1
+	$(CC) $(CFLAGS) -o $@@ $(OBJ) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+@

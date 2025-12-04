@@ -1,0 +1,30 @@
+ #
+ # $Id: .common,v 1.3 1998/11/03 04:15:51 alc Exp $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) zelig.o timer.o
+
+zelig.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+zelig.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(FC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+zelig.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+zelig.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+zelig.o: ../src/zelig.f
+	$(FC) $(FFLAGS) -c ../src/zelig.f
+
+timer.o: ../src/timer.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/timer.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll

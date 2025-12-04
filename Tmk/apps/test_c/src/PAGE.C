@@ -1,0 +1,55 @@
+/*
+ * $Id: page.c,v 1.1 1997/04/12 08:47:30 alc Exp $
+ */
+#include <sys/time.h>
+#include <stdio.h>
+
+#include <assert.h>
+
+#include "Tmk.h"
+
+int    *int_array_;
+
+main(argc, argv)
+	int		argc;
+	char	       *argv[];
+{
+	struct timeval	start, end;
+	int		c, i, total = 0;
+
+	while ((c = getopt(argc, argv, "")) != -1)
+		switch (c) {
+		}
+
+	Tmk_startup(argc, argv);
+
+	if (Tmk_proc_id == 0) {
+
+		int_array_ = (int *) Tmk_malloc(1025*Tmk_page_size);
+
+		Tmk_distribute((char *)&int_array_, sizeof(int_array_));
+
+		for (i = 0; i < 1024; i++)
+			total += int_array_[i*Tmk_page_size/sizeof(int_array_[0])];
+	}
+	Tmk_barrier(0);
+
+	gettimeofday(&start, NULL);
+
+	if (Tmk_proc_id == 1)
+		for (i = 0; i < 1024; i++)
+			total += int_array_[i*Tmk_page_size/sizeof(int_array_[0])];
+
+	Tmk_barrier(0);
+
+	gettimeofday(&end, NULL);
+
+	assert(total == 0);
+	
+	if (Tmk_proc_id == 0)
+		printf("Elapsed time: %.3f milliseconds\n",
+		       (((1000000.0*end.tv_sec) + end.tv_usec) -
+			((1000000.0*start.tv_sec) + start.tv_usec))/1024000.0);
+
+	Tmk_exit(0);
+}

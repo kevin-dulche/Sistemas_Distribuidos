@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	98.09.13.07.33.30;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@NAS MG Makefile for SPARC/Solaris.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= sparc_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lsocket -lnsl -lsunmath -lm
+
+all: mg.udp
+
+include	../.common
+@

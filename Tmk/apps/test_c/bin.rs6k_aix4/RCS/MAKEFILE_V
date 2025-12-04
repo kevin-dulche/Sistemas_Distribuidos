@@ -1,0 +1,48 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	98.09.13.07.33.30;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Test program Makefile for RS6K/AIX.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= rs6k_aix4
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS=
+
+LL	= /usr/lpp/LoadL/nfs
+
+all:
+	@@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE) barrier.udp    ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE)    diff.udp    ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE)    lock.udp    ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE)    page.udp    ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE) barrier.udp_ll ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE)    diff.udp_ll ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE)    lock.udp_ll ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE)    page.udp_ll ; fi
+
+include ../.common
+@

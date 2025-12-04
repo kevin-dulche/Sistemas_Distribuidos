@@ -1,0 +1,3 @@
+The AIX xlf compiler doesn't pass the "-I" directive to the C
+preprocessor.  A symbolic link from this directory to the
+Tmk_fortran.h header file solves the problem.

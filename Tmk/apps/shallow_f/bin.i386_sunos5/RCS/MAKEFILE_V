@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.21.06.04.28;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Shallow water Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= i386_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+FC	= f77
+FFLAGS  = -g -O
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS= -lsocket -lnsl
+
+all:
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.S
+	$(AS) -P -DNPAGES=8192 -o $@@ $(TmkLIB)/support/common_symbol.S
+@

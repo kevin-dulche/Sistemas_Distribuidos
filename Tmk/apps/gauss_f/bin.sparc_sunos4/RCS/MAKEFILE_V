@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	98.09.13.07.33.30;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Gaussian elimination Makefile for SPARC/SunOS 4.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= sparc_sunos4
+
+CC	= cc
+CFLAGS	= -O2
+
+FC	= f77
+FFLAGS  = -O3
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS=
+
+all: Gauss.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) -o $@@ $(TmkLIB)/support/common_symbol.s
+@

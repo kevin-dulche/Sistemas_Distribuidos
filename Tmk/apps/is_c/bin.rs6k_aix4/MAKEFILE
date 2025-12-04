@@ -1,0 +1,18 @@
+ #
+ # $Id: Makefile,v 1.1 1998/09/13 07:33:30 alc Exp $
+ #
+ARCH	= rs6k_aix4
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm
+
+LL	= /usr/lpp/LoadL/nfs
+
+all:
+	@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE) is.udp    ; fi
+	@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE) is.udp_ll ; fi
+
+include ../.common

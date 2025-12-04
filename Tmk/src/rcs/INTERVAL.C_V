@@ -1,0 +1,2840 @@
+head	11.13;
+access;
+symbols
+	Tmk-1_0_3_2R:10.5.1.5
+	Tmk-1_0_3_1R:10.5.1.5
+	Tmk-1_0_3R:10.5.1.5
+	Tmk-1_2:10.5.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.5.1.5
+	Tmk-1_0_1R:10.5
+	Tmk-1_1:11
+	Tmk-1_0:10.5.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.5
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.13
+date	98.03.02.03.22.36;	author alc;	state Exp;
+branches;
+next	11.12;
+
+11.12
+date	97.07.14.18.43.09;	author alc;	state Exp;
+branches;
+next	11.11;
+
+11.11
+date	97.07.11.06.27.32;	author alc;	state Exp;
+branches;
+next	11.10;
+
+11.10
+date	97.07.11.05.53.21;	author alc;	state Exp;
+branches;
+next	11.9;
+
+11.9
+date	97.07.10.16.20.21;	author alc;	state Exp;
+branches;
+next	11.8;
+
+11.8
+date	97.06.26.22.51.35;	author alc;	state Exp;
+branches;
+next	11.7;
+
+11.7
+date	97.06.26.04.10.39;	author alc;	state Exp;
+branches;
+next	11.6;
+
+11.6
+date	97.06.25.18.38.36;	author alc;	state Exp;
+branches;
+next	11.5;
+
+11.5
+date	97.06.08.05.21.47;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	97.06.06.06.59.56;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.06.05.07.06.31;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.06.04.04.30.39;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.06.03.19.29.21;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	96.08.08.22.18.27;	author alc;	state Exp;
+branches
+	10.5.1.1;
+next	10.4;
+
+10.4
+date	96.08.08.18.32.04;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.08.08.04.52.23;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.08.03.05.49.05;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.42.30;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	9.7.2.2;
+
+9.7.2.2
+date	96.05.20.19.10.11;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	10.0.2.2;
+
+10.0.2.2
+date	96.05.20.19.17.51;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	10.1.2.2;
+
+10.1.2.2
+date	96.08.01.19.58.05;	author alc;	state Exp;
+branches;
+next	10.1.2.3;
+
+10.1.2.3
+date	96.08.02.05.13.38;	author alc;	state Exp;
+branches;
+next	10.1.2.4;
+
+10.1.2.4
+date	96.08.02.19.33.33;	author alc;	state Exp;
+branches;
+next	10.1.2.5;
+
+10.1.2.5
+date	96.08.03.07.36.01;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.11.08;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.5.1.1
+date	98.03.02.02.05.23;	author alc;	state Exp;
+branches;
+next	10.5.1.2;
+
+10.5.1.2
+date	98.03.02.03.27.20;	author alc;	state Exp;
+branches;
+next	10.5.1.3;
+
+10.5.1.3
+date	98.03.22.05.24.55;	author alc;	state Exp;
+branches;
+next	10.5.1.4;
+
+10.5.1.4
+date	98.05.10.05.06.23;	author alc;	state Exp;
+branches;
+next	10.5.1.5;
+
+10.5.1.5
+date	98.05.31.00.39.46;	author alc;	state Exp;
+branches;
+next	10.5.1.6;
+
+10.5.1.6
+date	98.07.26.05.25.28;	author alc;	state Exp;
+branches;
+next	10.5.1.7;
+
+10.5.1.7
+date	98.07.26.06.26.40;	author alc;	state Exp;
+branches;
+next	10.5.1.8;
+
+10.5.1.8
+date	98.07.27.18.42.55;	author alc;	state Exp;
+branches;
+next	10.5.1.9;
+
+10.5.1.9
+date	98.07.27.18.52.09;	author alc;	state Exp;
+branches;
+next	10.5.1.10;
+
+10.5.1.10
+date	98.07.27.19.13.50;	author alc;	state Exp;
+branches;
+next	10.5.1.11;
+
+10.5.1.11
+date	98.07.31.18.01.32;	author alc;	state Exp;
+branches;
+next	10.5.1.12;
+
+10.5.1.12
+date	98.07.31.18.13.19;	author alc;	state Exp;
+branches;
+next	10.5.1.13;
+
+10.5.1.13
+date	98.07.31.18.24.12;	author alc;	state Exp;
+branches;
+next	10.5.1.14;
+
+10.5.1.14
+date	98.07.31.18.55.59;	author alc;	state Exp;
+branches;
+next	10.5.1.15;
+
+10.5.1.15
+date	98.07.31.20.17.33;	author alc;	state Exp;
+branches;
+next	10.5.1.16;
+
+10.5.1.16
+date	98.09.06.07.22.11;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.13
+log
+@Rename toggle and toggle2 for clarity.  Their new names are inval_toggle
+and dirty_toggle, respectively.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: interval.c,v 11.12 1997/07/14 18:43:09 alc Exp alc $
+ *
+ * Description:    
+ *	manages consistency data
+ *
+ * External Functions:
+ *			Tmk_interval_create,
+ *			Tmk_interval_incorporate,
+ *			Tmk_interval_initialize,
+ *			Tmk_interval_repo,
+ *			Tmk_interval_repo_test,
+ *			Tmk_interval_request,
+ *			Tmk_interval_request_proc
+ *
+ * External Variables:
+ *			proc_array_[NPROCS]
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	11-Apr-1993	Alan L. Cox 	Created
+ *	27-Jun-1993	Alan L. Cox	Unified heap for intervals and write
+ *					 notices
+ *	Version 0.9.0
+ *
+ *	Version 0.9.1
+ *
+ *	Version 0.9.2
+ *
+ *	 3-May-1995	Alan L. Cox	Modified heap to allow on-demand
+ *					 expansion
+ *	Version 0.9.3
+ *
+ *	16-Nov-1995	Alan L. Cox	Modified interval incorporate to merge
+ *					 mprotects for page invalidation
+ *	Version 0.9.6
+ */
+#include "Tmk.h"
+
+/*
+ * Initialized below
+ */
+struct	interval	proc_array_[NPROCS];
+
+#if defined(__alpha) || _MIPS_SZPTR == 64
+#define H_SIZE	524288
+#else
+#define H_SIZE	262144
+#endif
+
+typedef	struct	heap	{
+	struct	heap   *next;
+	char	heap_[H_SIZE - sizeof(struct interval) - sizeof(struct heap *)];
+	char	heap_overflow_[sizeof(struct interval)];
+}      *heap_t;
+
+static	heap_t	heap_start;
+
+static	heap_t	heap_current;
+
+static	heap_t	heap_expand( void )
+{
+	heap_t	heap = (heap_t) malloc(sizeof(struct heap));
+
+	if (heap == 0)
+		Tmk_errexit("<malloc>Tmk_heap_expand: out of memory\n");
+
+	heap->next = 0;
+
+	return heap;
+}
+
+static	char   *heap_brk;
+
+static	char   *heap_end;
+
+static	void	heap_ptr_initialize(heap)
+	heap_t	heap;
+{
+	heap_current = heap;
+
+	heap_brk = heap->heap_;
+
+	heap_end = heap->heap_overflow_;
+}
+
+static	char   *heap_alloc(size)
+	size_t	size;
+{
+	char   *heap_ptr = heap_brk;
+
+	if ((heap_brk = heap_ptr + size) >= heap_end) {
+
+		heap_t	heap = heap_current->next;
+
+		if (heap == 0) {
+
+			heap = heap_expand();
+
+			heap_current->next = heap;
+		}
+		heap_ptr_initialize(heap);
+	}
+	return heap_ptr;
+}
+
+/*
+ * Called by Tmk_barrier
+ */
+int	Tmk_interval_repo_test()
+{
+	return heap_start != heap_current;
+}
+
+/*
+ * Called by Tmk_repo
+ */
+void	Tmk_interval_repo()
+{
+	heap_ptr_initialize(heap_start);
+}
+
+/*
+ * The caller must block sigio.  Called by
+ */
+void	Tmk_interval_create(vector_time_)
+	unsigned short *vector_time_;
+{
+	interval_t	interval__prev;
+	interval_t	interval__head;
+
+	interval_t	interval;
+
+	write_notice_range_t
+			write_notice_range;
+
+	/*
+	 * Create an interval (and record) if a page is dirty
+	 */
+	page_t		end = &page_dirty;
+
+	page_t		page = end->prev;
+
+	if (page != end) {
+
+		end->prev = end->next = end;
+
+		interval = (interval_t) heap_alloc(sizeof(struct interval));
+		interval->id = Tmk_proc_id;
+
+		/*
+		 * Enqueue the interval record
+		 */
+		interval->next = interval__head = &proc_array_[Tmk_proc_id];
+		interval->prev = interval__prev = interval__head->prev;
+
+		interval__head->prev = interval;
+		interval__prev->next = interval;
+
+		vector_time_[Tmk_proc_id] += 1;
+
+		memcpy(interval->vector_time_, vector_time_, sizeof(interval->vector_time_));
+
+		/*
+		 * Create the write notice records
+		 */
+		write_notice_range = &interval->head;
+
+		goto skip;
+
+		do {
+			page_t		partner;
+			protocol_t	proto;
+
+			write_notice_range =
+			write_notice_range->next = (write_notice_range_t) heap_alloc(sizeof(struct write_notice_range));
+		skip:
+			partner = page->partner;
+			proto   = page->proto;
+
+			partner[1].dirty_toggle &= ~proto;
+			page->dirty_toggle &= ~proto;
+
+			write_notice_range->first = page - page_array_;
+			write_notice_range->last  = partner - page_array_;
+			write_notice_range->proto = proto;
+
+			if (proto == multiple_writer)
+				do {
+					write_notice_t	write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+					write_notice->next = partner->write_notice_[Tmk_proc_id];
+				
+					partner->write_notice_[Tmk_proc_id] = write_notice;
+				
+					write_notice->diff = 0;
+					write_notice->interval = interval;
+
+				} while ((partner -= 1) >= page);
+			else
+				do {
+					partner->state = exclusive;
+
+					partner->writer = Tmk_proc_id;
+					partner->vector_time_ = interval->vector_time_;
+
+				} while ((partner -= 1) >= page);
+
+		} while ((page = page->prev) != end);
+
+		write_notice_range->next = 0;
+	}
+}
+
+/*
+ * All fields of the message are unsigned shorts.  The pid is
+ * complemented to distinguish it from a page id.  Thus, the
+ * highest page id is 65536-NPROCS-2.
+ */
+
+/*
+ * Called by Tmk_barrier (slave).
+ */
+caddr_t	Tmk_interval_request_proc(msg, i, time)
+	caddr_t		msg;
+	int		i;
+	unsigned	time;
+{
+	unsigned short *msgp = (unsigned short *) msg;
+
+	interval_t	interval = &proc_array_[i];
+	interval_t	interval__prev;
+	interval_t	ihdr = interval;
+
+	if (time < (interval__prev = interval->prev)->vector_time_[i]) {
+
+		do {
+			interval = interval__prev;
+			interval__prev = interval->prev;
+		} while (time < interval__prev->vector_time_[i]);
+
+		do {
+			write_notice_range_t
+					write_notice_range;
+
+			*msgp++ = ~i;
+
+			memcpy(msgp, interval->vector_time_, sizeof(interval->vector_time_));
+
+			msgp += NPROCS;
+
+			write_notice_range = &interval->head;
+
+			do {
+				int	j;
+
+				if (write_notice_range->proto == multiple_writer) {
+
+					j = write_notice_range->last - write_notice_range->first;
+
+					if (j > 0) {
+
+						if (j > 1)
+							*msgp++ = ~NPROCS;
+
+						*msgp++ = write_notice_range->first;
+					}
+				}
+				else {
+					*msgp++ = ~(NPROCS+1);
+					*msgp++ = write_notice_range->first;
+				}
+				*msgp++ = write_notice_range->last;
+
+			} while (write_notice_range = write_notice_range->next);
+
+		} while ((interval = interval->next) != ihdr);
+	}
+	return (caddr_t) msgp;
+}
+
+/*
+ * Called by Tmk_barrier (master) and Tmk_lock_release.
+ */
+caddr_t	Tmk_interval_request(msg, vector_time_)
+	caddr_t		msg;
+	unsigned short	vector_time_[];
+{
+	int		i;
+
+	for (i = 0; i < NPROCS; i++)
+		msg = Tmk_interval_request_proc(msg, i, vector_time_[i]);
+
+	return msg;
+}
+
+/*
+ *
+ */
+void	Tmk_interval_incorporate(msg, size, vector_time_)
+	caddr_t		msg;
+	int		size;
+	unsigned short	vector_time_[];
+{
+	unsigned short *msgp = (unsigned short *) msg;
+	unsigned short *msg_end = (unsigned short *)(msg + size);
+
+	if (Tmk_debug) {
+
+		int	i;
+
+		Tmk_err("incorporate:");
+
+		for (i = 0; &msgp[i] < msg_end; i++)
+			Tmk_err(" %d", msgp[i]);
+
+		Tmk_err("\n");
+	}
+	while (msgp < msg_end) {
+
+		/*
+		 * Perform sign extension before the one's complement.
+		 */
+		int		pid = ~*(short *) msgp++;
+
+		unsigned	u;
+
+		/*
+		 * Insert new intervals; skip old intervals
+		 */
+		if ((u = msgp[pid]) > proc_vector_time_[pid]) {
+
+			interval_t	interval;
+			interval_t	interval__prev;
+			interval_t	interval__head;
+
+			write_notice_range_t
+					write_notice_range;
+
+			proc_vector_time_[pid] = u;
+
+			interval = (interval_t) heap_alloc(sizeof(struct interval));
+			interval->id = pid;
+
+			/*
+			 * Enqueue the interval record
+			 */
+			interval->next = interval__head = &proc_array_[pid];
+			interval->prev = interval__prev = interval__head->prev;
+
+			interval__head->prev = interval;
+			interval__prev->next = interval;
+
+			memcpy(interval->vector_time_, msgp, sizeof(interval->vector_time_));
+
+			msgp += NPROCS;
+
+			/*
+			 * Create write notice records
+			 */
+			write_notice_range = &interval->head;
+
+			u = *msgp;
+
+			goto skip;
+
+			do {
+				page_t		page,
+						page_last;
+
+				protocol_t	proto;
+
+				unsigned	last;
+
+				write_notice_range =
+				write_notice_range->next = (write_notice_range_t) heap_alloc(sizeof(struct write_notice_range));
+			skip:
+				if (u == (unsigned short) ~(NPROCS+1))
+					proto = single_writer;
+				else
+					proto = multiple_writer;
+
+				if (u < (unsigned short) ~(NPROCS+1))
+					last = u;
+				else {
+					u    = *++msgp;
+					last = *++msgp;
+				}
+				write_notice_range->first = u;
+				write_notice_range->last  = last;
+				write_notice_range->proto = proto;
+
+				page      = &page_array_[u];
+				page_last = &page_array_[last];
+
+				/*
+				 * Change each page's state
+				 */
+				do {
+					if (page->state == shared) {
+
+						while (page->twin) {
+
+							write_notice_t	write_notice = page->write_notice_[Tmk_proc_id];
+
+							if (write_notice && write_notice->diff == 0) {
+
+								Tmk_diff_create(page, write_notice);
+
+								Tmk_free_twin(page);
+							}
+							else {
+								Tmk_interval_create(vector_time_);
+
+								proc_vector_time_[Tmk_proc_id] = vector_time_[Tmk_proc_id];
+							}
+						}
+					}
+					else if (page->state == modified) {
+
+						Tmk_interval_create(vector_time_);
+
+						proc_vector_time_[Tmk_proc_id] = vector_time_[Tmk_proc_id];
+					}
+					else if (page->state == invalid)
+						goto skip2;
+
+					page->state = invalid;
+
+					Tmk_page_inval_merge(page);
+				skip2:
+					if (proto == multiple_writer) {
+
+						write_notice_t	write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+						write_notice->interval = interval;
+						write_notice->diff = 0;
+						write_notice->next = page->write_notice_[pid];
+	
+						page->write_notice_[pid] = write_notice;
+
+						page->proto = multiple_writer;
+					}
+					else if (interval->vector_time_[pid] > page->vector_time_[pid]) {
+
+						page->empty = 1;
+						page->writer = pid;
+						page->vector_time_ = interval->vector_time_;
+					}
+				} while ((page += 1) <= page_last);
+
+			} while ((msgp += 1) < msg_end && (u = *msgp) < (unsigned short) -NPROCS);
+
+			write_notice_range->next = 0;
+
+			if ((u = interval->vector_time_[Tmk_proc_id]) > inverse_time_[pid])
+				inverse_time_[pid] = u;
+		}
+		else
+			for (msgp += NPROCS; msgp < msg_end && *msgp < (unsigned short) -NPROCS; msgp++)
+				;
+	}
+	if (vector_time_)
+		Tmk_page_inval_perform();
+}
+
+/*
+ *
+ */
+void	Tmk_interval_initialize()
+{
+	int	i;
+
+	for (i = 0; i < NPROCS; i++)
+		proc_array_[i].prev = proc_array_[i].next = &proc_array_[i];
+
+	heap_ptr_initialize(heap_start = heap_expand());
+}
+@
+
+
+11.12
+log
+@Sanitized and optimized Tmk_interval_create.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.11 1997/07/11 06:27:32 alc Exp $
+d218 2
+a219 2
+			partner[1].toggle2 &= ~proto;
+			page->toggle2 &= ~proto;
+@
+
+
+11.11
+log
+@Define protocol_t.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.10 1997/07/11 05:53:21 alc Exp alc $
+d209 2
+a210 1
+			page_t partner;
+d212 2
+a213 1
+			write_notice_range = write_notice_range->next = (write_notice_range_t) heap_alloc(sizeof(struct write_notice_range));
+d215 6
+d222 2
+a223 6
+			write_notice_range->last = page->partner - page_array_;
+			write_notice_range->proto = page->proto; /* ??? */
+
+			partner = page->partner;
+			partner[1].toggle2 &= ~page->proto;	/* optimize? */
+			page->toggle2 &= ~page->proto;
+d225 1
+a225 1
+			if (page->proto == multiple_writer)
+@
+
+
+11.10
+log
+@Fixed Tmk_interval_incorporate.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.9 1997/07/10 16:20:21 alc Exp alc $
+d403 1
+a403 1
+				enum	proto	proto;
+@
+
+
+11.9
+log
+@Use the new page states.  Rename "page->mode" to "page->proto".
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.8 1997/06/26 22:51:35 alc Exp alc $
+d358 1
+a358 1
+		unsigned	u, v;
+d400 3
+d404 2
+a405 1
+				page_t		page, page_end;
+d410 1
+a410 14
+				v = u;
+
+				if (u == (unsigned short) ~NPROCS) {
+
+					u = *++msgp;
+					v = *++msgp;
+
+					proto = multiple_writer;
+				}
+				else if (u == (unsigned short) ~(NPROCS+1)) {
+
+					u = *++msgp;
+					v = *++msgp;
+
+a411 1
+				}
+d415 6
+d422 2
+a423 2
+				write_notice_range->last = v;
+				write_notice_range->proto = proto; /* ??? */
+d425 2
+a426 2
+				page = &page_array_[u];
+				page_end = &page_array_[v];
+d428 5
+a432 6
+				if (proto == multiple_writer) {
+					do {
+						write_notice_t	write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+						write_notice->next = page->write_notice_[pid];
+	
+						page->write_notice_[pid] = write_notice;
+d434 1
+a434 2
+						write_notice->diff = 0;
+						write_notice->interval = interval;
+d436 1
+a436 18
+						/*
+						 * Change page status
+						 */
+						switch (page->state) {
+						case shared:
+							while (page->twin) {
+
+								write_notice = page->write_notice_[Tmk_proc_id];
+
+								if (write_notice && write_notice->diff == 0) {
+
+									Tmk_diff_create(page, write_notice);
+
+									Tmk_free_twin(page);
+								}
+								else {
+						case modified:
+									Tmk_interval_create(vector_time_);
+d438 1
+a438 5
+									proc_vector_time_[Tmk_proc_id] = vector_time_[Tmk_proc_id];
+								}
+							}
+						case exclusive:
+							page->state = invalid;
+d440 1
+a440 9
+							Tmk_page_inval_merge(page);
+						case invalid:
+							page->proto = multiple_writer;
+						}
+					} while ((page += 1) <= page_end);
+				}
+				else {
+					do {
+						if (interval->vector_time_[pid] > page->vector_time_[pid]) {
+d442 4
+a445 1
+							page->empty = 1;
+d447 2
+a448 2
+							page->writer = pid;
+							page->vector_time_ = interval->vector_time_;
+d450 2
+d453 1
+a453 4
+						/*
+						 * Change page status
+						 */
+						if (page->state == shared) {
+d455 4
+a458 1
+							page->state = invalid;
+d460 1
+a460 1
+							while (page->twin) {
+d462 3
+a464 1
+								write_notice_t	write_notice = page->write_notice_[Tmk_proc_id];
+d466 6
+a471 1
+								if (write_notice && write_notice->diff == 0) {
+d473 3
+a475 1
+									Tmk_diff_create(page, write_notice);
+d477 5
+a481 4
+									Tmk_free_twin(page);
+								}
+								else {
+									Tmk_interval_create(vector_time_);
+a482 10
+									proc_vector_time_[Tmk_proc_id] = vector_time_[Tmk_proc_id];
+								}
+							}
+							Tmk_page_inval_merge(page);
+						}
+						else
+							assert(page->state == invalid);
+
+					} while ((page += 1) <= page_end);
+				}
+@
+
+
+11.8
+log
+@Delete "page->time".  Set "page->vector_time_" == NULL to show
+that a single-writer page is modified and requires the creation
+of a write notice.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.7 1997/06/26 04:10:39 alc Exp alc $
+a212 1
+			write_notice_range->mode = page->mode; /* ??? */
+d215 1
+d218 2
+a219 2
+			partner[1].toggle2 &= ~page->mode;	/* optimize? */
+			page->toggle2 &= ~page->mode;
+d221 1
+a221 1
+			if (page->mode == multi_writer)
+d234 2
+d289 1
+a289 1
+				if (write_notice_range->mode == multi_writer) {
+d400 1
+a400 1
+				enum	mode	mode;
+d403 2
+a404 1
+				write_notice_range = write_notice_range->next = (write_notice_range_t) heap_alloc(sizeof(struct write_notice_range));
+d413 1
+a413 1
+					mode = multi_writer;
+d420 1
+a420 1
+					mode = single_writer;
+d423 1
+a423 1
+					mode = multi_writer;
+a424 1
+				write_notice_range->mode = mode; /* ??? */
+d427 1
+d432 1
+a432 1
+				if (mode == multi_writer) {
+d445 3
+a447 6
+						if ((page->state == valid) ||
+						    (page->state == private)) {
+
+							page->state = invalid;
+
+							while (page->twin || (page->vector_time_ == NULL)) {
+d458 1
+d464 3
+d468 2
+d475 8
+d484 1
+a484 1
+						 *
+d486 1
+a486 3
+						if (page->state == invalid)
+							page->state = empty;
+						else if (page->state == valid) {
+d488 1
+a488 1
+							page->state = empty;
+d490 1
+a490 1
+							while (page->twin || (page->vector_time_ == NULL)) {
+d509 1
+a509 1
+							assert(page->state != private);
+a510 4
+						if (interval->vector_time_[page->writer] >= page->vector_time_[page->writer]) {
+							page->writer = pid;
+							page->vector_time_ = interval->vector_time_;
+						}
+@
+
+
+11.7
+log
+@Added "page->SW_WN_vector_time_" initialization to interval incorporate.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.6 1997/06/25 18:38:36 alc Exp alc $
+d235 1
+a235 1
+					partner->time = vector_time_[Tmk_proc_id];
+d447 1
+a447 1
+							while (page->twin || (page->time == 65535)) {
+a468 6
+						if (interval->vector_time_[page->writer] >= page->time) {
+							page->writer = pid;
+							page->time = interval->vector_time_[pid];
+							page->SW_WN_vector_time_ = interval->vector_time_;
+						}
+
+d478 1
+a478 1
+							while (page->twin || (page->time == 65535)) {
+d498 5
+@
+
+
+11.6
+log
+@Added single-writer ranges.  Added check for a modified single-writer
+page in interval incorporate.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.5 1997/06/08 05:21:47 alc Exp alc $
+d472 1
+@
+
+
+11.5
+log
+@Modified Tmk_interval_request_proc and Tmk_interval_incorporate
+to handle single-writer ranges.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.3 1997/06/05 07:06:31 alc Exp $
+d232 6
+a297 1
+					*msgp++ = write_notice_range->last;
+d302 2
+a303 4
+					*msgp++ = write_notice_range->last;
+
+					for (j = write_notice_range->first; 
+					     j <= write_notice_range->last; j++) { 	
+a304 3
+						*msgp++ = page_array_[j].vers_no;
+					}
+				}
+d442 2
+a443 1
+						if (page->state == valid) {
+d447 1
+a447 1
+							while (page->twin) {
+d469 2
+a470 4
+						if ((v = *++msgp) > page->vers_no) {
+
+							page->vers_no = v;
+							page->owner = pid;
+d474 3
+d483 1
+a483 1
+							while (page->twin) {
+d501 2
+@
+
+
+11.4
+log
+@Modified Tmk_interval_incorporate to set the default write notice range
+mode to multi_writer.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.3 1997/06/05 07:06:31 alc Exp alc $
+d242 1
+a242 1
+ * highest page id is 65536-NPROCS-1.
+d278 3
+a280 1
+			do
+d283 1
+a283 1
+					int	j = write_notice_range->last - write_notice_range->first;
+d295 9
+d305 1
+a305 1
+			while (write_notice_range = write_notice_range->next);
+d398 2
+a399 1
+				page_t	page, page_end;
+d404 1
+d406 8
+d416 2
+d419 4
+a422 1
+				write_notice_range->mode = multi_writer; /* ??? */
+d429 4
+a432 3
+				do {
+					write_notice_t	write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+					write_notice->next = page->write_notice_[pid];
+d434 4
+a437 1
+					page->write_notice_[pid] = write_notice;
+d439 4
+a442 2
+					write_notice->diff = 0;
+					write_notice->interval = interval;
+d444 1
+a444 4
+					/*
+					 * Change page status
+					 */
+					if (page->state == valid) {
+d446 1
+a446 1
+						page->state = invalid;
+d448 1
+a448 1
+						while (page->twin) {
+d450 1
+a450 1
+							write_notice = page->write_notice_[Tmk_proc_id];
+d452 1
+a452 1
+							if (write_notice && write_notice->diff == 0) {
+d454 4
+a457 1
+								Tmk_diff_create(page, write_notice);
+d459 2
+a460 1
+								Tmk_free_twin(page);
+d462 18
+a479 2
+							else {
+								Tmk_interval_create(vector_time_);
+d481 15
+a495 1
+								proc_vector_time_[Tmk_proc_id] = vector_time_[Tmk_proc_id];
+d497 1
+d499 2
+a500 4
+						Tmk_page_inval_merge(page);
+					}
+				} while ((page += 1) <= page_end);
+
+@
+
+
+11.3
+log
+@Added a mode field to the write_notice_range.  Changed the first
+and last page id field names.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.2 1997/06/04 04:30:39 alc Exp alc $
+d396 1
+a396 1
+				write_notice_range->mode = 0; /* ??? */
+@
+
+
+11.2
+log
+@Modified Tmk_interval_create to support the adaptive protocol: Don't
+attach write notices to the page if it's single writer.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 11.1 1997/06/03 19:29:21 alc Exp alc $
+d213 3
+a215 2
+			write_notice_range->first_page_id = page - page_array_;
+			write_notice_range->end_page_id = page->partner - page_array_;
+d278 4
+a281 2
+			do {
+				int	j = write_notice_range->end_page_id - write_notice_range->first_page_id;
+d283 1
+a283 1
+				if (j > 0) {
+d285 2
+a286 2
+					if (j > 1)
+						*msgp++ = ~NPROCS;
+d288 3
+a290 1
+					*msgp++ = write_notice_range->first_page_id;
+d292 3
+a294 3
+				*msgp++ = write_notice_range->end_page_id;
+
+			} while (write_notice_range = write_notice_range->next);
+d396 3
+a398 2
+				write_notice_range->first_page_id = u;
+				write_notice_range->end_page_id = v;
+@
+
+
+11.1
+log
+@Modified Tmk_interval_create to clear toggle2 in a way that doesn't
+destroy the other page mode's bit.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5 1996/08/08 22:18:27 alc Exp alc $
+d220 4
+a223 3
+			do {
+				write_notice_t	write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+				write_notice->next = partner->write_notice_[Tmk_proc_id];
+d225 1
+a225 1
+				partner->write_notice_[Tmk_proc_id] = write_notice;
+d227 2
+a228 2
+				write_notice->diff = 0;
+				write_notice->interval = interval;
+d230 1
+a230 1
+			} while ((partner -= 1) >= page);
+@
+
+
+10.5
+log
+@Reworked page range handling in interval create.  A performance
+bug remains in interval incorporate: Due to the encoding used
+in messages, a range consisting of two pages isn't recognized
+as a range.  Two single-page ranges are created.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.4 1996/08/08 18:32:04 alc Exp alc $
+d217 2
+a218 1
+			partner[1].toggle2 = page->toggle2 = 0;
+@
+
+
+10.5.1.1
+log
+@Rename toggle and toggle2 for clarity.  Their new names are inval_toggle
+and dirty_toggle, respectively.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5 1996/08/08 22:18:27 alc Exp alc $
+d217 1
+a217 1
+			partner[1].dirty_toggle = page->dirty_toggle = 0;
+@
+
+
+10.5.1.2
+log
+@Change end_page_id to last_page_id for consistency with version 1.1+.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.1 1998/03/02 02:05:23 alc Exp alc $
+d214 1
+a214 1
+			write_notice_range->last_page_id = page->partner - page_array_;
+d276 1
+a276 1
+				int	j = write_notice_range->last_page_id - write_notice_range->first_page_id;
+d285 1
+a285 1
+				*msgp++ = write_notice_range->last_page_id;
+d390 1
+a390 1
+				write_notice_range->last_page_id = v;
+@
+
+
+10.5.1.3
+log
+@Change NPROCS to Tmk_nprocs.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.2 1998/03/02 03:27:20 alc Exp alc $
+d153 1
+a153 1
+ * Called by Tmk_repo and Tmk_interval_initialize
+a156 9
+	interval_t	interval = proc_array_;
+
+	interval_t	last_interval = &proc_array_[Tmk_nprocs];
+
+	do {
+		interval->prev = interval->next = interval;
+		interval++;
+	} while (interval < last_interval);
+
+d301 1
+a301 1
+	int		i = 0;
+d303 1
+a303 1
+	do {
+a304 1
+	} while (++i < Tmk_nprocs);
+d451 4
+a454 1
+	heap_start = heap_expand();
+d456 1
+a456 1
+	Tmk_interval_repo();
+@
+
+
+10.5.1.4
+log
+@Rename "Tmk_free_twin" to "Tmk_twin_free" for consistency
+with the rest of the interface.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.3 1998/03/22 05:24:55 alc Exp alc $
+d429 1
+a429 1
+								Tmk_twin_free(page);
+@
+
+
+10.5.1.5
+log
+@Added the "const" attribute to the vector time argument
+to Tmk_interval_request.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.4 1998/05/10 05:06:23 alc Exp alc $
+d306 3
+a308 5
+caddr_t
+Tmk_interval_request(
+	caddr_t		msg,
+	const unsigned short
+			vector_time_[])
+@
+
+
+10.5.1.6
+log
+@Changed the definition of "page_t".  The new definition enables
+the use of "const" page pointers.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.5 1998/05/31 00:39:46 alc Exp alc $
+d186 1
+a186 1
+	page_t	       *end = &page_dirty;
+d188 1
+a188 1
+	page_t	       *page = end->prev;
+d218 1
+a218 1
+			page_t *partner;
+d392 1
+a392 1
+				page_t *page, *page_end;
+@
+
+
+10.5.1.7
+log
+@Changed the definition of "interval_t".
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.6 1998/07/26 05:25:28 alc Exp alc $
+d80 1
+a80 1
+interval_t	proc_array_[NPROCS];
+d90 2
+a91 2
+	char	heap_[H_SIZE - sizeof(interval_t) - sizeof(struct heap *)];
+	char	heap_overflow_[sizeof(interval_t)];
+d157 1
+a157 1
+	interval_t     *interval = proc_array_;
+d159 1
+a159 1
+	interval_t     *last_interval = &proc_array_[Tmk_nprocs];
+d175 2
+a176 2
+	interval_t     *interval__prev;
+	interval_t     *interval__head;
+d178 1
+a178 1
+	interval_t     *interval;
+d194 1
+a194 1
+		interval = (interval_t *) heap_alloc(sizeof(interval_t));
+d261 3
+a263 3
+	interval_t     *interval = &proc_array_[i];
+	interval_t     *interval__prev;
+	interval_t     *ihdr = interval;
+d357 3
+a359 3
+			interval_t     *interval;
+			interval_t     *interval__prev;
+			interval_t     *interval__head;
+d366 1
+a366 1
+			interval = (interval_t *) heap_alloc(sizeof(interval_t));
+@
+
+
+10.5.1.8
+log
+@Renamed "proc_array_" to "proc_interval_".
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.7 1998/07/26 06:26:40 alc Exp alc $
+d54 1
+a54 1
+ *			proc_interval_[NPROCS]
+d80 1
+a80 1
+interval_t	proc_interval_[NPROCS];
+d157 1
+a157 1
+	interval_t     *interval = proc_interval_;
+d159 1
+a159 1
+	interval_t     *last_interval = &proc_interval_[Tmk_nprocs];
+d200 1
+a200 1
+		interval->next = interval__head = &proc_interval_[Tmk_proc_id];
+d261 1
+a261 1
+	interval_t     *interval = &proc_interval_[i];
+d372 1
+a372 1
+			interval->next = interval__head = &proc_interval_[pid];
+@
+
+
+10.5.1.9
+log
+@Renamed "pid" (in Tmk_interval_incorporate) and "i" (in Tmk_interval_request
+and Tmk_interval_request_proc) to "proc_id".
+
+Changed the definition of "Tmk_interval_request_proc" to ANSI C-style.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.8 1998/07/27 18:42:55 alc Exp alc $
+d246 1
+a246 1
+ * All fields of the message are unsigned shorts.  The proc id is
+d254 4
+a257 5
+caddr_t
+Tmk_interval_request_proc(
+	caddr_t		msg,
+	int		proc_id,
+	unsigned	time)
+d261 1
+a261 1
+	interval_t     *interval = &proc_interval_[proc_id];
+d265 1
+a265 1
+	if (time < (interval__prev = interval->prev)->vector_time_[proc_id]) {
+d270 1
+a270 1
+		} while (time < interval__prev->vector_time_[proc_id]);
+d276 1
+a276 1
+			*msgp++ = ~proc_id;
+d312 1
+a312 1
+	int		proc_id = 0;
+d315 2
+a316 2
+		msg = Tmk_interval_request_proc(msg, proc_id, vector_time_[proc_id]);
+	} while (++proc_id < Tmk_nprocs);
+d348 1
+a348 1
+		int		proc_id = ~*(short *) msgp++;
+d355 1
+a355 1
+		if ((u = msgp[proc_id]) > proc_vector_time_[proc_id]) {
+d364 1
+a364 1
+			proc_vector_time_[proc_id] = u;
+d367 1
+a367 1
+			interval->id = proc_id;
+d372 1
+a372 1
+			interval->next = interval__head = &proc_interval_[proc_id];
+d409 1
+a409 1
+					write_notice->next = page->write_notice_[proc_id];
+d411 1
+a411 1
+					page->write_notice_[proc_id] = write_notice;
+d447 2
+a448 2
+			if ((u = interval->vector_time_[Tmk_proc_id]) > inverse_time_[proc_id])
+				inverse_time_[proc_id] = u;
+@
+
+
+10.5.1.10
+log
+@Defined "time" to replace "u" in Tmk_interval_incorporate.  Moved
+the definition of "u" and "v".
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.9 1998/07/27 18:52:09 alc Exp alc $
+d351 1
+a351 1
+		unsigned	time;
+d356 1
+a356 1
+		if ((time = msgp[proc_id]) > proc_vector_time_[proc_id]) {
+d365 1
+a365 3
+			unsigned	u, v;
+
+			proc_vector_time_[proc_id] = time;
+d448 2
+a449 2
+			if ((time = interval->vector_time_[Tmk_proc_id]) > inverse_time_[proc_id])
+				inverse_time_[proc_id] = time;
+@
+
+
+10.5.1.11
+log
+@Moved the "inverse_time_" adjustment in Tmk_interval_incorporate.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.10 1998/07/27 19:13:50 alc Exp alc $
+a368 3
+			if ((time = msgp[Tmk_proc_id]) > inverse_time_[proc_id])
+				inverse_time_[proc_id] = time;
+
+d449 3
+@
+
+
+10.5.1.12
+log
+@Renamed "ihdr" to "interval__head" in Tmk_interval_request_proc
+for consistency with the other functions.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.11 1998/07/31 18:01:32 alc Exp alc $
+d264 1
+a267 2
+		interval_t     *interval__head = interval;
+
+d299 1
+a299 1
+		} while ((interval = interval->next) != interval__head);
+@
+
+
+10.5.1.13
+log
+@Some cosmetic changes to Tmk_interval_create for consistency
+with the other functions.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.12 1998/07/31 18:13:19 alc Exp alc $
+d172 2
+a173 3
+void
+Tmk_interval_create(
+	unsigned short *vector_time_)
+d175 4
+a178 1
+	page_t	       *end = &page_dirty;
+d180 2
+a181 1
+	page_t	       *page = end->prev;
+d186 1
+a186 1
+	if (page != end) {
+d188 1
+a188 2
+		interval_t     *interval__prev;
+		interval_t     *interval__head;
+d190 1
+a190 4
+		interval_t     *interval;
+
+		write_notice_range_t
+				write_notice_range;
+d220 1
+a220 2
+			write_notice_range =
+			write_notice_range->next = (write_notice_range_t) heap_alloc(sizeof(struct write_notice_range));
+@
+
+
+10.5.1.14
+log
+@Changed the definition of "write_notice_range_t".
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.13 1998/07/31 18:24:12 alc Exp alc $
+d191 1
+a191 1
+			       *write_notice_range;
+d222 1
+a222 1
+			write_notice_range->next = (write_notice_range_t *) heap_alloc(sizeof(write_notice_range_t));
+d278 1
+a278 1
+				       *write_notice_range;
+d366 1
+a366 1
+				       *write_notice_range;
+d403 1
+a403 2
+				write_notice_range =
+				write_notice_range->next = (write_notice_range_t *) heap_alloc(sizeof(write_notice_range_t));
+@
+
+
+10.5.1.15
+log
+@Changed the definition of "write_notice_t".
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.14 1998/07/31 18:55:59 alc Exp alc $
+d231 1
+a231 1
+				write_notice_t *write_notice = (write_notice_t *) heap_alloc(sizeof(write_notice_t));
+d418 1
+a418 1
+					write_notice_t *write_notice = (write_notice_t *) heap_alloc(sizeof(write_notice_t));
+@
+
+
+10.5.1.16
+log
+@Sort the write notice ranges in interval create.  This enables
+interval request to use a more compact encoding.
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.5.1.15 1998/07/31 20:17:33 alc Exp alc $
+a192 10
+		/*
+		 * If there are two or more ranges, then sort them.
+		 */
+		if (page != end->next) {
+
+			Tmk_page_sort(end);
+
+			page = end->prev;
+		}
+
+d289 6
+a294 1
+				*msgp++ = write_notice_range->last_page_id;
+a295 1
+				if (write_notice_range->last_page_id > write_notice_range->first_page_id)
+d297 2
+d407 1
+a407 1
+				if ((msgp + 1 < msg_end) && (u > msgp[1]))
+d409 2
+a410 1
+
+@
+
+
+10.4
+log
+@Changed page_dirty list and intervals to use ranges.  (Imported
+from the 10.1.2 branch.)
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.3 1996/08/08 04:52:23 alc Exp alc $
+d209 1
+a209 1
+			page_t p;
+d216 2
+a217 1
+		        for (p = page; p <= page->partner; p++) {
+d219 1
+d221 1
+a221 1
+				write_notice->next = p->write_notice_[Tmk_proc_id];
+d223 1
+a223 1
+				p->write_notice_[Tmk_proc_id] = write_notice;
+a226 3
+			}
+			page->toggle2 = 0;
+			(page->partner + 1)->toggle2 = 0;
+d228 3
+a230 1
+		} while ((page = page->prev) != &page_dirty);
+d264 2
+a265 1
+			write_notice_range_t write_notice_range;
+@
+
+
+10.3
+log
+@Replace "page->valid" and "page->empty" with "page->state".
+@
+text
+@d39 1
+a39 1
+ * $Id: interval.c,v 10.2 1996/08/03 05:49:05 alc Exp alc $
+d171 2
+a172 1
+	write_notice_t	write_notice;
+d177 1
+a177 1
+	page_t		page = page_dirty;
+d179 1
+a179 1
+	if (page) {
+d181 3
+a183 1
+		page_dirty = 0;
+d204 1
+a204 1
+		write_notice = &interval->head;
+d209 3
+a211 1
+			write_notice = write_notice->next_proc_array = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+d213 2
+a214 2
+			write_notice->page_id = page - page_array_;
+			write_notice->next = page->write_notice_[Tmk_proc_id];
+d216 1
+a216 1
+			page->write_notice_[Tmk_proc_id] = write_notice;
+d218 10
+a227 4
+			page = page->next;
+
+			write_notice->diff = 0;
+			write_notice->interval = interval;
+d229 1
+a229 1
+		} while (page);
+d231 1
+a231 1
+		write_notice->next_proc_array = 0;
+d263 1
+a263 1
+			write_notice_t	write_notice;
+d271 15
+a285 4
+			write_notice = &interval->head;
+			do
+				*msgp++ = write_notice->page_id;
+			while (write_notice = write_notice->next_proc_array);
+d336 1
+a336 1
+		unsigned	u;
+d347 2
+a348 1
+			write_notice_t	write_notice;
+d371 1
+a371 1
+			write_notice = &interval->head;
+d378 1
+a378 1
+				page_t	page;
+d380 1
+a380 1
+				write_notice = write_notice->next_proc_array = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+d382 7
+a388 1
+				write_notice->page_id = u;
+d391 1
+d393 5
+a397 1
+				write_notice->next = page->write_notice_[pid];
+d399 2
+a400 1
+				page->write_notice_[pid] = write_notice;
+d402 4
+a405 2
+				write_notice->diff = 0;
+				write_notice->interval = interval;
+d407 1
+a407 4
+				/*
+				 * Change page status
+				 */
+				if (page->state == valid) {
+d409 1
+a409 1
+					page->state = invalid;
+d411 1
+a411 1
+					while (page->twin) {
+d413 1
+a413 1
+						write_notice_t	write_notice = page->write_notice_[Tmk_proc_id];
+d415 1
+a415 1
+						if (write_notice && write_notice->diff == 0) {
+d417 4
+a420 1
+							Tmk_diff_create(page, write_notice);
+d422 2
+a423 1
+							Tmk_free_twin(page);
+d425 3
+a427 2
+						else {
+							Tmk_interval_create(vector_time_);
+a428 5
+							proc_vector_time_[Tmk_proc_id] = vector_time_[Tmk_proc_id];
+						}
+					}
+					Tmk_page_inval_merge(page);
+				}
+d431 1
+a431 1
+			write_notice->next_proc_array = 0;
+@
+
+
+10.2
+log
+@Changed Tmk_interval_request_proc to use memcpy for the vector timestamp
+copy.  Changed Tmk_interval_request to call Tmk_interval_request_proc.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d373 1
+a373 1
+				if (page->valid) {
+d375 1
+a375 1
+					page->valid = 0;
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		interval.c
+d74 1
+a74 4
+ *
+ * $Id: interval.c,v 10.0.2.2 1996/05/20 19:17:51 alc Exp $
+ *
+ *****************************************************************************/
+d225 7
+a231 1
+ * Called by Tmk_barrier
+a251 2
+			int		j;
+
+d256 3
+a258 2
+			for (j = 0; j < NPROCS; j++)
+				*msgp++ = interval->vector_time_[j];
+d271 1
+a271 3
+ * All fields of the message are unsigned shorts.  The pid is
+ * complemented to distinguish it from a page id.  Thus, the
+ * highest page id is 65536-NPROCS-1.
+d277 1
+a277 10
+	unsigned short *msgp = (unsigned short *) msg;
+	int		i, j;
+
+	for (i = 0; i < NPROCS; i++) {
+
+		interval_t	interval = &proc_array_[i];
+		interval_t	interval__prev;
+		interval_t	ihdr = interval;
+
+		if (vector_time_[i] < (interval__prev = interval->prev)->vector_time_[i]) {
+d279 2
+a280 4
+			do {
+				interval = interval__prev;
+				interval__prev = interval->prev;
+			} while (vector_time_[i] < interval__prev->vector_time_[i]);
+d282 1
+a282 17
+			do {
+				write_notice_t	write_notice;
+
+				*msgp++ = ~i;
+
+				for (j = 0; j < NPROCS; j++)
+					*msgp++ = interval->vector_time_[j];
+
+				write_notice = &interval->head;
+				do
+					*msgp++ = write_notice->page_id;
+				while (write_notice = write_notice->next_proc_array);
+
+			} while ((interval = interval->next) != ihdr);
+		}
+	}
+	return (caddr_t) msgp;
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@d73 1
+a73 1
+ * $Id: interval.c,v 10.1 1996/05/27 04:42:30 alc Rel $
+@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@d73 1
+a73 1
+ * $Id: interval.c,v 10.1 1996/05/27 04:42:30 alc Rel $
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@d73 1
+a73 1
+ * $Id: interval.c,v 10.1 1996/05/27 04:42:30 alc Rel $
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@d71 1
+a71 1
+ *	Version 0.10.1
+d73 1
+a73 3
+ *	 7-Jun-1996	Tim Miller	Changed dirty page list, intervals,
+ *					 release messages to use ranges
+ *					 of pages
+a74 2
+ * $Id: interval.c,v 10.1.1.2 1996/06/12 22:49:23 tmiller Exp tmiller $
+ *
+a173 2
+	write_notice_range_t write_notice_range;
+
+d177 1
+a177 3
+	page_t		end = page_dirty;
+
+	page_t          page = end->prev;
+d179 1
+a179 1
+	if (page != end) {
+d181 1
+a181 1
+	        end->next = end->prev = end;
+d202 1
+a203 2
+		write_notice_range = &interval->head;
+
+d207 1
+a207 3
+			page_t p;
+
+			write_notice_range = write_notice_range->next = (write_notice_range_t) heap_alloc(sizeof(struct write_notice_range));
+d209 2
+a210 1
+		        for ( p = page; p <= page->partner; p++) {
+d212 1
+a212 1
+				write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+d214 1
+a214 10
+				write_notice->page_id = p - page_array_;
+				write_notice->next = p->write_notice_[Tmk_proc_id];
+				
+				p->write_notice_[Tmk_proc_id] = write_notice;
+				
+				write_notice->diff = 0;
+				write_notice->interval = interval;
+			}
+			page->toggle &= ~DIRTY;
+			(page->partner + 1)->toggle &= ~DIRTY;
+d216 2
+a217 2
+			write_notice_range->first_page_id = page - page_array_;
+			write_notice_range->end_page_id = page->partner - page_array_;
+d219 1
+a219 1
+		} while ((page = page->prev) != end);
+d221 1
+a221 1
+		write_notice_range->next = 0;
+d249 1
+a249 1
+			write_notice_range_t write_notice_range;
+d256 4
+a259 11
+			write_notice_range = &interval->head;
+			do {
+				int num_in_range = write_notice_range->end_page_id - write_notice_range->first_page_id + 1;
+				if (num_in_range > 2)
+					*msgp++ = RANGE;
+
+				*msgp++ = write_notice_range->first_page_id;
+
+				if (num_in_range > 1)
+					*msgp++ = write_notice_range->end_page_id;
+			} while (write_notice_range = write_notice_range->next);
+d268 2
+a269 4
+ * complemented to distinguish it from a page id.  The marker
+ * RANGE (= (unsigned short)~NPROCS) is reserved to signify
+ * that the next two page ids are to interpreted as a range.
+ * Thus, the highest page id is 65536-NPROCS-2.
+d292 1
+a292 1
+				write_notice_range_t	write_notice_range;
+d299 4
+a302 11
+				write_notice_range = &interval->head;
+				do {
+					int num_in_range = write_notice_range->end_page_id - write_notice_range->first_page_id + 1;
+					if (num_in_range > 2)
+						*msgp++ = RANGE;
+
+					*msgp++ = write_notice_range->first_page_id;
+
+					if (num_in_range > 1)
+						*msgp++ = write_notice_range->end_page_id;
+				} while (write_notice_range = write_notice_range->next);
+d339 1
+a339 1
+		unsigned short	u, v;
+a351 2
+			write_notice_range_t write_notice_range;
+
+d373 1
+a373 1
+			write_notice_range = &interval->head;
+a380 1
+				int test;
+d382 1
+a382 1
+				write_notice_range = write_notice_range->next = (write_notice_range_t) heap_alloc(sizeof(struct write_notice_range));
+d384 21
+a404 6
+				if (u == RANGE) {
+					u = write_notice_range->first_page_id = *(++msgp);
+					v = write_notice_range->end_page_id = *(++msgp);
+				}
+				else
+					write_notice_range->end_page_id = write_notice_range->first_page_id = v = u;
+d406 1
+a406 1
+				for (page = &page_array_[u]; page <= &page_array_[v]; page++) {
+d408 1
+a408 1
+					write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+d410 4
+a413 1
+					write_notice->page_id = page - page_array_;
+d415 1
+a415 29
+					write_notice->next = page->write_notice_[pid];
+	
+					page->write_notice_[pid] = write_notice;
+
+					write_notice->diff = 0;
+					write_notice->interval = interval;
+
+					/*
+					 * Change page status
+					 */
+					if (page->valid) {
+	
+						page->valid = 0;
+	
+						while (page->twin) {
+	
+							write_notice_t	write_notice = page->write_notice_[Tmk_proc_id];
+	
+							if (write_notice && write_notice->diff == 0) {
+	
+								Tmk_diff_create(page, write_notice);
+	
+								Tmk_free_twin(page);
+							}
+							else {
+								Tmk_interval_create(vector_time_);
+	
+								proc_vector_time_[Tmk_proc_id] = vector_time_[Tmk_proc_id];
+							}
+a416 3
+						/*if (0 > mprotect(page->vadr, Tmk_page_size, 0))
+						  Tmk_perrexit("<mprotect>Tmk_interval_invalidate");*/
+						Tmk_page_inval_merge(page);
+d418 1
+d421 2
+a422 2
+			
+			write_notice_range->next = 0;
+d432 1
+a432 1
+	  Tmk_page_inval_perform();
+@
+
+
+10.1.2.2
+log
+@Removed "page_id" from the write notice structure.
+@
+text
+@d77 1
+a77 1
+ * $Id: interval.c,v 10.1.2.1 1996/06/25 19:28:51 tmiller Exp alc $
+d223 2
+d418 1
+d432 3
+d465 2
+d482 1
+a482 1
+		Tmk_page_inval_perform();
+@
+
+
+10.1.2.3
+log
+@Eliminate a comparison in interval request and request proc
+when the page range is a single page.
+@
+text
+@d77 1
+a77 1
+ * $Id: interval.c,v 10.1.2.2 1996/08/01 19:58:05 alc Exp alc $
+d210 1
+a273 1
+
+d275 3
+a277 4
+				if ((j = write_notice_range->end_page_id - write_notice_range->first_page_id) > 0) {
+
+					if (j > 1)
+						*msgp++ = RANGE;
+d279 1
+a279 3
+					*msgp++ = write_notice_range->first_page_id;
+				}
+				*msgp++ = write_notice_range->end_page_id;
+d281 2
+a325 1
+
+d327 3
+a329 1
+					if ((j = write_notice_range->end_page_id - write_notice_range->first_page_id) > 0) {
+d331 1
+a331 6
+						if (j > 1)
+							*msgp++ = RANGE;
+
+						*msgp++ = write_notice_range->first_page_id;
+					}
+					*msgp++ = write_notice_range->end_page_id;
+d333 2
+@
+
+
+10.1.2.4
+log
+@Eliminated the extra level of indirection in the page dirty list.
+@
+text
+@d77 1
+a77 1
+ * $Id: interval.c,v 10.1.2.3 1996/08/02 05:13:38 alc Exp alc $
+d176 3
+a178 2
+	write_notice_range_t
+			write_notice_range;
+d183 3
+a185 1
+	page_t          page = page_dirty.prev;
+d187 1
+a187 1
+	if (page != &page_dirty) {
+d189 1
+a189 1
+		page_dirty.prev = page_dirty.next = &page_dirty;
+d219 1
+a219 2
+			write_notice_range->first_page_id = page - page_array_;
+			write_notice_range->end_page_id = page->partner - page_array_;
+d221 1
+a221 3
+		        for (p = page; p <= page->partner; p++) {
+
+				write_notice_t	write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+d232 4
+a235 1
+		} while ((page = page->prev) != &page_dirty);
+@
+
+
+10.1.2.5
+log
+@Changed Tmk_interval_request_proc to use memcpy for the vector timestamp
+copy.  Changed Tmk_interval_request to call Tmk_interval_request_proc.
+Changed the "for" loop in Tmk_interval_incorporate to a "do-while" loop.
+@
+text
+@d37 2
+a38 4
+
+/*
+ * $Id$
+ *
+d76 4
+a79 2
+ *	Version 0.10.2
+ */
+d260 2
+d266 2
+a267 3
+			memcpy(msgp, interval->vector_time_, sizeof(interval->vector_time_));
+
+			msgp += NPROCS;
+d272 1
+a272 3
+				int	j = write_notice_range->end_page_id - write_notice_range->first_page_id;
+
+				if (j > 0) {
+d275 1
+a275 1
+						*msgp++ = ~NPROCS;
+d299 35
+a333 1
+	int		i;
+d335 1
+a335 2
+	for (i = 0; i < NPROCS; i++)
+		msg = Tmk_interval_request_proc(msg, i, vector_time_[i]);
+d337 4
+a340 1
+	return msg;
+d383 3
+a385 2
+			write_notice_range_t
+					write_notice_range;
+d419 3
+a421 3
+				if (u == (unsigned short) ~NPROCS) {
+					u = write_notice_range->first_page_id = *++msgp;
+					v = write_notice_range->end_page_id = *++msgp;
+d426 1
+a426 1
+				page = &page_array_[u];
+d428 1
+a428 2
+				do {
+					write_notice_t	write_notice = (write_notice_t) heap_alloc(sizeof(struct write_notice));
+d445 1
+a445 1
+							write_notice = page->write_notice_[Tmk_proc_id];
+d461 3
+a463 4
+				} while ((page += 1) <= &page_array_[v]);
+
+			} while (((msgp += 1) < msg_end) && ((u = *msgp) < (unsigned short) -NPROCS));
+
+@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d73 2
+d233 1
+a233 1
+	short	       *msgp = (short *) msg;
+d267 3
+a269 3
+ * All fields of the message are (signed) short's.  The pid field is
+ * complemented to distinguish between pid's and write notice's.
+ * A pid should always be negative, and a write notice positive.
+d275 1
+a275 1
+	short	       *msgp = (short *) msg;
+d318 2
+a319 7
+	short	       *msgp = (short *) msg;
+	short	       *msg_end = (short *)(msg + size);
+	page_t		page;
+	int		i;
+	interval_t	interval;
+	interval_t	interval__prev;
+	interval_t	interval__head;
+d323 2
+d334 6
+a339 1
+		int	pid = ~*msgp++;
+d344 5
+a348 1
+		if ((i = msgp[pid]) > proc_vector_time_[pid]) {
+d352 1
+a352 1
+			proc_vector_time_[pid] = i;
+d375 1
+a375 1
+			i = *msgp;
+d380 2
+d384 1
+a384 1
+				write_notice->page_id = i;
+d386 1
+a386 1
+				page = &page_array_[i];
+d420 1
+a420 1
+			} while ((msgp += 1) < msg_end && (i = *msgp) >= 0);
+d424 2
+a425 2
+			if ((i = interval->vector_time_[Tmk_proc_id]) > inverse_time_[pid])
+				inverse_time_[pid] = i;
+d428 1
+a428 1
+			for (msgp += NPROCS; msgp < msg_end && *msgp >= 0; msgp++)
+@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.2
+log
+@Changed interval incorporate to allow page id's greater than 32767.
+The maximum page id is 65536-NPROCS-1.  (This change was brought over
+from version 9.7.2.2.)
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1996						     *
+a72 2
+ * $Id: interval.c,v 9.7.2.2 1996/05/20 19:10:11 alc Exp $
+ *
+d231 1
+a231 1
+	unsigned short *msgp = (unsigned short *) msg;
+d265 3
+a267 3
+ * All fields of the message are unsigned shorts.  The pid is
+ * complemented to distinguish it from a page id.  Thus, the
+ * highest page id is 65536-NPROCS-1.
+d273 1
+a273 1
+	unsigned short *msgp = (unsigned short *) msg;
+d316 7
+a322 2
+	unsigned short *msgp = (unsigned short *) msg;
+	unsigned short *msg_end = (unsigned short *)(msg + size);
+a325 2
+		int	i;
+
+d335 1
+a335 6
+		/*
+		 * Perform sign extension before the one's complement.
+		 */
+		int		pid = ~*(short *) msgp++;
+
+		unsigned	u;
+d340 1
+a340 5
+		if ((u = msgp[pid]) > proc_vector_time_[pid]) {
+
+			interval_t	interval;
+			interval_t	interval__prev;
+			interval_t	interval__head;
+d344 1
+a344 1
+			proc_vector_time_[pid] = u;
+d367 1
+a367 1
+			u = *msgp;
+a371 2
+				page_t	page;
+
+d374 1
+a374 1
+				write_notice->page_id = u;
+d376 1
+a376 1
+				page = &page_array_[u];
+d410 1
+a410 1
+			} while ((msgp += 1) < msg_end && (u = *msgp) < (unsigned short) -NPROCS);
+d414 2
+a415 2
+			if ((u = interval->vector_time_[Tmk_proc_id]) > inverse_time_[pid])
+				inverse_time_[pid] = u;
+d418 1
+a418 1
+			for (msgp += NPROCS; msgp < msg_end && *msgp < (unsigned short) -NPROCS; msgp++)
+@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.7.2.2
+log
+@Changed interval incorporate to allow page id's greater than 32767.
+The maximum page id is 65536-NPROCS-1.
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1996						     *
+a72 2
+ * $Id$
+ *
+d231 1
+a231 1
+	unsigned short *msgp = (unsigned short *) msg;
+d265 3
+a267 3
+ * All fields of the message are unsigned shorts.  The pid is
+ * complemented to distinguish it from a page id.  Thus, the
+ * highest page id is 65536-NPROCS-1.
+d273 1
+a273 1
+	unsigned short *msgp = (unsigned short *) msg;
+d316 7
+a322 2
+	unsigned short *msgp = (unsigned short *) msg;
+	unsigned short *msg_end = (unsigned short *)(msg + size);
+a325 2
+		int	i;
+
+d335 1
+a335 6
+		/*
+		 * Perform sign extension before the one's complement.
+		 */
+		int		pid = ~*(short *) msgp++;
+
+		unsigned	u;
+d340 1
+a340 5
+		if ((u = msgp[pid]) > proc_vector_time_[pid]) {
+
+			interval_t	interval;
+			interval_t	interval__prev;
+			interval_t	interval__head;
+d344 1
+a344 1
+			proc_vector_time_[pid] = u;
+d367 1
+a367 1
+			u = *msgp;
+a371 2
+				page_t	page;
+
+d374 1
+a374 1
+				write_notice->page_id = u;
+d376 1
+a376 1
+				page = &page_array_[u];
+d410 1
+a410 1
+			} while ((msgp += 1) < msg_end && (u = *msgp) < (unsigned short) -NPROCS);
+d414 2
+a415 2
+			if ((u = interval->vector_time_[Tmk_proc_id]) > inverse_time_[pid])
+				inverse_time_[pid] = u;
+d418 1
+a418 1
+			for (msgp += NPROCS; msgp < msg_end && *msgp < (unsigned short) -NPROCS; msgp++)
+@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d102 1
+a102 1
+		Tmk_errexit("<malloc>Tmk_heap_expand: out of memory");
+d124 1
+a124 1
+	unsigned size;
+d195 1
+a195 1
+		bcopy(vector_time_, interval->vector_time_, sizeof(interval->vector_time_));
+d358 1
+a358 1
+			bcopy(msgp, interval->vector_time_, sizeof(interval->vector_time_));
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d51 3
+d69 4
+d76 5
+a159 5
+ *
+ */
+struct	interval	proc_array_[NPROCS];
+
+/*
+d408 1
+a408 2
+					if (0 > mprotect(page->vadr, Tmk_page_size, 0))
+						Tmk_perrexit("<mprotect>interval_incorporate");
+d421 2
+@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

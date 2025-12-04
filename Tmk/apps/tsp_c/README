@@ -1,0 +1,20 @@
+The default input is the 18 city problem.
+
+Examples:
+
+1. The following command solves the 18 city problem on the first 8 nodes
+in your $(HOME)/.Tmkrc file.
+
+	tsp.udp -f18 -- -n8
+
+The correct answer for the minimum tour length is 106.
+
+2. The following command solves the 19 city problem on the machines
+named alpha and beta.
+
+	tsp.udp -f19b -- -h alpha -h beta
+
+The correct answer for the minimum tour length is 149.
+
+The 19 city problem takes almost ten times longer to run
+than the 18 city problem.

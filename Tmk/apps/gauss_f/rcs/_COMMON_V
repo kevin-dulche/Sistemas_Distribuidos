@@ -1,0 +1,77 @@
+head	1.2;
+access;
+symbols
+	Tmk-1_0_3_2R:1.2
+	Tmk-1_0_3_1R:1.1
+	Tmk-1_0:1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	98.11.03.05.17.39;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	98.08.07.03.32.52;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Architecture independent portion of the Makefile.
+@
+
+
+1.2
+log
+@Added "Gauss.mpl" rule.
+@
+text
+@ #
+ # $Id: .common,v 1.1 1998/08/07 03:32:52 alc Exp alc $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) Gauss.o drand48.o timer.o
+
+Gauss.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(FC) $(FFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+Gauss.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(FC) $(FFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+Gauss.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(FC) $(FFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+Gauss.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(FC) $(FFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+Gauss.o: ../src/Gauss.f
+	$(FC) $(FFLAGS) -c ../src/Gauss.f
+
+drand48.o: ../src/drand48.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/drand48.c
+
+timer.o: ../src/timer.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/timer.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d13 3
+@

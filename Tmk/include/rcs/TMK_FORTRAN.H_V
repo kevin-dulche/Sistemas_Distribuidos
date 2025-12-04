@@ -1,0 +1,297 @@
+head	10.3;
+access;
+symbols
+	Tmk-1_1:11
+	Tmk-1_0_3_2R:10.3
+	Tmk-1_0_3_1R:10.3
+	Tmk-1_0_3R:10.3
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.3
+	Tmk-1_0:10
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.3;
+locks; strict;
+comment	@ * @;
+
+
+10.3
+date	97.06.01.08.17.45;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.06.01.08.02.50;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	97.06.01.05.34.43;	author alc;	state Exp;
+branches;
+next	9.7;
+
+9.7
+date	96.03.17.05.29.41;	author alc;	state Exp;
+branches
+	9.7.1.1;
+next	9.6;
+
+9.6
+date	96.03.17.04.59.12;	author alc;	state Exp;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.16.07.56.14;	author alc;	state Exp;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.23.58.08;	author alc;	state Exp;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.16.21.23.42;	author alc;	state Exp;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.17.06.31.04;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.1.1
+date	96.03.17.06.44.16;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.3
+log
+@Updated copyright.  Added version tag.
+@
+text
+@CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C                                                                           C
+C  Copyright (c) 1991-1997						    C
+C  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			    C
+C                                                                           C
+C  This software is furnished under a license and may be used and copied    C
+C  only in accordance with the terms of such license and with the	    C
+C  inclusion of the above copyright notice.  This software or any other     C
+C  copies thereof may not be provided or otherwise made available to any    C
+C  other person.  No title to or ownership of the software is hereby	    C
+C  transferred.                                                             C
+C									    C
+C  The recipient of this software (RECIPIENT) acknowledges and agrees that  C
+C  the software contains information and trade secrets that are		    C
+C  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    C
+C  reasonable steps to safeguard the software, and to prevent its	    C
+C  disclosure.								    C 
+C                                                                           C
+C  The information in this software is subject to change without notice     C
+C  and should not be construed as a commitment by PTOOLS.		    C
+C                                                                           C
+C  This software is furnished AS IS, without warranty of any kind, either   C
+C  express or implied (including, but not limited to, any implied warranty  C
+C  of merchantability or fitness), with regard to the software.  PTOOLS     C
+C  assumes no responsibility for the use or reliability of its software.    C
+C  PTOOLS shall not be liable for any special,	incidental, or		    C
+C  consequential damages, or any damages whatsoever due to causes beyond    C
+C  the reasonable control of PTOOLS, loss of use, data or profits, or from  C
+C  loss or destruction of materials provided to PTOOLS by RECIPIENT.	    C
+C									    C
+C  PTOOLS's liability for damages arising out of or in connection with the  C
+C  use or performance of this software, whether in an action of contract    C
+C  or tort including negligence, shall be limited to the purchase price,    C
+C  or the total amount paid by RECIPIENT, whichever is less.		    C
+C                                                                           C
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C
+C $Id$
+C
+C Description:    
+C	user include file for FORTRAN
+C
+C Facility:	TreadMarks Distributed Shared Memory System
+C History:
+C	11-Jul-1994	Sandhya Dwarkadas 	Created
+C	21-May-1996	Rob Fowler		Converted to pure FORTRAN
+C
+      integer Tmk_proc_id
+      integer Tmk_nprocs
+
+      integer Tmk_page_size
+      integer Tmk_npages
+
+      common /Tmk/ Tmk_proc_id, Tmk_nprocs, Tmk_page_size, Tmk_npages
+@
+
+
+10.2
+log
+@Changed the Fortran API to use a common block to hold the proc_id,
+nprocs, page_size and npages.
+@
+text
+@d3 1
+a3 1
+C  Copyright (c) 1991-1996						    C
+d38 2
+a39 1
+C File:		Tmk_fortran.h
+a47 2
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+@
+
+
+10.1
+log
+@Converted to pure Fortrash.
+@
+text
+@d49 2
+a50 1
+      external Tmk_page_size
+a52 3
+      
+      external Tmk_npages
+
+d55 1
+a55 7
+      external Tmk_proc_id
+
+      integer Tmk_proc_id
+
+      external Tmk_nprocs
+
+      integer Tmk_nprocs
+@
+
+
+9.7
+log
+@*** empty log message ***
+@
+text
+@d1 55
+a55 59
+!/*****************************************************************************
+! *                                                                           *
+! *  Copyright (c) 1991-1994                                                  *
+! *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		      *
+! *                                                                           *
+! *  This software is furnished under a license and may be used and  copied   *
+! *  only  in  accordance  with  the  terms  of  such  license and with the   *
+! *  inclusion of the above copyright notice.  This software or  any  other   *
+! *  copies  thereof may not be provided or otherwise made available to any   *
+! *  other person.  No title to or ownership of  the  software  is  hereby    *
+! *  transferred.                                                             *
+! *									      *
+! *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+! *  the software contains information and trade secrets that are	      *
+! *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+! *  all reasonable steps to safeguard the software, and to prevent its       *
+! *  disclosure.							      *
+! *                                                                           *
+! *  The information in this software is subject to change  without  notice   *
+! *  and should  not  be  construed  as  a commitment by TREADMARKS.	      *
+! *                                                                           *
+! *  This software is furnished AS IS, without warranty of any kind, either   *
+! *  express or implied (including, but not limited to, any implied warranty  *
+! *  of merchantability or fitness), with regard to the software.  	      *
+! *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+! *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+! *  or consequential damages, or any damages whatsoever due to causes beyond *
+! *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+! *  from loss or destruction of materials provided to TREADMARKS by	      *
+! *  RECIPIENT.								      *
+! *									      *
+! *  TREADMARKS's liability for damages arising out of or in connection with  *
+! *  the use or performance of this software, whether in an action of	      *
+! *  contract or tort including negligence, shall be limited to the purchase  *
+! *  price, or the total amount paid by RECIPIENT, whichever is less.	      *
+! *                                                                           *
+! ****************************************************************************/
+!/****************************************************************************
+! * File:		Tmk_fortran.h
+! * Description:    
+! *	user include file for FORTRAN
+! *
+! * Facility:	TreadMarks Distributed Shared Memory System
+! * History:
+! *	11-Jul-1994	Sandhya Dwarkadas 	Created
+! *
+! ****************************************************************************/
+
+#define TMK_HOST    0
+
+#define TMK_NPROCS	8
+#define	TMK_NPAGES	4096
+#define TMK_NBARRIERS	16
+#define TMK_NLOCKS	512
+
+      external Tmk_barrier
+      external Tmk_lock_acquire
+      external Tmk_lock_release
+      external Tmk_distribute
+d58 1
+d60 1
+d62 1
+a63 2
+
+
+@
+
+
+9.7.1.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.6.1.1
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5.1.1
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

@@ -1,0 +1,89 @@
+head	10.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.2
+date	97.12.24.06.58.25;	author alc;	state Exp;
+branches;
+next	9.5;
+
+9.5
+date	96.03.16.19.11.20;	author alc;	state Exp;
+branches;
+next	9.4;
+
+9.4
+date	96.03.16.04.43.12;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.2
+log
+@Added $Id$ tag.
+@
+text
+@ #
+ # $Id$
+ #
+all:  doc.ps install.ps install-demo.ps
+
+txtfiles: install-demo.dvi install.dvi
+	dvi2tty -w90 -o install-demo.txt install-demo.dvi 
+	dvi2tty -w90 -o  install.txt install.dvi
+
+doc.dvi: doc.tex
+	latex doc.tex
+	latex doc.tex
+
+doc.ps: doc.dvi
+	dvips doc -o
+
+install.dvi: install.tex
+	latex install.tex
+
+install.ps: install.dvi
+	dvips install -o
+
+install-demo.dvi: install-demo.tex
+	latex install-demo.tex
+
+install-demo.ps: install-demo.dvi
+	dvips install-demo -o
+
+tidy:
+	/bin/rm -f  *~ *.log *.aux *.toc
+
+clean:
+	/bin/rm -f *~ *.log *.aux *.dvi *.ps *.toc
+@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d1 3
+a3 1
+
+a28 1
+
+a33 1
+
+@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

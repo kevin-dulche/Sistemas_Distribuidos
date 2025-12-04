@@ -1,0 +1,603 @@
+head	10.1;
+access;
+symbols
+	Tmk-1_0_3_2R:10.1.1.3
+	Tmk-1_0_3_1R:10.1.1.2
+	Tmk-1_0_3R:10.1.1.2
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.1.1.2
+	Tmk-1_0_1R:10.1.1.1
+	Tmk-1_1:11
+	Tmk-1_0:10.1.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.1
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+10.1
+date	96.05.27.04.48.40;	author alc;	state Rel;
+branches
+	10.1.1.1
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.1.2.2;
+
+10.0.2.1.2.2
+date	96.03.31.04.19.04;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.1.1
+date	97.07.03.21.12.54;	author alc;	state Exp;
+branches;
+next	10.1.1.2;
+
+10.1.1.2
+date	98.06.16.18.54.19;	author alc;	state Exp;
+branches;
+next	10.1.1.3;
+
+10.1.1.3
+date	98.11.04.04.15.53;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.28.20.24.01;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.07.02.22.37.49;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.07.03.19.32.35;	author tmiller;	state Exp;
+branches;
+next	10.1.5.5;
+
+10.1.5.5
+date	96.08.07.17.42.00;	author tmiller;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+/*****************************************************************************
+ * File:		timeout.c
+ * Description:    
+ *	timer routines
+ *
+ * External Functions:
+ *			Tmk_tout_initialize
+ *
+ * External Variables:
+ *			Tmk_tout,
+ *			Tmk_tout_flag
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	30-Jul-1994	Alan L. Cox	Created
+ *
+ *	Version 0.9.1
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigvec with sigaction
+ *
+ *	Version 0.10
+ *
+ *****************************************************************************/
+#include "Tmk.h"
+
+struct	itimerval
+		Tmk_tout = { { 1, 0 }, { 1, 0 } };
+
+unsigned	Tmk_tout_flag;
+
+static	void	to_alarm()
+{
+	Tmk_tout_flag = 1;
+}
+
+void	Tmk_tout_initialize()
+{
+	struct	sigaction sa;
+
+	sa.sa_handler = to_alarm;
+
+	sigemptyset(&sa.sa_mask);
+#if defined(__sun) && ! defined(__SVR4)
+	sa.sa_flags = SA_INTERRUPT;
+#else
+	sa.sa_flags = 0;
+#endif
+	sigaction(SIGALRM, &sa, NULL);
+}
+@
+
+
+10.1.1.1
+log
+@Added basic Pthreads support.
+@
+text
+@a84 14
+#if defined(PTHREADS)
+	{
+		/*
+		 * Leave SIGALRM blocked by default.  Only the thread waiting
+		 * to receive a message will have SIGALRM unblocked.
+		 */
+		sigset_t  mask;
+
+		sigemptyset(&mask);
+		sigaddset(&mask, SIGALRM);
+
+		sigprocmask(SIG_BLOCK, &mask, NULL);
+	}
+#endif
+@
+
+
+10.1.1.2
+log
+@Two changes:
+
+1. Check sigaction's return value for an error.
+
+2. Add the signal # argument to to_alarm.
+@
+text
+@d67 1
+a67 6
+/*
+ *
+ */
+static	void
+to_alarm(
+	int	sig)
+d72 1
+a72 5
+/*
+ *
+ */
+void
+Tmk_tout_initialize()
+d79 1
+a79 1
+#if defined(__sun) && ! defined(__SVR4)	/* SunOS 4.x */
+d84 1
+a84 2
+	if (0 > sigaction(SIGALRM, &sa, NULL))
+		Tmk_perrexit("Tmk_tout_initialize<sigaction>");
+@
+
+
+10.1.1.3
+log
+@Added $Id$ tag.
+@
+text
+@d37 2
+a38 4
+
+/*
+ * $Id$
+ *
+d58 2
+a59 1
+ */
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@a75 2
+	sigset_t  mask;
+
+a84 6
+
+	sigemptyset(&mask);
+
+	sigaddset(&mask, SIGALRM);
+
+	sig_mask(SIG_BLOCK, &mask, NULL);
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@Changed SIGALRM to be blocked by all threads and unblocked only when
+a recv timeout is needed.
+@
+text
+@a84 11
+#if defined(THREADS)
+/*
+ * SIGALRM must be blocked by all threads except the one which has the monitor_lock
+ */
+	{
+		sigset_t mask;
+		sigemptyset(&mask);
+		sigaddset(&mask, SIGALRM);
+		sigprocmask(SIG_BLOCK, &mask, NULL);
+	}
+#endif
+@
+
+
+10.1.5.3
+log
+@changed to sigio_mutex macro
+@
+text
+@d93 1
+a93 1
+		pthread_sigmask(SIG_BLOCK, &mask, NULL);
+@
+
+
+10.1.5.4
+log
+@cleaned up signal masks
+@
+text
+@a75 2
+	sigset_t  mask;
+
+d85 11
+a95 6
+
+	sigemptyset(&mask);
+
+	sigaddset(&mask, SIGALRM);
+
+	sig_mask(SIG_BLOCK, &mask, NULL);
+@
+
+
+10.1.5.5
+log
+@Added $Id$
+@
+text
+@a58 2
+ * $Id$
+ *
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.1.2.2
+log
+@Moved Tmk_tout_flag to the PRDA. <SMP>
+@
+text
+@d64 1
+a64 1
+#if   ! defined(__sgi)
+d66 1
+a66 1
+#endif
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d53 6
+d74 3
+a76 1
+	struct	sigvec	vec;
+d78 3
+a80 4
+	vec.sv_handler = (void (*)()) to_alarm;
+	vec.sv_mask = 0;
+#if defined(__hppa)
+	vec.sv_flags = 0;
+d82 1
+a82 1
+	vec.sv_flags = SV_INTERRUPT;
+d84 1
+a84 1
+	sigvec(SIGALRM, &vec, NULL);
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

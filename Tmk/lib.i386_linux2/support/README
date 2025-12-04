@@ -1,0 +1,15 @@
+This directory contains source files and scripts that are 
+not actually part of TreadMarks(TM), but that are needed
+to run it under Linux.
+
+getopt.c  is the Berkeley BSD4.4 version.  The GNU getopt.c
+	distributed with Linux is feature-full, but incompatible
+	with other systems.  
+
+f77     is a shell script that drives the f2c translator and gcc.
+	This version differs from the one distributed as part
+	of Slakware in three ways: It looks for f2c in /usr/local/bin.
+	It has a -U to handle case-sensitive codes.  It has a fix
+	for a bug in the distributed version that kept it from working
+	with bash on our Linux systems.  You (or your syatem administrator)
+	should copy it to an appropriate place in your PATH.

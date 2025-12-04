@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.08.03.25.40;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Initial revision
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= alpha_osf4
+
+CC	= cc
+CFLAGS	= -migrate -g3 -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm
+
+all: raytrace.udp
+
+include ../.common
+@

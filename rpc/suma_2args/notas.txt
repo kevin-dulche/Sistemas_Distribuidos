@@ -1,0 +1,27 @@
+Prioridad 3 archivos:
+suma_2args.x
+suma_2args_servidor.c
+suma_2args_cliente.c
+
+Paso 1:
+tener
+suma_2args.x
+
+Paso 2:
+Hacer
+rpcgen -Na suma_2args.x
+
+Paso 3:
+tener 
+suma_2args_servidor.c
+suma_2args_cliente.c
+
+Paso 4:
+Compilar
+gcc suma_2args_cliente.c suma_2args_clnt.c suma_2args_xdr.c -I/usr/include/tirpc -ltirpc -o cliente
+gcc suma_2args_servidor.c suma_2args_svc.c suma_2args_xdr.c -I/usr/include/tirpc -ltirpc -o servidor
+
+Paso 5:
+Ejecutar
+./cliente
+./servidor

@@ -1,0 +1,71 @@
+head	1.2;
+access;
+symbols
+	Tmk-1_0_3_2R:1.2
+	Tmk-1_0_3_1R:1.1
+	Tmk-1_0:1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	98.11.03.16.03.44;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	98.08.07.03.32.52;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Architecture independent portion of the Makefile.
+@
+
+
+1.2
+log
+@Added the rule to link qs.mpl.
+@
+text
+@ #
+ # $Id: .common,v 1.1 1998/08/07 03:32:52 alc Exp alc $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) qs.o 
+
+qs.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+qs.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+qs.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+qs.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+qs.o: ../src/qs.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/qs.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d10 3
+@

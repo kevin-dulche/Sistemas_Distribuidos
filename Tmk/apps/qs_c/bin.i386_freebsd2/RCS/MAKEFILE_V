@@ -1,0 +1,55 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	97.12.14.19.42.23;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.05.22.05.58.48;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Makefile
+@
+
+
+1.2
+log
+@Added "-pipe" option.
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= i386_freebsd2
+
+CC	= cc
+CFLAGS	= -pipe -g -O2
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lcompat
+
+all: qs.udp
+
+include ../.common
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+d7 1
+a7 1
+CFLAGS	= -g -O2
+@

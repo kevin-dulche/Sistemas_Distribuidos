@@ -1,0 +1,86 @@
+ #
+ # $Id: .common,v 1.4 1997/12/22 07:18:05 alc Exp $
+ #
+TmkDIR  = ../../..
+TmkLIB  = $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) bbox.o cr.o env.o fbuf.o geo.o huprn.o \
+	  husetup.o hutv.o isect.o main.o matrix.o memory.o poly.o \
+	 raystack.o shade.o sph.o trace.o tri.o workpool.o debug.o
+
+raytrace.atm: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+raytrace.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+raytrace.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+raytrace.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+bbox.o: ../src/rt.h ../src/bbox.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/bbox.c
+
+cr.o:	../src/rt.h ../src/cr.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/cr.c	
+
+env.o:	../src/rt.h ../src/env.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/env.c
+
+fbuf.o: ../src/rt.h ../src/fbuf.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/fbuf.c
+
+geo.o:	../src/rt.h ../src/geo.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/geo.c
+
+huprn.o: ../src/rt.h ../src/huprn.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/huprn.c
+
+husetup.o: ../src/rt.h ../src/husetup.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/husetup.c
+
+hutv.o: ../src/rt.h ../src/hutv.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/hutv.c
+
+isect.o: ../src/rt.h ../src/isect.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/isect.c
+
+main.o: ../src/rt.h ../src/main.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/main.c
+
+matrix.o: ../src/rt.h ../src/matrix.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/matrix.c
+
+memory.o: ../src/rt.h ../src/memory.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/memory.c
+
+poly.o: ../src/rt.h ../src/poly.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/poly.c
+
+raystack.o: ../src/rt.h ../src/raystack.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/raystack.c
+
+shade.o: ../src/rt.h ../src/shade.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/shade.c
+
+sph.o:	../src/rt.h ../src/sph.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/sph.c
+
+trace.o: ../src/rt.h ../src/trace.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/trace.c
+
+tri.o:	../src/rt.h ../src/tri.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/tri.c
+
+workpool.o: ../src/rt.h ../src/workpool.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/workpool.c
+
+debug.o: ../src/debug.h ../src/debug.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/debug.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll

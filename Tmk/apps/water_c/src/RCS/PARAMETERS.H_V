@@ -1,0 +1,32 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	97.06.02.08.31.06;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Water
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#define NOMOL 343
+#define MAXODR 7
+#define NATOM 3
+#define MXOD2 (MAXODR+2)
+#define NDVAR (NATOM*NOMOL*3*MXOD2)
+#define NDIR 3
+
+
+@

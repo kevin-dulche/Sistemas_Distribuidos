@@ -1,0 +1,20 @@
+ #
+ # $Id: Makefile,v 1.1 1998/09/13 07:33:30 alc Exp $
+ #
+ARCH	= sparc_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+FC	= f77
+FFLAGS  = -g -O
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS= -lsocket -lnsl
+
+all: Gauss.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.S
+	$(AS) -P -DNPAGES=8192 -o $@ $(TmkLIB)/support/common_symbol.S

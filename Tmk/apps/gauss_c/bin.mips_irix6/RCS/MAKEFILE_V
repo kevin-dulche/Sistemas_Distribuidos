@@ -1,0 +1,56 @@
+head	10.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.3
+date	97.11.16.07.39.00;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.11.16.07.36.48;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.3
+log
+@The math library isn't required by this program.
+@
+text
+@ #
+ # $Id: Makefile,v 10.2 1997/11/16 07:36:48 alc Exp alc $
+ #
+ARCH	= mips_irix6
+
+CC	= cc
+CFLAGS	= -g3 -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS=
+
+all: gauss.udp
+
+include ../.common
+@
+
+
+10.2
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d10 1
+a10 1
+MACHDEP_LIBS= -lm
+@

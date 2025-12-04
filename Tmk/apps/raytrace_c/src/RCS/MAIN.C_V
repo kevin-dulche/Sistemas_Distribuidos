@@ -1,0 +1,766 @@
+head	1.8;
+access
+	delara
+	alc;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.8
+date	97.12.21.19.34.53;	author alc;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	97.12.21.19.25.39;	author alc;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	97.12.21.08.30.46;	author alc;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	97.12.08.03.09.06;	author alc;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	97.12.07.22.25.11;	author alc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	97.10.01.23.05.32;	author delara;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	97.05.21.19.58.31;	author delara;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.05.12.18.30.01;	author delara;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.8
+log
+@Use Tmk_nprocs throughout.  Move a variable definition.
+@
+text
+@/*************************************************************************/
+/*                                                                       */
+/*  Copyright (c) 1994 Stanford University                               */
+/*                                                                       */
+/*  All rights reserved.                                                 */
+/*                                                                       */
+/*  Permission is given to use, copy, and modify this software for any   */
+/*  non-commercial purpose as long as this copyright notice is not       */
+/*  removed.  All other uses, including redistribution in whole or in    */
+/*  part, are forbidden without prior written permission.                */
+/*                                                                       */
+/*  This software is provided with absolutely no warranty and no         */
+/*  support.                                                             */
+/*                                                                       */
+/*************************************************************************/
+
+ 
+/*
+ * NAME
+ *	prt - parallel ray tracer
+ *
+ * SYNOPSIS
+ *	prt [options] envfile
+ *
+ *		-h	Print this usage message.
+ *		-a<n>	Enable antialiasing with n subpixels (default = 1).
+ *		-m<n>	Request n megabytes of global memory (default = 32).
+ *		-p<n>	Run on n processors (default = 1).
+ *
+ * DESCRIPTION
+ *
+ * RETURNS
+ *	PRT returns an exit code of 0 to the OS for successful operation; it
+ *	returns a non-zero exit code (usually 1) if any type of error occurs.
+ *
+ * EXAMPLES
+ *	To ray trace cube.env on 1 processor and default global memory size:
+ *
+ *		prt cube.env
+ *
+ *	To ray trace car.env on 4 processors and 72MB of global memory:
+ *
+ *		prt -p4 -m72 car.env
+ *
+ * FILES
+ *
+ * SEE ALSO
+ *
+ * DIAGNOSTICS
+ *	All error messages take the form:
+ *
+ *	prt: Text of the error message.
+ *
+ *	All possible error messages are listed below, including the potential
+ *	cause of the error, and the corrective action, if any.
+ *
+ *	FATAL ERRORS
+ *		Invalid option '%c'.
+ *			The command line included an option which was not
+ *			recognized.  Check your command line syntax, remove
+ *			the offending option, and try again.
+ *
+ *		Cannot open file "filename".
+ *			The specified file could not be found, or some other
+ *			OS error prevented it from being opened.  Check your
+ *			typing and try again.
+ *
+ *		Cannot allocate local memory.
+ *			malloc() failed for some reason.
+ *
+ *		Cannot allocate global memory.
+ *			malloc(); failed for some reason.
+ *
+ *		Valid range for #processors is [1, %ld].
+ *			Do not exceed the ranges shown by the message.
+ *
+ */
+
+/*
+ * $Id: main.c,v 1.7 1997/12/21 19:25:39 alc Exp alc $
+ */
+
+#define MAIN	     /* indicate to rt.H that we need main_env for this file*/
+#define VERSION 	"1.00"
+
+
+#include <stdio.h>
+#include <math.h>
+#include "rt.h"
+
+#include "Tmk.h"
+
+extern UINT nodesize;
+extern NODE huge *begmem;
+extern NODE huge *endmem;
+
+CHAR	*ProgName     = "RAYTRACE";     /* The program name.                 */
+CHAR    *EnvFileName  = NULL;   
+CHAR	GeoFileName[80];
+CHAR	PicFileName[80];
+
+GMEM	*gm;
+
+INT	MaxGlobMem    = 32;		/* Maximum global memory needed (MB).*/
+INT	NumSubRays    = 1;		/* Number of subpixel samples to calc*/
+INT     dostats = 0;
+
+/*
+ * NAME
+ *	Usage - print proper usage message
+ *
+ * SYNOPSIS
+ *	VOID	Usage()
+ *
+ * RETURNS
+ *	Nothing.
+ */
+
+VOID	Usage()
+	{
+	fprintf(stdout, "%s - parallel ray tracer\n", ProgName);
+	fprintf(stdout, "Version %s\n\n", VERSION);
+
+	fprintf(stdout, "Usage:\t%s [options] -fenvfile\n\n", ProgName);
+
+	fprintf(stdout, "\t-h\tPrint this usage message.\n");
+	fprintf(stdout, "\t-a<n>\tEnable antialiasing with n subpixels (default = 1).\n\tWhen using with SPLASH suite for evaluation, use default (no antialiasing)\n");
+	fprintf(stdout, "\t-m<n>\tRequest n megabytes of global memory (default = 32).\n");
+	fprintf(stdout, "\t-p<n>\tRun on n processors (default = 1).\n");
+	fprintf(stdout, "\t-s\tMeasure and print per-process timing information.\n");
+	fprintf(stdout, "\n");
+	}
+
+
+
+/*
+ * NAME
+ *	PrintStatistics - print out various ray tracer statistics
+ *
+ * SYNOPSIS
+ *	VOID	PrintStatistics()
+ *
+ * RETURNS
+ *	Nothing.
+ */
+
+VOID	PrintStatistics()
+	{
+	/*
+	printf("\n****** Ray trace Stats ******\n");
+
+	printf("\tResolution:\t\t%ld by %ld\n",            Display.xres+1, Display.yres+1);
+	printf("\tNumber Lights:\t\t%ld\n",                nlights);
+	printf("\tAnti level:\t\t%ld\n",                   Display.maxAAsubdiv);
+	printf("\tTotal Rays:\t\t%ld\n",                   Stats.total_rays);
+	printf("\tPrimary Rays:\t\t%ld\n",                 Stats.prim_rays);
+	printf("\tShadow Rays:\t\t%ld\n",                  Stats.shad_rays);
+	printf("\tShadow Rays Hit:\t%ld\n",                Stats.shad_rays_hit);
+	printf("\tShadow Rays Not Hit:\t%ld\n",            Stats.shad_rays_not_hit);
+	printf("\tShadow Coherence Rays:\t%ld\n",          Stats.shad_coherence_rays);
+	printf("\tReflective Rays:\t%ld\n",                Stats.refl_rays);
+	printf("\tTransmissiveRays:\t%ld\n",               Stats.trans_rays);
+	printf("\tAnti-Aliasing Rays:\t%ld\n",             Stats.aa_rays);
+	printf("\tBackground Pixels:\t%ld\n",              Stats.coverage);
+	printf("\tMax Tree depth reached:\t%ld\n",         Stats.max_tree_depth);
+	printf("\tMax # prims tested for a ray:\t%ld\n",   Stats.max_objs_ray);
+	printf("\tMax Rays shot for a pixel:\t%ld\n",      Stats.max_rays_pixel);
+	printf("\tMax # prims tested for a pixel:\t%ld\n", Stats.max_objs_pixel);
+	printf("\n");
+	*/
+
+	if (TraversalType == TT_HUG)
+		{
+	/*	prn_ds_stats();
+		prn_tv_stats();     */
+		ma_print();
+		}
+	}
+
+
+
+/*
+ * NAME
+ *	StartRayTrace - starting point for all ray tracing proceses
+ *
+ * SYNOPSIS
+ *	VOID	StartRayTrace()
+ *
+ * RETURNS
+ *	Nothing.
+ */
+
+VOID	StartRayTrace()
+	{
+	INT	pid;			/* Our internal process id number.   */
+	UINT	begin;
+	UINT	end;
+	UINT	lapsed;
+
+
+
+DEBUG('c',"Entering\n");
+
+	
+
+
+Tmk_lock_acquire(0);
+DEBUG('l',"Acquiring lock main1");
+
+	pid = gm->pid++;
+
+Tmk_lock_release(0);
+
+DEBUG('c',"My pid %d\n",pid);
+
+	
+
+	if ((pid == 0) ||  (dostats))
+        {long time(); (begin) = time(0);};
+
+	/* POSSIBLE ENHANCEMENT: Here's where one might lock processes down 
+	to processors if need be */
+
+
+/*
+   if (pid==0)
+	  InitWorkPool(pid);
+
+Tmk_barrier(0);
+*/
+
+DEBUG('c',"Finished initializing work pool\n");
+
+	InitRayTreeStack(Display.maxlevel, pid);
+
+	/*
+	 *	Wait for all processes to be created, initialize their work
+	 *	pools, and arrive at this point; then proceed.	This {;}
+	 *	is absolutely required.  Read comments in PutJob before
+	 *	moving this barrier.
+	 */
+
+DEBUG('b',"Before barrier\n");
+
+
+Tmk_barrier(0);
+
+DEBUG('b',"After barrier\n");
+
+
+	/* POSSIBLE ENHANCEMENT:  Here's where one would RESET STATISTICS 
+	and TIMING if one wanted to measure only the parallel part */
+
+	RayTrace(pid);
+
+
+	if ((pid == 0) || (dostats)) {
+          {long time(); (end) = time(0);};
+          gm->partime[pid] = (end - begin) & 0x7FFFFFFF;
+          if (pid == 0) gm->par_start_time = begin;
+        }
+	}
+
+/*
+ * NAME
+ *	main - mainline for the program
+ *
+ * SYNOPSIS
+ *	INT	main(argc, argv)
+ *	INT	argc;
+ *	CHAR	*argv[];
+ *
+ * DESCRIPTION
+ *	Main parses command line arguments, opens/closes the files involved,
+ *	performs initializations, reads in the model database, partitions it
+ *	as needed, and calls StartTraceRay() to do the work.
+ *
+ * RETURNS
+ *	0 if successful.
+ *	1 for any type of failure.
+ */
+
+
+int main(int argc, char **argv) {
+
+	INT	i;
+	UINT	begin;
+	UINT	end;
+	UINT	lapsed;
+	U16	tmp;
+	CHAR	*pch;
+	MATRIX	vtrans, Vinv;		/*  View transformation and inverse. */
+   
+	CHAR    *DebugArg = NULL;
+
+	extern char *optarg;
+
+	int c;
+
+
+	int iterations;
+	int M;
+	int N;
+
+	while ((c = getopt(argc, argv, "a:p:m:d:f:")) != -1)
+	  switch (c) {
+	  case 'p':
+	    Tmk_nprocs = atoi(optarg);
+	    break;
+	  case 'm':
+	    MaxGlobMem = atoi(optarg);
+	    break;
+	  case 'n':
+	    N = atoi(optarg);
+	    break;
+	  case 'd':
+	    DebugArg = optarg;
+	    break;
+	  case 'f':
+	    EnvFileName = optarg;
+	    break;
+	  case 'a':
+	    NumSubRays = atoi(optarg);
+	  }
+
+
+	if (EnvFileName==NULL) {
+	  Usage();
+	  return 2;
+	}
+	/*     
+	 *      Initialize debug enviroment
+	 */
+	DebugInit(DebugArg);
+
+	/*
+	 *	Print command line parameters.
+	 */ 
+
+Tmk_startup(argc,argv);
+
+	printf("\n");
+	printf("Number of processors:     \t%ld\n", Tmk_nprocs);
+	printf("Global shared memory size:\t%ld MB\n", MaxGlobMem);
+	printf("Samples per pixel:        \t%ld\n", NumSubRays);
+	printf("\n");
+
+	/*
+	 *	Initialize the shared memory environment and request the total
+	 *	amount of amount of shared memory we might need.  This
+	 *	includes memory for the database, grid, and framebuffer.
+	 */
+
+	
+
+
+
+
+DEBUG('l',"Max Locks %d\n",TMK_NLOCKS);
+
+if (Tmk_proc_id == 0)
+{	
+ 
+	MaxGlobMem <<= 20;			/* Convert MB to bytes.      */
+
+
+	gm = (GMEM *)Tmk_malloc(sizeof(gm));;
+
+        if(gm == NULL) {
+	  DEBUG('m',"Error allocating shared memory");
+	  Tmk_exit(-1);
+	}
+
+	/*
+	 *	Perform shared environment initializations.
+	 */
+
+	gm->nprocs = Tmk_nprocs;
+	gm->pid    = 0;
+	gm->rid    = 1;
+
+
+	/* POSSIBLE ENHANCEMENT:  Here is where one might distribute the 
+   	raystruct data structure across physically distributed memories as
+   	desired.  */
+
+	
+	if (!GlobalHeapInit(MaxGlobMem))
+		{
+		fprintf(stderr, "%s: Cannot initialize global heap.\n", ProgName);
+		exit(1);
+		}
+	
+	/*
+	 *	Initialize HUG parameters, read environment and geometry files.
+	 */
+
+	Huniform_defaults();
+	ReadEnvFile(EnvFileName);
+	ReadGeoFile(GeoFileName);
+	OpenFrameBuffer();
+
+
+	/*
+	 *	Compute view transform and its inverse.
+	 */
+
+	CreateViewMatrix();
+	MatrixCopy(vtrans, View.vtrans);
+	MatrixInverse(Vinv, vtrans);
+	MatrixCopy(View.vtransInv, Vinv);
+
+
+	/*
+	 *	Print out what we have so far.
+	 */
+
+	printf("Number of primitive objects: \t%ld\n", prim_obj_cnt);
+	printf("Number of primitive elements:\t%ld\n", prim_elem_cnt);
+
+	/*
+	 *	Preprocess database into hierarchical uniform grid.
+	 */
+
+	if (TraversalType == TT_HUG)
+		BuildHierarchy_Uniform();
+
+	{long time(); (begin) = time(0);}
+
+	InitWorkPool(0);
+
+	Tmk_distribute((char *)&gm, sizeof(gm));
+
+	Tmk_distribute((char *)&Display, sizeof(DISPLAY));
+	Tmk_distribute((char *)&View, sizeof(VIEW));
+	Tmk_distribute((char *)&DataType, sizeof(INT));
+	Tmk_distribute((char *)&TraversalType, sizeof(INT));
+	Tmk_distribute((char *)&bundlex, sizeof(INT));
+	Tmk_distribute((char *)&bundley, sizeof(INT));
+	Tmk_distribute((char *)&blockx, sizeof(INT));
+	Tmk_distribute((char *)&blocky, sizeof(INT));
+
+	Tmk_distribute((char *)&NumSubRays, sizeof(INT));
+	Tmk_distribute((char *)&ModelNorm, sizeof(BOOL));
+	Tmk_distribute((char *)&ModelTransform, sizeof(BOOL));
+	Tmk_distribute((char *)&AntiAlias, sizeof(BOOL));
+	Tmk_distribute((char *)&lights, sizeof(lights));
+	Tmk_distribute((char *)&nlights, sizeof(INT));
+
+	Tmk_distribute((char *)&world_level_grid, sizeof(world_level_grid));
+	Tmk_distribute((char *)&gridlist, sizeof(gridlist));
+	Tmk_distribute((char *)&hu_max_prims_cell, sizeof(INT));
+	Tmk_distribute((char *)&hu_gridsize, sizeof(INT));
+	Tmk_distribute((char *)&hu_numbuckets, sizeof(INT));
+	Tmk_distribute((char *)&hu_max_subdiv_level, sizeof(INT));
+	Tmk_distribute((char *)&hu_lazy, sizeof(INT));
+	Tmk_distribute((char *)&prim_obj_cnt, sizeof(INT));
+	Tmk_distribute((char *)&prim_elem_cnt, sizeof(INT));
+	Tmk_distribute((char *)&subdiv_cnt, sizeof(INT));
+	Tmk_distribute((char *)&bintree_cnt, sizeof(INT));
+	Tmk_distribute((char *)&grids, sizeof(INT));
+
+	Tmk_distribute((char *)&total_cells, sizeof(INT)); 
+	Tmk_distribute((char *)&empty_voxels, sizeof(INT));
+	Tmk_distribute((char *)&nonempty_voxels, sizeof(INT));
+	Tmk_distribute((char *)&nonempty_leafs, sizeof(INT));
+	Tmk_distribute((char *)&prims_in_leafs, sizeof(INT));
+	Tmk_distribute((char *) empty_masks, 8*sizeof(UINT));
+	Tmk_distribute((char *) nonempty_masks, 8*sizeof(UINT));
+
+	Tmk_distribute((char *)&nodesize, sizeof(UINT));
+	Tmk_distribute((char *)&begmem, sizeof(begmem));
+	Tmk_distribute((char *)&endmem, sizeof(endmem));
+	
+} /* end of initialization performed by proc0 */
+
+
+Tmk_barrier(0);
+DEBUG('d',"xres %d \n",Display.xres);
+
+	StartRayTrace();
+      
+DEBUG('b',"Before second barrier\n");
+
+Tmk_barrier(0);
+
+if (Tmk_proc_id != 0)
+  Tmk_exit(0);
+
+	{long time(); (end) = time(0);}
+
+
+
+	/*
+	 *	We are finished.  Clean up, print statistics and run time.
+	 */
+
+	CloseFrameBuffer(PicFileName);
+	PrintStatistics();
+
+	lapsed = (end - begin) & 0x7FFFFFFF;
+
+
+
+	printf("TIMING STATISTICS MEASURED BY MAIN PROCESS:\n");
+	printf("        Overall start time     %20lu\n", begin);
+	printf("        Overall end time   %20lu\n", end);
+	printf("        Total time with initialization  %20lu\n", lapsed);
+	printf("        Total time without initialization  %20lu\n", end - gm->par_start_time);
+
+    	if (dostats) {
+        	unsigned totalproctime, maxproctime, minproctime;
+
+        	printf("\n\n\nPER-PROCESS STATISTICS:\n");
+        
+        	printf("%20s%20s\n","Proc","Time");
+        	printf("%20s%20s\n\n","","Tracing Rays");
+        	for (i = 0; i < gm->nprocs; i++)
+        	    printf("%20d%20d\n",i,gm->partime[i]);
+        
+        	totalproctime = gm->partime[0];
+        	minproctime = gm->partime[0];
+        	maxproctime = gm->partime[0];
+
+       	 	for (i = 1; i < gm->nprocs; i++) {
+            	totalproctime += gm->partime[i];
+            	if (gm->partime[i] > maxproctime)
+             	   maxproctime = gm->partime[i];
+            	if (gm->partime[i] < minproctime)
+                	minproctime = gm->partime[i];
+        	}
+        	printf("\n\n%20s%20d\n","Max = ",maxproctime);
+        	printf("%20s%20d\n","Min = ",minproctime);
+        	printf("%20s%20d\n","Avg = ",(int) (((double) totalproctime) / ((double) (1.0 * gm->nprocs))));
+	}
+
+	Tmk_exit(0);
+} 
+
+
+
+
+
+
+@
+
+
+1.7
+log
+@Define globals to pacify the IRIX cc.
+@
+text
+@d80 1
+a80 1
+ * $Id: main.c,v 1.6 1997/12/21 08:30:46 alc Exp alc $
+d98 1
+a103 1
+INT	nprocs	      = 1;		/* The number of processors to use.  */
+a106 1
+CHAR    *EnvFileName  = NULL;   
+d308 1
+a308 1
+	    nprocs = atoi(optarg);
+a341 2
+nprocs = Tmk_nprocs;
+
+d343 1
+a343 1
+	printf("Number of processors:     \t%ld\n", nprocs);
+d378 1
+a378 1
+	gm->nprocs = nprocs;
+@
+
+
+1.6
+log
+@Delete the useless "Tmk_n_procs" variable.
+@
+text
+@d80 1
+a80 1
+ * $Id$
+d97 6
+a102 1
+CHAR	*ProgName     = "RAYTRACE";          /* The program name.                 */
+@
+
+
+1.5
+log
+@Eliminated the "&" operator from two Tmk_distribute's of arrays.
+@
+text
+@d79 4
+a95 1
+extern int Tmk_n_procs;
+@
+
+
+1.4
+log
+@Added casts to Tmk_distribute calls to eliminate compiler warnings.
+@
+text
+@d1 1
+a1 2
+
+/*********************** **************************************************/
+d463 2
+a464 2
+	Tmk_distribute((char *)&empty_masks, 8*sizeof(UINT));
+	Tmk_distribute((char *)&nonempty_masks, 8*sizeof(UINT));
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@a425 2
+
+
+d428 1
+a428 2
+	Tmk_distribute(&gm, sizeof(gm));
+
+d430 40
+a469 40
+	Tmk_distribute(&Display,sizeof(DISPLAY));
+	Tmk_distribute(&View,sizeof(VIEW));
+	Tmk_distribute(&DataType,sizeof(INT));
+	Tmk_distribute(&TraversalType,sizeof(INT));
+	Tmk_distribute(&bundlex,sizeof(INT));
+	Tmk_distribute(&bundley,sizeof(INT));
+	Tmk_distribute(&blockx,sizeof(INT));
+	Tmk_distribute(&blocky,sizeof(INT));
+
+	Tmk_distribute(&NumSubRays,sizeof(INT));
+	Tmk_distribute(&ModelNorm,sizeof(BOOL));
+	Tmk_distribute(&ModelTransform,sizeof(BOOL));
+	Tmk_distribute(&AntiAlias,sizeof(BOOL));
+	Tmk_distribute(&lights,sizeof(lights));
+	Tmk_distribute(&nlights,sizeof(INT));
+	
+	Tmk_distribute(&world_level_grid,sizeof(world_level_grid));
+	Tmk_distribute(&gridlist,sizeof(gridlist));
+	Tmk_distribute(&hu_max_prims_cell,sizeof(INT));
+	Tmk_distribute(&hu_gridsize,sizeof(INT));
+	Tmk_distribute(&hu_numbuckets,sizeof(INT));
+	Tmk_distribute(&hu_max_subdiv_level,sizeof(INT));
+	Tmk_distribute(&hu_lazy,sizeof(INT));
+	Tmk_distribute(&prim_obj_cnt,sizeof(INT));
+	Tmk_distribute(&prim_elem_cnt,sizeof(INT));
+	Tmk_distribute(&subdiv_cnt,sizeof(INT));
+	Tmk_distribute(&bintree_cnt,sizeof(INT));
+	Tmk_distribute(&grids,sizeof(INT));
+
+	Tmk_distribute(&total_cells,sizeof(INT)); 
+	Tmk_distribute(&empty_voxels,sizeof(INT));
+	Tmk_distribute(&nonempty_voxels,sizeof(INT));
+	Tmk_distribute(&nonempty_leafs,sizeof(INT));
+	Tmk_distribute(&prims_in_leafs,sizeof(INT));
+	Tmk_distribute(&empty_masks,sizeof(UINT)*8);
+	Tmk_distribute(&nonempty_masks,sizeof(UINT)*8);
+
+	Tmk_distribute(&nodesize,sizeof(UINT));
+	Tmk_distribute(&begmem,sizeof(begmem));
+	Tmk_distribute(&endmem,sizeof(endmem));
+d531 1
+a531 1
+    }
+d533 1
+a533 3
+Tmk_exit(0);
+	
+    return 0;
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d93 1
+a93 1
+
+d334 4
+d353 1
+a353 1
+Tmk_startup(argc,argv);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a352 2
+Tmk_barrier(0);
+
+a385 1
+printf("OK");
+@

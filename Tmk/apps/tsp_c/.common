@@ -1,0 +1,39 @@
+ #
+ # $Id: .common,v 1.1 1998/08/07 03:32:52 alc Exp $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) pq.o read_tsp.o solve.o tours.o tsp.o
+
+tsp.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+tsp.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+tsp.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+tsp.udp_ll: tsp.o $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+pq.o: ../src/pq.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/pq.c
+
+read_tsp.o: ../src/read_tsp.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/read_tsp.c
+
+solve.o: ../src/solve.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/solve.c
+
+tours.o: ../src/tours.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/tours.c
+
+tsp.o: ../src/tsp.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/tsp.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll

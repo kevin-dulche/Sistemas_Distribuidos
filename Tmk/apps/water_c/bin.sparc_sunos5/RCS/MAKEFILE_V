@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.23.22.03.38;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@bin.sparc_sunos5/Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= sparc_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lsocket -lnsl -lm
+
+all: water.udp
+
+include ../.common
+@

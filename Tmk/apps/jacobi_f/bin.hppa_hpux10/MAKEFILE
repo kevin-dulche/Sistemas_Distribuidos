@@ -1,0 +1,20 @@
+ #
+ # $Id: Makefile,v 10.4 1997/12/14 07:01:20 alc Exp $
+ #
+ARCH	= hppa_hpux10
+
+CC	= cc
+CFLAGS	= -Ae -O
+
+FC	= fort77
+FFLAGS	= -O2 +ppu
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS= +U77
+
+all: Jacobi.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) $(ASFLAGS) $(TmkLIB)/support/common_symbol.s

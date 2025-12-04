@@ -1,0 +1,30 @@
+head	10.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+10.2
+date	97.06.02.05.24.07;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Random number generator
+@
+
+
+10.2
+log
+@Initial revision
+@
+text
+@double	drand48();
+
+double	drand48_()
+{
+	return drand48();
+}
+@

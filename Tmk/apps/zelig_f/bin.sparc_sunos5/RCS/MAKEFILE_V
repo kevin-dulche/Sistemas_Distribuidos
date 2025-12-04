@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.24.07.42.48;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@bin.sparc_sunos5/Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= sparc_sunos5
+
+CC	= cc
+CFLAGS	= -g -O
+
+FC	= f77
+FFLAGS  = -g -O
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS= -lsocket -lnsl
+
+all: zelig.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.S
+	$(AS) -P -DNPAGES=8192 -o $@@ $(TmkLIB)/support/common_symbol.S
+@

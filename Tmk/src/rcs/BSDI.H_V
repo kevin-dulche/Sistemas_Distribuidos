@@ -1,0 +1,86 @@
+head	10.2;
+access;
+symbols
+	Tmk-1_0_1R:10.2;
+locks; strict;
+comment	@ * @;
+
+
+10.2
+date	97.09.03.06.09.59;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@BSD/OS-specific replacements for send and sendmsg.
+@
+
+
+10.2
+log
+@Initial revision.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1997						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: linux.h,v 10.4 1997/03/08 07:28:10 alc Exp $
+ *
+ * Description:    
+ *	BSD/OS-specific replacements for send and sendmsg
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	 2-Sep-1997	Ceriel Jacobs <ceriel@@cs.vu.nl>
+ *					Created
+ */
+
+/*
+ * Replace all sends within TreadMarks with the BSD/OS-specific replacement.
+ */
+#define	send	Tmk_send
+#define	sendmsg	Tmk_sendmsg
+
+
+/*
+ * These wrappers for send and sendmsg retry if errno == ENOBUFS.
+ */
+ssize_t	Tmk_send(int s, const void *msg, size_t len, int flags);
+ssize_t Tmk_sendmsg(int s, const struct msghdr *msg, int flags);
+@

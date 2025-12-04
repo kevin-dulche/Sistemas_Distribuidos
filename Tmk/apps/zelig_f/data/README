@@ -1,0 +1,8 @@
+1. The data files here correspond to three data sets (HBEF, HB64 and HJA)
+
+2. Each data set consists of a set of files, which are specified to the
+   program via input.TEST
+
+3. The parameters NYRS and IPRT in Control.* can be changed to make the runs
+   shorter. NYRS specifies the number of years to simulate. IPRT specifies
+   the interval (in years) after which program information is printed out.

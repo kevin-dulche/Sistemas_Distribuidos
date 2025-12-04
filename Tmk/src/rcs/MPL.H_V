@@ -1,0 +1,345 @@
+head	11.1;
+access;
+symbols
+	Tmk-1_2:10.4.1
+	Tmk-1_0_3_2R:10.4.1.2
+	Tmk-1_0_3_1R:10.4.1.1
+	Tmk-1_0_3R:10.4.1.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.4.1.1
+	Tmk-1_0_1R:10.4.1.1
+	Tmk-1_1:11
+	Tmk-1_0:10.4.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.4;
+locks; strict;
+comment	@ * @;
+
+
+11.1
+date	97.09.27.07.09.41;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.10.03.05.33.04;	author alc;	state Exp;
+branches
+	10.4.1.1;
+next	10.3;
+
+10.3
+date	96.08.24.19.55.47;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.07.29.21.07.35;	author rjf;	state Exp;
+branches
+	10.2.1.1;
+next	;
+
+10.2.1.1
+date	96.07.30.20.59.00;	author rjf;	state Exp;
+branches;
+next	;
+
+10.4.1.1
+date	97.09.27.07.05.54;	author alc;	state Exp;
+branches;
+next	10.4.1.2;
+
+10.4.1.2
+date	98.11.02.23.35.12;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Socket emulation in MPL
+@
+
+
+11.1
+log
+@Add #undef's for AIX 4.1.  (Identical to revision 10.4.1.1.)
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: mpl.h,v 10.4.1.1 1997/09/27 07:05:54 alc Exp $
+ *
+ * Description:    
+ *	header file specific to IBM MPL support
+ *
+ * External Functions:
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *
+ *	29-Jul-1996	Rob Fowler	Socket emulation version
+ */
+#include <mpproto.h>
+
+enum	mpl_msg_type { MPL_UNUSED, MPL_REPLY, MPL_REQ };
+
+/*
+ * The MPL version does not include select.h.
+ */
+typedef	int	fd_set;
+
+#undef	FD_ZERO
+#define	FD_ZERO(x)	*(x) = 0
+
+#undef	FD_SET
+#define	FD_SET(x,y)	*(y) = x
+
+#undef	FD_CLR
+#define	FD_CLR(x,y)	*(y) = -1
+
+#undef	FD_ISSET
+#define	FD_ISSET(x,y)	((x) == (*(y)))
+
+/*
+ *
+ */
+extern	int	Tmk_send(int, char*, int, int);
+
+extern	int	Tmk_sendmsg(int, struct msghdr*, int); 
+
+extern	int	Tmk_recv(int, char*, int, int);
+
+extern	int	Tmk_recvmsg(int, struct msghdr*, int); 
+
+extern	int	Tmk_select(int, fd_set*, fd_set*, fd_set*, struct timeval*);
+
+
+#undef	send
+#define	send	Tmk_send
+
+#undef	sendmsg
+#define	sendmsg	Tmk_sendmsg
+
+#undef	recv
+#define	recv	Tmk_recv
+
+#undef	recvmsg
+#define	recvmsg	Tmk_recvmsg
+
+#undef	select
+#define select	Tmk_select
+
+#undef	setitimer
+#define setitimer(which, value, ovalue)
+@
+
+
+10.4
+log
+@Deleted unused definitions.
+@
+text
+@d39 1
+a39 1
+ * $Id: mpl.h,v 10.3 1996/08/24 19:55:47 alc Exp alc $
+d86 1
+d89 1
+d92 1
+d95 1
+d98 1
+d101 1
+@
+
+
+10.4.1.1
+log
+@Add #undef's for AIX 4.1.
+@
+text
+@d39 1
+a39 1
+ * $Id: mpl.h,v 10.4 1996/10/03 05:33:04 alc Exp alc $
+a85 1
+#undef	send
+a87 1
+#undef	sendmsg
+a89 1
+#undef	recv
+a91 1
+#undef	recvmsg
+a93 1
+#undef	select
+a95 1
+#undef	setitimer
+@
+
+
+10.4.1.2
+log
+@Changes in the header files under AIX 4.1.x necessitated
+a change in the redefinition of fd_set.
+@
+text
+@d39 1
+a39 1
+ * $Id: mpl.h,v 10.4.1.1 1997/09/27 07:05:54 alc Exp alc $
+d56 1
+a56 1
+ *
+d58 1
+a58 4
+typedef	int	Tmk_fd_set;
+
+#undef	fd_set
+#define	fd_set	Tmk_fd_set
+@
+
+
+10.3
+log
+@Added #define setitimer.  Modified the file header.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d53 1
+a53 1
+enum mpl_msg_type { MPL_UNUSED, MPL_REPLY, MPL_REQ };
+d55 4
+a58 3
+/* Define Tmk/MPL-specific fd_set manipulation macros  */
+
+typedef int fd_set;  /* MPL version does not include select.h */
+d60 2
+a61 4
+#undef FD_ZERO
+#undef FD_SET
+#undef FD_CLR
+#undef FD_ISSET
+d63 2
+a64 4
+#define FD_ZERO(x)  *(x) = 0
+#define FD_SET(x,y) *(y) = x
+#define FD_CLR(x,y) *(y) = -1	    
+#define FD_ISSET(x,y)  ((x) == (*(y)))
+d66 2
+a67 1
+extern  size_t		css_spinwait();
+d69 2
+a70 2
+extern void		css_enable_interrupts();
+extern void		css_disable_interrupts();
+a71 3
+extern void		tmk_mplmutex();
+
+#if defined(NEVER)
+d73 1
+a73 1
+ * Message header for recvmsg and sendmsg calls.
+d75 1
+a75 9
+struct	msghdr	{
+        caddr_t msg_name;               /* optional address */
+        int     msg_namelen;            /* size of address */
+        struct  iovec *msg_iov;         /* scatter/gather array */  
+        int     msg_iovlen;             /* # elements in msg_iov */
+        caddr_t msg_accrights;          /* access rights sent/received */
+        int     msg_accrightslen;
+};
+#endif
+d77 1
+a77 1
+extern int Tmk_send(int, char*, int, int);
+d79 1
+a79 1
+extern int Tmk_sendmsg(int, struct msghdr*, int); 
+d81 1
+a81 1
+extern int Tmk_recv(int, char*, int, int);
+d83 1
+a83 1
+extern int Tmk_recvmsg(int, struct msghdr*,  int); 
+a84 1
+extern int Tmk_select( int, fd_set*, fd_set*, fd_set*, struct timeval*);
+d86 1
+a86 1
+extern void tmk_mplmutex( int, sigset_t*, sigset_t*);
+d90 2
+a92 4
+
+#define	send	Tmk_send
+
+#define	recv	Tmk_recv
+@
+
+
+10.2
+log
+@Initial version
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		tmkmpl.h
+d42 1
+a42 1
+ *	header file specific to IBM MPL support.
+d49 1
+a49 1
+ *	July-29-1996	Rob Fowler	Socket emulation version
+a50 1
+
+d53 1
+a53 1
+enum mpl_msg_type {	MPL_UNUSED, MPL_REPLY, 	MPL_REQ };
+a89 1
+
+d112 1
+a112 3
+
+
+
+@
+
+
+10.2.1.1
+log
+@Elimination of seqno and extra copying from MPL messages.
+@
+text
+@@

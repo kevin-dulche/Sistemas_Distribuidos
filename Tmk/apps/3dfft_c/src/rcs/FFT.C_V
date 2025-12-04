@@ -1,0 +1,1167 @@
+head	10.5;
+access;
+symbols
+	Tmk-1_2:10
+	Tmk-1_0_3R:10.3
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.3;
+locks; strict;
+comment	@ * @;
+
+
+10.5
+date	98.08.24.05.49.20;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	98.08.24.05.07.51;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.12.21.00.04.33;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.06.02.07.42.21;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.02.07.33.14;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@NAS 3D-FFT
+@
+
+
+10.5
+log
+@Deleted a useless space from a printf.
+@
+text
+@/*
+ * $Id: fft.c,v 10.4 1998/08/24 05:07:51 alc Exp alc $
+ */
+
+/* The one with transposition (reverse direction),
+ * but less synchronization
+ */
+
+/* 3-D FF PDE benchmark. */
+/* On 64 bit systems, double precision should be disabled. */
+/* Computer specific and tuning notes may be located by searching for C>>. */
+
+/* In the following parameter statement, M1, M2 and M3 are the Log_2 of the */
+/* three dimensions of the 3-D input array. Set MX = MAX (M1, M2, M3). */
+/* A is the multiplier of the random number generator (here set to 5^13), */
+/* and S is the initial seed. AL is the value of alpha. NT is the number */
+/* of iterations. */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+#if	defined(_IBMR2)
+#pragma alloca
+#elif ! defined(__FreeBSD__)
+#include <alloca.h>
+#endif
+
+#include <sys/time.h>
+
+#include <Tmk.h>
+
+#if ! defined(NULL)
+#define  NULL 0
+#endif
+#define  A    1220703125.e0
+#define  AL   1e-6
+#if ! defined(PI)
+#define  PI   3.141592653589793238e0
+#endif
+#define  S    314159265.e0
+
+int      M1=4, M2=4, M3=4, MM, MX, N1, N2, N3, NN, NT=4, NX;
+
+void VRANLC(int N, double *X, double *Y);
+void CFFT3_1(int IS, double XX1[], double XX2[]);
+void CFFT3_2(int IS, double XX1[], double XX2[]);
+void TRANSX (int Mm1, int Mm2, int Mm3, double *XY1, double *XY2, int begin, int end);
+void CFFTZ(int IS, int M, double *X);
+void FFTZ1 (int IS, int L, int M, double *X, double *Y);
+void FFTZ2 (int IS, int L, int M, double *X, double *Y);
+void TRANS (int Nn1, int Nn2, double *X, double *Y);
+double RANDLC (double *X, double Aa);
+
+double *U, *X1, *X2, *X0, *X3;
+double *_G_T1, *_G_T2;
+extern char *optarg;
+
+main (int argc, char **argv)
+{
+  struct  timeval start, finish;
+  int MQ, NQ, N12, N22, N32, K, II, JJ, KK, KL, I, IK, J, JK, I1,J1, K1, KT; 
+  int begin, end, d, m, index1, index3;
+  double RN, AP, T1, T2, T3, AN, TT;
+  int c;
+
+  while ((c = getopt(argc, argv, "x:y:z:i:")) != -1){
+    switch (c) {
+    case 'i':
+      NT = atoi(optarg);
+      break;
+    case 'x':
+      M1 = atoi(optarg);
+      break;
+    case 'y':
+      M2 = atoi(optarg);
+      break;
+    case 'z': 
+      M3 = atoi(optarg);
+      break;
+    }
+  }
+
+  Tmk_startup(argc,argv);
+  
+  MM = (M1 + M2 + M3);
+  if (M1 > M2 && M1 > M3)
+    MX =  M1;
+  else if (M2 > M3)
+    MX = M2;
+  else
+    MX = M3;
+
+  N1 =  (1 << M1);
+  N2 =  (1 << M2);
+  N3 =  (1 << M3);
+  NN =  (1 << MM);
+  NX =  (1 << MX);
+
+  if (Tmk_proc_id == 0)
+    {
+
+      if ((_G_T1 = (double *) Tmk_malloc(Tmk_nprocs * sizeof(double))) == 0)
+	{
+	  printf("Out of shared memory -- _G_T1\n");
+	  Tmk_exit(-1); exit(-1);
+	}
+
+      if ((_G_T2 = (double *) Tmk_malloc(Tmk_nprocs * sizeof(double))) == 0)
+	{
+	  printf("Out of shared memory -- _G_T2\n");
+	  Tmk_exit(-1); exit(-1);
+	}
+
+      if ((X1 = (double *) Tmk_malloc(2*N1*N2*N3*sizeof(double))) == 0)
+	{
+	  printf("Out of shared memory -- X1\n");
+	  Tmk_exit(-1); exit(-1);
+	}
+
+      if ((X2 = (double *) Tmk_malloc(2*N1*N2*N3*sizeof(double))) == 0)
+	{
+	  printf("Out of shared memory -- X2\n");
+	  Tmk_exit(-1); exit(-1);
+	}
+
+      if ((X0 = (double *) Tmk_malloc(2*N1*N2*N3*sizeof(double))) == 0)
+	{
+	  printf("Out of shared memory -- X0\n");
+	  Tmk_exit(-1); exit(-1);
+	}
+
+      Tmk_distribute((char *)&_G_T1, sizeof(_G_T1));
+      Tmk_distribute((char *)&_G_T2, sizeof(_G_T2));
+      Tmk_distribute((char *)&X0, sizeof(X0));
+      Tmk_distribute((char *)&X1, sizeof(X1));
+      Tmk_distribute((char *)&X2, sizeof(X2));
+    }
+  
+  Tmk_barrier(0);
+  if ((U = (double *) malloc(2*NX*sizeof(double))) == 0)	{
+    printf("Out of memory U\n");
+    Tmk_exit(-1); exit(-1);
+  }
+
+  if ((X3 = (double *) malloc(N1*N2*N3*sizeof(double))) == 0){
+    printf("Out of memory -- X3\n");
+    Tmk_exit(-1); exit(-1);
+  }
+
+  if(Tmk_proc_id == 0)  {
+    printf("3-D FFT PDE TEST\n"
+	   "DIMENSIONS --- N1 = %d  N2 = %d  N3 = %d\n",
+	   N1, N2, N3);
+    fflush(stdout);
+  }
+
+  /* First call to CFFTZ only initialize U */
+  CFFTZ (0, MX, (double *)X1) ;
+  
+  /* Initialize static varialbles */
+  VRANLC (0, &T1, X1) ;
+      
+  RN = 1.e0 / NN ;
+  AP = - 4.e0 * AL * PI * PI;
+  N12 = N1 / 2 ;
+  N22 = N2 / 2 ;
+  N32 = N3 / 2 ;
+
+  /* 
+   * Generate random number and put into X0(X, Y, Z) 
+   */
+  d = N1/Tmk_nprocs;
+  m = N1%Tmk_nprocs;
+  if (Tmk_proc_id < m)
+    {
+      begin = Tmk_proc_id * (d + 1);
+      end = (Tmk_proc_id + 1) * (d + 1);
+    }
+  else
+    {
+      begin = Tmk_proc_id * d + m;
+      end = (Tmk_proc_id + 1) * d + m;
+    }
+  /*
+   * Compute AN = A ^ (2 * NQ) (mod 2^46).
+   */
+  T1 = A;
+  for (I = 0; I <= M2+M3; I++)
+    T2 = RANDLC(&T1, T1);
+  AN = T1;
+  TT = S;
+
+  K = begin;
+  KL = KK = K;
+  T1 = S;
+  T2 = AN;
+  /*
+   * Find starting seed T1 for this K using the binary rule for exponentiation.
+   */
+  for (I = 0; I < 100; I++)
+    {
+      IK = KK/2;
+      if (2*IK != KK)
+	T3 = RANDLC (&T1, T2);
+      if (IK == 0)
+	break;
+      T3 = RANDLC (&T2, T2);
+      KK = IK;
+    }
+
+  /* Each process initializes the data it is going to use in 
+     subsequent CFFT3_1.
+     Start timing after this, so that the effect of distributing 
+     initial data is excluded, the same as in PVM version.
+   */
+  VRANLC (2 * N2 * N3*(end-begin), &T1, &X0[2*K*N2*N3]);
+
+  /* This barrier is used only to make sure that all processes start computing
+     at the same time, not for exchanging data.
+   */
+  Tmk_barrier(0);
+#ifdef	notdef
+  bzero((char *)&Tmk_stat, sizeof(Tmk_stat));
+#endif
+  gettimeofday(&start, NULL);
+
+  /* Perform a forward 3-D FFT on X1. */
+  CFFT3_1 (-1, (double *)X0, (double *)X1); 
+
+  /*
+   * X1 is the working matrix, in order(Y, Z, X)
+   */
+  d = N2/Tmk_nprocs;
+  m = N2%Tmk_nprocs;
+  if (Tmk_proc_id < m)
+    {
+      begin = Tmk_proc_id * (d + 1);
+      end = (Tmk_proc_id + 1) * (d + 1);
+    }
+  else
+    {
+      begin = Tmk_proc_id * d + m;
+      end = (Tmk_proc_id + 1) * d + m;
+    }
+
+  /*
+   * X3 (Y, Z, X), divided by Y
+   */
+  for (I = begin; I < end; I++)
+    for (J = 0; J < N3; J++)
+      for (K = 0; K < N1; K++)
+	{
+	  index3 = (I*N3+J)*N1 + K;
+	  I1 = (I >= N22) ? (I-N2) : I;
+	  J1 = (J >= N32) ? (J-N3) : J;
+	  K1 = (K >= N12) ? (K-N1) : K;
+	  X3[index3] = exp( AP * ( K1*K1 + J1*J1 + I1*I1));
+	}
+
+
+  /* Perform the following for KT = 1, ..., NT. */
+  for(KT = 1; KT <= NT ; KT++)
+    {
+      /* Multiply by the exponential term raised to the KT power.*/
+
+      /* Always work with matrix (Y, Z, X),
+       * call CFFT3_2
+       *
+       * Divided by N2
+       */
+      d = N2/Tmk_nprocs;
+      m = N2%Tmk_nprocs;
+      if (Tmk_proc_id < m)
+	{
+	  begin = Tmk_proc_id * (d + 1);
+	  end = (Tmk_proc_id + 1) * (d + 1);
+	}
+      else
+	{
+	  begin = Tmk_proc_id * d + m;
+	  end = (Tmk_proc_id + 1) * d + m;
+	}
+      /*
+       * Work on matrix (Y, Z, X), now X1 is in the order (Y, Z, X)
+       */       
+      for (I = begin; I < end; I++)
+	for (J = 0; J < N3; J++)
+	  for (K = 0; K < N1; K++)
+	    {
+	      index3 = (I*N3+J)*N1+K;
+	      index1 = (I*N3+J)*N1*2+K;
+	      T1 = pow(X3[index3], (double) KT) ;
+	      X2[index1] = T1 * X1[index1];
+	      X2[index1+N1] = T1 * X1[index1+N1];
+	    }
+	  
+      
+      /*    Compute inverse 3-D FFT. */
+      CFFT3_2 (1, (double *)X2, (double *) X0) ; 
+
+      /* The result is in X0, in order (Z, X, Y) */
+      /* Normalize by 1 / (N1 * N2 * N3).  */
+      /*
+       * Divided by N3
+       */
+      d = N3/Tmk_nprocs;
+      m = N3%Tmk_nprocs;
+      if (Tmk_proc_id < m)
+	{
+	  begin = Tmk_proc_id * (d + 1);
+	  end = (Tmk_proc_id + 1) * (d + 1);
+	}
+      else
+	{
+	  begin = Tmk_proc_id * d + m;
+	  end = (Tmk_proc_id + 1) * d + m;
+	}
+      
+      for (I = begin; I<end; I++)
+	for (J = 0; J < N1; J++)
+	  for (K = 0; K < N2; K++)
+	    {
+	      index1 = (I*N1+J)*N2*2+K;
+	      X0[index1] = RN * X0[index1] ; 
+	      X0[index1+N2] = RN * X0[index1+N2] ; 
+	    }
+      /*
+       * Compute checksum of X0 in order (Z, X, Y)
+       */
+      T1 = 0.e0 ;
+      T2 = 0.e0 ;
+      for (I = 0; I < 1024 ; I++) {
+	KK = (1 * I) % N3;
+	if (KK >= begin && KK < end) {
+	  II = (5 * I) % N1;
+	  JJ = (3 * I) %  N2;
+	  index1 = (KK*N1+II)*N2*2+JJ;
+	  T1 = T1 + X0[index1];
+	  T2 = T2 + X0[index1+N2] ;
+	}
+      }
+      _G_T1[Tmk_proc_id] = T1;
+      _G_T2[Tmk_proc_id] = T2;
+
+      Tmk_barrier(0);
+      if (Tmk_proc_id == 0)
+	{
+	  T1 = 0.e0 ;
+	  T2 = 0.e0 ;
+	  for (I = 0; I < Tmk_nprocs; I++) {
+	    T1 = T1 + _G_T1[I];
+	    T2 = T2 + _G_T2[I];
+	  }
+	  printf("KT = %d,  T1 = %1.12e, T2=%1.12e\n", KT, T1, T2);
+	}
+    }    /* for KT steps */
+
+  if (Tmk_proc_id == 0)
+    {
+      gettimeofday(&finish, NULL);
+      printf("Elapsed time: %.2f seconds\n",
+	     (((finish.tv_sec * 1000000.0) + finish.tv_usec) -
+	      ((start.tv_sec * 1000000.0) + start.tv_usec)) / 1000000.0);
+    }
+  Tmk_barrier(0);
+
+  Tmk_exit(0);
+
+}
+
+
+
+double RANDLC (X, Aa)
+double *X, Aa;
+{
+  /* This routine returns a uniform pseudorandom double precision number in the */
+  /* range (0, 1) by using the linear congruential generator */
+
+  /* x_{k+1} = a x_k (mod 2^46) */
+
+  /* where 0 < x_k < 2^46 and 0 < a < 2^46. This scheme generates 2^44 numbers */
+  /* before repeating. The argument A is the same as 'a' in the above formula, */
+  /* and X is the same as x_0. A and X must be odd double precision integers */
+  /* in the range (1, 2^46). The returned value RANDLC is normalized to be */
+  /* between 0 and 1, i.e. RANDLC = 2^(-46) * x_1. X is updated to contain */
+  /* the new seed x_1, so that subsequent calls to RANDLC using the same */
+
+  /* This routine should produce the same results on any computer with at least */
+  /* 48 mantissa bits in double precision floating point data. On 64 bit */
+  /* systems, double precision should be disabled. */
+
+  static int KS = 0;
+  static double R23, R46, T23, T46 ;
+  int I;
+  double T1, A1, A2, T2, Z, T3, T4, randl, X1, X2;
+
+  /* if this is the first call to RANDLC, compute R23 = 2 ^ -23, R46 = 2 ^ -46, */
+  /* T23 = 2 ^ 23, and T46 = 2 ^ 46. These are computed in loops, rather than */
+  /* by merely using the ** operator, in order to insure that the results are */
+  /* exact on all systems. This code assumes that 0.5D0 is represented exactly. */
+  if (KS == 0)
+    {
+      R23 = 1.e0 ;
+      R46 = 1.e0 ;
+      T23 = 1.e0 ;
+      T46 = 1.e0 ;
+      for (I = 1; I <= 23 ; I++)
+	{
+	  R23 = 0.5e0 * R23 ;
+	  T23 = 2.e0 * T23 ;
+	}
+      for (I = 1; I <= 46 ; I++)
+	{
+	  R46 = 0.5e0 * R46 ;
+	  T46 = 2.e0 * T46 ;
+	}
+      KS = 1 ;
+    }
+
+  /* Break Aa into two parts such that Aa = 2^23 * A1 + A2. */
+  T1 = R23 * Aa ;
+  A1 = (int) T1 ;
+  A2 = Aa - T23 * A1 ;
+
+  /* Break X into two parts such that X = 2^23 * X1 + X2, compute */
+  /* Z = A1 * X2 + A2 * X1 (mod 2^23), and then */
+  /* X = 2^23 * Z + A2 * X2 (mod 2^46). */
+  T1 = R23 * (*X) ;
+  X1 = (double) ((int) T1);
+  X2 = (*X) - T23 * X1 ;
+  T1 = A1 * X2 + A2 * X1 ;
+  T2 = (int) (R23 * T1) ;
+  Z = T1 - T23 * T2 ;
+  T3 = T23 * Z + A2 * X2 ;
+  T4 = (int) (R46 * T3) ;
+  (*X) = T3 - T46 * T4 ;
+  randl = R46 * (*X) ;
+  return(randl);
+}
+
+
+
+
+void VRANLC (N, X, Y)
+double *X, *Y;
+int N;
+{
+  /* This routine generates N uniform pseudorandom double precision numbers in */
+  /* the range (0, 1) by using the linear congruential generator */
+
+  /* x_{k+1} = a x_k (mod 2^46) */
+
+  /* where 0 < x_k < 2^46 and 0 < a < 2^46. This scheme generates 2^44 numbers */
+  /* before repeating. The argument A is the same as 'a' in the above formula, */
+  /* and X is the same as x_0. A and X must be odd double precision integers */
+  /* in the range (1, 2^46). The N results are placed in Y and are normalized */
+  /* to be between 0 and 1. X is updated to contain the new seed, so that */
+  /* subsequent calls to VRANLC using the same arguments will generate a */
+  /* continuous sequence. If N is zero, only initialization is performed, and */
+  /* the variables X, A and Y are ignored. */
+
+  /* This routine is the standard version designed for scalar or RISC systems. */
+  /* However, it should produce the same results on any single processor */
+  /* computer with at least 48 mantissa bits in double precision floating point */
+  /* data. On 64 bit systems, double precision should be disabled. */
+
+
+  double T1, A1, A2, T2, Z, T3, T4, X1, X2;
+  int I,J;
+  static int KS = 0;
+  static double R23, R46, T23, T46 ;
+
+  /* If this is the first call to VRANLC, compute R23 = 2 ^ -23, R46 = 2 ^ -46, */
+  /* T23 = 2 ^ 23, and T46 = 2 ^ 46. See comments in RANDLC. */
+  if (KS == 0 || N == 0)
+    {
+      R23 = 1.e0 ;
+      R46 = 1.e0 ;
+      T23 = 1.e0 ;
+      T46 = 1.e0 ;
+      for (I = 0; I < 23 ; I++)
+	{
+	  R23 = 0.5e0 * R23 ;
+	  T23 = 2.e0 * T23 ;
+	}
+      for (I = 0; I < 46 ; I++)
+	{
+	  R46 = 0.5e0 * R46 ;
+	  T46 = 2.e0 * T46 ;
+	}
+      KS = 1 ;
+      if (N == 0) return;
+    }
+
+  /* Break A into two parts such that A = 2^23 * A1 + A2. */
+  T1 = R23 * A ;
+  A1 = (int) T1;
+  A2 = A - T23 * A1 ;
+
+  /* Generate N results. This loop is not vectorizable. */
+  I = 0;
+  while ( I < N-1 )
+    {
+      /* Break X into two parts such that X = 2^23 * X1 + X2, compute */
+      /* Z = A1 * X2 + A2 * X1 (mod 2^23), and then */
+      /* X = 2^23 * Z + A2 * X2 (mod 2^46). */
+      for ( J = 0; J < N3; J++)
+	{
+	  T1 = R23 * (*X) ;
+	  X1 = (int) T1;
+	  X2 = (*X) - T23 * X1 ;
+	  T1 = A1 * X2 + A2 * X1 ;
+	  T2 = (int) (R23 * T1) ;
+	  Z = T1 - T23 * T2 ;
+	  T3 = T23 * Z + A2 * X2 ;
+	  T4 = (int) (R46 * T3) ;
+	  (*X) = T3 - T46 * T4 ;
+	  Y[I+J] = R46 * (*X) ;
+
+	  T1 = R23 * (*X) ;
+	  X1 = (int) T1;
+	  X2 = (*X) - T23 * X1 ;
+	  T1 = A1 * X2 + A2 * X1 ;
+	  T2 = (int) (R23 * T1) ;
+	  Z = T1 - T23 * T2 ;
+	  T3 = T23 * Z + A2 * X2 ;
+	  T4 = (int) (R46 * T3) ;
+	  (*X) = T3 - T46 * T4 ;
+	  Y[I+J+N3] = R46 * (*X) ;
+	}
+      I = I + 2*N3;
+    }
+
+  return;
+}
+  
+
+
+void CFFT3_1 (IS, XX1, XX2)
+int IS;
+double *XX1, *XX2;
+{
+  /* This performs a 3-D complex-to-complex FFT on the array XX1, which is */
+  /* assumed to have dimensions (N1,N2,2*N3). It is assumed that N1 = 2 ^ M1, */
+  /* N2 = 2 ^ M2 and N3 = 2 ^ M3. Real and imaginary parts are stored */
+  /* completely separated (i.e. separated by N3 units in the last dimension of */
+  /* XX1). IS is the sign of the transform, either 1 or -1. U is the root of */
+  /* unity array, which must have been previously initialized by calling CFFTZ */
+  /* with 0 as the first argument and MM = MAX (M1,M2,M3) as the timer argument. */
+
+
+  double *Y, *Buf = (double *) alloca(2*NX*sizeof(double));
+  int I, J, K,  begin,  end, d, m, index1;
+
+  /*
+   * Work on XX1(X, Y, Z)
+   * Working on Z, divided by X
+   */
+  d = N1/Tmk_nprocs;
+  m = N1%Tmk_nprocs;
+  if (Tmk_proc_id < m)
+    {
+      begin = Tmk_proc_id * (d + 1);
+      end = (Tmk_proc_id + 1) * (d + 1);
+    }
+  else
+    {
+      begin = Tmk_proc_id * d + m;
+      end = (Tmk_proc_id + 1) * d + m;
+    }
+
+  Y = (double *)XX1 + begin*2*N2*N3;
+  for (I = begin; I < end; I++)
+    for (J = 0; J < N2; J++)
+      {
+	CFFTZ (IS, M3, (double *)Y) ;
+	Y = (double *)Y + 2*N3;
+      }
+
+  /*
+   * Work on XX1(X, Y, Z)
+   * Working on Y, divided by X
+   */
+  for (I = begin; I < end; I++)
+    for (K = 0; K < N3; K++)      
+      {
+	for (J = 0; J < N2; J++)
+	  {
+	    index1 = (I*N2+J)*N3*2+K;
+	    Buf[J] = XX1[index1];
+	    Buf[J+N2] = XX1[index1+N3];
+	  }
+
+	CFFTZ (IS, M2, (double *)Buf) ;
+
+	for (J = 0; J < N2; J++)
+	  {
+	    index1 = (I*N2+J)*N3*2+K;
+	    XX1[index1] = Buf[J];
+	    XX1[index1+N3] = Buf[J+N2];
+	  }
+      }
+
+  Tmk_barrier(0);
+
+  /*
+   * Transpose XX1(X, Y, Z) to XX2(Y, Z, X)
+   * work on X, divided by Y
+   */
+  d = N2/Tmk_nprocs;
+  m = N2%Tmk_nprocs;
+  if (Tmk_proc_id < m)
+    {
+      begin = Tmk_proc_id * (d + 1);
+      end = (Tmk_proc_id + 1) * (d + 1);
+    }
+  else
+    {
+      begin = Tmk_proc_id * d + m;
+      end = (Tmk_proc_id + 1) * d + m;
+    }
+
+  TRANSX(M1, M2, M3, XX1, XX2, begin, end);
+
+  /* 
+   * Now work on XX2(Y, Z, X), divided by N2
+   */
+  Y = (double *)XX2 + begin*2*N1*N3;
+  for (I = begin; I < end; I++)
+    for (J = 0; J < N3; J++)
+      {
+	CFFTZ (IS, M1, (double *)Y) ;
+	Y = Y + 2*N1;
+      }
+}
+
+
+void CFFT3_2 (IS, XX1, XX2)
+int IS;
+double *XX1, *XX2;
+{
+  double *Y, *Buf = (double *) alloca(2*NX*sizeof(double));
+  int I, J, K,  begin,  end, d, m, index1;
+
+  /*
+   * XX1 is (Y, Z, X)
+   * Working on Z, divided by Y
+   */
+  d = N2/Tmk_nprocs;
+  m = N2%Tmk_nprocs;
+  if (Tmk_proc_id < m)
+    {
+      begin = Tmk_proc_id * (d + 1);
+      end = (Tmk_proc_id + 1) * (d + 1);
+    }
+  else
+    {
+      begin = Tmk_proc_id * d + m;
+      end = (Tmk_proc_id + 1) * d + m;
+    }
+
+  /* Work on matrix XX1 (Y, Z, X)
+   * Working on Z, divided by Y
+   */
+  for (I = begin; I < end; I++)
+    for (K = 0; K < N1; K++)      
+      {
+	for (J = 0; J < N3; J++)
+	  {
+	    index1 = (I*N3+J)*N1*2+K;
+	    Buf[J] = XX1[index1];
+	    Buf[J+N3] = XX1[index1+N1];
+	  }
+
+	CFFTZ (IS, M3, (double *)Buf) ;
+
+	for (J = 0; J < N3; J++)
+	  {
+	    index1 = (I*N3+J)*N1*2+K;
+	    XX1[index1] = Buf[J];
+	    XX1[index1+N1] = Buf[J+N3];
+	  }
+      }
+
+  Tmk_barrier(0);
+
+
+  /*
+   * Tanspose XX1(Y, Z, X) to XX2 (Z, X, Y)
+   * Divided by N3
+   */
+ 
+  d = N3/Tmk_nprocs;
+  m = N3%Tmk_nprocs;
+  if (Tmk_proc_id < m)
+    {
+      begin = Tmk_proc_id * (d + 1);
+      end = (Tmk_proc_id + 1) * (d + 1);
+    }
+  else
+    {
+      begin = Tmk_proc_id * d + m;
+      end = (Tmk_proc_id + 1) * d + m;
+    }
+
+  TRANSX(M2,M3,M1,XX1,XX2,begin,end);
+
+  /*
+   * Work on Y of XX2(Z, X, Y),
+   * Divided by N3
+   */
+  Y = (double *)XX2 + begin*2*N1*N2;
+  for (I = begin; I < end; I++)
+    for (J = 0; J < N1; J++)
+      {
+	CFFTZ (IS, M2, (double *)Y) ;
+	Y = Y + 2*N2;
+      }
+
+
+  /*
+   * Work X of XX2(Z, X, Y), divided by Z
+   */
+  for (I = begin; I < end; I++)
+    for (K = 0; K < N2; K++)      
+      {
+	for (J = 0; J < N1; J++)
+	  {
+	    index1 = (I*N1+J)*N2*2+K;
+	    Buf[J] = XX2[index1];
+	    Buf[J+N1] = XX2[index1+N2];
+	  }
+
+	CFFTZ (IS, M1, (double *)Buf) ;
+
+	for (J = 0; J < N1; J++)
+	  {
+	    index1 = (I*N1+J)*N2*2+K;
+	    XX2[index1] = Buf[J];
+	    XX2[index1+N2] = Buf[J+N1];
+	  }
+      }
+}
+
+
+
+
+void TRANSX (Mm1, Mm2, Mm3, XY1, XY2, begin, end)
+int Mm1, Mm2, Mm3, begin, end;
+double *XY1, *XY2;
+{
+  /* This transposes the complex matrix XY1 into XY2. XY1 is assumed to have */
+  /* dimensions (Mm1,Mm2, 2*Mm3). XY2 is assumed to have dimensions (Mm2, Mm3, 2*Mm1). Real */
+  /* and imaginary parts are assumed to be completely separated (i.e. separated */
+  /* by Mm2 units in the last dimension of XY1 and by N1 units in the last */
+  /* dimension of XY2). */
+
+  int I, J, K, index1, index2, tmp, I2, J2, K2, Nn1, Nn2, Nn3;
+
+  Nn1 = 1 << Mm1;
+  Nn2 = 1 << Mm2;
+  Nn3 = 1 << Mm3;
+
+  for (index2 = 2*Nn1*Nn3*begin; index2 < 2*Nn1*Nn3*end; index2++)
+    {
+      tmp = index2 >> (Mm1 + 1);
+      tmp = index2 - (tmp << (Mm1 + 1));
+      if (tmp < Nn1)
+	{
+	  I2 = index2 >> (1 + Mm1 + Mm3);
+	  tmp = index2 - ( I2 << (1 + Mm1 + Mm3));
+	  J2 = tmp >> (1+ Mm1);
+	  K2 = tmp - (J2 << (1 + Mm1));
+
+	  K = J2;
+	  I = K2;
+	  J = I2;
+	  index1 = K + (J << (Mm3 + 1)) + (I << (1 + Mm3 +Mm2));
+	  XY2[index2] = XY1[index1] ;
+	  XY2[index2+Nn1] = XY1[index1+Nn3];
+	}
+    }
+}
+
+
+
+
+void CFFTZ (IS, M, X)
+int IS, M;
+double *X;
+{
+/* Computes the 2^M-point complex-to-complex FFT of X using an algorithm due */
+/* to Swarztrauber, coupled with some fast methods for performing power-of- */
+/* two matrix transpositions (see article by DHB in Intl. J. of Supercomputer */
+/* Applications, Spring 1988, p. 82 - 87). This is the radix 2 version. */
+/* X is both the input and the output array, while Y is a scratch array. */
+/* Both X and Y must be dimensioned with 2 * N real cells, where N = 2^M. */
+/* The data in X are assumed to have real and imaginary parts separated */
+/* by N cells. Before calling CFFTZ to perform an FFT, the array U must be */
+/* initialized by calling CFFTZ with IS set to 0 and M set to MX, where MX is */
+/* the maximum value of M for any subsequent call. U must be dimensioned */
+/* with at least 2 * NX real cells, where NX = 2^MX. */
+
+double TI, T, *Y = (double *) alloca(NX*2*sizeof(double));
+int N, NU, KU, KN, LN, J, I, Mm1, Mm2, Nn1, Nn2, K, MXx, L;
+
+  if (IS == 0)
+    {
+      /* Initialize the U array with sines and cosines in a manner that permits */
+      /* stride one access at each FFT iteration. */
+
+      N = 1 << M ;
+      NU = N ;
+      U[0] = 64 * N + M ;
+      KU = 1 ;
+      KN = KU + NU ;
+      LN = 1 ;
+      for (J = 0; J < M ; J++)
+	{
+	  T = PI / LN ;
+
+	  /* This loop is vectorizable. */
+	  for (I = 0; I <= LN - 1 ; I++)
+	    {
+	      TI = I * T ;
+	      U[I+KU] = cos (TI) ;
+	      U[I+KN] = sin (TI) ;
+	    }
+	  KU = KU + LN ;
+	  KN = KU + NU ;
+	  LN = 2 * LN ;
+	}
+      return;
+    }
+
+  /* Check if input parameters are invalid. */
+  K = U[0];
+  MXx = K % 64;
+  if ((IS != 1 && IS != -1) || M<1 || M>MXx)
+    {
+      printf("CFFTZ: EITHER U HAS NOT BEEN INITIALIZED, OR ELSE");
+      printf(" ONE OF THE INPUT PARAMETERS IS INVALID %d %d %d\n", IS, M, MXx) ;
+      exit(-1);
+    }
+
+  /* A normal call to CFFTZ starts here. Mm1 is the number of the first variant */
+  /* radix-2 Stockham iterations to be performed. The timer variant is faster */
+  /* on most computers after the first few iterations, since in the timer */
+  /* variant it is not necessary to access roots of unity in the inner DO loop. */
+  /* Thus it is most efficient to limit Mm1 to some value. For many vector */
+  /* computers, the optimum limit of Mm1 is 6. For scalar systems, Mm1 should */
+  /* probably be limited to 2. */
+
+  N = 1 << M ;
+  /* Mm1 = MIN (M / 2, 6) */
+  Mm1 = (M/2 < 2) ? (M / 2) : 2;
+  Mm2 = M - Mm1 ;
+  Nn2 = 1 << Mm1 ;
+  Nn1 = 1 <<Mm2 ;
+
+  /* Perform one variant of the Stockham FFT. */
+  for (L = 0; L < Mm1; L = L + 2 )
+    {
+      FFTZ1 (IS, L, M, (double *)X, (double *)Y) ;
+      if (L == (Mm1-1)) 
+	{
+	  /* Perform a transposition of Y treated as a Nn2 x Nn1 x 2 matrix. */
+	  TRANS (Nn1, Nn2, Y, X) ;
+
+	  /* Perform timer variant of the Stockham FFT from X to Y and Y to X. */
+	  for (L = Mm1; L < M; L = L + 2)
+	    {
+	      FFTZ2 (IS, L, M, (double *)X, (double *)Y) ;
+	      if (L == (M - 1))   /* Copy Y to X. */
+		for (I = 0; I < 2 * N; I++)
+		  X[I] = Y[I] ;
+	      FFTZ2 (IS, L + 1, M, (double *)Y, (double *)X) ;
+	    }
+	  return;
+	}
+      else
+	{
+	  FFTZ1 (IS, L + 1, M, (double *)Y, (double *)X) ;
+	  /* Perform a transposition of X treated as a Nn2 x Nn1 x 2 matrix. */
+	  TRANS (Nn1, Nn2, X, Y) ;
+
+	  /* Perform timer variant of the Stockham FFT from Y to X and X to Y. */
+	  for ( L = Mm1; L < M; L = L+ 2 )
+	    {
+	      FFTZ2 (IS, L, M, (double *)Y, (double *)X) ;
+	      if (L == (M - 1)) return;
+	      FFTZ2 (IS, L + 1, M, (double *)X, (double *)Y) ;
+	    }
+	  /* Copy Y to X. */
+	  for (I = 0; I < 2 * N; I++)
+	    X[I] = Y[I] ;
+
+	}
+    }
+}
+
+
+
+void FFTZ1 (IS, L, M, X, Y)
+int IS, L, M;
+double *X, *Y;
+{
+  /* Performs the L-th iteration of the first variant of the Stockham FFT. */
+
+  double U1, U2, X11, X12, X21, X22, T1, T2;
+  int N, K, NU, Nn1, LK, LI, LJ, KN, I11, I12, I21, I22, I;
+
+  /* Set initial parameters. */
+  N = 1 <<M ;
+  K = U[0];
+  NU = K / 64 ;
+  Nn1 = N / 2 ;
+  LK = 1 << L ;
+  LI = 1 << (M - L - 1) ;
+  LJ = 2 * LI ;
+  KN = LI + NU ;
+
+  for (K = 0; K < LK ; K++)
+    {
+      I11 = K * LJ ;
+      I12 = I11 + LI ;
+      I21 = K * LI;
+      I22 = I21 + Nn1 ;
+
+      /* This loop is vectorizable. */
+      for (I = 0; I < LI ; I++)
+	{
+	  U1 = U[LI+I] ;
+	  U2 = IS * U[KN+I] ;
+	  X11 = X[I11+I] ;
+	  X12 = X[I11+I+N] ;
+	  X21 = X[I12+I] ;
+	  X22 = X[I12+I+N] ;
+	  T1 = X11 - X21 ;
+	  T2 = X12 - X22 ;
+	  Y[I21+I] = X11 + X21 ;
+	  Y[I21+I+N] = X12 + X22 ;
+	  Y[I22+I] = U1 * T1 - U2 * T2 ;
+	  Y[I22+I+N] = U1 * T2 + U2 * T1 ;
+	}
+    }
+  return;
+}
+
+
+
+
+void FFTZ2 (IS, L, M, X, Y)
+int IS, L, M;
+double *X, *Y;
+{
+  /* Performs the L-th iteration of the timer variant of the Stockham FFT. */
+
+  double U1, U2, X11, X12, X21, X22, T1, T2;
+  int N, K, NU, Nn1, LK, LI, LJ, KN, I11, I12, I21, I22, I;
+
+  /* Set initial parameters. */
+  N = 1 << M ;
+  NU = U[0] / 64 ;
+  Nn1 = N / 2 ;
+  LK = 1 << L ;
+  LI = 1 <<(M - L - 1) ;
+  LJ = 2 * LK ;
+
+  for (I = 0; I < LI ; I++)
+    {
+      I11 = I * LK;
+      I12 = I11 + Nn1 ;
+      I21 = I * LJ;
+      I22 = I21 + LK ;
+      U1 = U[LI+I] ;
+      U2 = IS * U[LI+I+NU] ;
+
+      /* This loop is vectorizable. */      
+      for (K = 0; K < LK ; K++)
+	{
+	  X11 = X[I11+K] ;
+	  X12 = X[I11+K+N] ;
+	  X21 = X[I12+K] ;
+	  X22 = X[I12+K+N] ;
+	  T1 = X11 - X21 ;
+	  T2 = X12 - X22 ;
+	  Y[I21+K] = X11 + X21 ;
+	  Y[I21+K+N] = X12 + X22 ;
+	  Y[I22+K] = U1 * T1 - U2 * T2 ;
+	  Y[I22+K+N] = U1 * T2 + U2 * T1 ;
+	}
+    }
+  return;
+}
+
+
+
+
+void TRANS (Nn1, Nn2, X, Y)
+int Nn1, Nn2;
+double  *X, *Y;
+{
+  /* Performs a transpose of the vector X, returning the result in Y. X is */
+  /* treated as a Nn1 x Nn2 complex matrix, and Y is treated as a Nn2 x Nn1 complex */
+  /* matrix. The complex data is assumed stored with real aNnd imaginary parts */
+  /* separated by Nn1 x Nn2 locations. If this routine is to be used for an */
+  /* application involving only real data, then the timer line of all inner DO */
+  /* loops may be deleted. */
+
+  int N, J, I;
+
+  N = Nn1 * Nn2 ;
+
+  /* Perform one of three techniques, depending on N. The best strategy varies */
+  /* with the computer system. The following strategy is best for many vector */
+  /* systems. The outer if block should be commented out for scalar computers. */
+  /* if (N1 .LT. 32 .OR. N2 .LT. 32) THEN */
+
+  if (Nn1 <= Nn2)
+    {
+      /* Scheme 1: Perform a simple transpose in the usual way. This is usually */
+      /* the best on vector computers if Nn2 is odd, or if both Nn1 and N2 are small, */
+      /* and Nn1 is larger than Nn2. */
+      for (J = 0; J < Nn1 ; J++)
+	{
+	  /* This loop is vectorizable. */
+	  for (I = 0; I < Nn2 ; I++)
+	    {
+	      Y[J*Nn2+I] = X[I*Nn1+J] ;
+	      Y[J*Nn2+I+N] = X[I*Nn1+J+N] ;
+	    }
+	}
+    }
+  else
+    {
+      /* Scheme 2: Perform a simple transpose with the loops reversed. This is */
+      /* usually the best on vector computers if Nn1 is odd, or if both Nn1 and Nn2 are */
+      /* small, and Nn2 is larger than Nn1. */
+      for (I = 0; I < Nn2 ; I++)
+	{
+	  /* This loop is vectorizable. */
+	  for (J = 0; J < Nn1 ; J++)
+	    {
+	      Y[J*Nn2+I] = X[I*Nn1+J] ;
+	      Y[J*Nn2+I+N] = X[I*Nn1+J+N];
+	    }
+	}
+    }
+  return;
+}
+@
+
+
+10.4
+log
+@Deleted a useless space from a printf.
+@
+text
+@d2 1
+a2 1
+ * $Id: fft.c,v 10.3 1997/12/21 00:04:33 alc Exp alc $
+d153 1
+a153 1
+	   "DIMENSIONS --- N1 = %d   N2 = %d  N3 = %d\n",
+@
+
+
+10.3
+log
+@Include "stdlib.h".
+@
+text
+@d2 1
+a2 1
+ * $Id: fft.c,v 10.2 1997/06/02 07:42:21 alc Exp alc $
+d152 2
+a153 1
+    printf("3-D FFT PDE TEST \nDIMENSIONS --- N1 = %d   N2 = %d  N3 = %d\n",
+@
+
+
+10.2
+log
+@Eliminated TMK_DISTRIBUTE.
+@
+text
+@d2 1
+a2 1
+ * $Id$
+d19 2
+a21 2
+#include <sys/time.h>
+#include <stdio.h>
+d23 1
+a23 1
+#if defined(_IBMR2)
+d25 1
+a25 3
+#elif defined(__FreeBSD__)
+#include <stdlib.h>
+#else
+d28 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 4
+d133 5
+a137 5
+      TMK_DISTRIBUTE(_G_T1);
+      TMK_DISTRIBUTE(_G_T2);
+      TMK_DISTRIBUTE(X0);
+      TMK_DISTRIBUTE(X1);
+      TMK_DISTRIBUTE(X2);
+@

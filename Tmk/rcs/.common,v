@@ -1,0 +1,514 @@
+head	11.3;
+access;
+symbols
+	Tmk-1_2:10.4.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.4.1.1
+	Tmk-1_1:11
+	Tmk-1_0:10.4.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.4;
+locks; strict;
+comment	@# @;
+
+
+11.3
+date	97.10.05.18.49.52;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.10.05.18.37.41;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.05.27.05.37.50;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	97.05.22.04.02.58;	author alc;	state Exp;
+branches
+	10.4.1.1;
+next	10.3;
+
+10.3
+date	97.05.22.03.57.49;	author alc;	state Exp;
+branches;
+next	10.0;
+
+10.0
+date	96.03.17.17.27.32;	author alc;	state Rel;
+branches
+	10.0.1.1;
+next	9.7;
+
+9.7
+date	96.03.17.16.37.44;	author alc;	state Rel;
+branches;
+next	9.6;
+
+9.6
+date	96.03.17.04.58.13;	author alc;	state Exp;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.16.07.54.49;	author alc;	state Exp;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.23.56.00;	author alc;	state Exp;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.16.22.20.51;	author alc;	state Exp;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.17.16.35.01;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.17.17.37.56;	author alc;	state Rel;
+branches;
+next	;
+
+10.4.1.1
+date	97.12.15.03.00.57;	author alc;	state Exp;
+branches;
+next	10.4.1.2;
+
+10.4.1.2
+date	98.08.23.07.16.40;	author alc;	state Exp;
+branches;
+next	10.4.1.3;
+
+10.4.1.3
+date	98.08.24.03.06.56;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.3
+log
+@Added the dependence of mmap.o on include/Tmk_mman.h.
+@
+text
+@ #############################################################################
+ #                                                                           #
+ #  Copyright (c) 1991-1994                                                  #
+ #  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     #
+ #                                                                           #
+ #  This software is furnished under a license and may be used and  copied   #
+ #  only  in  accordance  with  the  terms  of  such  license and with the   #
+ #  inclusion of the above copyright notice.  This software or  any  other   #
+ #  copies  thereof may not be provided or otherwise made available to any   #
+ #  other person.  No title to or ownership of  the  software  is  hereby    #
+ #  transferred.                                                             #
+ #									     #
+ #  The recipient of this software (RECIPIENT) acknowledges and agrees that  #
+ #  the software contains information and trade secrets that are	     #
+ #  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    #
+ #  all reasonable steps to safeguard the software, and to prevent its       #
+ #  disclosure.								     # 
+ #                                                                           #
+ #  The information in this software is subject to change  without  notice   #
+ #  and should  not  be  construed  as  a commitment by TREADMARKS.	     #
+ #                                                                           #
+ #  This software is furnished AS IS, without warranty of any kind, either   #
+ #  express or implied (including, but not limited to, any implied warranty  #
+ #  of merchantability or fitness), with regard to the software.  	     #
+ #  TREADMARKS assumes no responsibility for the use or reliability of its   #
+ #  software.  TREADMARKS shall not be liable for any special, incidental,   #
+ #  or consequential damages, or any damages whatsoever due to causes beyond #
+ #  the reasonable control of TREADMARKS, loss of use, data or profits, or   #
+ #  from loss or destruction of materials provided to TREADMARKS by	     #
+ #  RECIPIENT.								     #
+ #									     #
+ #  TREADMARKS's liability for damages arising out of or in connection with  #
+ #  the use or performance of this software, whether in an action of	     #
+ #  contract or tort including negligence, shall be limited to the purchase  #
+ #  price, or the total amount paid by RECIPIENT, whichever is less.	     #
+ #                                                                           #
+ #############################################################################
+
+ #
+ # $Id: .common,v 11.2 1997/10/05 18:37:41 alc Exp alc $
+ #
+ # Description:    
+ #	builds the ATM and Ethernet libraries
+ #
+ # Facility:	TreadMarks Distributed Shared Memory System
+ # History:
+ #	25-Aug-1993	Alan L. Cox	Created
+ #
+ #	Version 0.9.0
+ #
+ #	Version 0.9.1
+ #
+ #	16-Jan-1995	Rob Fowler	Modified for demo version
+ #
+ #	Version 0.9.2
+ #
+ #	30-Apr-1995	Alan L. Cox	Eliminated ranlib for Solaris
+ #
+ #	Version 0.9.3
+ #
+
+OBJS	= barrier.o diff.o distribute.o exit.o fort_if.o interval.o lock.o mmap.o ownership.o page.o repo.o sched.o segv.o sh_malloc.o sigio.o spawn.o timeout.o
+
+SRC	= $(ROOT)/src
+
+clean:
+	rm -f *.c *.o lib*.a timestamp
+
+libTmk_atm.a: open_atm.o $(OBJS) $(MACHDEP_OBJS) startup.o
+	$(AR) $(ARFLAGS) $@@ $?
+	if [ -f /usr/bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+
+libTmk_mpl.a: open_mpl.o $(OBJS) $(MACHDEP_OBJS) startup.o
+	$(AR) $(ARFLAGS) $@@ $?
+	if [ -f /usr/bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+
+libTmk_udp.a: open_udp.o $(OBJS) $(MACHDEP_OBJS) startup.o
+	$(AR) $(ARFLAGS) $@@ $?
+	if [ -f /usr/bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+
+libTmk_udp_p.a: open_udp.po $(OBJS:.o=.po) $(MACHDEP_OBJS:.o=.po) startup.po
+	$(AR) $(ARFLAGS) $@@ $?
+	if [ -f /usr/bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+
+libTmk_udp_ll.a: open_udp.o $(OBJS) $(MACHDEP_OBJS) ll.o startup_ll.o
+	$(AR) $(ARFLAGS) $@@ $?
+	if [ -f /usr/bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+
+barrier.o: $(SRC)/barrier.c
+	$(CC) $(CFLAGS) -c $(SRC)/barrier.c
+
+diff.o: $(SRC)/diff.c
+	$(CC) $(CFLAGS) -c $(SRC)/diff.c
+
+distribute.o: $(SRC)/distribute.c
+	$(CC) $(CFLAGS) -c $(SRC)/distribute.c
+
+exit.o: $(SRC)/exit.c
+	$(CC) $(CFLAGS) -c $(SRC)/exit.c
+
+fort_if.o: $(SRC)/fort_if.c
+	$(CC) $(CFLAGS) -c $(SRC)/fort_if.c
+
+interval.o: $(SRC)/interval.c
+	$(CC) $(CFLAGS) -c $(SRC)/interval.c
+
+ll.o: $(SRC)/ll.c
+	$(CC) $(CFLAGS) -c -I$(LL)/include -DLoadL $(SRC)/ll.c
+
+lock.o: $(SRC)/lock.c
+	$(CC) $(CFLAGS) -c $(SRC)/lock.c
+
+mmap.o: $(SRC)/mmap.c
+	$(CC) $(CFLAGS) -c $(SRC)/mmap.c
+
+mmap.o: $(ROOT)/include/Tmk_mman.h
+
+open_atm.o: $(SRC)/open_atm.c
+	$(CC) $(CFLAGS) -c -I/usr/fore/include $(SRC)/open_atm.c
+
+open_mpl.o: $(SRC)/open_mpl.c
+	$(CC) $(CFLAGS) -c $(SRC)/open_mpl.c
+
+open_udp.o: $(SRC)/open_udp.c
+	$(CC) $(CFLAGS) -c $(SRC)/open_udp.c
+
+ownership.o: $(SRC)/ownership.c
+	$(CC) $(CFLAGS) -c $(SRC)/ownership.c
+
+page.o: $(SRC)/page.c
+	$(CC) $(CFLAGS) -c $(SRC)/page.c
+
+repo.o: $(SRC)/repo.c
+	$(CC) $(CFLAGS) -c $(SRC)/repo.c
+
+sched.o: $(SRC)/sched.c
+	$(CC) $(CFLAGS) -c $(SRC)/sched.c
+
+segv.o: $(SRC)/segv.c
+	$(CC) $(CFLAGS) -c $(SRC)/segv.c
+
+sh_malloc.o: $(SRC)/sh_malloc.c
+	$(CC) $(CFLAGS) -c $(SRC)/sh_malloc.c
+
+sigio.o: $(SRC)/sigio.c
+	$(CC) $(CFLAGS) -c $(SRC)/sigio.c
+
+spawn.o: $(SRC)/spawn.c
+	$(CC) $(CFLAGS) -c $(SRC)/spawn.c
+
+startup.o: $(SRC)/startup.c $(SRC)/open_atm.c $(SRC)/open_udp.c $(OBJS) timestamp
+	$(CC) $(CFLAGS) -c -DTIMESTAMP=`./timestamp` $(SRC)/startup.c
+
+startup_ll.o: $(SRC)/startup.c $(SRC)/open_atm.c $(SRC)/open_udp.c $(OBJS) timestamp
+	$(CC) $(CFLAGS) -c -DTIMESTAMP=`./timestamp` -I$(LL)/include -DLoadL -o $@@ $(SRC)/startup.c
+
+timeout.o: $(SRC)/timeout.c
+	$(CC) $(CFLAGS) -c $(SRC)/timeout.c
+
+$(OBJS) $(MACHDEP_OBJS) open_atm.o open_udp.o startup.o startup_ll.o ll.o: $(ROOT)/include/Tmk.h $(SRC)/Tmk.h
+
+rmstartup:
+	$(RM) startup.o
+
+timestamp: $(SRC)/timestamp.c
+	$(CC) $(CFLAGS) -o $@@ $(SRC)/timestamp.c
+@
+
+
+11.2
+log
+@Added ownership.o.
+@
+text
+@d40 1
+a40 1
+ # $Id: .common,v 11.1 1997/05/27 05:37:50 alc Exp alc $
+d115 2
+@
+
+
+11.1
+log
+@Added spawn.o
+@
+text
+@d40 1
+a40 1
+ # $Id: .common,v 10.4 1997/05/22 04:02:58 alc Exp alc $
+d62 1
+a62 1
+OBJS	= barrier.o diff.o distribute.o exit.o fort_if.o interval.o lock.o mmap.o page.o repo.o sched.o segv.o sh_malloc.o sigio.o spawn.o timeout.o
+d124 3
+@
+
+
+10.4
+log
+@Removed the rules and macros for monitor.{o,c}.
+@
+text
+@d40 1
+a40 1
+ # $Id: .common,v 10.3 1997/05/22 03:57:49 alc Exp alc $
+d62 1
+a62 1
+OBJS	= barrier.o diff.o distribute.o exit.o fort_if.o interval.o lock.o mmap.o page.o repo.o sched.o segv.o sh_malloc.o sigio.o timeout.o
+d142 3
+@
+
+
+10.4.1.1
+log
+@Added the dependence for "include/Tmk_mman.h".
+@
+text
+@d40 1
+a40 1
+ # $Id: .common,v 10.4 1997/05/22 04:02:58 alc Exp alc $
+a114 2
+
+mmap.o:	$(ROOT)/include/Tmk_mman.h
+@
+
+
+10.4.1.2
+log
+@Added support for reductions.
+@
+text
+@d40 1
+a40 1
+ # $Id: .common,v 10.4.1.1 1997/12/15 03:00:57 alc Exp alc $
+d62 1
+a62 1
+OBJS	= barrier.o diff.o distribute.o exit.o fort_if.o interval.o lock.o mmap.o page.o reduction.o repo.o sched.o segv.o sh_malloc.o sigio.o timeout.o
+a128 3
+
+reduction.o: $(SRC)/reduction.c
+	$(CC) $(CFLAGS) -c $(SRC)/reduction.c
+@
+
+
+10.4.1.3
+log
+@1.  Tmk_barrier_reduce replaces Tmk_barrier.  Tmk_barrier is now
+a stub that calls Tmk_barrier_reduce.  2.  The file barrier.c is
+dropped.  3.  The file reduction.c is renamed barrier_reduce.c.
+@
+text
+@d40 1
+a40 1
+ # $Id: .common,v 10.4.1.2 1998/08/23 07:16:40 alc Exp alc $
+d62 1
+a62 1
+OBJS	= barrier_reduce.o diff.o distribute.o exit.o fort_if.o interval.o lock.o mmap.o page.o repo.o sched.o segv.o sh_malloc.o sigio.o timeout.o
+d89 2
+a90 2
+barrier_reduce.o: $(SRC)/barrier_reduce.c
+	$(CC) $(CFLAGS) -c $(SRC)/barrier_reduce.c
+d129 3
+@
+
+
+10.3
+log
+@Damned if I know.  Revisions 10.1-10.3 were lost.
+@
+text
+@d40 1
+a40 1
+ # $Id: .common,v 10.3 1997/03/18 20:54:10 alc Exp $
+d62 1
+a62 1
+OBJS	= barrier.o diff.o distribute.o exit.o fort_if.o interval.o lock.o mmap.o monitor.o page.o repo.o sched.o segv.o sh_malloc.o sigio.o timeout.o
+a114 3
+
+monitor.o: $(SRC)/monitor.c
+	$(CC) $(CFLAGS) -c $(SRC)/monitor.c
+@
+
+
+10.0
+log
+@Tmk-0.10R
+@
+text
+@d38 4
+a41 2
+ #############################################################################
+ # File:	.common
+a60 1
+ #############################################################################
+d62 1
+a62 1
+OBJS	= barrier.o diff.o distribute.o exit.o fort_if.o interval.o lock.o page.o repo.o segv.o sh_malloc.o sigio.o timeout.o
+d73 4
+d81 4
+d113 6
+d122 3
+d133 3
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d70 1
+a70 1
+	if [ -f /bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+d74 1
+a74 1
+	if [ -f /bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+d78 1
+a78 1
+	if [ -f /bin/ranlib ] ; then ranlib $@@ ; else true ; fi
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d68 1
+a68 1
+libTmk_atm.a: open_atm.o $(OBJS) startup.o
+d72 1
+a72 1
+libTmk_udp.a: open_udp.o $(OBJS) $(AS_OBJS) startup.o
+d76 1
+a76 1
+libTmk_udp_ll.a: open_udp.o $(OBJS) ll.o startup_ll.o
+a82 3
+common.o: $(SRC)/common.s
+	$(AS) $(ASFLAGS) $(SRC)/common.s
+
+d126 1
+a126 1
+	$(CC) $(CFLAGS) -c -DTIMESTAMP=`timestamp` $(SRC)/startup.c
+d129 1
+a129 1
+	$(CC) $(CFLAGS) -c -DTIMESTAMP=`timestamp` -I$(LL)/include -DLoadL -o $@@ $(SRC)/startup.c
+d134 1
+a134 1
+$(OBJS) open_atm.o open_udp.o: $(ROOT)/include/Tmk.h $(SRC)/Tmk.h
+@
+
+
+9.5.1.1
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@d68 1
+a68 1
+libTmk_atm.a: open_atm.o $(OBJS) $(MACHDEP_OBJS) startup.o
+d72 1
+a72 1
+libTmk_udp.a: open_udp.o $(OBJS) $(MACHDEP_OBJS) startup.o
+d76 1
+a76 1
+libTmk_udp_ll.a: open_udp.o $(OBJS) $(MACHDEP_OBJS) ll.o startup_ll.o
+d83 3
+d129 1
+a129 1
+	$(CC) $(CFLAGS) -c -DTIMESTAMP=`./timestamp` $(SRC)/startup.c
+d132 1
+a132 1
+	$(CC) $(CFLAGS) -c -DTIMESTAMP=`./timestamp` -I$(LL)/include -DLoadL -o $@@ $(SRC)/startup.c
+d137 1
+a137 1
+$(OBJS) $(MACHDEP_OBJS) open_atm.o open_udp.o startup.o startup_ll.o ll.o: $(ROOT)/include/Tmk.h $(SRC)/Tmk.h
+@

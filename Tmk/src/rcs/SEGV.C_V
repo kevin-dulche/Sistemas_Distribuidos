@@ -1,0 +1,3180 @@
+head	11.17;
+access;
+symbols
+	Tmk-1_0_3_2R:10.10.1.19
+	Tmk-1_0_3_1R:10.10.1.19
+	Tmk-1_0_3R:10.10.1.19
+	Tmk-1_2:10.10.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.10.1.19
+	Tmk-1_0_1R:10.10.1.7
+	Tmk-1_1:11
+	Tmk-1_0:10.10.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.10
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.17
+date	98.03.07.18.32.23;	author alc;	state Exp;
+branches;
+next	11.16;
+
+11.16
+date	98.03.07.18.16.36;	author alc;	state Exp;
+branches;
+next	11.15;
+
+11.15
+date	98.03.07.18.07.33;	author alc;	state Exp;
+branches;
+next	11.14;
+
+11.14
+date	98.03.02.04.13.16;	author alc;	state Exp;
+branches;
+next	11.13;
+
+11.13
+date	97.12.14.05.49.13;	author alc;	state Exp;
+branches;
+next	11.12;
+
+11.12
+date	97.11.09.00.40.18;	author alc;	state Exp;
+branches;
+next	11.11;
+
+11.11
+date	97.09.07.17.14.20;	author alc;	state Exp;
+branches;
+next	11.10;
+
+11.10
+date	97.09.06.06.10.36;	author alc;	state Exp;
+branches;
+next	11.9;
+
+11.9
+date	97.08.18.21.08.50;	author alc;	state Exp;
+branches;
+next	11.8;
+
+11.8
+date	97.08.07.19.11.11;	author alc;	state Exp;
+branches;
+next	11.7;
+
+11.7
+date	97.07.27.19.27.01;	author alc;	state Exp;
+branches;
+next	11.6;
+
+11.6
+date	97.07.09.21.40.28;	author alc;	state Exp;
+branches;
+next	11.5;
+
+11.5
+date	97.06.26.22.40.44;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	97.06.26.04.05.28;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.06.25.18.35.55;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.06.09.05.30.22;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.06.06.05.03.29;	author alc;	state Exp;
+branches;
+next	10.10;
+
+10.10
+date	97.03.16.20.45.36;	author alc;	state Exp;
+branches
+	10.10.1.1;
+next	10.9;
+
+10.9
+date	97.03.08.19.51.31;	author alc;	state Exp;
+branches;
+next	10.8;
+
+10.8
+date	97.03.07.23.43.26;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	97.03.07.06.23.06;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	97.02.21.17.38.24;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	97.01.10.16.49.05;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.09.22.23.33.46;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.08.08.18.29.47;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.08.08.04.53.12;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.43.23;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	9.7.2.2;
+
+9.7.2.2
+date	96.03.18.00.48.57;	author alc;	state Exp;
+branches;
+next	9.7.2.3;
+
+9.7.2.3
+date	96.04.11.03.44.03;	author alc;	state Exp;
+branches;
+next	9.7.2.4;
+
+9.7.2.4
+date	96.05.18.23.20.12;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches;
+next	10.0.2.2;
+
+10.0.2.2
+date	96.03.18.00.59.31;	author alc;	state Exp;
+branches;
+next	10.0.2.3;
+
+10.0.2.3
+date	96.03.18.04.44.43;	author alc;	state Exp;
+branches
+	10.0.2.3.2.1;
+next	10.0.2.4;
+
+10.0.2.4
+date	96.04.20.22.17.50;	author alc;	state Exp;
+branches;
+next	10.0.2.5;
+
+10.0.2.5
+date	96.04.20.22.33.51;	author alc;	state Exp;
+branches;
+next	10.0.2.6;
+
+10.0.2.6
+date	96.05.19.04.14.02;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.2.3.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.2;
+
+10.0.2.3.2.2
+date	96.03.27.07.01.51;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.3;
+
+10.0.2.3.2.3
+date	96.03.30.21.35.39;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.4;
+
+10.0.2.3.2.4
+date	96.05.29.22.01.59;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.10.18.03.33.27;	author alc;	state Exp;
+branches;
+next	;
+
+10.10.1.1
+date	97.07.22.18.31.43;	author alc;	state Exp;
+branches;
+next	10.10.1.2;
+
+10.10.1.2
+date	97.07.22.19.16.09;	author alc;	state Exp;
+branches;
+next	10.10.1.3;
+
+10.10.1.3
+date	97.07.27.19.39.06;	author alc;	state Exp;
+branches;
+next	10.10.1.4;
+
+10.10.1.4
+date	97.08.18.21.16.59;	author alc;	state Exp;
+branches;
+next	10.10.1.5;
+
+10.10.1.5
+date	97.09.06.06.45.00;	author alc;	state Exp;
+branches;
+next	10.10.1.6;
+
+10.10.1.6
+date	97.11.09.00.41.12;	author alc;	state Exp;
+branches;
+next	10.10.1.7;
+
+10.10.1.7
+date	97.12.14.05.49.57;	author alc;	state Exp;
+branches;
+next	10.10.1.8;
+
+10.10.1.8
+date	98.03.01.23.32.12;	author alc;	state Exp;
+branches;
+next	10.10.1.9;
+
+10.10.1.9
+date	98.03.01.23.43.25;	author alc;	state Exp;
+branches;
+next	10.10.1.10;
+
+10.10.1.10
+date	98.03.02.04.45.00;	author alc;	state Exp;
+branches;
+next	10.10.1.11;
+
+10.10.1.11
+date	98.03.07.18.03.53;	author alc;	state Exp;
+branches;
+next	10.10.1.12;
+
+10.10.1.12
+date	98.03.07.18.22.16;	author alc;	state Exp;
+branches;
+next	10.10.1.13;
+
+10.10.1.13
+date	98.03.07.18.33.38;	author alc;	state Exp;
+branches;
+next	10.10.1.14;
+
+10.10.1.14
+date	98.04.04.20.00.23;	author alc;	state Exp;
+branches;
+next	10.10.1.15;
+
+10.10.1.15
+date	98.05.10.05.06.23;	author alc;	state Exp;
+branches;
+next	10.10.1.16;
+
+10.10.1.16
+date	98.07.14.03.42.38;	author alc;	state Exp;
+branches;
+next	10.10.1.17;
+
+10.10.1.17
+date	98.07.14.04.08.39;	author alc;	state Exp;
+branches;
+next	10.10.1.18;
+
+10.10.1.18
+date	98.07.14.04.27.30;	author alc;	state Exp;
+branches;
+next	10.10.1.19;
+
+10.10.1.19
+date	98.07.14.05.53.53;	author alc;	state Exp;
+branches;
+next	10.10.1.20;
+
+10.10.1.20
+date	98.07.26.05.25.28;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.17
+log
+@Added a comment to twin_free_list.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: segv.c,v 11.16 1998/03/07 18:16:36 alc Exp alc $
+ *
+ * Description:    
+ *	page fault handler
+ *
+ * External Functions:
+ *			Tmk_segv_initialize,
+ *			Tmk_free_twin
+ *			Tmk_twin_alloc_and_copy
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Apr-1993	Alan L. Cox	Created
+ *	 5-Jul-1993	Alan L. Cox	Adapted for SPARC
+ *	26-Oct-1993	Alan L. Cox	Made segv handler non-reentrant
+ *	17-Nov-1993	Alan L. Cox	Adapted for RS/6000
+ *      21-Apr-1994     Povl T. Koch    Adapted for Alpha
+ *	18-Jul-1994	Sandhya Dwarkadas
+ *					Added Tmk_npages
+ *	Version 0.9.0
+ *
+ *	Version 0.9.1
+ *
+ *	Version 0.9.2
+ *
+ *	10-Apr-1995	Cristiana Amza	Adapted for HPPA/HPUX
+ *	21-May-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *
+ *	Version 0.9.3
+ *
+ *	 6-Jul-1995	Alan L. Cox	Optimized page copy for HPPA and SPARC
+ *					 (others still use bcopy)
+ *	15-Jul-1995	Alan L. Cox	Corrected the read versus write
+ *					 differentiating code for HPPA
+ *	Version 0.9.4
+ *
+ *	15-Jan-1996	Alan L. Cox	Adapted for FreeBSD 2.1/Intel x86
+ *
+ *	Version 0.9.7
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigblock and sigsetmask
+ *					 with sigprocmask
+ *	Version 0.10
+ *
+ *	20-Apr-1996	Robert J. Fowler
+ *					Adapted for Linux 1.2.13/Intel x86
+ *	Version 0.10.1
+ */
+#include "Tmk.h"
+
+#if	defined(_AIX)
+#include <sys/machine.h>
+#elif	defined(__bsdi) || defined(__FreeBSD__)
+#include <vm/vm.h>
+#include <vm/pmap.h>
+#elif	defined(__linux)
+#include <asm/sigcontext.h>
+#elif	defined(__sgi)
+#include <sys/sbd.h>
+#elif	defined(__sun) && defined(__SVR4)	/* both i386 and sparc */
+#include <ucontext.h>
+#if	defined(__i386)
+#include <sys/trap.h>
+#endif
+#endif
+
+#if	defined(__FreeBSD__)
+#	define	SIGBUS_or_SEGV	SIGBUS
+#else
+#	define	SIGBUS_or_SEGV	SIGSEGV
+#endif
+
+#if	defined(__i386)
+#	define	p5	/* Capitalize the "p" only if you're using a Pentium (MMX). */
+#endif
+
+/*
+ * An optimized page copy function for the HP PA, Pentium, Pentium Pro,
+ * and SPARC.  The Pentium version requires gcc.
+ */
+#if	defined(__hppa) || defined(__sparc)
+#if	defined(__GNUC__)
+__inline__
+#endif
+static	void	page_copy(caddr_t twin, caddr_t vadr)
+{
+	long long *twin_    = (long long *) twin;
+	long long *vadr_    = (long long *) vadr;
+	long long *vadr_end = (long long *)(vadr + Tmk_page_size);
+
+	do {
+		long long value0 = vadr_[0];
+		long long value1 = vadr_[1];
+		long long value2 = vadr_[2];
+		long long value3 = vadr_[3];
+		long long value4 = vadr_[4];
+		long long value5 = vadr_[5];
+		long long value6 = vadr_[6];
+		long long value7 = vadr_[7];
+
+		vadr_ += 8;
+
+		twin_[0] = value0;
+		twin_[1] = value1;
+		twin_[2] = value2;
+		twin_[3] = value3;
+		twin_[4] = value4;
+		twin_[5] = value5;
+		twin_[6] = value6;
+		twin_[7] = value7;
+
+		twin_ += 8;
+
+	} while (vadr_ != vadr_end);
+}
+#elif	defined(__i386)
+#if	defined(__GNUC__)
+__inline__
+#endif
+#if	defined(P5) && defined(__GNUC__)
+static	void	page_copy(caddr_t twin, caddr_t vadr)
+{
+	struct	{
+		char	state[108];
+	}	fpu;
+
+	asm volatile ("fsave %0" : "=m" (fpu));
+	{
+		double *twin_    = (double *) twin;
+		double *vadr_    = (double *) vadr;
+		double *vadr_end = (double *)(vadr + Tmk_page_size);
+		volatile
+		int    *tadr     = (int *) vadr;
+
+		/*
+		 * Preload the page into the cache to take advantage
+		 * of page mode access.
+		 */
+		do
+			*tadr;
+		while ((tadr += 32/sizeof(*tadr)) != (int *) vadr_end);
+
+		do {
+			asm volatile ("fildq %0" : : "m" (vadr_[0]));
+			asm volatile ("fildq %0" : : "m" (vadr_[1]));
+			asm volatile ("fildq %0" : : "m" (vadr_[2]));
+			asm volatile ("fildq %0" : : "m" (vadr_[3]));
+			asm volatile ("fildq %0" : : "m" (vadr_[4]));
+			asm volatile ("fildq %0" : : "m" (vadr_[5]));
+			asm volatile ("fildq %0" : : "m" (vadr_[6]));
+			asm volatile ("fildq %0" : : "m" (vadr_[7]));
+
+			vadr_ += 8;
+
+			asm volatile ("fistpq %0" : "=m" (twin_[7]));
+			asm volatile ("fistpq %0" : "=m" (twin_[6]));
+			asm volatile ("fistpq %0" : "=m" (twin_[5]));
+			asm volatile ("fistpq %0" : "=m" (twin_[4]));
+			asm volatile ("fistpq %0" : "=m" (twin_[3]));
+			asm volatile ("fistpq %0" : "=m" (twin_[2]));
+			asm volatile ("fistpq %0" : "=m" (twin_[1]));
+			asm volatile ("fistpq %0" : "=m" (twin_[0]));
+
+			twin_ += 8;
+
+		} while (vadr_ != vadr_end);
+	}
+	asm volatile ("frstor %0" : : "m" (fpu));
+}
+#else
+static	void	page_copy(caddr_t twin, caddr_t vadr)
+{
+	int    *twin_    = (int *) twin;
+	int    *vadr_    = (int *) vadr;
+	int    *vadr_end = (int *)(vadr + Tmk_page_size);
+	volatile
+	int    *tadr     = (int *) vadr;
+
+	/*
+	 * Preload the page into the cache to take advantage
+	 * of page mode access.
+	 */
+	do
+		*tadr;
+	while ((tadr += 32/sizeof(*tadr)) != vadr_end);
+
+	do {
+		int	value0 = vadr_[0];
+		int	value1 = vadr_[1];
+		int	value2 = vadr_[2];
+		int	value3 = vadr_[3];
+
+		vadr_ += 4;
+
+		twin_[0] = value0;
+		twin_[1] = value1;
+		twin_[2] = value2;
+		twin_[3] = value3;
+		twin_ += 4;
+
+	} while (vadr_ != vadr_end);
+}
+#endif
+#else
+#	define	page_copy(twin, vadr)	memcpy((twin), (vadr), Tmk_page_size)
+#endif
+
+/*
+ * The twin free list is managed in LIFO order, like a stack.  Hopefully,
+ * this results in decent temporal locality.    
+ */
+static
+caddr_t	twin_free_list;
+
+/*
+ *
+ */
+void	Tmk_free_twin(page)
+	page_t		page;
+{
+	caddr_t	       *twin = (caddr_t *) page->twin;
+
+	page->twin = 0;
+
+	*twin = twin_free_list;
+
+	twin_free_list = (caddr_t) twin;
+}
+
+/*
+ * Should insure that the twin and the original don't collide in the cache.
+ *
+ * N.B.  We never fault inside malloc.  Otherwise, this code wouldn't work.
+ *
+ * Called by segv_handler and Tmk_mmap.
+ */
+void	Tmk_twin_alloc_and_copy(page)
+	page_t		page;
+{
+	caddr_t		twin = twin_free_list;
+
+	if (twin)
+		twin_free_list = *(caddr_t *) twin;
+	else {
+		if ((twin = malloc(Tmk_page_size)) == NULL)
+			Tmk_errexit("<malloc>twin_alloc: out of memory/swap\n");
+
+		Tmk_stat.twins++;
+	}
+	page->twin = twin;
+
+	page_copy(twin, page->vadr);
+}     
+
+#if	defined(__sun) && defined(__SVR4)	/* both i386 and sparc */
+static	void	segv_handler(sig, sip, uap)
+	int		     sig;
+	siginfo_t	    *sip;
+	ucontext_t	    *uap;
+#elif	defined(__i386) && defined(__linux)
+static	void	segv_handler(sig, scs)
+	int		     sig;
+	struct	sigcontext_struct scs;
+#else
+static	void	segv_handler(sig, code, scp, vaddr)
+	int		     sig;
+	int		     code;
+	struct	sigcontext  *scp;
+	char		    *vaddr;
+#endif
+{
+#if	defined(__alpha)
+#if	defined(__linux) || defined(__osf__)
+	unsigned i = (scp->sc_traparg_a0 - (long) page_array_[0].vadr) >> page_shift;
+#else
+#error in segv_handler: incomplete port under defined(__alpha)
+#endif
+#elif   defined(__hppa)
+        unsigned i = ((caddr_t) scp->sc_sl.sl_ss.ss_cr21 - page_array_[0].vadr) >> page_shift;
+#elif	defined(__i386)
+#if	defined(__bsdi)
+	unsigned i = ((caddr_t) scp->sc_ap - page_array_[0].vadr) >> page_shift;	/* non-standard: kernel modification */
+#elif	defined(__FreeBSD__)
+	unsigned i = (vaddr - page_array_[0].vadr) >> page_shift;
+#elif	defined(__linux)
+	unsigned i = ((caddr_t) scs.cr2 - page_array_[0].vadr) >> page_shift;
+#elif	defined(__sun) && defined(__SVR4)
+	unsigned i = (sip->si_addr - page_array_[0].vadr) >> page_shift;
+#else
+#error in segv_handler: incomplete port under defined(__i386)
+#endif
+#elif	defined(_IBMR2)
+	unsigned i = (scp->sc_jmpbuf.jmp_context.o_vaddr - (ulong_t) page_array_[0].vadr) >> page_shift;
+#elif	defined(__mips)
+	unsigned i = ((caddr_t) scp->sc_badvaddr - page_array_[0].vadr) >> page_shift;
+#elif	defined(__sparc)
+#if	defined(__sun) && defined(__SVR4)
+	unsigned i = (sip->si_addr - page_array_[0].vadr) >> page_shift;
+#else
+	unsigned i = (vaddr - page_array_[0].vadr) >> page_shift;
+#endif
+#else
+#error in segv_handler: incomplete port
+#endif
+	if (i < Tmk_npages) {
+
+		page_t	page = &page_array_[i];
+#if defined(MPL)
+		sigset_t	mask;
+
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+#endif
+		if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+			Tmk_perrexit("<mprotect>segv_handler");
+
+		if (page->state == shared) {
+write_access:
+			if (page->proto == single_writer) {
+
+				if ( ! Tmk_ownership_request(page)) {
+
+					page->proto = multiple_writer;
+
+					goto twin;
+				}
+				page->state = modified;
+			}
+			else {
+	twin:
+				Tmk_twin_alloc_and_copy(page);
+			}
+			Tmk_page_dirty_merge(page);
+		}
+		else {
+			if (Tmk_debug)
+				Tmk_err("page: %d ", i);
+
+			page->state = shared;
+
+			if (page->empty) {
+
+				page->empty = 0;
+
+				Tmk_page_request(page);
+
+				Tmk_diff_reapply(page);
+			}
+			Tmk_diff_request(page);
+
+			/*
+			 * If a write access caused the page fault, ...
+			 */
+#if	defined(__alpha)
+#if	defined(__linux) || defined(__osf__)
+			if (*(unsigned *) scp->sc_pc & (1 << 28))
+#else
+#error in segv_handler: incomplete port under defined(__alpha)
+#endif
+#elif	defined(__hppa)
+			if (((scp->sc_sl.sl_ss.ss_cr19 & 3758096384) == 1610612736) ||
+			    ((scp->sc_sl.sl_ss.ss_cr19 & 512) == 512))
+#elif	defined(__i386)
+#if	defined(__bsdi)
+			if (0)	/* bsdi: XXX */
+#elif	defined(__FreeBSD__)
+			if (code & (PGEX_W << 5))	/* non-standard: kernel modification */
+#elif	defined(__linux) 
+			if (scs.err & 2)
+#elif	defined(__sun) && defined(__SVR4)
+			if (uap->uc_mcontext.gregs[ERR] & PF_ERR_WRITE)
+#else
+#error in segv_handler: incomplete port under defined(__i386)
+#endif
+#elif	defined(_IBMR2)
+			if (scp->sc_jmpbuf.jmp_context.except[1] & DSISR_ST)
+#elif	defined(__mips)
+			if (scp->sc_cause & EXC_CODE(1))
+#elif	defined(__sparc)
+#if	defined(__sun) && defined(__SVR4)
+			if (*(unsigned *) uap->uc_mcontext.gregs[REG_PC] & (1 << 21))
+#else
+			if (*(unsigned *) scp->sc_pc & (1 << 21))
+#endif
+#else
+#error in segv_handler: incomplete port
+#endif
+				goto write_access;
+			else
+				if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ))
+					Tmk_perrexit("<mprotect>segv_handler");
+		}
+#if defined(MPL)
+		sigio_mutex(SIG_UNBLOCK, &mask, NULL);
+#endif
+	}
+	else {
+		struct	sigaction sa;
+
+		sa.sa_flags = 0;
+		sa.sa_handler = SIG_DFL;
+
+		sigemptyset(&sa.sa_mask);
+
+		sigaction(SIGBUS_or_SEGV, &sa, NULL);
+
+		/*
+		 * To obtain a complete core file, TreadMarks must unprotect all of shared memory.
+		 */
+		if (0 > mprotect(page_array_[0].vadr, Tmk_npages*Tmk_page_size, PROT_READ))
+			Tmk_perrexit("<mprotect>segv_handler");
+	}
+}
+
+void	Tmk_segv_initialize( void )
+{
+	struct	sigaction sa;
+
+#if	defined(__sun) && defined(__SVR4)	/* both i386 and sparc */
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = (void (*)(int, siginfo_t *, void *)) segv_handler;
+#else
+	sa.sa_flags = 0;
+	sa.sa_handler = (void (*)(int)) segv_handler;
+#endif
+	sigemptyset(&sa.sa_mask);
+#if ! defined(MPL)
+	sigaddset(&sa.sa_mask, SIGALRM);
+	sigaddset(&sa.sa_mask, SIGIO);
+#endif
+	sigaction(SIGBUS_or_SEGV, &sa, NULL);
+}
+@
+
+
+11.16
+log
+@Changed Tmk_twin_alloc_and_copy to improve clarity.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.15 1998/03/07 18:07:33 alc Exp alc $
+d247 2
+a248 1
+ *
+@
+
+
+11.15
+log
+@Use "__inline__" instead of the register-based parameter passing.  It's
+smaller and faster.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.14 1998/03/02 04:13:16 alc Exp alc $
+d280 1
+a280 1
+		twin_free_list = *(caddr_t *)(page->twin = twin);
+d282 1
+a282 1
+		if ((page->twin = malloc(Tmk_page_size)) == NULL)
+d287 3
+a289 1
+	page_copy(page->twin, page->vadr);
+@
+
+
+11.14
+log
+@Delete twin_alloc.  Use Tmk_twin_alloc_and_copy.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.13 1997/12/14 05:49:13 alc Exp alc $
+d156 1
+a156 1
+static	void	page_copy(caddr_t twin, caddr_t vadr) __attribute__((regparm(2)));
+@
+
+
+11.13
+log
+@Use "long long" instead of "double" in the HPPA and SPARC page copy
+routine.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.12 1997/11/09 00:40:18 alc Exp alc $
+a114 24
+static	caddr_t	twin_free_list;
+
+/*
+ * Should insure that the twin and the original don't collide in the cache.
+ *
+ * N.B.  We never fault inside malloc.  Otherwise, this code wouldn't work.
+ */
+static	caddr_t	twin_alloc( void )
+{
+	caddr_t	twin = twin_free_list;
+
+	if (twin)
+		twin_free_list = *(caddr_t *) twin;
+	else {
+		twin = malloc(Tmk_page_size);
+
+		if (twin == 0)
+			Tmk_errexit("<malloc>twin_alloc: out of memory/swap\n");
+
+		Tmk_stat.twins++;
+	}
+	return twin;
+}
+
+d246 44
+d365 1
+a365 3
+				page->twin = twin_alloc();
+
+				page_copy(page->twin, page->vadr);
+a447 23
+
+void	Tmk_free_twin(page)
+	page_t		page;
+{
+	caddr_t	       *twin = (caddr_t *) page->twin;
+
+	page->twin = 0;
+
+	*twin = twin_free_list;
+
+	twin_free_list = (caddr_t) twin;
+}
+
+/*
+ * Called by Tmk_mmap.
+ */
+void	Tmk_twin_alloc_and_copy(page)
+	page_t		page;
+{
+	page->twin = twin_alloc();
+  
+	page_copy(page->twin, page->vadr);
+}     
+@
+
+
+11.12
+log
+@HPUX 10.x uses SIGSEGV instead of SIGBUS.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.11 1997/09/07 17:14:20 alc Exp alc $
+d149 3
+a151 3
+	double *twin_    = (double *) twin;
+	double *vadr_    = (double *) vadr;
+	double *vadr_end = (double *)(vadr + Tmk_page_size);
+d154 8
+a161 8
+		double value0 = vadr_[0];
+		double value1 = vadr_[1];
+		double value2 = vadr_[2];
+		double value3 = vadr_[3];
+		double value4 = vadr_[4];
+		double value5 = vadr_[5];
+		double value6 = vadr_[6];
+		double value7 = vadr_[7];
+@
+
+
+11.11
+log
+@Modified segv_handler to hide the details of the ownership protocol
+in Tmk_ownership request.  In short, "page->owner" isn't accessed
+outside of "ownership.c".
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.10 1997/09/06 06:10:36 alc Exp alc $
+d105 1
+a105 1
+#if	defined(__hpux) || defined(__FreeBSD__)
+@
+
+
+11.10
+log
+@Made BSD/OS-specific changes.  N.B. Read and write faults
+aren't correctly differentiated on BSD/OS.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.9 1997/08/18 21:08:50 alc Exp alc $
+d335 1
+a335 1
+				if (page->owner != Tmk_proc_id) {
+d337 1
+a337 4
+					if ((page->writer != Tmk_proc_id) && Tmk_ownership_request(page))
+						page->owner = Tmk_proc_id;
+					else {
+						page->proto = multiple_writer;
+d339 1
+a339 2
+						goto twin;
+					}
+@
+
+
+11.9
+log
+@Added an optimization to page_copy for machines with page mode
+access memories.  Specifically, preload the cache.
+
+Recoded page_copy to eliminate the hairy #if defined's.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.8 1997/08/07 19:11:11 alc Exp alc $
+d91 1
+a91 1
+#elif	defined(__FreeBSD__)
+d296 3
+a298 1
+#if	defined(__FreeBSD__)
+d384 4
+a387 2
+#if	defined(__FreeBSD__)
+			if (code & (PGEX_W << 5))
+@
+
+
+11.8
+log
+@Added twin count to the statistics.  (Identical to revision 10.10.1.2.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.7 1997/07/27 19:27:01 alc Exp alc $
+a138 1
+#if	defined(__hppa) || (defined(P5) && defined(__GNUC__)) || defined(__sparc)
+d140 2
+a141 4
+ * An optimized page copy function for the HP PA, Pentium, and SPARC.  The Pentium
+ * version requires gcc.
+ *
+ * Caveat: This function is slower on the Intel 486 and Pentium Pro than rep/movsl.
+d143 1
+d149 3
+a151 10
+	double *vadr_ = (double *) vadr;
+	double *twin_ = (double *) twin;
+
+	int	bytes = Tmk_page_size;
+
+#if	defined(__GNUC__) && defined(__i386)
+
+	struct	fpu	{
+		char	state[108];
+	}	fpu;
+a152 2
+	asm ("fsave %0" : "=m" (fpu));
+#endif
+a153 12
+
+#if	defined(__GNUC__) && defined(__i386)
+
+		asm ("fildq %0" : : "m" (vadr_[0]));
+		asm ("fildq %0" : : "m" (vadr_[1]));
+		asm ("fildq %0" : : "m" (vadr_[2]));
+		asm ("fildq %0" : : "m" (vadr_[3]));
+		asm ("fildq %0" : : "m" (vadr_[4]));
+		asm ("fildq %0" : : "m" (vadr_[5]));
+		asm ("fildq %0" : : "m" (vadr_[6]));
+		asm ("fildq %0" : : "m" (vadr_[7]));
+#else
+d162 1
+a162 1
+#endif
+a164 11
+#if	defined(__GNUC__) && defined(__i386)
+
+		asm ("fistpq %0" : "=m" (twin_[7]));
+		asm ("fistpq %0" : "=m" (twin_[6]));
+		asm ("fistpq %0" : "=m" (twin_[5]));
+		asm ("fistpq %0" : "=m" (twin_[4]));
+		asm ("fistpq %0" : "=m" (twin_[3]));
+		asm ("fistpq %0" : "=m" (twin_[2]));
+		asm ("fistpq %0" : "=m" (twin_[1]));
+		asm ("fistpq %0" : "=m" (twin_[0]));
+#else
+d173 8
+d182 72
+a253 1
+		twin_ += 8;
+d255 1
+a255 1
+	} while (bytes -= 8*sizeof(*vadr_));
+d257 5
+a261 1
+#if	defined(__GNUC__) && defined(__i386)
+d263 2
+a264 1
+	asm ("frstor %0" : : "m" (fpu));
+a265 1
+}
+@
+
+
+11.7
+log
+@Disable the hand-crafted page copy for the x86 unless the processor is
+a Pentium or Pentium MMX.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.6 1997/07/09 21:40:28 alc Exp alc $
+d133 2
+@
+
+
+11.6
+log
+@Use the new page states.  Rename "page->mode" to "page->proto".
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.5 1997/06/26 22:40:44 alc Exp alc $
+d111 3
+d137 1
+a137 1
+#if	defined(__hppa) || (defined(__GNUC__) && defined(__i386)) || defined(__sparc)
+d139 2
+a140 1
+ * An optimized page copy function for the HP PA, Pentium, and SPARC
+d142 1
+a142 1
+ * Caveat: This function is slower on the Intel486 than rep/movsl.
+@
+
+
+11.5
+log
+@Delete "page->time".  Set "page->vector_time_" == NULL to show
+that a single-writer page is modified and requires the creation
+of a write notice.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.4 1997/06/26 04:05:28 alc Exp alc $
+d274 1
+a274 1
+		if (page->state == valid) {
+d276 1
+a276 1
+			if (page->mode == single_writer) {
+d283 1
+a283 1
+						page->mode = multi_writer;
+d288 1
+a288 3
+				page->state = private;
+
+				page->vector_time_ = NULL;
+d302 5
+a306 1
+			if (page->state == empty) {
+d310 1
+a310 1
+				Tmk_local_diff_check(page);
+@
+
+
+11.4
+log
+@Added call to Tmk_local_diff_check: After fetching a full page,
+see if any diffs must be reapplied.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.3 1997/06/25 18:35:55 alc Exp alc $
+d289 2
+a290 1
+				page->time = -1;
+@
+
+
+11.3
+log
+@Replaced "page->manager" by "page->writer".
+
+Added check for local last write before remote ownership request.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.2 1997/06/09 05:30:22 alc Exp alc $
+d303 2
+a304 1
+			if (page->state == empty)
+d307 2
+@
+
+
+11.2
+log
+@Modified segv_handler to adapt on write faults to invalid pages.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 11.1 1997/06/06 05:03:29 alc Exp alc $
+d278 1
+a278 1
+				if (page->manager != Tmk_proc_id) {
+d280 2
+a281 2
+					if (Tmk_ownership_request(page))
+						page->manager = Tmk_proc_id;
+d288 2
+a289 1
+				page->vers_no++;
+@
+
+
+11.1
+log
+@Modified to support the adaptive protocol: Request ownership
+of single writer pages on a write.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10 1997/03/16 20:45:36 alc Exp alc $
+d275 1
+a275 1
+
+d342 1
+a342 1
+				goto twin;
+@
+
+
+10.10
+log
+@Made considerable changes to the architecture/operating system-specific
+#ifdef's.  In particular, added support for Solaris/x86 and Linux/Alpha.
+The Linux/Alpha support won't work until Linux provides a complete
+sigcontext.  Eliminated Ultrix support.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.9 1997/03/08 19:51:31 alc Exp alc $
+d275 16
+d292 1
+a292 3
+			page->twin = twin_alloc();
+
+			page_copy(page->twin, page->vadr);
+d294 2
+@
+
+
+10.10.1.1
+log
+@Added basic Pthreads support.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10 1997/03/16 20:45:36 alc Exp alc $
+a270 5
+#if defined(PTHREADS)
+		pthread_mutex_lock(&Tmk_monitor_lock);
+
+		pthread_mutex_lock(&Tmk_sigio_lock);
+#else
+d273 1
+a273 1
+#endif
+a274 45
+#if defined(PTHREADS)
+			/*
+			 * Two or more threads might write page fault
+			 * on the page (nearly) simultaneously.  If the twin
+			 * exists, ignore the page fault.
+			 */
+			if (page->twin)
+				goto unlock_and_return;
+
+			/*
+			 * If a write access caused the page fault, ...
+			 */
+#if	defined(__alpha)
+#if	defined(__linux) || defined(__osf__)
+			else if (*(unsigned *) scp->sc_pc & (1 << 28)) {
+#else
+#error in segv_handler: incomplete port under defined(__alpha)
+#endif
+#elif	defined(__hppa)
+			else if (((scp->sc_sl.sl_ss.ss_cr19 & 3758096384) == 1610612736) ||
+				 ((scp->sc_sl.sl_ss.ss_cr19 & 512) == 512)) {
+#elif	defined(__i386)
+#if	defined(__FreeBSD__)
+			else if (code & (PGEX_W << 5)) {
+#elif	defined(__linux) 
+			else if (scs.err & 2) {
+#elif	defined(__sun) && defined(__SVR4)
+			else if (uap->uc_mcontext.gregs[ERR] & PF_ERR_WRITE) {
+#else
+#error in segv_handler: incomplete port under defined(__i386)
+#endif
+#elif	defined(_IBMR2)
+			else if (scp->sc_jmpbuf.jmp_context.except[1] & DSISR_ST) {
+#elif	defined(__mips)
+			else if (scp->sc_cause & EXC_CODE(1)) {
+#elif	defined(__sparc)
+#if	defined(__sun) && defined(__SVR4)
+			else if (*(unsigned *) uap->uc_mcontext.gregs[REG_PC] & (1 << 21)) {
+#else
+			else if (*(unsigned *) scp->sc_pc & (1 << 21)) {
+#endif
+#else
+#error in segv_handler: incomplete port
+#endif
+#endif
+a276 2
+#if defined(PTHREADS)
+			page_copy(page->twin, page->v_alias);
+a277 3
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+				Tmk_perrexit("segv_handler<mprotect>");
+#else			
+d279 1
+a279 1
+#endif
+a280 6
+#if defined(PTHREADS)
+			}
+			/*
+			 * else ignore the page fault.
+			 */
+#endif
+a330 6
+#if defined(PTHREADS)
+	unlock_and_return:
+		pthread_mutex_unlock(&Tmk_sigio_lock);
+
+		pthread_mutex_unlock(&Tmk_monitor_lock);
+#endif
+@
+
+
+10.10.1.2
+log
+@Added twin count to the statistics.  (Don't bother checking tmk_stat_flag
+for cheap to collect statistics.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.1 1997/07/22 18:31:43 alc Exp alc $
+a129 2
+
+		Tmk_stat.twins++;
+@
+
+
+10.10.1.3
+log
+@Disable the hand-crafted page copy for the x86 unless the processor is
+a Pentium or Pentium MMX.  (Identical to revision 11.7.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.2 1997/07/22 19:16:09 alc Exp alc $
+a110 3
+#if	defined(__i386)
+#	define	p5	/* Capitalize the "p" only if you're using a Pentium (MMX). */
+#endif
+d136 1
+a136 1
+#if	defined(__hppa) || (defined(P5) && defined(__GNUC__)) || defined(__sparc)
+d138 1
+a138 2
+ * An optimized page copy function for the HP PA, Pentium, and SPARC.  The Pentium
+ * version requires gcc.
+d140 1
+a140 1
+ * Caveat: This function is slower on the Intel 486 and Pentium Pro than rep/movsl.
+@
+
+
+10.10.1.4
+log
+@Added an optimization to page_copy for machines with page mode
+access memories.  Specifically, preload the cache.
+
+Recoded page_copy to eliminate the hairy #if defined's.
+
+(Identical to revision 11.9.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.3 1997/07/27 19:39:06 alc Exp alc $
+d139 1
+d141 4
+a144 2
+ * An optimized page copy function for the HP PA, Pentium, Pentium Pro,
+ * and SPARC.  The Pentium version requires gcc.
+a145 1
+#if	defined(__hppa) || defined(__sparc)
+d151 10
+a160 3
+	double *twin_    = (double *) twin;
+	double *vadr_    = (double *) vadr;
+	double *vadr_end = (double *)(vadr + Tmk_page_size);
+d162 2
+d165 12
+d185 2
+d188 1
+a188 1
+		vadr_ += 8;
+d190 9
+d207 1
+a207 1
+
+d210 1
+a210 49
+	} while (vadr_ != vadr_end);
+}
+#elif	defined(__i386)
+#if	defined(__GNUC__)
+static	void	page_copy(caddr_t twin, caddr_t vadr) __attribute__((regparm(2)));
+#endif
+#if	defined(P5) && defined(__GNUC__)
+static	void	page_copy(caddr_t twin, caddr_t vadr)
+{
+	struct	{
+		char	state[108];
+	}	fpu;
+
+	asm volatile ("fsave %0" : "=m" (fpu));
+	{
+		double *twin_    = (double *) twin;
+		double *vadr_    = (double *) vadr;
+		double *vadr_end = (double *)(vadr + Tmk_page_size);
+		volatile
+		int    *tadr     = (int *) vadr;
+
+		/*
+		 * Preload the page into the cache to take advantage
+		 * of page mode access.
+		 */
+		do
+			*tadr;
+		while ((tadr += 32/sizeof(*tadr)) != (int *) vadr_end);
+
+		do {
+			asm volatile ("fildq %0" : : "m" (vadr_[0]));
+			asm volatile ("fildq %0" : : "m" (vadr_[1]));
+			asm volatile ("fildq %0" : : "m" (vadr_[2]));
+			asm volatile ("fildq %0" : : "m" (vadr_[3]));
+			asm volatile ("fildq %0" : : "m" (vadr_[4]));
+			asm volatile ("fildq %0" : : "m" (vadr_[5]));
+			asm volatile ("fildq %0" : : "m" (vadr_[6]));
+			asm volatile ("fildq %0" : : "m" (vadr_[7]));
+
+			vadr_ += 8;
+
+			asm volatile ("fistpq %0" : "=m" (twin_[7]));
+			asm volatile ("fistpq %0" : "=m" (twin_[6]));
+			asm volatile ("fistpq %0" : "=m" (twin_[5]));
+			asm volatile ("fistpq %0" : "=m" (twin_[4]));
+			asm volatile ("fistpq %0" : "=m" (twin_[3]));
+			asm volatile ("fistpq %0" : "=m" (twin_[2]));
+			asm volatile ("fistpq %0" : "=m" (twin_[1]));
+			asm volatile ("fistpq %0" : "=m" (twin_[0]));
+d212 1
+a212 1
+			twin_ += 8;
+d214 2
+a215 36
+		} while (vadr_ != vadr_end);
+	}
+	asm volatile ("frstor %0" : : "m" (fpu));
+}
+#else
+static	void	page_copy(caddr_t twin, caddr_t vadr)
+{
+	int    *twin_    = (int *) twin;
+	int    *vadr_    = (int *) vadr;
+	int    *vadr_end = (int *)(vadr + Tmk_page_size);
+	volatile
+	int    *tadr     = (int *) vadr;
+
+	/*
+	 * Preload the page into the cache to take advantage
+	 * of page mode access.
+	 */
+	do
+		*tadr;
+	while ((tadr += 32/sizeof(*tadr)) != vadr_end);
+
+	do {
+		int	value0 = vadr_[0];
+		int	value1 = vadr_[1];
+		int	value2 = vadr_[2];
+		int	value3 = vadr_[3];
+
+		vadr_ += 4;
+
+		twin_[0] = value0;
+		twin_[1] = value1;
+		twin_[2] = value2;
+		twin_[3] = value3;
+		twin_ += 4;
+
+	} while (vadr_ != vadr_end);
+a216 1
+#endif
+@
+
+
+10.10.1.5
+log
+@Made BSD/OS-specific changes.  N.B. Read and write faults
+aren't correctly differentiated on BSD/OS.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.4 1997/08/18 21:16:59 alc Exp alc $
+d91 1
+a91 1
+#elif	defined(__bsdi) || defined(__FreeBSD__)
+d296 1
+a296 3
+#if	defined(__bsdi)
+	unsigned i = ((caddr_t) scp->sc_ap - page_array_[0].vadr) >> page_shift;	/* non-standard: kernel modification */
+#elif	defined(__FreeBSD__)
+d357 2
+a358 4
+#if	defined(__bsdi)
+			else if (0) {	/* bsdi: XXX */
+#elif	defined(__FreeBSD__)
+			else if (code & (PGEX_W << 5)) {	/* non-standard: kernel modification */
+d420 2
+a421 4
+#if	defined(__bsdi)
+			if (0)	/* bsdi: XXX */
+#elif	defined(__FreeBSD__)
+			if (code & (PGEX_W << 5))	/* non-standard: kernel modification */
+@
+
+
+10.10.1.6
+log
+@HPUX 10.x uses SIGSEGV instead of SIGBUS.  (Identical to revision 11.12.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.5 1997/09/06 06:45:00 alc Exp alc $
+d105 1
+a105 1
+#if	defined(__FreeBSD__)
+@
+
+
+10.10.1.7
+log
+@Use "long long" instead of "double" in the HPPA and SPARC page copy
+routine.  (Identical to revision 11.13.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.6 1997/11/09 00:41:12 alc Exp alc $
+d149 3
+a151 3
+	long long *twin_    = (long long *) twin;
+	long long *vadr_    = (long long *) vadr;
+	long long *vadr_end = (long long *)(vadr + Tmk_page_size);
+d154 8
+a161 8
+		long long value0 = vadr_[0];
+		long long value1 = vadr_[1];
+		long long value2 = vadr_[2];
+		long long value3 = vadr_[3];
+		long long value4 = vadr_[4];
+		long long value5 = vadr_[5];
+		long long value6 = vadr_[6];
+		long long value7 = vadr_[7];
+@
+
+
+10.10.1.8
+log
+@Delete twin_alloc.  Use Tmk_twin_alloc_and_copy.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.7 1997/12/14 05:49:57 alc Exp alc $
+d115 24
+a269 48
+/*
+ *
+ */
+static
+caddr_t	twin_free_list;
+
+/*
+ *
+ */
+void	Tmk_free_twin(page)
+	page_t		page;
+{
+	caddr_t	       *twin = (caddr_t *) page->twin;
+
+	page->twin = 0;
+
+	*twin = twin_free_list;
+
+	twin_free_list = (caddr_t) twin;
+}
+
+/*
+ * Should insure that the twin and the original don't collide in the cache.
+ *
+ * N.B.  We never fault inside malloc.  Otherwise, this code wouldn't work.
+ *
+ * Called by segv_handler and Tmk_mmap.
+ */
+void	Tmk_twin_alloc_and_copy(page)
+	page_t		page;
+{
+	caddr_t		twin = twin_free_list;
+
+	if (twin)
+		twin_free_list = *(caddr_t *)(page->twin = twin);
+	else {
+		if ((page->twin = malloc(Tmk_page_size)) == NULL)
+			Tmk_errexit("<malloc>twin_alloc: out of memory/swap\n");
+
+		Tmk_stat.twins++;
+	}
+#if	defined(PTHREADS)
+	page_copy(page->twin, page->v_alias);
+#else
+	page_copy(page->twin, page->vadr);
+#endif
+}     
+
+d385 4
+a388 2
+			Tmk_twin_alloc_and_copy(page);
+#if	defined(PTHREADS)
+d391 2
+d395 1
+a395 1
+#if	defined(PTHREADS)
+d481 12
+d494 1
+a494 1
+ *
+d496 8
+@
+
+
+10.10.1.9
+log
+@PTHREADS only.  Reorder Tmk_twin_alloc_and_copy and mprotect
+to improve clarity.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.8 1998/03/01 23:32:12 alc Exp alc $
+d410 4
+a413 1
+
+a415 2
+				if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+					Tmk_perrexit("segv_handler<mprotect>");
+@
+
+
+10.10.1.10
+log
+@Set the page's state to valid in the segv_handler instead of diff_request
+for consistency with version 1.1+.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.9 1998/03/01 23:43:25 alc Exp alc $
+a426 2
+
+			page->state = valid;
+@
+
+
+10.10.1.11
+log
+@Use "__inline__" instead of the register-based parameter passing.  It's
+smaller and faster.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.10 1998/03/02 04:45:00 alc Exp alc $
+d156 1
+a156 1
+__inline__
+@
+
+
+10.10.1.12
+log
+@Changed Tmk_twin_alloc_and_copy to improve clarity.
+(Identical to revision 11.16.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.11 1998/03/07 18:03:53 alc Exp alc $
+d280 1
+a280 1
+		twin_free_list = *(caddr_t *) twin;
+d282 1
+a282 1
+		if ((twin = malloc(Tmk_page_size)) == NULL)
+a286 1
+	page->twin = twin;
+d288 1
+a288 1
+	page_copy(twin, page->v_alias);
+d290 1
+a290 1
+	page_copy(twin, page->vadr);
+@
+
+
+10.10.1.13
+log
+@Added a comment to twin_free_list.
+(Identical to revision 11.17.)
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.12 1998/03/07 18:22:16 alc Exp alc $
+d247 1
+a247 2
+ * The twin free list is managed in LIFO order, like a stack.  Hopefully,
+ * this results in decent temporal locality.
+@
+
+
+10.10.1.14
+log
+@Add a cast to segv_handler for SunOS 5.6 on i386 and sparc.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.13 1998/03/07 18:33:38 alc Exp alc $
+d329 1
+a329 1
+	unsigned i = ((caddr_t) sip->si_addr - page_array_[0].vadr) >> page_shift;
+d339 1
+a339 1
+	unsigned i = ((caddr_t) sip->si_addr - page_array_[0].vadr) >> page_shift;
+@
+
+
+10.10.1.15
+log
+@Rename "Tmk_free_twin" to "Tmk_twin_free" for consistency
+with the rest of the interface.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.14 1998/04/04 20:00:23 alc Exp alc $
+d46 2
+a47 2
+ *			Tmk_twin_alloc_and_copy,
+ *			Tmk_twin_free
+d256 2
+a257 3
+void
+Tmk_twin_free(
+	page_t		page)
+d275 2
+a276 3
+void
+Tmk_twin_alloc_and_copy(
+	page_t		page)
+@
+
+
+10.10.1.16
+log
+@Use memcpy for copying pages on the Pentium II.  The preload loop
+to leverage page mode access isn't (really) needed.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.15 1998/05/10 05:06:23 alc Exp alc $
+a112 1
+#	define	P6_MXX	/* Capitalize the "p" only if you're using a Pentium II. */
+a154 3
+#if	defined(P6_MMX)
+#	define	page_copy(twin, vadr)	memcpy((twin), (vadr), Tmk_page_size)
+#else
+a240 1
+#endif
+@
+
+
+10.10.1.17
+log
+@Mostly stylistic changes.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.16 1998/07/14 03:42:38 alc Exp alc $
+a110 4
+#if   ! defined(__GNUC__)
+#	define	__inline__
+#endif
+
+d121 1
+d123 1
+d159 1
+d161 2
+a163 1
+#if	defined(P5) && defined(__GNUC__)
+d213 1
+@
+
+
+10.10.1.18
+log
+@Corrected a misspelling in revision 10.10.1.16.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.17 1998/07/14 04:08:39 alc Exp alc $
+d117 1
+a117 1
+#	define	P6_MMX	/* Capitalize the "p" only if you're using a Pentium II. */
+@
+
+
+10.10.1.19
+log
+@Distinguish the Pentium Pro page copy from the others.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.18 1998/07/14 04:27:30 alc Exp alc $
+a116 1
+#	define	p6_PRO	/* Capitalize the "p" only if you're using a Pentium Pro. */
+a227 1
+#if	defined(P6_PRO)
+a242 3
+#else
+	memcpy(twin_, vadr_, Tmk_page_size);
+#endif
+@
+
+
+10.10.1.20
+log
+@Changed the definition of "page_t".  The new definition enables
+the use of "const" page pointers.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.10.1.19 1998/07/14 05:53:53 alc Exp alc $
+d267 1
+a267 1
+	page_t	       *page)
+d287 1
+a287 1
+	page_t	       *page)
+d359 1
+a359 1
+		page_t *page = &page_array_[i];
+@
+
+
+10.9
+log
+@Moved #include <asm/sigcontext.h> here from linux.h.  I don't know
+if this file exists under Linux 1.2.13.  We used to include
+asm/signal.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.8 1997/03/07 23:43:26 alc Exp alc $
+d96 1
+a96 2
+#elif	defined(__mips)
+#if	defined(__sgi)
+d98 4
+a101 4
+#elif	defined(__ultrix)
+#include <mips/cpu.h>
+#else
+#error in defined(__mips)
+a102 2
+#elif	defined(__sun) && defined(__SVR4)
+#include <ucontext.h>
+d215 1
+a215 1
+#if	defined(__sun) && defined(__SVR4)
+d220 1
+a220 1
+#elif	defined(__linux)
+d233 1
+d235 3
+d240 2
+a241 5
+#elif	defined(__mips)
+	unsigned i = ((caddr_t) scp->sc_badvaddr - page_array_[0].vadr) >> page_shift;
+#elif	defined(_IBMR2)
+	unsigned i = (scp->sc_jmpbuf.jmp_context.o_vaddr - (ulong_t) page_array_[0].vadr) >> page_shift;
+#elif	defined(__FreeBSD__) || (defined(__sun) && ! defined(__SVR4))
+a243 1
+#if	defined(__i386)
+d245 2
+d248 1
+a248 1
+#error in segv_handler: incomplete port under defined(__linux)
+d250 6
+a255 1
+#elif	defined(__sun) && defined(__SVR4)
+d258 3
+d295 1
+d297 3
+d308 2
+d313 2
+d317 2
+a318 3
+#elif	defined(_IBMR2)
+			if (scp->sc_jmpbuf.jmp_context.except[1] & DSISR_ST)
+#elif	defined(__sparc) && defined(__SVR4)
+d320 1
+a320 1
+#elif	defined(__sparc) && ! defined(__SVR4)
+d322 1
+d380 1
+a380 1
+#if defined(__sun) && defined(__SVR4)
+@
+
+
+10.8
+log
+@Moved SIGBUS_or_SEGV definition to this file from Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.7 1997/03/07 06:23:06 alc Exp alc $
+d94 2
+@
+
+
+10.7
+log
+@Added a cast to the segv initialization to pacify the Solaris compiler.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.6 1997/02/21 17:38:24 alc Exp alc $
+d105 7
+@
+
+
+10.6
+log
+@Modified the includes to maintain compatibility between FreeBSD v2.1.x
+and v2.2.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.5 1997/01/10 16:49:05 alc Exp alc $
+d358 1
+a358 1
+	sa.sa_sigaction = segv_handler;
+d361 1
+a361 1
+	sa.sa_handler = (void (*)()) segv_handler;
+@
+
+
+10.5
+log
+@Added Tmk_twin_alloc_and_copy for use by Tmk_mmap.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.4 1996/09/22 23:33:46 alc Exp alc $
+d92 2
+a93 1
+#include <machine/pte.h>
+@
+
+
+10.4
+log
+@Added MPL support from the 10.1.4 branch: Added explicit synchronization
+to the segv handler.  Eliminated signal masking from the initialization
+procedure.
+@
+text
+@d39 1
+a39 1
+ * $Id: segv.c,v 10.3 1996/08/08 18:29:47 alc Exp alc $
+d47 1
+d340 12
+a351 1
+void	Tmk_segv_initialize()
+@
+
+
+10.3
+log
+@Changed page_dirty list and intervals to use ranges.  (Imported
+from the 10.1.2 branch.)
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d248 2
+d251 2
+d305 3
+d351 1
+d354 1
+a354 1
+
+@
+
+
+10.2
+log
+@Replace "page->valid" and "page->empty" with "page->state".
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		segv.c
+d85 1
+a85 4
+ *
+ * $Id: segv.c,v 10.1 1996/05/27 04:43:23 alc Rel alc $
+ *
+ *****************************************************************************/
+a254 2
+			page->next = page_dirty;
+			page_dirty = page;
+d257 2
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d84 1
+a84 1
+ * $Id: segv.c,v 10.0.2.6 1996/05/19 04:14:02 alc Exp $
+d253 1
+a253 1
+		if (page->valid) {
+d265 1
+a265 1
+			if (page->empty)
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@d37 2
+a38 4
+
+/*
+ * $Id: segv.c,v 10.1 1996/05/27 04:43:23 alc Rel alc $
+ *
+d83 4
+a86 1
+ */
+a94 3
+#if	defined(IP21)
+#define	TFP	1
+#endif
+@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@a82 2
+ *	29-Jul-1996	Rob Fowler	IBM MPL version explicitly blocks
+ *					and unblocks async. messages.
+d84 1
+a84 1
+ * $Id: segv.c,v 10.1.5.2 1996/06/27 23:05:15 tmiller Exp $
+a245 3
+#if defined(THREADS)
+	int read_protect = 1;
+#endif
+d247 1
+a249 9
+#if defined(MPL)
+		sigset_t mask;
+		sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+#endif
+
+#if defined(THREADS)
+		pthread_mutex_lock(&monitor_lock);
+		pthread_mutex_lock(&sigio_lock);
+#else		
+d252 1
+a252 1
+#endif
+d254 6
+a259 10
+#if defined(THREADS)
+			if (page->twin) {
+				pthread_mutex_unlock(&sigio_lock);
+				pthread_mutex_unlock(&monitor_lock);
+				return;
+			}
+			read_protect = 0;
+#else
+			goto twin;
+#endif
+d269 4
+a272 4
+		}
+		/*
+		 * If a write access caused the page fault, ...
+		 */
+d274 1
+a274 1
+		if (*(unsigned *) scp->sc_pc & (1 << 28))
+d276 1
+a276 1
+		if (((scp->sc_sl.sl_ss.ss_cr19 & 3758096384) == 1610612736) ||
+d280 1
+a280 1
+		if (code & (PGEX_W << 5))
+d282 1
+a282 1
+		if (scs.err & 2)
+d287 1
+a287 1
+		if (scp->sc_cause & EXC_CODE(1))
+d289 1
+a289 1
+		if (scp->sc_jmpbuf.jmp_context.except[1] & DSISR_ST)
+d291 1
+a291 1
+		if (*(unsigned *) uap->uc_mcontext.gregs[REG_PC] & (1 << 21))
+d293 1
+a293 1
+		if (*(unsigned *) scp->sc_pc & (1 << 21))
+d297 2
+a298 18
+		{
+		twin:
+			page->twin = twin_alloc();
+			page->next = page_dirty;
+			page_dirty = page;
+#if defined(THREADS)
+			page_copy(page->twin, page->v_alias);
+
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+				Tmk_perrexit("<mprotect>segv_handler");
+#else			
+			page_copy(page->twin, page->vadr);
+#endif			
+		}
+		else {
+#if defined(THREADS)
+			if (read_protect)
+#endif
+a301 10
+#if defined(THREADS)
+		pthread_mutex_unlock(&sigio_lock);
+		pthread_mutex_unlock(&monitor_lock);
+#endif
+
+#if defined(MPL)
+	    sigio_mutex(SIG_UNBLOCK, &mask, NULL, UNLOCK);
+#endif
+
+
+a344 1
+#if !defined(MPL)
+d347 1
+a347 1
+#endif
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@d84 1
+a84 1
+ * $Id: segv.c,v 10.1 1996/05/27 04:43:23 alc Rel $
+a249 1
+#if ! defined(THREADS)
+d252 1
+a252 1
+#endif
+a258 6
+#if defined(THREADS)
+			page_copy(page->twin, page->v_alias);
+
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+                                Tmk_perrexit("<mprotect>segv_handler");
+#else			
+a259 1
+#endif			
+@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@d84 1
+a84 1
+ * $Id: segv.c,v 10.1.5.1 1996/06/27 16:38:16 tmiller Exp tmiller $
+a245 3
+#if defined(THREADS)
+	int read_protect = 1;
+#endif
+d250 1
+a250 4
+#if defined(THREADS)
+		pthread_mutex_lock(&monitor_lock);
+		pthread_mutex_lock(&sigio_lock);
+#else		
+d255 5
+d261 7
+a267 9
+			if (page->twin) {
+				pthread_mutex_unlock(&sigio_lock);
+				pthread_mutex_unlock(&monitor_lock);
+				return;
+			}
+			read_protect = 0;
+#else
+			goto twin;
+#endif
+d277 4
+a280 4
+		}
+		/*
+		 * If a write access caused the page fault, ...
+		 */
+d282 1
+a282 1
+		if (*(unsigned *) scp->sc_pc & (1 << 28))
+d284 1
+a284 1
+		if (((scp->sc_sl.sl_ss.ss_cr19 & 3758096384) == 1610612736) ||
+d288 1
+a288 1
+		if (code & (PGEX_W << 5))
+d290 1
+a290 1
+		if (scs.err & 2)
+d295 1
+a295 1
+		if (scp->sc_cause & EXC_CODE(1))
+d297 1
+a297 1
+		if (scp->sc_jmpbuf.jmp_context.except[1] & DSISR_ST)
+d299 1
+a299 1
+		if (*(unsigned *) uap->uc_mcontext.gregs[REG_PC] & (1 << 21))
+d301 1
+a301 1
+		if (*(unsigned *) scp->sc_pc & (1 << 21))
+d305 2
+a306 18
+		{
+		twin:
+			page->twin = twin_alloc();
+			page->next = page_dirty;
+			page_dirty = page;
+#if defined(THREADS)
+			page_copy(page->twin, page->v_alias);
+
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+				Tmk_perrexit("<mprotect>segv_handler");
+#else			
+			page_copy(page->twin, page->vadr);
+#endif			
+		}
+		else {
+#if defined(THREADS)
+			if (read_protect)
+#endif
+a309 4
+#if defined(THREADS)
+		pthread_mutex_unlock(&sigio_lock);
+		pthread_mutex_unlock(&monitor_lock);
+#endif
+@
+
+
+10.1.5.3
+log
+@Define TFP on the Power Challenge.  Without this, we don't properly
+differentiate loads from stores.
+@
+text
+@d84 1
+a84 1
+ * $Id: segv.c,v 10.1.5.2 1996/06/27 23:05:15 tmiller Exp alc $
+a94 3
+#if	defined(IP21)
+#define	TFP	1
+#endif
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@d84 1
+a84 3
+ *	 7-Jun-1996	Tim Miller	Changed dirty page list, intervals,
+ *					 release messages to use ranges
+ *					 of pages
+a85 2
+ * $Id: segv.c,v 10.1.1.2 1996/06/12 22:49:23 tmiller Exp $
+ *
+d115 1
+d256 3
+a258 2
+			Tmk_page_dirty_merge(page);
+			
+@
+
+
+10.0
+log
+@Tmk-0.10R: POSIX-compliant signals.  Solaris support.
+@
+text
+@d80 6
+d91 2
+d108 3
+a110 1
+ * Should insure that the twin and the original don't collide in the cache
+d118 1
+a118 1
+	else
+d121 3
+d127 82
+a208 1
+#if	defined(sun) && defined(__SVR4)
+d213 4
+d233 1
+a233 3
+#elif	defined(__FreeBSD__)
+	unsigned i = (vaddr - page_array_[0].vadr) >> page_shift;
+#elif	defined(__sun) && ! defined(__SVR4)
+d235 6
+a257 29
+#if defined(__hppa) || defined(__sparc)
+			{
+				volatile double *vadr_ = (double *) page->vadr;
+				volatile double *twin_ = (double *) page->twin;
+
+				int		 bytes = Tmk_page_size;
+
+				do {
+					double value0 = vadr_[0];
+					double value1 = vadr_[1];
+					double value2 = vadr_[2];
+					double value3 = vadr_[3];
+					double value4 = vadr_[4];
+					double value5 = vadr_[5];
+					double value6 = vadr_[6];
+					double value7 = vadr_[7];
+
+					vadr_ += 8;
+
+					twin_[0] = value0;
+					twin_[1] = value1;
+					twin_[2] = value2;
+					twin_[3] = value3;
+					twin_[4] = value4;
+					twin_[5] = value5;
+					twin_[6] = value6;
+					twin_[7] = value7;
+
+					twin_ += 8;
+d259 1
+a259 5
+				} while (bytes -= 8*sizeof(double));
+			}
+#else
+			memcpy(page->twin, page->vadr, Tmk_page_size);
+#endif
+d279 7
+a285 1
+			if (0)
+d291 1
+a291 1
+			if (0)
+@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@a78 2
+ *	
+ *	April-1996	Rob Fowler     Adapted for Linux 1.n.n/Intel x86
+a118 7
+
+#elif	defined(linux)
+
+static	void	segv_handler(sig, scs)
+       int		sig;
+       struct sigcontext_struct scs;
+
+a119 1
+
+a124 1
+
+a125 1
+
+a136 3
+#elif	defined(linux)
+	unsigned i = (scs.cr2 - (unsigned long) page_array_[0].vadr)
+	    >> page_shift;
+d209 1
+a209 3
+#elif	defined(linux)
+			if ( scs.err & 2 )
+#elif	defined(__i386) && defined(__FreeBSD__)
+@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.2
+log
+@Changed i386 to __i386.  Added read/write differentiation for __i386
+from 9.7.2 branch.
+@
+text
+@a84 2
+#elif	defined(__i386)
+#include <machine/pte.h>
+d114 1
+a114 1
+#if	defined(__sun) && defined(__SVR4)
+d135 3
+a137 1
+#elif	defined(__FreeBSD__) || (defined(__sun) && ! defined(__SVR4))
+d210 1
+a210 1
+			if (code & (PGEX_W << 5))
+@
+
+
+10.0.2.3
+log
+@Added read/write differentiation for __sparc Solaris.
+@
+text
+@d216 1
+a216 1
+			if (*(unsigned *) uap->uc_mcontext.gregs[REG_PC] & (1 << 21))
+@
+
+
+10.0.2.4
+log
+@Moved the optimized page copy for the HP PA and SPARC to a separate
+(inline) procedure (on the SPARC).  Added an optimized page copy
+for the Pentium.  (Changes brought over from revision 9.7.2.3.)
+@
+text
+@a79 2
+ * $Id$
+ *
+d102 1
+a102 3
+ * Should insure that the twin and the original don't collide in the cache.
+ *
+ * N.B.  We never fault inside malloc.  Otherwise, this code wouldn't work.
+a115 81
+#if	defined(__hppa) || (defined(__GNUC__) && defined(__i386)) || defined(__sparc)
+/*
+ * An optimized page copy function for the HP PA, Pentium, and SPARC
+ *
+ * Caveat: This function is slower on the Intel486 than rep/movsl.
+ */
+#if	defined(__GNUC__)
+__inline__
+#endif
+static	void	page_copy(caddr_t twin, caddr_t vadr)
+{
+	double *vadr_ = (double *) vadr;
+	double *twin_ = (double *) twin;
+
+	int	bytes = Tmk_page_size;
+
+#if	defined(__GNUC__) && defined(__i386)
+
+	struct	fpu	{
+		char	state[108];
+	}	fpu;
+
+	asm ("fsave %0" : "=m" (fpu));
+#endif
+	do {
+
+#if	defined(__GNUC__) && defined(__i386)
+
+		asm ("fildq %0" : : "m" (vadr_[0]));
+		asm ("fildq %0" : : "m" (vadr_[1]));
+		asm ("fildq %0" : : "m" (vadr_[2]));
+		asm ("fildq %0" : : "m" (vadr_[3]));
+		asm ("fildq %0" : : "m" (vadr_[4]));
+		asm ("fildq %0" : : "m" (vadr_[5]));
+		asm ("fildq %0" : : "m" (vadr_[6]));
+		asm ("fildq %0" : : "m" (vadr_[7]));
+#else
+		double value0 = vadr_[0];
+		double value1 = vadr_[1];
+		double value2 = vadr_[2];
+		double value3 = vadr_[3];
+		double value4 = vadr_[4];
+		double value5 = vadr_[5];
+		double value6 = vadr_[6];
+		double value7 = vadr_[7];
+#endif
+		vadr_ += 8;
+
+#if	defined(__GNUC__) && defined(__i386)
+
+		asm ("fistpq %0" : "=m" (twin_[7]));
+		asm ("fistpq %0" : "=m" (twin_[6]));
+		asm ("fistpq %0" : "=m" (twin_[5]));
+		asm ("fistpq %0" : "=m" (twin_[4]));
+		asm ("fistpq %0" : "=m" (twin_[3]));
+		asm ("fistpq %0" : "=m" (twin_[2]));
+		asm ("fistpq %0" : "=m" (twin_[1]));
+		asm ("fistpq %0" : "=m" (twin_[0]));
+#else
+		twin_[0] = value0;
+		twin_[1] = value1;
+		twin_[2] = value2;
+		twin_[3] = value3;
+		twin_[4] = value4;
+		twin_[5] = value5;
+		twin_[6] = value6;
+		twin_[7] = value7;
+#endif
+		twin_ += 8;
+
+	} while (bytes -= 8*sizeof(*vadr_));
+
+#if	defined(__GNUC__) && defined(__i386)
+
+	asm ("frstor %0" : : "m" (fpu));
+#endif
+}
+#else
+#	define	page_copy(twin, vadr)	memcpy((twin), (vadr), Tmk_page_size)
+#endif
+
+d156 27
+d184 7
+a190 1
+			page_copy(page->twin, page->vadr);
+@
+
+
+10.0.2.5
+log
+@Ported to Linux 1.2.13.  Changes provided by Robert J. Fowler.
+@
+text
+@d80 1
+a80 5
+ *	20-Apr-1996	Robert J. Fowler
+ *					Adapted for Linux 1.2.13/Intel x86
+ *	Version 0.10.1
+ *
+ * $Id: segv.c,v 10.0.2.4 1996/04/20 22:17:50 alc Exp alc $
+d87 1
+a87 1
+#elif	defined(__FreeBSD__)
+a205 4
+#elif	defined(__linux)
+static	void	segv_handler(sig, scs)
+	int		     sig;
+	struct	sigcontext_struct scs;
+a223 6
+#elif	defined(__linux)
+#if	defined(__i386)
+	unsigned i = ((caddr_t) scs.cr2 - page_array_[0].vadr) >> page_shift;
+#else
+#error in segv_handler: incomplete port under defined(__linux)
+#endif
+a261 1
+#if	defined(__FreeBSD__)
+a262 5
+#elif	defined(__linux) 
+			if (scs.err & 2)
+#else
+#error in segv_handler: incomplete port under defined(__i386)
+#endif
+@
+
+
+10.0.2.6
+log
+@Changed twin_alloc to check the return value from malloc.  (Change
+brought over from revision 9.7.2.4.)
+@
+text
+@d84 1
+a84 1
+ * $Id: segv.c,v 10.0.2.5 1996/04/20 22:33:51 alc Exp alc $
+d118 1
+a118 1
+	else {
+a120 3
+		if (twin == 0)
+			Tmk_errexit("<malloc>twin_alloc: out of memory/swap\n");
+	}
+@
+
+
+10.0.2.3.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.3.2.2
+log
+@Eliminated the mprotect operation at the front of the segv handler.  Enable
+write access only if the page is being written.  Furthermore, make the twin
+before the page is write-enabled.
+@
+text
+@d147 1
+a147 1
+#if ! defined(__sgi)
+d150 1
+a150 1
+#endif
+a187 5
+#elif defined(__sgi)
+			memcpy(page->twin, page->v_alias, Tmk_page_size);
+
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+				Tmk_perrexit("<mprotect>segv_handler");
+@
+
+
+10.0.2.3.2.3
+log
+@Added sigio locking inside the segv handler. <SMP>
+@
+text
+@d147 1
+a147 3
+#if   defined(__sgi)
+		spin_lock(&sigio_lock);	/* SMP */
+#else
+a231 3
+#if	defined(__sgi)
+		release_lock(&sigio_lock);	/* SMP */
+#endif
+@
+
+
+10.0.2.3.2.4
+log
+@Added "busy" (in transit) flag to the page structure.  Use this flag
+to avoid multiple requests for the same page.
+@
+text
+@a79 2
+ * $Id$
+ *
+a148 11
+
+		if (page->busy) {
+
+			release_lock(&sigio_lock);
+
+			while (page->busy);
+
+			return;
+		}
+		else
+			page->busy = 1;
+a234 2
+		page->busy = 0;
+
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d76 4
+d93 2
+d114 6
+d121 5
+a125 3
+	int	sig, code;
+	struct	sigcontext *scp;
+	char   *vaddr;
+d135 1
+a135 1
+#elif	defined(__FreeBSD__) || defined(__sun)
+d137 4
+d156 1
+a156 1
+#if defined(__hppa) || defined(sparc)
+d209 1
+a209 1
+#elif	defined(i386)
+d211 1
+a211 1
+#elif	defined(mips)
+d215 3
+a217 1
+#elif	defined(sparc)
+d229 4
+a232 1
+		struct	sigvec	vec;
+d234 1
+a234 3
+		vec.sv_handler = SIG_DFL;
+		vec.sv_mask = 0;
+		vec.sv_flags = 0;
+d236 1
+a236 1
+		sigvec(SIGBUS_or_SEGV, &vec, NULL);
+d260 1
+a260 1
+	struct	sigvec	vec;
+d262 10
+a271 3
+	vec.sv_handler = (void (*)()) segv_handler;
+	vec.sv_mask = sigmask(SIGIO)|sigmask(SIGALRM);
+	vec.sv_flags = 0;
+d273 1
+a273 1
+	sigvec(SIGBUS_or_SEGV, &vec, NULL);
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@a75 2
+ *	26-Feb-1996	Alan L. Cox	Added read/write differentiation
+ *
+a80 2
+#elif	defined(i386)
+#include <machine/pte.h>
+d192 1
+a192 1
+			if (code & (PGEX_W << 5))
+@
+
+
+9.7.2.2
+log
+@Changed i386 to __i386, sparc to __sparc, etc.
+@
+text
+@d83 1
+a83 1
+#elif	defined(__i386)
+d142 1
+a142 1
+#if defined(__hppa) || defined(__sparc)
+d195 1
+a195 1
+#elif	defined(__i386)
+d197 1
+a197 1
+#elif	defined(__mips)
+d201 1
+a201 1
+#elif	defined(__sparc)
+@
+
+
+9.7.2.3
+log
+@Moved the optimized page copy for the HP PA and SPARC to a separate
+(inline) procedure (on the SPARC).  Added an optimized page copy
+for the Pentium.
+@
+text
+@d98 1
+a98 3
+ * Should insure that the twin and the original don't collide in the cache.
+ *
+ * N.B.  We never fault inside malloc.  Otherwise, this code wouldn't work.
+a111 81
+#if	defined(__hppa) || (defined(__GNUC__) && defined(__i386)) || defined(__sparc)
+/*
+ * An optimized page copy function for the HP PA, Pentium, and SPARC
+ *
+ * Caveat: This function is slower on the Intel486 than rep/movsl.
+ */
+#if	defined(__GNUC__)
+__inline__
+#endif
+static	void	page_copy(caddr_t twin, caddr_t vadr)
+{
+	double *vadr_ = (double *) vadr;
+	double *twin_ = (double *) twin;
+
+	int	bytes = Tmk_page_size;
+
+#if	defined(__GNUC__) && defined(__i386)
+
+	struct	fpu	{
+		char	state[108];
+	}	fpu;
+
+	asm ("fsave %0" : "=m" (fpu));
+#endif
+	do {
+
+#if	defined(__GNUC__) && defined(__i386)
+
+		asm ("fildq %0" : : "m" (vadr_[0]));
+		asm ("fildq %0" : : "m" (vadr_[1]));
+		asm ("fildq %0" : : "m" (vadr_[2]));
+		asm ("fildq %0" : : "m" (vadr_[3]));
+		asm ("fildq %0" : : "m" (vadr_[4]));
+		asm ("fildq %0" : : "m" (vadr_[5]));
+		asm ("fildq %0" : : "m" (vadr_[6]));
+		asm ("fildq %0" : : "m" (vadr_[7]));
+#else
+		double value0 = vadr_[0];
+		double value1 = vadr_[1];
+		double value2 = vadr_[2];
+		double value3 = vadr_[3];
+		double value4 = vadr_[4];
+		double value5 = vadr_[5];
+		double value6 = vadr_[6];
+		double value7 = vadr_[7];
+#endif
+		vadr_ += 8;
+
+#if	defined(__GNUC__) && defined(__i386)
+
+		asm ("fistpq %0" : "=m" (twin_[7]));
+		asm ("fistpq %0" : "=m" (twin_[6]));
+		asm ("fistpq %0" : "=m" (twin_[5]));
+		asm ("fistpq %0" : "=m" (twin_[4]));
+		asm ("fistpq %0" : "=m" (twin_[3]));
+		asm ("fistpq %0" : "=m" (twin_[2]));
+		asm ("fistpq %0" : "=m" (twin_[1]));
+		asm ("fistpq %0" : "=m" (twin_[0]));
+#else
+		twin_[0] = value0;
+		twin_[1] = value1;
+		twin_[2] = value2;
+		twin_[3] = value3;
+		twin_[4] = value4;
+		twin_[5] = value5;
+		twin_[6] = value6;
+		twin_[7] = value7;
+#endif
+		twin_ += 8;
+
+	} while (bytes -= 8*sizeof(*vadr_));
+
+#if	defined(__GNUC__) && defined(__i386)
+
+	asm ("frstor %0" : : "m" (fpu));
+#endif
+}
+#else
+#	define	page_copy(twin, vadr)	memcpy((twin), (vadr), Tmk_page_size)
+#endif
+
+d142 27
+d170 7
+a176 1
+			page_copy(page->twin, page->vadr);
+@
+
+
+9.7.2.4
+log
+@Changed twin_alloc to check the return value from malloc.
+@
+text
+@a77 2
+ * $Id$
+ *
+d108 1
+a108 1
+	else {
+a110 3
+		if (twin == 0)
+			Tmk_errexit("<malloc>twin_alloc: out of memory/swap\n");
+	}
+@
+
+
+9.6
+log
+@Tmk-0.9.6R
+@
+text
+@d72 4
+d79 4
+a82 8
+#if defined(__hppa)
+#define	SIGBUS_or_SEGV	SIGBUS
+#else
+#define	SIGBUS_or_SEGV	SIGSEGV
+#endif
+
+#if defined(mips)
+#if defined(sgi)
+d84 1
+a84 2
+#endif
+#if defined(ultrix)
+d86 2
+a87 1
+#endif
+a88 2
+#if defined(_IBMR2)
+#include <sys/machine.h>
+d117 1
+a117 1
+#elif	defined(mips)
+d121 1
+a121 1
+#elif	defined(sparc)
+d123 2
+a125 1
+
+d171 1
+a171 1
+			bcopy(page->vadr, page->twin, Tmk_page_size);
+d191 2
+d199 2
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@Tmk-0.9.5R
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@Tmk-0.9.4R
+@
+text
+@@

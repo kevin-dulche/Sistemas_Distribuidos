@@ -1,0 +1,144 @@
+head	1.4;
+access;
+symbols
+	Tmk-1_0_1R:1.4;
+locks; strict;
+comment	@ * @;
+
+
+1.4
+date	97.12.21.00.21.39;	author alc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	97.12.14.21.16.00;	author alc;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	97.08.11.07.17.48;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.02.07.43.15;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Barnes-Hut galaxy simulation
+@
+
+
+1.4
+log
+@Rearrange the file contents to eliminate compiler warnings.
+@
+text
+@#include <stdlib.h>
+#include <stdio.h>
+
+/*
+ * RAND_MAX isn't defined by SunOS 4.1.x's <stdlib.h>.
+ */
+
+#if   ! defined(RAND_MAX)
+#	define	RAND_MAX 32767
+#endif
+
+#ifndef HZ
+#define HZ 60.0
+#endif
+
+/*
+ * XRAND: generate floating-point random number.
+ */
+
+double xrand(xl, xh)
+  double xl, xh;			/* lower, upper bounds on number */
+{
+    return (xl + (xh - xl)*rand()/RAND_MAX);
+}
+
+/*
+ * ERROR: scream and die quickly.
+ */
+
+void barnes_error(msg, a1, a2, a3, a4)
+  char *msg, *a1, *a2, *a3, *a4;
+{
+    extern int errno;
+    
+    fprintf(stderr, msg, a1, a2, a3, a4);
+    if (errno != 0)
+        perror("Error");
+    exit(0);
+}
+
+/*
+ * CPUTIME: compute CPU time in min.
+ */
+
+#include <sys/types.h>
+#include <sys/times.h>
+
+double cputime()
+{
+    struct tms buffer;
+    
+    if (times(&buffer) == -1)
+        barnes_error("times() call failed\n");
+    return (buffer.tms_utime / (60.0 * HZ));
+}
+@
+
+
+1.3
+log
+@Define "RAND_MAX" on SunOS 4.1.x.
+@
+text
+@d7 1
+d27 15
+a47 1
+
+a55 16
+
+/*
+ * ERROR: scream and die quickly.
+ */
+
+barnes_error(msg, a1, a2, a3, a4)
+  char *msg, *a1, *a2, *a3, *a4;
+{
+    extern int errno;
+    
+    fprintf(stderr, msg, a1, a2, a3, a4);
+    if (errno != 0)
+        perror("Error");
+    exit(0);
+}
+
+@
+
+
+1.2
+log
+@Use RAND_MAX in xrand().
+@
+text
+@d4 7
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d15 1
+a15 1
+    return (xl + (xh - xl) * ((double) rand()) / 2147483647.0);
+@

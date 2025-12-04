@@ -1,0 +1,78 @@
+head	10.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.3
+date	98.09.13.07.15.57;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.06.03.05.20.13;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.03.05.16.53;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Shallow water Makefile for DEC UNIX
+@
+
+
+10.3
+log
+@Added $Id$.
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= alpha_osf4
+
+CC	= cc
+CFLAGS	= -g3 -O
+
+FC	= f77
+FFLAGS	= -g3 -O
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS=
+
+all: shallow.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) -o $@@ $(TmkLIB)/support/common_symbol.s
+@
+
+
+10.2
+log
+@Enabled: Working Version
+@
+text
+@d1 3
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 1
+a9 1
+MACHDEP_OBJS=
+d12 1
+a12 1
+all:
+d15 3
+@

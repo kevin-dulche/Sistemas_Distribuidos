@@ -1,0 +1,14 @@
+ #
+ # $Id: Makefile,v 10.4 1997/12/14 19:42:23 alc Exp $
+ #
+ARCH	= i386_freebsd2
+
+CC	= cc
+CFLAGS	= -pipe -g -O2
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lcompat
+
+all: gauss.udp
+
+include	../.common

@@ -1,0 +1,2643 @@
+c ++++++++++++
+c  This is the TreadMarks version of the code
+c ++++++++++++
+c     Leaf area (sq.m), on dbh (cm), keyed by species (form), and
+c     adjusted for height-to-crown, via sapwood area.
+c
+      Real*8 Function ALEAF(d,ht,hc,ks)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      real*8 d, rc, ht, hc, pi
+      integer ks
+      data pi /3.14159d0/
+
+c     Compute D at base of crown, using generic taper equations;  
+c       then use SLR ratios to convert this area (sq cm)
+c       to leaf area (sq m) ...
+c     Estimate D at crown base=DC, radius=DC/2
+      dc=d*SQRT(t0(ks)+t1(ks)*(hc/ht)+t2(ks)*(hc**2/ht**2))
+      rc=dc/2.0d0
+c     Compute sapwood width SW from D:
+      sapw=s0(ks)*(1.0d0-EXP(s1(ks)*d))
+c     Check to make sure SW isn't > RC:
+      if (sapw.gt.rc) sapw=rc
+c     Compute sapwood x.s.area by differencing:
+      sa=pi*rc**2-pi*(rc-sapw)**2
+      ALEAF=slr(ks)*sa
+
+      return
+      end
+c     Available light factor, by tolerance class and light:
+c
+      Real*8 Function ALF(kt,al)
+      implicit real*8 (a-h,o-z)
+
+      real*8 c1(5), c2(5), c3(5)
+c     Parameters revised January 1992;
+c     Tolerance classes reversed March 1993 
+c     (1=very intolerant; 5=very tolerant).
+      data c1 /1.57851d0,1.25977d0,1.12598d0,1.04689d0,1.02046d0/
+      data c2 /1.18855d0,1.78588d0,2.43920d0,3.29031d0,4.16533d0/
+      data c3 / 0.15d0,0.12d0,0.09d0,0.06d0,0.03d0/
+
+      ALF=c1(kt)*(1.0-EXP(-c2(kt)*(al-c3(kt))))
+      if (ALF.lt.0.0) ALF=0.0
+
+      return
+      end
+c     AMORT is for ambient (natural) mortality
+c
+      Logical Function AMORT( agemax, idum )
+      implicit real*8 (a-h,o-z)
+      integer idum
+      real*8 agemax
+
+      if ( RAN3( idum ) .lt. (4.605/agemax) ) then
+         AMORT=.true.
+      else
+         AMORT=.false.
+      endif
+      return
+      end
+c     BOOKS keeps track of biomass, leaf area, and available light
+c
+      Subroutine BOOKS(kr,kc)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+c     CP, compensation point for 5 tolerance classes:
+      real*8 cp(5)
+c     Month that growing season begins, ends (for ELAI, used in SOLWAT);
+c       MCH, max canopy height (used if MODE=0 to compute light profile).
+      integer mch
+      data cp/0.15d0,0.12d0,0.09d0,0.06d0,0.03d0/
+
+c     Dump initials for future runs:
+*#ifdef DIAG_IO
+*      if (indata.eq.2.and.kyr.eq.nyrs) write(INCFILE,1201) kr, kc, 
+*     2  ind(kr,kc)
+* 1201 format(3i5)
+*#endif
+
+c     Initialize:
+      mch=2
+      bmi=0.0
+      dlai=0.0
+      biom(kr,kc)=0.0
+      pwbi(kr,kc)=0.0
+      dfla(kr,kc)=0.0
+      ksol=msol(kr,kc)
+c     ... and initialize actual LAI:
+      do 301 m=1,mh
+         ala(m,kr,kc)=0.0
+  301 continue
+c     ... and basal area per species:
+      do 302 ks=1,nspp
+         sba(ks,kr,kc)=0.0
+  302 continue
+      if (ind(kr,kc).eq.0) go to 33
+      
+c     Individual tree loop ...
+      do 32 ki=1,ind(kr,kc)
+c     ... more writes to file indata
+*#ifdef DIAG_IO
+*         if (indata.eq.2.and.kyr.eq.nyrs) write(INCFILE,1202) 
+*     2        ki, isp(ki,kr,kc), dbh(ki,kr,kc), ibc(ki,kr,kc)
+* 1202    format(2i5,f10.5,i5)
+*#endif
+         ks=isp(ki,kr,kc)
+         kf=lf(ks)
+         d=dbh(ki,kr,kc)
+c     Compute tree height and hang leaves:
+         ht=HEIGHT(d,ks) 
+         iht=INT(ht+0.5)
+         if (iht.gt.mh) iht=mh
+         if (iht.gt.mch) mch=iht
+         mbc=ibc(ki,kr,kc)
+         hc=FLOAT(mbc)
+c     If a tree's lost all its leaves to shading, skip it:
+         if (hc.ge.ht) go to 32
+c     Hang leaves in canopy:
+c     fd=unit foliage density; f, as lai: 
+         cl=FLOAT(iht-mbc+1)
+         fd=ALEAF(d,ht,hc,ks)/cl
+         f=fd/area
+         cpl=cp(light(ks))
+         do 321 m=iht,mbc,-1
+c     Stop when out of light or below old canopy:
+            if (al(m,kr,kc).lt.cpl) go to 322
+            ala(m,kr,kc)=ala(m,kr,kc)+f
+  321    continue
+  322    nbc=m+1
+         tla=fd*FLOAT(iht-m)
+c     Reassign IBC:
+         ibc(ki,kr,kc)=nbc
+c     Effective LAI for interception, as deciduous fraction for now
+c     (it gets corrected in SOLWAT):
+         if (kf.eq.2) dlai=dlai+tla/area
+c     Increment plot woody biomass (kg):
+         wb=WOOD(d,ks)
+         biom(kr,kc)=biom(kr,kc)+wb
+c     Potential biomass increment from current and potential dbh: 
+         di=DINCO(g(ks),tla,d,ht,dmax(ks),hmax(ks),h2(ks),h3(ks))
+         dx=d+di
+         wbi=WOOD(dx,ks)-wb
+         bmi=bmi+wbi
+c     Increment basal area:
+         sba(ks,kr,kc)=sba(ks,kr,kc)+3.14159d0*(d/200.0d0)**2
+   32 continue
+      
+c     Max canopy height for this plot and over the entire grid:
+   33 maxht(kr,kc)=mch
+      
+c     Compute available light for independent-plot mode ...
+      phitot=phi(1,kr,kc)+phi(2,kr,kc)
+      al(mch,kr,kc)=phitot
+      clai=ala(mch,kr,kc)
+      do 331 m=(mch-1),1,-1
+         al(m,kr,kc)=phitot*EXP(-xk*clai)
+         clai=clai+ala(m,kr,kc)
+  331 continue
+      al(0,kr,kc)=phitot*EXP(-xk*clai)
+      
+c     Save deciduous fraction LAI, for SOLWAT:
+      if (clai.gt.0.0) dfla(kr,kc)=dlai/clai
+      
+c     Save potential above-ground woody biomass increment:
+      pwbi(kr,kc) = bmi
+
+      return
+      end
+c     Degree-day Factor, on min, max, and actual degree-days
+c
+      Real*8 Function DEGDF(ddmin,ddmax,degd)
+      implicit real*8 (a-h,o-z)
+
+      real*8 ddmin, ddmax, degd
+
+      DEGDF=4.0*(degd-ddmin)*(ddmax-degd)/(ddmax-ddmin)**2
+      if (DEGDF.lt.0.0) DEGDF=0.0
+
+      return
+      end
+c     Diameter growth as a function of leaf area, etc.
+c
+      Real*8 Function DINCO(g,tl,d,h,dmax,hmax,h2,h3)
+      implicit real*8 (a-h,o-z)
+
+      real*8 g, tl, d, h, dmax, hmax, h2, h3
+      real*8 hc, h1, c
+
+c     Convert heights from m to cm; c is a shorthand constant.
+      hc=100.0d0*h
+      h1=100.0d0*hmax
+      c=EXP(h2*d)
+      DINCO=g*tl*(1.0d0-d*hc/(dmax*h1)) /
+     &     (d*h1*(-1.0d0*d*h3*h2*c*(1.0d0-c)**(h3-1.0d0)+
+     1     2.0*(1.0d0-c)**h3))
+
+      return
+      end
+c     DLA returns a diagonal leaf-area profile through ALA,
+c       with vertical step-size lxs (m), 
+c       in look-direction ldir (1-4=up,right,down,left; 0=vertical)
+c       (called only if model in is interactive-shading mode)
+c     This version is draped over a DEM, for version FACET.
+c
+      Real*8 Function DLA(ir,ic,iht,lxs,ldir,maxcht)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+      real*8 xla, e1
+      integer ir, ic, iht, jr, jc, lxs, ixs, ldir, med, mx
+      logical more
+C profiling -rrk
+c     real*8 tprof1
+c     tprof1 = timef()
+
+        xla=0.0
+        jr=ir
+        jc=ic
+	nstep=0
+        e1=elev(ir,ic)
+
+c     First step ...
+c     IXS is the initial cross-section for the first step
+c     (which is half of LXS).
+c     This is overwritten with a single huge step if the
+c     Look-direction argument is "vertical" (0), which pops
+c     XLA out of the canopy while still on this plot.
+        ixs=lxs/2
+          if (ldir.eq.0) ixs=MH+2
+        m1=iht
+        m2=m1+ixs-1
+	mend = MIN(m2,maxcht)
+        do 101 mm=m1,mend
+          xla=xla+ala(mm,jr,jc)
+  101   continue
+	if (m2 .gt. maxcht) then
+	   more = .false.
+        else
+	   more = .true.
+        end if
+
+c     Next step, for diagonal profiles ...  
+c     Rove until XLA pops out of top-of-canopy, absorbing at edges.
+c     E2 is this plot's elevation, and MED is the elevation difference
+c     (rounded to the nearest meter).  Subtracting this difference
+c     drapes the ALA array over the DEM.
+      do while (more)
+        if (ldir.eq.1) then
+          if (jr.gt.1) then
+            jr=jr-1
+            med=INT(elev(jr,jc)-e1)
+          else
+            med=0
+          endif
+        elseif (ldir.eq.2) then
+          if (jc.lt.ncols) then
+            jc=jc+1
+            med=INT(elev(jr,jc)-e1)
+          else
+            med=0
+          endif
+        elseif (ldir.eq.3) then
+          if (jr.lt.nrows) then
+            jr=jr+1
+            med=INT(elev(jr,jc)-e1)
+          else
+            med=0
+          endif
+        elseif (ldir.eq.4) then
+          if (jc.gt.1) then
+            jc=jc-1
+            med=INT(elev(jr,jc)-e1)
+          else
+            med=0
+          endif
+        endif
+      m1 = iht + ixs + nstep*lxs - med
+      if (m1 .le. maxcht) then
+         mstart = MAX(m1,1)
+         m2=m1+lxs-1
+         mx=maxht(jr,jc)
+         mend = MIN(m2,mx)
+         do 103 mm=mstart,mend
+           xla=xla+ala(mm,jr,jc)
+  103    continue
+	 if (m2.gt.maxcht .and. mx.eq.maxcht) more=.false.
+	 nstep = nstep + 1
+      else
+	 more = .false.
+      end if
+      end do
+      DLA=xla
+C profiling -rrk
+c     prof_time(1) = prof_time(1) + timef() - tprof1
+
+      return
+      end
+c     Drought Factor, given max drought tolerance and dry-days:
+c
+      Real*8 Function DRTF(mdt,ddays)
+      implicit real*8 (a-h,o-z)
+
+      real*8 dt, ddays, drt
+      integer mdt
+
+      dt=FLOAT(mdt)/10.0d0
+      drt=MIN(dt,ddays)
+      DRTF=SQRT((dt-drt)/dt)
+
+      return
+      end
+c     Fertility factor, by nutrient response class (1=intol, 3=tol)
+c     and soil fertility (relative, on [0,1]).
+c
+      Real*8 Function FERTF(nrc,sf)
+      implicit real*8 (a-h,o-z)
+
+      integer nrc
+      real*8 b1(3), b2(3), b3(3)
+      real*8 sf
+
+      data b1 /1.03748d0,1.00892d0,1.01712d0/
+      data b2 /-4.02952d0,-5.38804d0,-4.12162d0/
+      data b3 /0.17588d0,0.12242d0,0.00898d0/
+
+      if (nrc.eq.0) then
+         FERTF=1.0
+      else
+         FERTF=b1(nrc)*(1.0d0-exp(b2(nrc)*(sf-b3(nrc))))
+         if (FERTF.lt.0.0) FERTF=0.0
+      endif
+      return
+      end
+      
+c     GAMMA(ia,idum) returns a random deviate, z, from a 1-parameter,
+c       standardized gamma distribution with integer shape parameter ia. 
+c     This routine is from Press et al. (1987), 
+c       as implemented by Gordy Bonan in his boreal forest model.
+c
+      Real*8 Function GAMMA( ia, idum )
+      implicit real*8 (a-h,o-z)
+      integer idum
+
+      if (ia.lt.1) stop
+      if (ia.lt.6) then
+    5    x=1. 
+         do 10 j=1,ia
+            x = x * RAN1( idum )
+   10    continue 
+         if (x.lt.(1.e-6)) go to 5
+         x=-LOG(x)
+      else
+   20    continue
+         v1 = 2.0d0 * RAN1( idum ) - 1.0d0
+         v2 = 2.0d0 * RAN1( idum ) - 1.0d0
+         if ((v1**2.+v2**2.).gt.(1.)) go to 20
+         y=v2/v1
+         am=ia-1.0d0
+         s=SQRT(2.*am+1.)
+         x=s*y+am
+         if (x.le.(0.)) go to 20
+c        domain of exp function is (-675.81, 741.66)
+         coeff=am*LOG(x/am)-s*y
+         coeff=MAX(coeff,-675.81d0)
+         coeff=MIN(coeff,741.66d0)
+         e=(1.+y**2.)*EXP(coeff)
+         if ( RAN1( idum ) .gt. e ) go to 20 
+      endif
+      GAMMA=x
+      return
+      end
+c     GAUSS1(idum) returns a normal random number, x,s=(0,1).
+c     This function is dedicated to WEATHR (with RAN1).
+c
+      Real*8 Function GAUSS1( idum )
+      implicit real*8 (a-h,o-z)
+      integer idum
+      data iset/0/
+
+      if (iset.eq.0) then
+   21    continue
+        v1=2.0d0*RAN1( idum ) - 1.0d0
+        v2=2.0d0*RAN1( idum ) - 1.0d0
+         r=v1**2+v2**2
+         if (r.ge.1.) go to 21
+         fac=SQRT(-2.*LOG(r)/r)
+         gset=v1*fac
+         GAUSS1=v2*fac
+         iset=1
+      else
+         GAUSS1=gset
+         iset=0
+      endif
+      return
+      end
+c     GAUSS2(idum) returns a normal random number, x,s=(0,1).
+c     GAUSS2 is dedicated to REGEN (with RAN2).
+c
+      Real*8 Function GAUSS2( idum )
+      implicit real*8 (a-h,o-z)
+      integer idum
+      data iset/0/
+
+      if (iset.eq.0) then
+   21    continue
+        v1 = 2.0d0 * RAN2( idum ) - 1.0d0
+        v2 = 2.0d0 * RAN2( idum ) - 1.0d0
+         r=v1**2+v2**2
+         if (r.ge.1.) go to 21
+         fac=SQRT(-2.*LOG(r)/r)
+         gset=v1*fac
+         GAUSS2=v2*fac
+         iset=1
+      else
+         GAUSS2=gset
+         iset=0
+      endif
+      return
+      end
+c     GRID does all the between-plot interactions and aggregation
+c     This version calls attendant routines for aggregate TRACER,
+c     plot-level PUNCH, and summary PRINT.
+c
+      Subroutine GRID(begin,end)
+      implicit real*8 (a-h,o-z)
+      integer begin, end
+      include 'w2.Tmknew.i'
+
+c     XBA, total basal area per species over all plots
+      real*8 xba(MS)
+      external GAMMA
+
+c     Sample size and area correction factor, for TRACER:
+      ss=FLOAT(nrows*ncols)
+      acf=10000.0d0/area
+      
+c     Report progress to screen:
+      if (MOD(kyr,iprt).eq.0) write(*,3000) kyr
+ 3000 format(5x,'Simulation year:',i5)
+      if (kyr.eq.nyrs) write(*,3001)
+ 3001 format(/5x,'... finishing'//)
+      
+c     *W* GRID activities are parcelled into 7 packages for
+c     functional parallelism ...
+      
+C +++++   Call TreadMarks barrier
+      call Tmk_barrier(0)
+
+c +++++  Determine maximum height across all nodes
+      maxcht = 2
+      do kc=1,ncols
+      do kr=1,nrows
+	 if (maxht(kr,kc) .gt. maxcht) maxcht=maxht(kr,kc)
+      end do
+      end do
+
+c     (1) Light regime ...
+c     Set constants of interactive shading:
+      if (mode.eq.1) then
+         km=10
+         do 31 kc=begin,end
+         do 31 kr=1,nrows
+c     Do diagonal leaf area profiles if in interactive mode ...
+c     DLA returns a diagonal LAI profile in steps thru array ALA;
+            phib=phi(1,kr,kc)
+            phid=phi(2,kr,kc)/5.0d0
+            do 311 m=0,(maxht(kr,kc)-1)
+c     Direct-beam is accurd in steps of MXS looking south ...
+               xla=DLA(kr,kc,m+1,mxs,3,maxcht)
+               alb=phib*EXP(-xk*xla)
+c     Diffuse light is tallied across a sky arc in 5 samples,
+c     as 1 DLA in each direction, with height 10 m,
+c     plus the vertical profile (direction 0):
+               ald=0.0
+               do 312 ldir=0,4
+                  xla=DLA(kr,kc,m+1,km,ldir,maxcht)
+                  ald=ald+phid*EXP(-xk*xla)
+  312          continue
+
+c     Total light is direct-beam + diffuse:
+               al(m,kr,kc)=alb+ald
+  311       continue
+   31    continue
+      endif
+         
+C +++++   Call TreadMarks barrier
+      call Tmk_barrier(0)
+
+c     (2) Dump plot summaries for post-processing:
+      if (MOD(kyr,ipch).eq.0 .and. iproc.eq.0) call PUNCH
+            
+c     (3) Dump foliage profile:
+      if (MOD(kyr,ilai).eq.0 .and. iproc.eq.0) then
+         do 33 kr=1,nrows
+         do 33 kc=1,ncols
+            write(PROFILE,1001) kr, kc, (ala(m,kr,kc),m=1,MH)
+   33    continue
+      endif
+ 1001 format(2i3,10f6.2,9(/6x,10f6.2))
+               
+c     (4) Dump leaf area profiles as diagnostics, if LOG year:
+      if (MOD(kyr,ilog).eq.0 .and. iproc.eq.0) then
+         write(LOGFILE,1101)
+         do 34 m=maxht(1,1),1,-1
+            write(LOGFILE,1102) m, ala(m,1,1), al(m,1,1)
+   34    continue
+         write(LOGFILE,1103) al(0,1,1)
+      endif
+ 1101 format(/2x,'Light regime for plot (1,1):',
+     &     //5x,'Actual LAI and light profile, from top of canopy:'/)
+ 1102 format(5x,i5,2f7.2)
+ 1103 format(5x,'    0',7x,f7.2)
+               
+c     (5) Print aggregate stand summary:
+      if (MOD(kyr,iprt).eq.0 .and. iproc.eq.0) call PRINT
+      
+c     (6) Generate next year's base temperatures and precipitation:
+      do 36 mo=1,12
+         tdev = GAUSS1( idum(1) ) * vt(mo)
+         btmin(mo)=xtmin(mo)+tdev
+         btmax(mo)=xtmax(mo)+tdev
+         z = GAMMA( ia(mo), idum(1) )
+         r=z/b(mo)
+         if (r.lt.0.0) r=0.0
+         br(mo)=r
+   36 continue
+      
+c     (7) Dump aggregate TRACER file:
+      if (MOD(kyr,itrx).eq.0 .and. iproc.eq.0) then
+c     Initialize totals for tracer ...
+c     B is biomass; D, density; BA, basal area, L, LAI; H, canopy height:
+         sumb=0.0
+         ssqb=0.0
+         sumd=0.0
+         suml=0.0
+         sumh=0.0
+         do 370 ks=1,nspp
+            xba(ks)=0.0
+  370    continue
+
+         do 37 kc=1,ncols
+         do 37 kr=1,nrows
+c     Tallies for tracer ...
+c     ... Density:
+            sumd=sumd+FLOAT(ind(kr,kc))
+c     ... Biomass (Mg):
+            bm=biom(kr,kc)/1000.0d0
+            sumb=sumb+bm
+            ssqb=ssqb+bm**2
+c     ... LAI:
+            suml=suml+DLA(kr,kc,1,MH,0,MH)
+c     ... Canopy height:
+            sumh=sumh+FLOAT(maxht(kr,kc))
+c     ... Basal area (sq.m) per species:
+            do 371 ks=1,nspp
+               xba(ks)=xba(ks)+sba(ks,kr,kc)
+  371       continue
+   37    continue
+c     Tracers, averaged and converted to per-ha:
+         xb=(sumb/ss)*acf
+         sdb=SQRT((ssqb-sumb**2/ss)/(ss-1.0))*acf
+         xd=(sumd/ss)*acf
+         xl=suml/ss
+         xh=sumh/ss
+         xbatot=0.0
+         do 372 ks=1,nspp
+            xba(ks)=(xba(ks)/ss)*acf
+            xbatot=xbatot+xba(ks)
+  372    continue
+         write(TRACER,9001) kyr, xd, xb, sdb, xbatot, xl, xh
+         write(TRACER,9002) (xba(ks),ks=1,nspp)
+      endif
+ 9001 format(i4,2x,6f8.2)
+ 9002 format(6x,10f6.2)
+      
+C +++++   Call TreadMarks barrier
+      call Tmk_barrier(0)
+         
+      return
+      end
+         
+c     GROW increments tree diameters
+c
+      Subroutine GROW(kr,kc)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+
+c     Header for growth-factor diagnostics
+*#ifdef DIAG_IO
+*      if (MOD(kyr,ilog).eq.0.and.kr.eq.1.and.kc.eq.1)
+*     &     write(LOGFILE,1101) ind(kr,kc)
+* 1101 format(/2x,'Growth factor trace:',//5x,'plot (1,1)',5x,
+*     &     'Number of trees:',i5)
+*#endif
+      if (ind(kr,kc).eq.0) then
+         return
+      else
+*#ifdef DIAG_IO
+*         if (MOD(kyr,ilog).eq.0.and.kr.eq.1.and.kc.eq.1) 
+*     &        write(LOGFILE,1102)
+* 1102 format(/12x,
+*     &     'I, Spp, Dbh, Ht, Hc;  ALF, SMF, SFF, DDF, GF;  Dinc, NoGro:'/)
+*#endif
+      endif
+      
+c     Use potentioal woody biomass increment and SF to compute SFF:
+      ksol = msol(kr,kc)
+      bmi = pwbi(kr,kc)
+c     Compute soil fertility multipliers:
+      if (bmi.gt.sf(ksol)) then
+         rf=sf(ksol)/bmi
+      else
+         rf=1.0
+      endif
+      do 601 l=1,3
+         sff(l)=FERTF(l,rf)
+  601 continue
+
+c     Individual tree loop:
+      do 62 ki=1,ind(kr,kc)
+         ks=isp(ki,kr,kc)
+         d=dbh(ki,kr,kc)
+         mbc=ibc(ki,kr,kc)
+c     Compute tree height:
+         ht=HEIGHT(d,ks) 
+         iht=INT(ht+0.5)
+         if (iht.gt.mh) iht=mh
+c     Available light factor:
+         algf=0.0
+         if (FLOAT(mbc).gt.ht) then
+            tla=0.0
+            sfgf=0.0
+            smgf=0.0
+            gf=0.0
+            dinc=0.0
+            nogro(ki,kr,kc)=nogro(ki,kr,kc)+1
+            go to 624
+         endif
+  620    do 621 m=mbc,iht
+            algf=algf+ALF(light(ks),al(m,kr,kc))
+  621    continue
+         cl=FLOAT(iht-mbc+1)
+         algf=algf/cl
+c     Tree's leaf area:
+         tla=ALEAF(d,ht,DFLOAT(mbc),ks)
+c     Assign SFF (N-fixers are immune to soil fertility):
+         if (nutri(ks).eq.0) then
+            sfgf=1.0
+         else
+            sfgf=sff(nutri(ks))
+         endif
+c     Assign soil moisture growth factor:
+         smgf=smf(2,ks)
+c     Optimal growth increment as f(d,g, ..., and leaf area):
+         dm=DINCO(g(ks),tla,d,ht,dmax(ks),hmax(ks),h2(ks),h3(ks))
+c     Growth factor is light*min(water,nutrients)*temperature:
+         gf=algf*min(smgf,sfgf)*ddf(ks)
+c     Realized increment:
+         dinc=dm*gf
+         dbh(ki,kr,kc)=dbh(ki,kr,kc)+dinc
+c     NoGro, if growth<10% of opt, or dinc<.1 mm
+         if (gf.lt.0.10.or.dinc.lt.0.01) then
+            nogro(ki,kr,kc)=nogro(ki,kr,kc)+1
+         else
+            nogro(ki,kr,kc)=0
+         endif
+c     Diagnostics:
+  624    continue
+*#ifdef DIAG_IO
+*         if (kr.eq.1.and.kc.eq.1.and.MOD(kyr,ilog).eq.0) 
+*     2        write(LOGFILE,1103) ki, msp(ks), d, iht, mbc, algf, 
+*     3        smgf, sfgf, ddf(ks), gf, dinc, nogro(ki,kr,kc)
+* 1103    format(10x,i3,1x,a4,f7.2,2i3,1x,4f5.2,f6.2,f7.2,i3)
+*#endif
+   62 continue
+      return
+      end
+c     Tree height (m), allometric on dbh (cm), per species
+c
+      Real*8 Function HEIGHT(d,ks)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      real*8 d
+      integer ks
+
+      HEIGHT=hmax(ks)*(1.0-EXP(h2(ks)*d))**h3(ks)
+      if (HEIGHT.lt.1.37) HEIGHT=1.37d0
+      return
+      end
+c     INIT_SUN initializes the solar radiation arrays.
+c
+      Subroutine INIT_SUN(begin,end)
+      implicit real*8 (a-h,o-z)
+      integer begin,end
+      include 'w2.Tmknew.i'
+
+      do 10 kc=begin,end
+      do 10 kr=1,nrows
+         ep=elev(kr,kc)
+         igs=0
+         mbgs=1
+         megs=12
+c     Generate weather:
+         do 12 mo=1,12
+c     Temp and rain are lapsed from those at base elevation;
+c     And T is further adjusted for relative radiation (from MTCLIM):
+            tmin(mo)=btmin(mo)-tlaps1(mo)*(ep-ebase)
+            tmax(mo)=btmax(mo)-tlaps2(mo)*(ep-ebase)
+            t(mo)=(tmin(mo)+tmax(mo))/2.0d0
+            rain(mo)=br(mo)+plapse(mo)*(ep-ebase)
+            if (rain(mo).lt.0.0) rain(mo)=0.0
+c     Find BGS, EGS, and total growing season length TGS:
+            lm=mo-1
+            if (lm.eq.0) lm=12
+            if (t(lm).lt.ddbase.and.t(mo).ge.ddbase.and.igs.eq.0) then
+               if (mo.eq.1) then
+                  bgs=1.0
+               else
+                  bgs=TLINE(lm,t(lm),mo,t(mo),ddbase)
+               endif 
+               mbgs=mo
+               igs=1
+            endif
+            if (mo.gt.6.and.t(lm).ge.ddbase.and.t(mo).lt.ddbase) then
+               egs=TLINE(lm,t(lm),mo,t(mo),ddbase)
+               megs=mo
+            endif
+   12    continue
+         call SOLAR(kr,kc)
+   10 continue
+      theta=0.60d0
+      return
+      end
+c     INIT_W initializes numbers for WEATHR and SOLWAT.
+c
+      Subroutine INIT_W
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      real*8 dtot, d1, d2
+
+c     DAYS, number od days per month;
+c     DDbase, the base for degree-day heat sums;
+c     WSC, water-to-snow conversion (cm to m) (from B. Hayden) [if needed]; 
+c     XC, interception loss rate (.%/LAI) (from Aston 1979);
+c     SMR, snowmelt rate (cm/degree C/day) (from FOREST-BGC & BROOK);
+c     SMBT, snowmelt base temperature;
+c     DRZS, depth of rooting zone for seedlings.
+
+c
+c     Compute parameters of gamma distribution for precipitation,
+c     and initialize base T and R:
+      do 11 mo=1,12
+         b(mo)=xr(mo)/vr(mo)**2
+         a=xr(mo)**2/vr(mo)**2
+         ia(mo)=INT(a+0.5)
+         if (ia(mo).eq.0) ia(mo)=1
+         btmin(mo)=xtmin(mo)
+         btmax(mo)=xtmax(mo)
+         br(mo)=xr(mo)
+   11 continue
+      
+c     Set initial values for soil water model ...
+c     Tally soil depths and Wk's:
+      do 12 ksol=1,nsoils
+         dtot=0.0
+         do 121 l=1,nsl(ksol)
+            dtot=dtot+dl(l,ksol)
+            wk(l,ksol)=0.75d0*fc(l,ksol)
+  121    continue
+c     ... Set fine-root fraction per layer (over all layers):
+         d1=0.0
+         do 122 l=1,nsl(ksol)
+            d2=d1+dl(l,ksol)
+            frft(l,ksol)=(2.0d0*d2/dtot)*(1.0d0-d2/(2.0d0*dtot)) -
+     &           (2.0d0*d1/dtot)*(1.0d0-d1/(2.0d0*dtot)) 
+            if (frft(l,ksol).lt.0.0) frft(l,ksol)=0.0
+            d1=d2
+  122    continue
+c     ... and for fine-root fractions for seedlings (to DRZS only):
+         d1=0.0
+         do 123 l=1,nsl(ksol)
+            d2=d1+dl(l,ksol)
+            if (d2.le.drzs) then
+               frfs(l,ksol)=(2.0d0*d2/drzs)*(1.0d0-d2/(2.0d0*drzs)) -
+     &              (2.0d0*d1/drzs)*(1.0d0-d1/(2.0d0*drzs)) 
+               if (frfs(l,ksol).lt.0.0) frfs(l,ksol)=0.0
+            else
+               frfs(l,ksol)=0.0
+            endif
+            d1=d2
+  123    continue
+   12 continue
+      return
+      end
+c     INITL reads input data and initializes the model run.
+c     This is INITL for version WATERSHED 2.4.
+c *W* These characters in the comments flag WATERSHED novelties.
+c
+      Subroutine INITL
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      character*72 title
+      character*24 locale, species, cname
+      character*16 driver1, driver2, driver3, infile 
+c *W* WATERSHED reads soils and topography from GIS files:
+      character*16 soilmap, demmap, aspmap, slpmap
+      integer begin, end
+      character*20 soil(MST)
+      real*8 depth(MST), awc(MST)
+ 1000 format(/a)
+ 1001 format(a,$)
+ 1002 format(a16)
+ 1003 format(a)
+
+c     I/O files:
+*#ifdef SUN
+*      open(*,form='print')
+*#endif
+c     Some info is echo-printed to unit *, the screen;
+C ++++++  Change read(*,....    to read(51,....
+      open(51,file='input.TEST',status='old')
+      write(*,1003) '0This is ZELIG version WATERSHED 2.4. ... '
+      write(*,1001) '0  Name of CONTROL driver-data file?  '
+      read(51,1002) driver1
+      write(*,1001) '   Name of SITE driver-data file?  '
+      read(51,1002) driver2      
+      write(*,1001) '   and name of SPECIES driver-data file?  '
+      read(51,1002) driver3 
+c     *W* Read filenames of GIS maps:
+      write(*,1001) '0  Name of file with soils map?  '
+      read(51,1002) soilmap
+      write(*,1001) '   file with elevation (DEM)?  '
+      read(51,1002) demmap
+      write(*,1001) '   file with slope?  '
+      read(51,1002) slpmap
+      write(*,1001) '   and file with aspect?  '
+      read(51,1002) aspmap
+      
+c     Unit 2=RUNCON is run-control parameters:
+      open(RUNCON,file='../data/'//driver1,status='old')
+c     Unit 3=INSITE is site parameters:
+      open(INSITE,file='../data/'//driver2,status='old')
+c     Unit 4=INSPP is species driver-data:
+      open(INSPP,file='../data/'//driver3,status='old')
+c     Units 5, 6 are system's read and print, not used;
+c     Unit 7=PCHFILE is punched plot-level output;
+c     Unit 8=PRTFILE is printed stand-level output;
+c     Unit 9=TRACER is an annual tracer on stand structure and composition;
+c     Unit 10=PROFILE is leaf-area index profile;
+c     Unit 11=LOGFILE is user-provided diagnostics;
+c     Unit 12=INCFILE is initial-condition datafile, if used;
+c     Unit 13=DUMP, the dump-file if indata=2.
+c     *W* Now Soils and topography are read from separate files:
+c     Unit 14=INSOIL, the digital soils map (integer);
+      open(INSOIL,file='../data/'//soilmap,status='old')
+c     Unit 15=INDEM, the digital elevation model (real).
+      open(INDEM,file='../data/'//demmap,status='old')
+c     Unit 16=INSLP, the slope map (real).
+      open(INSLP,file='../data/'//slpmap,status='old')
+c     Unit 17=INASP, the aspect map (real).
+      open(INASP,file='../data/'//aspmap,status='old')
+      
+c     Read run title and control parameters
+      read(RUNCON,2001) title, mode, indata, nrows, ncols,
+     2     nyrs, iprt, ipch, itrx, ilai, ilog
+ 2001 format(a72,10(/i5))
+      if (ipch.le.nyrs.and.iproc.eq.0) open(PCHFILE,file='z.punch',
+     1			status='new')
+      if (iprt.le.nyrs.and.iproc.eq.0) open(PRTFILE,file='z.print',
+     1			status='new')
+      if (itrx.le.nyrs.and.iproc.eq.0) open(TRACER,file='z.tracer',
+     1			status='new')
+      if (ilai.le.nyrs.and.iproc.eq.0) open(PROFILE,file='z.lai',
+     1			status='new')
+      if (ilog.le.nyrs.and.iproc.eq.0) open(LOGFILE,file='z.log',
+     1			status='new')
+      if (indata.eq.1.and.iproc.eq.0) then
+         write(*,1000) '    ZELIG will be intialized with external data'
+         write(*,1001) '      Enter name of INDATA file:  '
+         read(*,1002) infile
+         open(INCFILE,file=infile,status='old')
+      endif
+      if (iproc.eq.0)
+     1 write(*,1003) '0  Output files are Z.PRINT, Z.LAI, Z.LOG, ...'
+      if (indata.eq.2) then
+         open(DUMP,file='z.dump',status='new')
+         write(*,1003)
+     &         '     Final-year data-dump will be to file Z.DUMP'
+      endif
+      
+c     Read site data:
+      read(INSITE,3001) locale, dlat, dlon, nsoils
+      nslm=0
+      do 101 ksol=1,nsoils
+         read(INSITE,3002) nsl(ksol), sf(ksol), fff(ksol), soil(ksol)
+         nslk=nsl(ksol)
+         if (nslk.gt.nslm) nslm=nslk
+         read(INSITE,3003) (dl(l,ksol), fc(l,ksol), wp(l,ksol),l=1,nslk)
+         depth(ksol)=0.0
+         awc(ksol)=0.0
+         do 1011 l=1,nslk
+            depth(ksol)=depth(ksol)+dl(l,ksol)
+            awc(ksol)=awc(ksol)+fc(l,ksol)-wp(l,ksol)
+ 1011    continue
+  101 continue
+ 3001 format(a24/2f6.1,/i6)
+ 3002 format(i6,2f6.2,2x,a20)
+ 3003 format(3f6.2)
+      
+c     Read temperature and precip data (means and s.d.'s):
+      read(INSITE,*) ebase
+      read(INSITE,3004) (xtmin(mo),mo=1,12), (xtmax(mo),mo=1,12),
+     2     (vt(mo),mo=1,12), (xr(mo),mo=1,12), (vr(mo),mo=1,12)
+c     Read elevation lapse rates for Tmin, Tmax and P:
+      read(INSITE,3005) (tlaps1(mo),mo=1,12), (tlaps2(mo),mo=1,12),
+     2     (plapse(mo),mo=1,12)
+ 3004 format(12f6.1)
+ 3005 format(12f6.2)
+c     Correct lapse rates to per-meter:
+      do 103 mo=1,12
+         tlaps1(mo)=tlaps1(mo)/1000.0
+         tlaps2(mo)=tlaps2(mo)/1000.0
+         plapse(mo)=plapse(mo)/1000.0
+  103 continue
+      
+c     Read number of species ...
+      read(INSPP,4001) nspp, xtree, xcht
+ 4001 format(i4,/2f4.0)
+c     ... and check dimensions of program:
+      if (nmax.gt.MT.or.nrows.gt.MR.or.ncols.gt.MC.or.nspp.gt.MS.
+     &     or.nsoils.gt.MST.or.nslm.gt.ML) then
+         write(*,9999) MR, nrows, MC, ncols, MT, nmax, MS, nspp,
+     &        MST, nsoils, ML, nslm
+         stop
+      endif
+ 9999 format(//5x,'ZELIG is out-of-bounds:',
+     2     //10x,'MR=',i5,5x,'nrows=',i5,/10x,'MC=',i5,5x,'ncols=',i5,
+     3     /10x,'MT=',i5,5x,' nmax=',i5,/10x,'MS=',i5,5x,' nspp=',i5,
+     4     /10x,'MST=',i5,5x,' nsoils=',i5,/10x,'ML=',i5,5x,
+     5     'max nsl=',i5,
+     6     //5x,'Adjust run parameters and/or recompile, and restart'//)
+      
+c     Read GIS data maps for the grid:
+      if (iproc.eq.0) then
+      do 104 kr=1,nrows
+         read(INSOIL,*) (msol(kr,kc),kc=1,ncols)
+         read(INDEM,*) (elev(kr,kc),kc=1,ncols)
+         read(INASP,*) (aspect(kr,kc),kc=1,ncols)
+         read(INSLP,*) (slope(kr,kc),kc=1,ncols)
+  104 continue
+      end if
+      
+C +++++   Call TreadMarks barrier
+      call Tmk_barrier(0)
+      
+c     IDUM is the seed for the random number generator; seed (1) goes to
+c     WEATHR, (2) to REGEN, and (3) to MORTAL:
+c     WEATHER uses RAN1, GAUSS1, and GAMMA; REGEN uses RAN2 and GAUSS2;
+c     and MORTAL uses RAN3.
+      write(*,1001) 
+     &     '0  Enter seed for random weather start-up [0 to skip]:  '
+c +++++  Set istart=0 rather than reading in value
+      istart = 0
+C     read(*,*) istart
+      if (istart.gt.0) then
+         do 107 n=1,istart
+            y=RAN1(idum(1))
+  107    continue
+      endif
+      
+c     Initialize plot arrays ...
+c     Set weather and soil water variables:
+      begin = (ncols*iproc)/inp + 1
+      end = (ncols*(1 + iproc))/inp
+      call INIT_W
+c     Initialize solar radiation:
+      call INIT_SUN(begin,end)
+c     Set light extinction coefficient:
+      xk=0.40d0
+      do 10 kc=begin,end
+         do 11 kr=1,nrows
+            ind(kr,kc)=0
+            biom(kr,kc)=0.0
+            pwbi(kr,kc)=0.0
+            maxht(kr,kc)=2
+c     ... Tree arrays:
+            do 111 ki=1,MT
+               isp(ki,kr,kc)=0
+               dbh(ki,kr,kc)=0.0
+               ibc(ki,kr,kc)=0
+               nogro(ki,kr,kc)=0
+  111       continue
+c     ... Light profile:
+            phitot=phi(1,kr,kc)+phi(2,kr,kc)
+            al(0,kr,kc)=phitot
+            do 112 m=1,MH
+               al(m,kr,kc)=phitot
+               ala(m,kr,kc)=0.0
+  112       continue
+c     ... Soil water per layer:
+            ksol=msol(kr,kc)
+            do 113 l=1,nsl(ksol)
+               sw(l,kr,kc)=fc(l,ksol)
+  113       continue
+c     ... Species basal area:
+            do 114 ks=1,MS
+               sba(ks,kr,kc)=0.0
+c     ... and Seedling cohorts:
+               do 1141 l=1,MLY
+                  cohorts(l,ks,kr,kc)=0.0
+ 1141          continue
+  114       continue
+   11    continue
+   10 continue
+      
+c     Begin PRTFILE with summary of run ...
+      if (iprt.le.nyrs.and.iproc.eq.0) then
+         write(PRTFILE,8000) title
+         write(*,8000) title
+      endif
+ 8000 format(//5x,a72)
+c     Adjust for independent vs interactive-plot mode ...
+c     Compute zone-of-influence from 1 angle and max canopy height:
+c     Shadow length for canopy tree:
+      sl=xcht/TAN(theta)
+c     Number of cells to aggregate:
+      cellw=SQRT(ABS(xtree))
+      nac=INT(sl/cellw+0.5)+1
+      if (mode.eq.0) then
+c     Independent plots:
+         area=xtree*FLOAT(nac)
+c     User override to hard-wire plot area (negate XTREE in driver):
+         if (xtree.lt.0.0) area=ABS(xtree)
+         xarea=FLOAT(nrows*ncols)*area/10000.0
+         nmax=INT(area)
+         if (iprt.le.nyrs.and.iproc.eq.0) then
+            write(PRTFILE,8001) area
+            write(*,8001) area
+         endif
+      else
+c     Interactive-shading mode:
+c     MXS= ht (m) of diagonal x.s. thru a plot at this 1 angle:
+         mxs=cellw*TAN(theta)+0.5
+         area=xtree
+         nmax=INT(xtree)
+         xarea=FLOAT(nrows*ncols)*area/10000.0
+         aa=xtree*FLOAT(nac)
+         if (iprt.le.nyrs.and.iproc.eq.0) then
+            write(PRTFILE,8002) aa, nac, mxs
+            write(*,8002) aa, nac, mxs
+         endif
+      endif
+ 8001 format(/10x,'ZELIG is in independent-plot mode',
+     2     /10x,'Plot area:',f8.1,' sq. m')
+ 8002 format(/10x,'ZELIG is in interactive-grid mode',
+     2     /10x,'Max zone-of-influence:',f8.1,' sq. m (',i1,' plots)',
+     3     /10x,'Vertical step size through leaf profile:',i4,' m')
+      
+      if (iprt.le.nyrs.and.iproc.eq.0) then
+         write(PRTFILE,8003) locale, dlat, dlon, nsoils 
+         write(*,8003) locale, dlat, dlon, nsoils
+      endif
+ 8003 format(/5x,'Location:  ',a24,
+     2     //10x,'Lat:',f6.1,5x,'Long:',f6.1,
+     3     //5x,'Number of soil types:',i5/)
+      do 102 ksol=1,nsoils
+         if (iprt.le.nyrs.and.iproc.eq.0) then
+            write(PRTFILE,8004) ksol, soil(ksol), sf(ksol), 
+     2           depth(ksol), awc(ksol)
+            write(*,8004) ksol, soil(ksol), sf(ksol), 
+     2           depth(ksol), awc(ksol)
+         endif
+c     Correct SF units to plot size (Mg/ha->kg/plot)
+         sf(ksol)=sf(ksol)*area/10.0
+  102 continue
+ 8004 format(7x,'Soil:',i4,2x,a20,
+     2     /10x,'Fertility:',f6.1,' Mg/ha/yr',
+     3     /10x,'Total profile depth:',f7.1,' cm',
+     4     /10x,'Water-holding capacity:',f6.1,' cm')
+      
+c     Summarize grid size for run ...
+      nplots=nrows*ncols
+      if (iprt.le.nyrs.and.iproc.eq.0) then
+         write(PRTFILE,8006) nplots, nrows, ncols, xarea
+         write(*,8006) nplots, nrows, ncols, xarea
+      endif
+ 8006 format(/5x,'Number of plots:',i5,' (',i2,' rows,',i3,' columns)',
+     2     /10x,'Output samples are',f6.2,'-ha aggregates')
+      
+c     Read and compute species parameters ...
+      if (iprt.le.nyrs.and.iproc.eq.0) then
+         write(PRTFILE,8008) nspp
+         write(*,8008) nspp
+      endif
+ 8008 format(/5x,'Number of species in driver file:',i5,
+     2     //7x,'Species names and mnemonics:'/)
+c     Negating the first species' seed rate sets them all equal.
+      kseed=0
+c     LSpp is local species included (non-0 seed)
+      lspp=0
+c     Seed(k) is set from assumption of 1 stem/sq.m, and a 10-yr
+c     stocking time; rank seeding rates are then adjusted to this.
+      smax=area/10.0
+      stot=0.0
+      do 12 k=1,nspp
+         read(INSPP,4002) msp(k), species, cname, amax(k), dmax(k), 
+     2        hmax(k), h2(k), h3(k), g(k), lf(k), ddmin(k), ddmax(k),  
+     3        light(k), mdrt(k), nutri(k), seed(k), nsprt(k), sdmax(k),
+     4        t0(k), t1(k), t2(k), s0(k), s1(k), slr(k), aw0(k), aw1(k)
+ 4002    format(a4,2x,2a24,/f5.0,f4.0,f7.3,f8.4,f7.4,f5.0,i3,1x,2f5.0,
+     &        1x,3i2,f3.0,i2,f4.0,
+     2        /3f9.2,2x,f5.1,f8.4,2x,f5.2,2x,2f7.4)
+         if (k.eq.1.and.seed(k).lt.0.0) kseed=1
+         if (kseed.eq.1.and.seed(k).ne.0.0) seed(k)=1.0
+         if (seed(k).gt.0.0) then
+            lspp=lspp+1
+            stot=stot+seed(k)
+         endif
+         if (iprt.le.nyrs.and.iproc.eq.0) then
+            write(PRTFILE,8009) k, msp(k), species, cname
+            write(*,8009) k, msp(k), species, cname
+         endif
+ 8009    format(5x,i2,2x,a4,2x,a24,2x,a24)
+c     Initialize stumps, soil moisture, and degree-day arrays:
+   12 continue
+c     Number of species allowed to establish:
+      if (iprt.le.nyrs.and.iproc.eq.0) then
+         write(PRTFILE,8010) lspp
+         write(*,8010) lspp
+      endif
+ 8010 format(/5x,'Number of species available for simulation:',i5,
+     2     //5x,'Tree life-history parameters ...',/7x,'Species max ',
+     3     'Age, Dbh, Ht; G, Form; GDDs; L, M, N; Seeds, Sprouts:'/)
+c     Relativize seed(k) and adjust to plot size:
+      do 13 k=1,nspp
+         if (seed(k).eq.0.0) go to 13
+         seed(k)=smax*seed(k)/stot
+         if (iprt.le.nyrs.and.iproc.eq.0) then
+            write(PRTFILE,8011) k, msp(k), amax(k), dmax(k), hmax(k),
+     2           g(k), lf(k), ddmin(k), ddmax(k), light(k), mdrt(k),
+     3           nutri(k), seed(k), nsprt(k)
+            write(*,8011) k, msp(k), amax(k), dmax(k), hmax(k), g(k), 
+     2           lf(k), ddmin(k), ddmax(k), light(k), mdrt(k), nutri(k),
+     3           seed(k), nsprt(k)
+         endif
+ 8011    format(5x,i2,2x,a4,1x,f6.1,f6.1,f6.1,2x,f6.1,i3,2x,f6.1,f7.1,
+     &          1x,3i2,f6.1,i2)
+   13 continue
+      
+c     If starting from bare ground (INDATA=0), get out now:
+      if (indata.eq.0.or.indata.eq.2) then
+         if (iprt.le.nyrs.and.iproc.eq.0) then
+            write(PRTFILE,8012)
+            write(*,8012)
+         endif
+         return
+      endif
+ 8012 format(/5x,'Simulation initiated from bare ground'//)
+      
+c     Continue if INDATA=1 and external initials are used:
+      if (iprt.le.nyrs.and.iproc.eq.0) then
+         write(PRTFILE,8013) infile
+         write(*,8013) infile
+      endif
+ 8013 format(/5x,'Simulation initiated with data from file ',a16//)
+c     Read external initial plot data
+      do 14 kc=1,ncols 
+         do 15 kr=1,nrows
+            read(INCFILE,1201) ind(kr,kc)
+            do 16 ki=1,ind(kr,kc)
+               read(12,1202) isp(ki,kr,kc), dbh(ki,kr,kc), ibc(ki,kr,kc)
+               nogro(ki,kr,kc)=0
+               if (ibc(ki,kr,kc).lt.1) ibc(ki,kr,kc)=1
+   16       continue
+ 1201       format(10x,i5)
+ 1202       format(5x,i5,f10.5,i5)
+c     Initialize internal structure for these initials:
+            call BOOKS(kr,kc)
+   15    continue
+   14 continue
+      kyr=0
+      call GRID(1,MC)
+      return
+      end
+      subroutine initall
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+C
+C   This routine initializes data in local COMMON block
+C
+      do l=1,3
+         idum(l)=-1
+c     Initialize SFF here (cuz it has the same dimensions):
+         sff(l)=1.0
+      end do
+c     Start simulation with a spin of the random-number generator:
+      do k=1,nspp
+         do l=1,2
+            nstmp(l,k)=0
+            smf(l,k)=1.0
+         end do
+         ddf(k)=1.0
+      end do
+      return
+      end
+c     MORTAL kills trees.
+c
+      Subroutine MORTAL(kr,kc)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      integer live(15), ndead(2,15)
+      logical AMORT, SMORT
+
+c     IDead and ndead tally dead trees for diagnostics
+      idead=0
+      do 411 l=1,15
+         live(l)=0
+         ndead(1,l)=0
+         ndead(2,l)=0
+  411 continue
+c     Initialize stump arrays:
+      do 412 ks=1,nspp
+         nstmp(1,ks)=0
+         nstmp(2,ks)=0
+  412 continue
+c     Individual tree loop:
+      if (ind(kr,kc).eq.0) return
+      do 42 ki=1,ind(kr,kc)
+         ks=isp(ki,kr,kc)
+         d=dbh(ki,kr,kc)
+c     Tally stems in dbh classes (for diagnostics)
+         l=INT(d/10.0)+1
+         if (l.gt.15) l=15
+         live(l)=live(l)+1
+c     Mortality can come from stress, or ambient ...
+c     Unhealthy tree dies:
+         if ( SMORT( nogro( ki, kr, kc ), idum( 3 ) ) ) then
+c     Label dbh and tally 1 dead from stress
+            dbh(ki,kr,kc)=-2.0
+            ndead(2,l)=ndead(2,l)+1
+            idead=idead+1
+c     Check if sproutable:
+            if (d.ge.5.0.and.d.le.sdmax(ks)) then
+               nstmp(2,ks)=nstmp(2,ks)+1
+            endif
+            go to 42
+         endif
+c     Healthy tree dies:
+         if ( AMORT( amax( ks ), idum( 3 ) ) ) then
+c     Label dbh and tally 1 dead of natural causes
+            dbh(ki,kr,kc)=-1.0
+            ndead(1,l)=ndead(1,l)+1
+            idead=idead+1
+c     Check if sproutable:
+            if (d.ge.5.0.and.d.le.sdmax(ks)) then
+               nstmp(1,ks)=nstmp(1,ks)+1
+            endif
+         endif
+   42 continue
+      
+c     Diagnostics on mortality:
+*#ifdef DIAG_IO
+*      if (kr.eq.1.and.kc.eq.1.and.MOD(kyr,ilog).eq.0) then
+*         write(LOGFILE,1101)
+*         write(LOGFILE,1102) (live(l),l=1,15), (ndead(1,l),l=1,15),
+*     &        (ndead(2,l),l=1,15), idead
+*      endif
+* 1101 format(/2x,'Mortality in plot (1,1), by 10-cm size classes:'/)
+* 1102 format(/10x,'Alive:',15i4,/10x,'NDead:',15i4,
+*     &     /10x,'SDead:',15i4,//10x,'Total number of trees dead:',i5)
+*#endif
+      
+c     Reshuffle tree arrays if there was any mortality:
+      if (idead.eq.0) return
+      in=0
+      do 43 io=1,ind(kr,kc)
+         if (dbh(io,kr,kc).eq.0.0) go to 44
+         if (dbh(io,kr,kc).lt.0.0) go to 43
+         in=in+1
+         dbh(in,kr,kc)=dbh(io,kr,kc)
+         nogro(in,kr,kc)=nogro(io,kr,kc)
+         isp(in,kr,kc)=isp(io,kr,kc)
+         ibc(in,kr,kc)=ibc(io,kr,kc)
+   43 continue
+   44 ind(kr,kc)=in
+c     Void remainder of tree arrays
+      inxs=in+1
+      do 45 ix=inxs,nmax
+         dbh(ix,kr,kc)=0.0
+         nogro(ix,kr,kc)=0
+         isp(ix,kr,kc)=0
+         ibc(ix,kr,kc)=0
+   45 continue
+      return
+      end
+c     PRINT writes aggregate stand statistics for all plots
+c
+      Subroutine PRINT
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      real*8 ba(MS), sd(MS), freq(MS), dc(20), sdc(20,MS)
+      integer inc(MS,MR,MC)
+
+      plots=FLOAT(nrows*ncols)
+      xarea=plots*area/10000.0
+      write(PRTFILE,8001) kyr
+ 8001 format(''/5x,'Simulation year:',i5)
+c     Variable definitions ...
+c     ITD is (integer) total density; ITB, density of trees>10 cm;
+c     ISD, SBA, RIV are species density, basal area, and importance;
+c     IDC is stem tally by 10-cm dbh class (ISDC, by spp).
+c     T* is total (density, BA, biomass, ...), which are converted to
+c     mean values X*.
+c     Initialize to zero:
+      td=0.0
+      tb=0.0
+      tba=0.0
+      tbiom=0.0
+      tla=0.0
+      tht=0.0
+      tdbh=0.0
+      ssqd=0.0
+      sdd=0.0
+      xdbh=0.0
+      do 701 ks=1,nspp
+         ba(ks)=0.0
+         sd(ks)=0.0
+         freq(ks)=0.0
+         do 702 l=1,20
+            sdc(l,ks)=0.0
+  702    continue
+         do 703 kr=1,nrows
+            do 704 kc=1,ncols
+               inc(ks,kr,kc)=0
+  704       continue
+  703    continue
+  701 continue
+      do 705 l=1,20
+         dc(l)=0.0
+  705 continue
+      
+      do 70 kc=1,ncols
+         do 71 kr=1,nrows
+            if (ind(kr,kc).eq.0) go to 71
+c     Individual tree loop ...
+            do 72 ki=1,ind(kr,kc)
+               ks=isp(ki,kr,kc)
+               d=dbh(ki,kr,kc)
+c     ... Increment diameter classes:
+               l=(d/10.0d0)+1
+               if (l.gt.20) l=20
+               sdc(l,ks)=sdc(l,ks)+1.0
+               dc(l)=dc(l)+1.0
+c     ... and stem density:
+               sd(ks)=sd(ks)+1.0
+               td=td+1.0
+               if (d.ge.10.0) tb=tb+1.0
+c     ... and dbh tallies:
+               tdbh=tdbh+d
+               ssqd=ssqd+d**2
+c     Set inc=1 if species is included on this plot:
+               inc(ks,kr,kc)=1
+   72       continue
+c     Increment biomass and LAI (using a vertical LAI profile):
+            tbiom=tbiom+biom(kr,kc)
+            tla=tla+DLA(kr,kc,1,MH,0,MH)
+c     ... and basal area:
+            do 711 ks=1,nspp
+               ba(ks)=ba(ks)+sba(ks,kr,kc)
+               tba=tba+sba(ks,kr,kc)
+  711       continue
+c     ... and canopy height:
+            tht=tht+FLOAT(maxht(kr,kc))
+   71    continue
+   70 continue
+      
+c     Write stand-level output ...
+      sumriv=0.0
+      write(PRTFILE,8002)
+ 8002 format(/5x,'Stand Structure by Species:',
+     &     //7x,'Species Dbh Distribution (#/ha, in 10-cm classes),'/)
+      do 73 ks=1,nspp
+c     Skip species if unrepresented:
+         if (sd(ks).eq.0.0) go to 73
+c     Convert spp dbh classes to per-ha and write:
+         write(PRTFILE,8003) msp(ks), (sdc(l,ks)/xarea,l=1,20)
+ 8003    format(10x,a4,f7.1,4f6.1,5f5.1,/15x,5f6.1,5f5.1)
+   73 continue
+c     ... and total dbh distribution for all stems:
+      write(PRTFILE,8004) (dc(l)/xarea,l=1,20) 
+ 8004 format(/10x,'All:',f7.1,4f6.1,5f5.1,/15x,5f6.1,5f5.1)
+c     Compute species frequency:
+      do 741 ks=1,nspp
+         do 742 kc=1,ncols
+            do 743 kr=1,nrows
+               if (inc(ks,kr,kc).ne.0) freq(ks)=freq(ks)+1.0
+  743       continue
+  742    continue
+         freq(ks)=freq(ks)/plots
+  741 continue
+      write(PRTFILE,8005)
+ 8005 format(/5x,'Species Composition:',
+     2     //7x,'Species Density, Rel. D;   BA, Rel. BA;  IV200;',
+     3     ' Frequency:'/)
+      do 74 ks=1,nspp
+         if (sd(ks).eq.0.0) go to 74
+c     Check to make sure there are trees ...
+         if (td.gt.0.0) then
+            rsd=100.0d0*sd(ks)/td
+            rba=100.0d0*ba(ks)/tba
+            riv=(rsd+rba)/2.0d0
+         else
+            rsd=0.0
+            rba=0.0
+            riv=0.0
+         endif
+         sumriv=sumriv+riv
+c     Convert tallies to per-ha and write:
+         write(PRTFILE,8006) msp(ks), sd(ks)/xarea, rsd, 
+     &         ba(ks)/xarea, rba, riv, freq(ks)
+ 8006    format(10x,a4,5x,2f6.1,3x,f5.1,f6.1,3x,f6.2,3x,f6.2)
+   74 continue
+      
+c     Convert stand aggregates to per-ha ...
+      tbiom=tbiom/1000.0d0
+      tbmha=tbiom/xarea
+      tdha=td/xarea
+      tdb=tb/xarea
+      tbaha=tba/xarea
+      xlai=tla/plots
+      xht=tht/plots
+      if (td.gt.0.0) then 
+         xdbh=tdbh/td
+         sdd=SQRT((ssqd-tdbh**2/td)/(td-1.0))
+      endif
+c     Dump stand summary:
+      write(PRTFILE,8007) tdha, tdb, tbaha, xdbh, sdd, tbmha, 
+     &     xlai, xht
+ 8007 format(/5x,'Stand Aggregates:',
+     2     //10x,'Total Density:',f9.2,'/ha',5x,'>10 cm:',f8.2,'/ha',
+     3     /10x,'Basal Area:',f8.3,' sq.m/ha',
+     4     /10x,'Mean Dbh:',f7.2,' cm, with s.d.',f7.2,
+     5     /10x,'Total woody biomass:',f9.3,' Mg/ha',
+     6     /10x,'Leaf-area index:',f7.3,
+     7     /10x,'Average canopy height:',f6.1,' m')
+      return
+      end
+c     PUNCH punches summaries for each plot
+c
+      Subroutine PUNCH
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+
+c     Variables are as defined in SR PRINT
+      real*8 dc(20)
+      integer idc(20)
+
+      xarea=area/10000.0d0
+
+      do 10 kc = 1, ncols
+      do 10 kr = 1, nrows
+c     Initialize tallies:
+         ksol=msol(kr,kc)
+         itd=0
+         tba=0.0
+         td=0.0
+         tbm=0.0
+         clai=0.0
+         xcht=0.0
+         do 811 l=1,20
+            idc(l)=0
+            dc(l)=0.0
+  811    continue
+         if (ind(kr,kc).eq.0) go to 85
+         do 82 ki=1,ind(kr,kc)
+            ks=isp(ki,kr,kc)
+            d=dbh(ki,kr,kc)
+c     Increment diameter classes
+            l=(d/10.0d0)+1
+            if (l.gt.20) l=20
+            idc(l)=idc(l)+1
+c     Increment stem density
+            itd=itd+1
+   82    continue
+c     Convert to per-ha
+         tbm=biom(kr,kc)/1000.0/xarea
+         td=float(itd)/xarea
+         clai=DLA(kr,kc,1,MH,0,MH)
+         if (maxht(kr,kc).gt.2) xcht=FLOAT(maxht(kr,kc))
+         do 83 l=1,20
+            dc(l)=FLOAT(idc(l))/xarea
+   83    continue
+         do 84 ks=1,nspp
+            tba=tba+sba(ks,kr,kc)/xarea
+   84    continue
+   85    write(PCHFILE,7001) kyr, kr, kc, ksol, td, tba, tbm, clai,
+     &         xcht, (dc(l),l=1,20), (sba(ks,kr,kc)/xarea,ks=1,nspp)
+ 7001    format(i4,i5,i3,i3,2x,5f8.2,/4x,f7.1,9f6.1,/5x,10f6.1,
+     &        /5x,10f6.2,/5x,10f6.2)
+   10 continue
+      return
+      end
+c     RAN1(idum) returns a uniform random number on (0,1).
+c     This is cloned from RAN2, and dedicated to WEATHR.
+c
+      Real*8 Function RAN1(idum)
+      implicit real*8 (a-h,o-z)
+      dimension ir(97)
+      data m/714025/
+      data ia/1366/
+      data ic/150889/
+      data iff/0/
+      save ir, iy
+      rm=1.0/FLOAT(m)
+      if (idum.lt.0.or.iff.eq.0) then
+        iff=1
+        idum=MOD(ic-idum,m)
+        do 11 j=1,97
+          idum=MOD(ia*idum+ic,m)
+          ir(j)=idum
+   11     continue
+        idum=MOD(ia*idum+ic,m)
+        iy=idum
+        endif
+      j=1+(97*iy)/m
+c     if (j.gt.97.or.j.lt.1) PAUSE
+      iy=ir(j)
+      RAN1=iy*rm
+      idum=MOD(ia*idum+ic,m)
+      ir(j)=idum
+      return
+      end
+c     RAN2(idum) returns a uniform random number on (0,1).
+c     The routine is from:  Press, W.H., B.P. Flannery, S.A.
+c       Teukolsky, and W.T. Vetterling.  1987.  Numerical recipes.
+c       Cambridge University Press, Cambridge.
+c     RAN2 is dedicated to REGEN.
+c
+      Real*8 Function RAN2(idum)
+      implicit real*8 (a-h,o-z)
+      dimension ir(97)
+      data m/714025/
+      data ia/1366/
+      data ic/150889/
+      data iff/0/
+      save ir, iy
+      rm=1.0/FLOAT(m)
+      if (idum.lt.0.or.iff.eq.0) then
+        iff=1
+        idum=MOD(ic-idum,m)
+        do 11 j=1,97
+          idum=MOD(ia*idum+ic,m)
+          ir(j)=idum
+   11     continue
+        idum=MOD(ia*idum+ic,m)
+        iy=idum
+        endif
+      j=1+(97*iy)/m
+c     if (j.gt.97.or.j.lt.1) PAUSE
+      iy=ir(j)
+      RAN2=iy*rm
+      idum=MOD(ia*idum+ic,m)
+      ir(j)=idum
+      return
+      end
+c     RAN3(idum) returns a uniform random number on (0,1).
+c     This is a clone of RAN2, and is dedicated to MORTAL.
+c
+      Real*8 Function RAN3(idum)
+      implicit real*8 (a-h,o-z)
+      dimension ir(97)
+      data m/714025/
+      data ia/1366/
+      data ic/150889/
+      data iff/0/
+      save ir, iy
+      rm=1.0/FLOAT(m)
+      if (idum.lt.0.or.iff.eq.0) then
+        iff=1
+        idum=MOD(ic-idum,m)
+        do 11 j=1,97
+          idum=MOD(ia*idum+ic,m)
+          ir(j)=idum
+   11     continue
+        idum=MOD(ia*idum+ic,m)
+        iy=idum
+        endif
+      j=1+(97*iy)/m
+c     if (j.gt.97.or.j.lt.1) PAUSE
+      iy=ir(j)
+      RAN3=iy*rm
+      idum=MOD(ia*idum+ic,m)
+      ir(j)=idum
+      return
+      end
+c     REGEN sprouts stumps and plants saplings.
+c
+      Subroutine REGEN(kr,kc)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+c     Num, number to plant; Cohorts are seedlings; Probs, the
+c       relative chance per species; XS and XSS, expected saplings
+c       and stump sprouts.
+      integer num(MS)
+      real*8 rf(MS), probs(MS), xss(MS) 
+c     LYrs, lag years before seedlings are available for planting,
+c       is now an array, keyed by shade tolerance class,
+c       assuming more tolerant species start more slowly.
+c     LFmts are for species with varying LYrs (for LOG file)
+      integer lyrs(5)
+c     character*50 lfmt(5)
+      integer ns, nss, nstot, nsstot
+      data lyrs / 2,3,4,5,6 /
+c     data lfmt / '(10x,i2,1x,a4,2x,f4.2,2x,2f5.1,20x,f7.1,i4) ',
+c    2            '(10x,i2,1x,a4,2x,f4.2,2x,3f5.1,15x,f7.1,i4) ',
+c    3            '(10x,i2,1x,a4,2x,f4.2,2x,4f5.1,10x,f7.1,i4) ',
+c    4            '(10x,i2,1x,a4,2x,f4.2,2x,5f5.1,5x,f7.1,i4) ',
+c    5            '(10x,i2,1x,a4,2x,f4.2,2x,6f5.1,f7.1,i4) ' /
+
+c     Header for diagnostics:
+*#ifdef DIAG_IO
+*      if (kr.eq.1.and.kc.eq.1.and.MOD(kyr,ilog).eq.0) 
+*     2     write(LOGFILE,1101) 
+* 1101 format(/2x,'Regeneration in plot (1,1):')
+*#endif
+c     Zero tallies for saplings:
+c     XStot is expected total saplings; xsstot, expected stump-sprouts;
+c     NS is number of saplings to plant; nss, number of sprouts;
+c     NPoss the number possible, nposs2, possible after sprouts;
+c     NPlant, the total number planted.
+c     BAtot is total basal area, which is accounted when available space
+c     is computed:  a significant % of ground area may be BA.
+      batot=0.0
+      xstot=0.0
+      xsstot=0.0
+      ns=0
+      nss=0
+      nstot=0
+      nsstot=0
+      nposs=0
+      nposs2=0
+      nplant=0
+      do 52 ks=1,nspp
+c     Total basal area:
+         batot=batot+sba(ks,kr,kc)
+         lt=light(ks)
+c     Available light regen factor, based on ground-level light ...
+         alrf=ALF(lt,al(0,kr,kc))
+c     Soil moisture factor is based on topsoil dry-days;
+c     Below-ground factor is MIN(water, fertility):
+         if (nutri(ks).ne.0) then
+            sfrf=sff(nutri(ks))
+         else
+            sfrf=1.0
+         endif
+         bgf=MIN(sfrf,smf(1,ks))
+c     Regen factor is light*BGF*temperature:
+         rf(ks)=alrf*bgf*ddf(ks)
+c     Saplings expected from seeds, filtered for lyrs ...
+c     Work thru cohorts, voiding each if rf=0 this year:
+         ly=lyrs(lt)
+         do 521 l=(ly-1),1,-1
+            if (rf(ks).eq.0.0) then
+               cohorts(l+1,ks,kr,kc)=0.0
+            else
+               cohorts(l+1,ks,kr,kc)=cohorts(l,ks,kr,kc)
+            endif
+  521    continue
+c     This year's seedling establishment:
+         cohorts(1,ks,kr,kc)=seed(ks)*rf(ks)
+c     Total saplings surviving from seed:
+         xstot=xstot+cohorts(ly,ks,kr,kc)
+c     Expected number of stump sprouts ... 
+c     Healthy stumps sprout to their full potential;
+c     stress-killed stumps are subject to the regen multiplier: 
+         xss(ks)=FLOAT(nstmp(1,ks)*nsprt(ks)) +
+     2        FLOAT(nstmp(2,ks)*nsprt(ks))*rf(ks) 
+         xsstot=xsstot+xss(ks)
+         num( ks ) = INT( xss( ks ) + RAN2( idum( 2 ) ) )
+         nsstot=nsstot+num(ks) 
+   52 continue
+      
+c     Stump sprouts first:  
+c     Number of sprouts is MIN(available,possible);
+c     this is 1 per sq.m, minus trees present and sq.m of basal area:
+      mba=INT(batot)
+      nposs=nmax-ind(kr,kc)-mba
+      nss=MIN(nsstot,nposs) 
+c     No room at all:
+      if (nposs.eq.0) go to 55
+c     If NSStot is OK, keep them and go to seedlings: 
+      if (nsstot.le.nposs) go to 54 
+c     Else, NSStot gt NPoss, so remove some ...
+   53 nssxs=nsstot-nposs
+c     Compute equal-probability array (only for species with sprouts) 
+      spp=0.0
+      do 530 ks=1,nspp
+         if (xss(ks).gt.0.0) spp=spp+1.0
+  530 continue
+      do 531 ks=1,nspp
+         if (xss(ks).gt.0.0) then
+            probs(ks)=1.0d0/spp
+         else
+            probs(ks)=0.0
+         endif
+         if (ks.ge.2) probs(ks)=probs(ks)+probs(ks-1)
+  531 continue
+c     Remove sprouts probabilistically: 
+      nssr=0
+  532 y = RAN2( idum( 2 ) )
+      ks=1
+      if (y.le.probs(ks)) go to 535 
+  533 do 534 ks=2,nspp
+         if (y.gt.probs(ks-1).and.y.le.probs(ks)) go to 535
+  534 continue
+  535 if (num(ks).gt.0) then
+         num(ks)=num(ks)-1 
+         nssr=nssr+1 
+      endif 
+      if (nssr.lt.nssxs) go to 532
+c     ... and now there's no room left for seedlings,
+c     so go plant sprouts:
+      go to 55  
+      
+c     Space left after sprouting, so, add seedlings:  
+   54 nposs2=nposs-nss
+      nstot = INT( xstot + RAN2( idum( 2 ) ) )
+c     Number of seedlings is MIN(available,possible)
+      ns=MIN(nstot,nposs2)
+c     If no seedlings, plant any sprouts:
+      if (ns.eq.0) go to 55 
+c     Else, probabilistically generate seedlings
+  541 do 542 ks=1,nspp
+         probs(ks)=cohorts(lyrs(light(ks)),ks,kr,kc)/xstot
+         if (ks.ge.2) probs(ks)=probs(ks)+probs(ks-1)
+  542 continue
+      ins=0
+  543 y = RAN2( idum( 2 ) )
+      ks=1
+      if (y.le.probs(ks)) go to 546 
+  544 do 545 ks=2,nspp
+         if (y.gt.probs(ks-1).and.y.le.probs(ks)) go to 546
+  545 continue
+  546 num(ks)=num(ks)+1 
+      ins=ins+1 
+      if (ins.lt.ns) go to 543
+      
+   55 in=ind(kr,kc) 
+      nplant=ns+nss
+c     Dump diagnostics:
+*#ifdef DIAG_IO
+*      if (kr.eq.1.and.kc.eq.1.and.MOD(kyr,ilog).eq.0)
+*     2     write(LOGFILE,1102)  
+*     3     nposs, nsstot, nss, nposs2, nstot, ns 
+* 1102 format(/5x,' NPoss:',i4,3x,'NSStot:',i4,3x,'NSS:',i4, 
+*     2     /5x,'NPoss2:',i4,3x,' NStot:',i4,3x,' NS:',i4,
+*     3     //10x,'Species, RF; Seedling Cohorts; Sprouts; Saplings:'/) 
+*#endif
+c     Plant trees and assign initial diameters
+      do 56 ks=1,nspp
+         if (seed(ks).eq.0.0) go to 56
+c     (more diagnostics)
+*#ifdef DIAG_IO
+*         if (kr.eq.1.and.kc.eq.1.and.MOD(kyr,ilog).eq.0) then
+*            lt=light(ks)
+*            ly=lyrs(lt)
+*            write(LOGFILE,lfmt(lt)) ks, msp(ks), rf(ks),
+*     2           (cohorts(l,ks,kr,kc),l=1,ly), xss(ks), num(ks)
+*         endif
+*#endif
+         if (nplant.eq.0.or.num(ks).eq.0) go to 56
+c     Plant trees and assign initial values:
+         do 561 ki=1,num(ks)
+            in=in+1
+            dbh(in, kr, kc) = 2.50 + 0.5 * ABS( GAUSS2( idum( 2 ) ) )
+            isp(in,kr,kc)=ks
+            ibc(in,kr,kc)=1
+            nogro(in,kr,kc)=0
+  561    continue
+   56 continue
+      ind(kr,kc)=in
+*#ifdef DIAG_IO 
+*      if (MOD(kyr,ilog).eq.0.and.kr.eq.1.and.kc.eq.1)
+*     2     write(LOGFILE,1105) nplant
+* 1105 format(/10x,'Total number of stems planted:',i5)
+*#endif
+      return
+      end
+c     SMORT is for stress mortality
+c
+      Logical Function SMORT( nogro, idum )
+      implicit real*8 (a-h,o-z)
+      integer nogro, idum
+
+      if ( nogro .gt. 1 .and. RAN3( idum ) .lt. (0.369) ) then
+         SMORT=.true.
+      else
+         SMORT=.false.
+      endif
+      return
+      end
+c     SOLAR version 2.W, updated January 1994 by Dean Urban,
+c     modified from the program written by Gordy Bonan (1989).
+c     Version 2.W is for the parallel model (WATERSHED).
+c
+      Subroutine SOLAR(kr,kc)
+c
+c     SOLAR estimates incoming radiation in daily W/m**2,
+c     adjusting this for slope and aspect via tilt factors,
+c     and for elevation via cloudiness.  Cloudiness itself is
+c     estimated from relative humidity and precip, following
+c     the method of Nikolov and Zeller (1992).  And relative
+c     humidity is estimated from min and max temperatures,
+c     after Running et al. (1987).  Thus, SOLAR requires only
+c     min and max temperature and precipitation, as well as
+c     latitude, slope, aspect, and elevation for the site.
+c
+c     See support program SOLARX for full documentation.
+
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      real*8 gs, lat, slp, asp, pi, dec, ahss, salt, saza, sia, 
+     &  sx, st, stb, std, tiltb, tiltd, phitot, phib, phid
+      real*8 rh(12), cld(12), hday(12)
+c     character*1 month(12)
+
+c     HDay, the day on which radiation is the same as the monthly mean:
+      data hday/17.d0,47.d0,75.d0,105.d0,135.d0,162.d0,198.d0,
+     1  228.d0,258.d0,288.d0,318.d0,334.d0/
+c     Labels for monthly output:
+c     data month /'J','F','M','A','M','J','J','A','S','O','N','D'/
+      data pi/3.1415927d0/
+c     Solar constant, converted to hourly value:
+      sc=2.00d0*60.0d0
+
+c     Compute other met data ...
+      do 101 mo=1,12
+c     Mean daytime temperature (from MTCLIM):
+         tday=0.212d0*(tmax(mo)-t(mo)) + t(mo)
+c     Saturation vapor pressure at min and day temps:
+         es=6.1078d0*EXP((17.269d0*tmin(mo))/(237.3d0+tmin(mo)))
+         esd=6.1078d0*EXP((17.269d0*tday)/(237.3d0+tday))
+c     Relative humidity:
+         rh(mo)=100.0*es/esd
+c     Cloudiness, from precip and RH (from Nikolov and Zeller):
+         esm=6.1078d0*EXP((17.269d0*t(mo))/(237.3d0+t(mo)))
+         evap=rh(mo)*esm
+         rmm=rain(mo)*10.0
+         cld(mo)=10.0d0-1.155d0*SQRT(evap/rmm)
+         if (cld(mo).lt.0.0) cld(mo)=0.0
+  101 continue
+      
+c     
+c     Convert trig arguments from degrees to radians;
+c     Convert slope from percent to radians:
+c     
+      lat=dlat*pi/180.0d0
+      asp=(180.d0-aspect(kr,kc))*pi/180.0d0
+      slp=ATAN(slope(kr,kc)/100.0d0) 
+c     Copy plot elevation to local:
+      ep=elev(kr,kc)
+c     Initialize constants and counters:
+      theta=0.0d0
+      phitot=0.0d0
+      phib=0.0d0 
+      phid=0.0d0
+      
+c     Begin monthly loop, within internal hourly integration ...
+      do 11 mo=1,12 
+c     Solar declination angle, computed in degrees then rads:
+         a=2.0d0*pi*(284.0d0+hday(mo))/365.0d0
+         dec=23.45d0*SIN(a)*pi/180.0d0 
+c     Sunrise/sunset hour angle:
+         ztemp=TAN(lat)*TAN(dec) 
+         if (ztemp.ge.(-1.).and.ztemp.le.(1.)) ahss=ACOS(-ztemp)
+         if (ztemp.gt.(1.)) ahss=pi 
+         if (ztemp.lt.(-1.)) ahss=0.
+         sinsum=0.0
+         saltsum=0.0
+         zhr=0.0 
+c     Integrate altitude and incidence angles over hours when the 1
+c     is above the horizon and in front of the slope:
+         do 111 ihr=1,24 
+            ahr=15.0d0*(FLOAT(2*ihr-1)/2.0d0-12.0d0)*pi/180.0d0 
+            salt=ASIN(SIN(lat)*SIN(dec)+COS(lat)*COS(dec)*COS(ahr))
+            saza=ASIN(COS(dec)*SIN(ahr)/COS(salt))
+            if (slp.eq.0.0d0) then 
+               sia=SIN(dec)*SIN(lat)+COS(dec)*COS(lat)*COS(ahr) 
+            else
+               if (aspect(kr,kc).eq.180.0d0) then
+                  sia=SIN(lat-slp)*SIN(dec)
+     &                 + COS(lat-slp)*COS(dec)*COS(ahr) 
+               else 
+                  sia=COS(saza-asp)*COS(salt)*SIN(slp)
+     &                 + SIN(salt)*COS(slp) 
+               endif
+            endif 
+            sia=ACOS(sia) 
+c     Sunrise/set occurs when incidence angle=pi/2 or altitude angle=0:
+            if (sia.ge.(pi/2.0d0) .or. salt.le.0.0d0) go to 111
+            sinsum=sinsum+COS(sia)
+            saltsum=saltsum+SIN(salt)
+            zhr=zhr+1.0d0
+  111    continue 
+c     
+c     Compute extraterrestiral radiation:
+         sx=24.0d0/pi*sc*(1.0d0+0.033d0*COS(2.0d0*pi*hday(mo)/365.0d0))
+     &        *(COS(lat)*COS(dec)*SIN(ahss)+ahss*SIN(lat)*SIN(dec)) 
+         if (sx.le.0.0d0) go to 11 
+c     Transmission through atmosphere ...
+c     Effect varies with latitude, from Nikolov and Zeller ...
+         fcosl=1.0d0-1.3614d0*COS(lat)
+         alat=32.9835d0-64.884d0*fcosl
+         blat=0.715d0-0.3183d0*fcosl
+         st=sx*(blat-0.03259d0*cld(mo))-alat
+c     And is further adjusted for elevation ...
+c     (XA is mean solar altitude, as its SIN):
+         xa=saltsum/zhr
+         st=st+((sx+1.0d0)-st)*(1.0d0-EXP(-0.019d0*(ep-274.0d0)/
+     1      (xa*274.0d0)))
+         if (st.lt.0.) st=0.0d0
+c     Diffuse fraction depends on the fraction transmitted:
+         akt=st/sx
+         std=(1.0045d0+.04349d0*akt-3.5227d0*akt**2+2.6313d0*akt**3)*st
+c     This is bounded if > 75% came through:
+         if (akt.gt.(0.75)) std=0.166d0*st 
+         if (std.lt.0.0) std=0.0d0
+c     And direct-beam component is the difference:
+         stb=st-std
+c     Direct-beam tilt factor, from the hourly integral computed above:
+         if (saltsum.gt.0.0) then
+            tiltb=sinsum/saltsum 
+         else 
+            tiltb=0.0d0
+         endif
+c     Diffuse-sky tilt factor, a function of slope:
+         tiltd=(COS(slp/2.0d0))**2
+c     Direct, diffuse, and total radiation:
+         beam=tiltb*stb
+         diff=tiltd*std
+         rrksun(mo,kr,kc)=beam+diff
+         rsun(mo,kr,kc)=tiltb*(stb/st)+tiltd*(std/st)
+c     
+c     Accrue sums for averaging over growing season:
+         if (mo.ge.mbgs.and.mo.le.megs) then
+            phitot=phitot+st 
+            phib=phib+beam
+            phid=phid+diff
+            theta=theta+saltsum/zhr 
+         endif
+   11 continue
+c     
+c     Convert sums for output:
+      phib=phib/phitot 
+      phid=phid/phitot 
+      phi(1,kr,kc)=phib
+      phi(2,kr,kc)=phid
+      phitot=phib+phid
+      gs=FLOAT(megs-mbgs)+1.0
+      theta=theta/gs
+      theta=ASIN(theta)
+c     
+c     Diagnostics, if requested:
+*#ifdef DIAG_IO
+*      if (ilog.le.nyrs.and.kr.eq.1.and.kc.eq.1) then
+*         dtheta=theta*180.0/pi
+*         write(LOGFILE,1101) (month(mo),mo=1,12)
+*         write(LOGFILE,1102) (t(mo),mo=1,12), (rain(mo),mo=1,12),
+*     2        (rh(mo),mo=1,12), (cld(mo),mo=1,12),
+*     3        (rrksun(mo,kr,kc),mo=1,12), (rsun(mo,kr,kc),mo=1,12)
+*         write(LOGFILE,1103) dtheta, phitot, phib, phid
+*      endif
+* 1101 format(/1x,'Diagnostics LOG for ZELIG version WATERSHED 2.4 ',
+*     2     //2x,'Solar regime for plot(1,1) ...  ',
+*     3     //4x,'Month:',12(4x,a1,1x))
+* 1102 format(/5x,'  xT:',12f6.1,/5x,'  xP:',12f6.1,/5x,'  RH:',12f6.1,
+*     2     /5x,' Cld:',12f6.1,/5x,' Sun:',12f6.1,/5x,'RSun:',12f6.2)
+* 1103 format(/5x,'Mean solar altitude angle:  ',f5.2,' degrees',
+*     2     //5x,'Total radiation relative to flat ground:',f6.2,
+*     2     /5x,'Fraction as direct-beam:',f6.2,' and diffuse-sky:',f6.2)
+*#endif
+      return
+      end 
+c     SOLWAT simulates the soil water balance.
+c     This is version FACET 2.4, retro-fitted from version 3.2.
+c     In WATERSHED versions, the model is draped over a DEM,
+c     and the grid is remapped to flowpaths.
+c
+c  *  These comments temporarily remove interactive hydrology
+c     until we figure out the flowpath remapping ...
+c
+      Subroutine SOLWAT(kr,kc)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+c     LOGIC:  this is a N-layer tipping bucket model...
+c       Water is intercepted first; then fills layer 1, 
+c     then percolates to layer 2 ...
+c       There are 2 percolation components, fast and slow.  Fast perc 
+c     FPerc trickles through all layers first, without any ET removed.
+c     Then slow SPerc drains through with ET being drawn off each layer
+c     before the excess drains to the next layer.  Thus, these 2 passes
+c     are done in 2 separate loops.
+c       AET and soil water drawdown vary for each layer ...
+c     Surface evaporation comes from top soil layer only.
+c     For the first layer, demand is PET1 plus its share of PET2; i.e.,
+c     surface evaporation plus some transpiration.
+c     For each lower layer, demand is its share of PET2 only.
+c     Water percolates only if PET is met for the layer.
+c     Drawdown is linear after water falls below WK.
+c       Plots are connected in 2.4 so that surface runoff routes to the
+c     next plot downhill (same column, next row); deep percolation DPerc
+c     likewise routes to the next lower depth (layer) of the next plot
+c     (the code tracks the donor plot's basal elevation, and the top and
+c     bottom elevation of the recipient plot's current layer do do this).
+c     This version saves total runoff and deep flow per column (flowpath)
+c     per month for output.
+
+c     Water is current content (cm); OWater, old water (last month's);
+c     SnoPak is current snow (cm water);
+c     Wk's are critical water contents, =75% of FC (from Sellers);
+c     FRFT=fine-root fraction for each layer, for trees 
+c       (roots decrease linearly with depth);
+c     FRFS, the same, to depth of rooting zone for seedlings DRZS;
+c     Effective LAI for interception, ELAI, is computed from the 
+c       fraction of LAI that is deciduous (DFLA, from BOOKS).
+c     New for version 2.3 and beyond:  water balance uses NTS timesteps
+c     within each month, to better approximate water fluxes;
+c     NTS is set to 16, and used as a real number TS.
+c
+c     In version FACET, SOLWAT recomputes DEGD and the DEGD growth factors 
+c     for each plot each year, because temperatures vary a bit with LAI.
+
+      integer nts
+      real*8 sm, xi, xddt, xdds, ddm, ts
+c  *  real*8 sro
+      real*8 water(ML), owater(ML), ddays(ML)
+      data nts /16/
+      data ts /16.0d0/
+
+      ksol=msol(kr,kc)
+      nl=nsl(ksol)
+c     *  dbe=elev(kr,kc)
+      
+c     Soil water balance ...
+c     Use local variables for water balance:
+      do 210 l=1,nl
+         water(l)=sw(l,kr,kc)
+         ddays(l)=0.0
+  210 continue
+c     CDay, calendar day; PETA (AETA), annual PET (AET);
+c     Runoff, surface runoff to next plot (CumRO, cumulative for year);
+c     DPerc, deep percolation to next plot (CumDP, for year).
+      cday=15.0
+      peta=0.0
+      aeta=0.0
+      cumro=0.0
+      cumdp=0.0
+      toti=0.0
+      snopak(kr,kc) = 0.
+
+c     Plot's leaf area, for interception losses:
+      tlai=DLA(kr,kc,1,MH,0,MH)
+c     Woody surface area for interception=10% of LAI:
+      wsai=0.10d0*tlai
+c     Surface area for interception is active LAI + woody surface area:
+      dfrx=dfla(kr,kc)
+      saigs=tlai
+      saings=(1.0d0-dfrx)*tlai
+      if (saings.lt.wsai) saings=wsai
+      
+c     Monthly loop:
+      do 21 mo=1,12
+c     Copy current to oldwater (for dry-days), and continue ...
+         do 211 l=1,nl
+            owater(l)=water(l)
+  211    continue
+         aet=0.0
+         pet=0.0
+         temp=t(mo)
+c     Adjust inputs for within-month timestep:
+         r=rain(mo)/ts
+         sno=snow(mo)/ts
+c     Save adjusted runoff from last plot as runon to this one:
+c     *    runon=runoff(mo)/ts
+c     *    runoff(mo)=0.0
+c     And likewise, for deep percolation as deepflow:
+c     *    deepflow=dperc(mo)/ts
+c     *    dperc(mo)=0.0
+c     But zero these if this is the top of a flowpath (column):
+c     *    if (kr.eq.1) then
+c     *      runon=0.0
+c     *      deepflow=0.0
+c     *      totro(mo,kc)=0.0
+c     *      totdp(mo,kc)=0.0
+c     *      endif
+         
+c     Within-month timesteps for better numerical approximation:
+         do 22 kt=1,nts
+c     Snow dynamics:
+            snopak(kr,kc)=snopak(kr,kc)+sno
+            if (temp.le.smbt) then
+               sm=0.0
+            else
+               sm=smr*(temp-smbt)*days(mo)/ts
+            endif
+            sm=MIN(sm,snopak(kr,kc))
+            snopak(kr,kc)=snopak(kr,kc)-sm
+            
+c     Priestley-Taylor PET ...
+c     PET is decomposed into fractions driven by transmitted (TR) vs 
+c     absorbed (AR) radiation; the former (E) comes from the surface soil;
+c     the latter (T) comes from all layers based on their root density.
+c     Total PET:
+            if (temp.le.0.0) then
+               p=0.0
+            else
+               hvap=597.391d0-0.568d0*temp
+               h=ct*(temp-tx)*rrksun(mo,kr,kc)
+               p=h/hvap*days(mo)/ts
+               if (p.lt.0.0) p=0.0
+            endif
+            pet=pet+p
+            peta=peta+p
+            
+c     Interception loss, and adjust PET ...
+c     Surface area for interception depends on growing season:
+            sai=saigs
+            if (mo.lt.mbgs .or. mo.gt.megs) sai=saings
+            xi=sai*xc*(r+sno)
+            if (xi.gt.p) xi=p 
+            p=p-xi
+            toti=toti+xi
+            
+c     Partition PET according to radiation transmitted to ground:
+            tr=al(0,kr,kc)
+            ar=1.0d0-tr
+            pet1=tr*p
+            pet2=ar*p
+            
+c     Water Input (wi) =  Rain - Interception + Snowmelt + Runon ...
+c     *      wi=r-xi+sm+runon
+            wi=r-xi+sm
+c     ... Remove surface runoff to next plot:
+c     *      wetness=water(1)/fc(1,ksol)
+c     *      sro=wi*SROF(wi,wetness,slope)
+c     *      wi=wi-sro
+c     *      runoff(mo)=runoff(mo)+sro
+            
+c     Tip the bucket, in 2 passes ...
+c     First pass:  fast-flow fraction trickles through all layers:
+            fperc=fff(ksol)*wi
+            sperc=wi-fperc
+            do 221 l=1,nl
+               water(l)=water(l)+fperc
+               fperc=0.0
+               if (water(l).gt.fc(l,ksol)) then
+                  fperc=water(l)-fc(l,ksol)
+                  water(l)=fc(l,ksol)
+               endif
+  221       continue
+c     *      dperc(mo)=dperc(mo)+fperc
+            
+c     Second pass:  add the rest (slow PERC), pulling off ET on the way ...
+c     ... And do the layers ...
+c     ... Deep percolation input comes in when the layers match up,
+c     i.e., when RBE2 falls below the bottom of the donor profile DBE:
+c     *        rbe1=elev(kr,kc)
+            do 222 l=1,nl
+c     *          rbe2=rbe1-dl(l,ksol)
+c     ... Compute relative evaporative, transpirative demand:
+               if (l.eq.1) then
+                  red=1.0
+               else
+                  red=0.0
+               endif
+               rtd=frft(l,ksol)
+c     ... Add water, and balance ...
+               water(l)=water(l)+sperc
+c     ... Add deep flow if this is the right layer:
+c     *          if (rbe1.ge.dbe.and.rbe2.lt.dbe) 
+c     * &          water(l)=water(l)+deepflow
+               aetx=pet1*red+pet2*rtd
+               if (water(l).lt.wk(l,ksol)) aetx=aetx*water(l)/wk(l,ksol)
+               water(l)=water(l)-aetx
+               aet=aet+aetx
+               if (water(l).lt.0.0) water(l)=0.0
+               sperc=0.0
+               if (water(l).gt.fc(l,ksol)) then
+                  sperc=water(l)-fc(l,ksol)
+                  water(l)=fc(l,ksol)
+               endif
+c     ... Adjust recipient's upper base elevation:
+c     *          rbe1=rbe2
+  222       continue
+c     ... The last depth is now the donor base elevation for next plot:
+c     *        dbe=rbe2
+c     Any leftover water is added to deep runoff:
+c     *        dperc(mo)=dperc(mo)+sperc
+   22    continue
+         
+c     Accrue AET as ET+Interception:
+         aeta=aeta+aet+xi
+c     And accrue runoff and deep percolation:
+c     *    cumro=cumro+runoff(mo)
+c     *    cumdp=cumdp+dperc(mo)
+c     And accrue totals if this is the bottom of a flowpath:
+c     *    if (kr.eq.nrows) then
+c     *      totro(mo,kc)=totro(mo,kc)+runoff(mo)
+c     *      totdp(mo,kc)=totdp(mo,kc)+dperc(mo)
+c     *      endif
+         
+c     Interpolate drought-days between months as necessary
+         ocday=cday
+         cday=cday+days(mo)
+c     If in growing season, adjust dry-days:
+         if (cday.gt.bgs.and.ocday.lt.egs) then
+c     Do each layer ...
+            do 212 l=1,nl
+               w=water(l)
+               ow=owater(l)
+               wpl=wp(l,ksol)
+c     Sufficient soil water both months:
+               if (ow.gt.wpl.and.w.gt.wpl) ddm=0.0
+c     Dry both months:
+               if (ow.le.wpl.and.w.le.wpl) then
+                  ddm=days(mo)
+                  if (ocday.lt.bgs.and.cday.gt.bgs) ddm=cday-bgs
+                  if (ocday.lt.egs.and.cday.gt.egs) ddm=egs-ocday
+               endif
+c     Drying period:
+               if (ow.gt.wpl.and.w.le.wpl) then
+                  ddm=days(mo)*(wpl-w)/(ow-w)
+                  if (ocday.lt.bgs.and.cday.gt.bgs)
+     &                ddm=MIN(ddm,cday-bgs)
+                  if (ocday.lt.egs.and.cday.gt.egs) ddm=egs-cday+ddm
+                  if (ddm.lt.0.0) ddm=0.0
+               endif
+c     Wetting period:
+               if (ow.le.wpl.and.w.gt.wpl) then
+                  ddm=days(mo)*(wpl-ow)/(w-ow)
+                  if (ocday.lt.bgs.and.cday.gt.bgs) ddm=ocday+ddm-bgs
+                  if (ddm.lt.0.0) ddm=0.0
+                  if (ocday.lt.egs.and.cday.gt.egs) 
+     &                ddm=MIN(ddm,egs-ocday)
+               endif
+c     ... and tally up dry-days this month:
+               ddays(l)=ddays(l)+ddm
+  212       continue
+         endif
+   21 continue
+      
+c     Relativize dry-days to growing-season length, and average 
+c     (XDDt is integrated by FRFT over the whole profile; 
+c     the topsoil XDDs is integrated over FRFS):
+      xdds=0.0
+      xddt=0.0
+      do 23 l=1,nl
+c     Reassign local water status to COMMON:
+         sw(l,kr,kc)=water(l)
+         ddays(l)=ddays(l)/tgs
+         xddt=xddt+ddays(l)*frft(l,ksol)
+         xdds=xdds+ddays(l)*frfs(l,ksol)
+   23 continue
+      
+c     Compute species soil moisture factors:
+      do 24 ksp=1,nspp
+         smf(1,ksp)=DRTF(mdrt(ksp),xdds)
+         smf(2,ksp)=DRTF(mdrt(ksp),xddt)
+   24 continue
+      
+c     ... and dump diagnostics:
+*#ifdef DIAG_IO      
+*      if (MOD(kyr,ilog).eq.0.and.kr.eq.1.and.kc.eq.1) then
+*         write(LOGFILE,1101) ksol, peta, aeta, cumro, cumdp, toti,
+*     &        xdds, xddt
+*         write(LOGFILE,1102) (l, ddays(l),l=1,nl)
+*      endif
+* 1101 format(/2x,'Soil water balance for plot (1,1), soil type:',i5,
+*     2     //5x,'Total annual PET:',f7.1,5x,'Annual AET:',f7.1,
+*     3     /5x,'Cumulative runoff:',f6.1,' cm',
+*     3     /5x,'Deep percolation:',f7.1,' cm',
+*     4     /5x,'Total interception:',f5.1,' cm',
+*     5     /5x,'Dry-days over seedling rooting zone:',f7.2,
+*     6     /5x,'and integrated over all soil layers:',f7.2,
+*     7     /5x,'Dry-days per layer:',/)
+* 1102 format(10x,i3,2x,f6.2)
+*#endif
+      return
+      end
+c     TLINE does linear interpolations on temperatures,
+c       to find bgs and egs, given monthly temps and the gdd base
+c
+      Real*8 Function TLINE(m1,t1,m2,t2,ddb)
+      implicit real*8 (a-h,o-z)
+
+      real*8 d1, t1, d2, t2, ddb
+      integer m1, m2
+      real*8 cd(12)
+
+      data cd/15.0d0,46.0d0,74.0d0,105.0d0,135.0d0,166.0d0,196.0d0,
+     1        227.0d0,258.0d0,288.0d0,319.0d0,349.0d0/
+
+      d1=cd(m1)
+      d2=cd(m2)
+      if (m1.eq.12) d1=d1-365.0d0
+c     Regression slope is a; intercept is b:
+      a=(t2-t1)/(d2-d1)
+      b=t2-a*d2
+c     Solve for calendar day at which t=ddbase:
+      d=(ddb-b)/a
+      TLINE=d
+
+      return
+      end
+c     ZELIG version FACET 2.4
+c     D.L. Urban, January 1994
+c
+c       FACET is a version of ZELIG that is draped over a terrain map.
+c     Any version of ZELIG can be so draped; version 2.4 is adapted
+c     from ZELIG version 2.3.  This version does not include a fancy
+c     DECOMP routine; instead, soil fertility is specified as a max
+c     annual aboveground woody biomass increment, per soil type.
+c     The SOLWAT routine is retro-fitted from version 3.1.
+c       Terrain is consistent for the grid in FACET, so slope and aspect
+c     are constant.  Elevation is generated internally, from slope and
+c     a base and reference elevation.  Climate data are input for the
+c     reference elevation, and lapsed to the grid's midpoint.  Solar
+c     radiation and climate are constant over the grid.  
+c       Terrain affects the light regime (DLA is draped) and the soil
+c     water regime (via surface runoff and deep percolation, both of
+c     which are functions of slope in SOLWAT).  In SOLWAT, the grid
+c     is assumed to represent flowpaths such that each column is a path.
+c
+c     Main:
+c
+      PROGRAM ZELIG
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+      include 'Tmk_fortran.h'
+
+      real*8 tstart, tall, timer
+c     character*26 fd1
+c     character*21 fname
+      integer begin,end
+C profiling -rrk
+c     real*8 wctime1, wctime2, prof_t
+
+C     Main loop:
+
+C ++++    Initialize TreadMarks
+      call Tmk_startup()
+      iproc = Tmk_proc_id
+      inp = Tmk_nprocs
+C profiling -rrk
+c     wctime1 = timef()
+
+c      if (iproc .eq. 0) then
+c         if (inp .lt. 10) then
+c	    write(fname,'(a,i1)') 'timing.Tmk.HBEF.',inp
+c         else if (inp .lt. 100) then
+c	    write(fname,'(a,i2)') 'timing.Tmk.HBEF.',inp
+c	  end if
+c	  open(unit=99,file=fname,status='unknown')
+c      end if
+C profiling -rrk
+c     do j=1,10
+c 	prof_time(j) = 0.0d0
+c     end do
+
+      tstart = timer()
+c     call fdate(fd1)
+c     if (iproc .eq. 0) write(99,'(a,a26)') ' starting time ** ',fd1
+         
+c     Main loop:
+C     if (iproc.eq.0) call INITL
+      call INITL
+      
+C +++++   Call TreadMarks barrier
+      call Tmk_barrier(0)
+
+      call initall
+      call Tmk_barrier(0)
+      begin = (ncols*iproc)/inp + 1
+      end = (ncols*(1 + iproc))/inp
+
+      do 1 kyr=1,nyrs
+         do 2 kc=begin,end
+         do 3 kr=1,nrows
+C profiling -rrk
+c     prof_t = timef()
+
+            call WEATHR(kr,kc)
+C profiling -rrk
+c     prof_time(2) = prof_time(2) + timef() - prof_t
+c     prof_t = timef()
+
+            call SOLWAT(kr,kc)
+C profiling -rrk
+c     prof_time(3) = prof_time(3) + timef() - prof_t
+c     prof_t = timef()
+
+            call MORTAL(kr,kc)
+C profiling -rrk
+c     prof_time(4) = prof_time(4) + timef() - prof_t
+c     prof_t = timef()
+
+            call GROW(kr,kc)
+C profiling -rrk
+c     prof_time(5) = prof_time(5) + timef() - prof_t
+c     prof_t = timef()
+
+            call REGEN(kr,kc)
+C profiling -rrk
+c     prof_time(6) = prof_time(6) + timef() - prof_t
+c     prof_t = timef()
+
+            call BOOKS(kr,kc)
+C profiling -rrk
+c     prof_time(7) = prof_time(7) + timef() - prof_t
+
+    3    continue
+    2    continue
+c !!!!!!
+C     if (iproc.eq.(inp-1)) then
+C     write(98,'(/,a,/)') ' !!!!!!  Before GRID'
+C     do kc=1,ncols
+C     do kr=1,nrows
+C        write(98,'(/,a,3i4,/)') '(kyr,kr,kc) = ',kyr,kr,kc
+C        call DEBUG(kr,kc)
+C     end do
+C     end do
+C     end if
+c !!!!!!
+C profiling -rrk
+c     prof_t = timef()
+
+      call GRID(begin,end)
+C profiling -rrk
+c     prof_time(8) = prof_time(8) + timef() - prof_t
+
+c !!!!!!
+C     if (iproc.eq.(inp-1)) then
+C     write(98,'(/,a,/)') ' !!!!!!  After GRID'
+C     do kc=1,ncols
+C     do kr=1,nrows
+C        write(98,'(/,a,3i4,/)') '(kyr,kr,kc) = ',kyr,kr,kc
+C        call DEBUG(kr,kc)
+C     end do
+C     end do
+C     end if
+C !!!!!!
+    1 continue
+      
+C +++++   Call TreadMarks barrier
+      call Tmk_barrier(0)
+
+      tall = timer() - tstart
+      if (iproc .eq. 0) 
+     1      print 433,'Elapsed time =', tall, ' seconds'
+ 433        format (a, f9.3, a)  
+c     call fdate(fd1)
+c     if (iproc .eq. 0) then
+c	 write(99,'(a,a26)') ' ending time ** ',fd1
+c	 close(99)
+c     end if
+      if (ipch.le.nyrs) close(PCHFILE)
+      if (iprt.le.nyrs) close(PRTFILE)
+      if (itrx.le.nyrs) close(TRACER)
+      if (ilai.le.nyrs) close(PROFILE)
+      if (ilog.le.nyrs) close(LOGFILE)
+C profiling -rrk
+c     wctime2 = timef() - wctime1
+c     write(100+iproc,'(9f9.2)') 0.001*wctime2,
+c    1      (0.001*prof_time(j),j=1,8)
+c     close(100+iproc)
+
+      call Tmk_exit(0)
+      stop
+      end
+c     WEATHR generates temperature, DegD, and precipitation.
+c     This is weather version 2.4, draped on a DEM, and so
+c     now called with (row,col) arguments.
+c
+      Subroutine WEATHR(kr,kc)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      real*8 rtot, fs, stot
+
+c     Ptot, total annual precipitation; FS, fraction as snow;
+c     Rtot, total annual rain; Stot, total snow;
+c     Degd, degree-days;  bgs (egs), beginning (end) of growing season;
+c       (igs, a flag to catch the season's first warming);
+c     Mbgs, Megs, the growing season's first and last month.
+      degd=0.0
+      ptot=0.0
+      rtot=0.0
+      stot=0.0
+      bgs=1.0d0
+      egs=365.0d0
+      igs=0
+      mbgs=1
+      megs=12
+      clai=DLA(kr,kc,1,MH,0,MH)
+      ep=elev(kr,kc)
+      
+c     Generate weather:
+      do 12 mo=1,12
+c     Temp and rain are lapsed from those at base elevation;
+c     And T is further adjusted for relative radiation (from MTCLIM):
+         tmin(mo)=btmin(mo)-tlaps1(mo)*(ep-ebase)
+         tmax(mo)=btmax(mo)-tlaps2(mo)*(ep-ebase)
+         t(mo)=(tmin(mo)+tmax(mo))/2.0d0
+         if (rsun(mo,kr,kc).lt.1.0) then
+            t(mo)=t(mo)-(1.0d0/rsun(mo,kr,kc))*(1.0d0+clai/10.0d0)
+         else
+            t(mo)=t(mo)+rsun(mo,kr,kc)*(1.0d0-clai/10.0d0)
+         endif
+         
+c     Generate precip, and estimate fraction falling as snow:
+         r=br(mo)+plapse(mo)*(ep-ebase)
+         if (r.lt.0.0) r=0.0
+         ptot=ptot+r
+         if (t(mo).le.-5.0) then
+            fs=1.0
+         elseif (t(mo).ge.2.0) then
+            fs=0.0
+         else
+            fs=(t(mo)-2.0d0)/(-7.0d0)
+         endif
+         snow(mo)=r*fs
+         rain(mo)=r-snow(mo)
+         rtot=rtot+rain(mo)
+         stot=stot+snow(mo)
+         
+c     Recalculate parameters for PET estimate:
+         tl=tmin(8)
+         tu=tmax(8)
+         e1=33.8639d0*((0.00738d0*tl+0.8072d0)**8.0d0 -
+     &        0.000019d0*ABS(1.8d0*tl+48.0d0)+0.001316d0)
+         e2=33.8639d0*((0.00738d0*tu+0.8072d0)**8.0d0 -
+     &        0.000019d0*ABS(1.8d0*tu+48.0d0)+0.001316d0)
+         ct=1.0d0/(38.0d0-2.0d0*ep/305.0d0+380.0d0/(e2-e1))
+         tx=-2.5d0-0.14d0*(e2-e1)-ep/550.0d0
+         
+c     Find BGS, EGS, and total growing season length TGS:
+         lm=mo-1
+         if (lm.eq.0) lm=12
+         if (t(lm).lt.ddbase.and.t(mo).ge.ddbase.and.igs.eq.0) then
+            if (mo.eq.1) then
+               bgs=1.0
+            else
+               bgs=TLINE(lm,t(lm),mo,t(mo),ddbase)
+            endif 
+            mbgs=mo
+            igs=1
+         endif
+         if (mo.gt.6.and.t(lm).ge.ddbase.and.t(mo).lt.ddbase) then
+            egs=TLINE(lm,t(lm),mo,t(mo),ddbase)
+            megs=mo
+         endif
+c     Compute growing degree-days:
+         if (t(mo).gt.ddbase) degd=degd+(t(mo)-ddbase)*days(mo)
+   12 continue
+      tgs=egs-bgs+1
+      if (tgs.le.0.0) tgs=tgs+365.0d0
+      
+c     Compute species degree-day factors:
+      do 13 ks=1,nspp
+         ddf(ks)=DEGDF(ddmin(ks),ddmax(ks),degd)
+   13 continue
+      
+c     Header for diagnostics log:
+*#ifdef DIAG_IO
+*      if (MOD(kyr,ilog).eq.0.and.kr.eq.1.and.kc.eq.1) 
+*     &    write(LOGFILE,1101) kyr, bgs, egs, tgs, degd, ptot, rtot, stot
+* 1101 format(//'Simulation year:',i5,
+*     2     //5x,'Growing season begins on day',f6.1,', ends on',f6.1,
+*     3     /5x,'and has a total length of',f6.1,' days.',
+*     4     //5x,'Total growing degree-days:',f8.1,
+*     5     /5x,'Total precipitation:',f7.1,' cm',
+*     6     /5x,'Total as rain:',f7.1,' cm',
+*     7     /5x,'  and as snow:',f7.1,' cm')
+*#endif
+      return
+      end
+c     Above-ground woody biomass (kg), on dbh (cm) and form:
+c
+      Real*8 Function WOOD(d,ks)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+
+      real*8 d
+      integer ks
+
+c     WOOD returns BOLE+BARK+BRANCH biomass, estimated by regressing
+c       this sum compiled from separate allometries.
+      WOOD=EXP(aw0(ks)+aw1(ks)*LOG(d))
+
+      return
+      end
+
+      BLOCK DATA
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+      data days/31.d0,28.d0,31.d0,30.d0,31.d0,30.d0,31.d0,31.d0,
+     1          30.d0,31.d0,30.d0,31.d0/
+      data ddbase /5.56d0/
+      data wsc /0.08d0/
+      data xc /0.05d0/
+      data smr /0.10d0/
+      data smbt /0.0d0/
+      data drzs /20.0d0/
+      end
+      subroutine DEBUG(kr,kc)
+      implicit real*8 (a-h,o-z)
+      include 'w2.Tmknew.i'
+      write(98,'(a,i4)') 'IND(kr,kc) = ',ind(kr,kc)
+      do i=1,ind(kr,kc)
+	 write(98,'(4i3,f13.9)') i-1, isp(i,kr,kc), ibc(i,kr,kc), 
+     1      nogro(i,kr,kc), dbh(i,kr,kc)
+      end do
+      write(98,'(a,i4)') 'nspp = ',nspp
+      write(98,'(20f13.9)') (sba(i,kr,kc),i=1,nspp)
+      write(98,'(a,i4)') 'maxht(kr,kc) = ',maxht(kr,kc)
+      write(98,'(100f13.9)') (al(i,kr,kc),i=0,maxht(kr,kc))
+      write(98,'(100f13.9)') (ala(i,kr,kc),i=1,maxht(kr,kc))
+      write(98,'(20f13.9)') (sw(i,kr,kc),i=1,ML)
+      write(98,'(f15.9,f13.9)') biom(kr,kc), dfla(kr,kc)
+      return
+      end

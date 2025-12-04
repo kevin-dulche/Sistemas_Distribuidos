@@ -1,0 +1,2201 @@
+head	10.10;
+access;
+symbols
+	Tmk-2_0:10.10.0
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.10.0.38
+	Tmk-1_2:10.10.0;
+locks; strict;
+comment	@ * @;
+
+
+10.10
+date	98.08.07.06.03.12;	author alc;	state Exp;
+branches
+	10.10.0.1;
+next	;
+
+10.10.0.1
+date	98.08.07.16.35.12;	author alc;	state Exp;
+branches;
+next	10.10.0.2;
+
+10.10.0.2
+date	98.08.07.17.33.49;	author alc;	state Exp;
+branches;
+next	10.10.0.3;
+
+10.10.0.3
+date	98.08.07.21.07.08;	author alc;	state Exp;
+branches;
+next	10.10.0.4;
+
+10.10.0.4
+date	98.08.08.18.32.12;	author alc;	state Exp;
+branches;
+next	10.10.0.5;
+
+10.10.0.5
+date	98.08.08.18.36.02;	author alc;	state Exp;
+branches;
+next	10.10.0.6;
+
+10.10.0.6
+date	98.08.08.21.25.00;	author alc;	state Exp;
+branches;
+next	10.10.0.7;
+
+10.10.0.7
+date	98.08.08.21.41.37;	author alc;	state Exp;
+branches;
+next	10.10.0.8;
+
+10.10.0.8
+date	98.08.08.21.50.32;	author alc;	state Exp;
+branches;
+next	10.10.0.9;
+
+10.10.0.9
+date	98.08.09.03.34.33;	author alc;	state Exp;
+branches;
+next	10.10.0.10;
+
+10.10.0.10
+date	98.08.09.06.32.49;	author alc;	state Exp;
+branches;
+next	10.10.0.11;
+
+10.10.0.11
+date	98.08.09.18.10.21;	author alc;	state Exp;
+branches;
+next	10.10.0.12;
+
+10.10.0.12
+date	98.08.10.19.48.02;	author alc;	state Exp;
+branches;
+next	10.10.0.13;
+
+10.10.0.13
+date	98.08.10.21.36.49;	author alc;	state Exp;
+branches;
+next	10.10.0.14;
+
+10.10.0.14
+date	98.08.10.21.56.39;	author alc;	state Exp;
+branches;
+next	10.10.0.15;
+
+10.10.0.15
+date	98.08.10.22.43.45;	author alc;	state Exp;
+branches;
+next	10.10.0.16;
+
+10.10.0.16
+date	98.08.11.04.47.45;	author alc;	state Exp;
+branches;
+next	10.10.0.17;
+
+10.10.0.17
+date	98.08.11.05.11.39;	author alc;	state Exp;
+branches;
+next	10.10.0.18;
+
+10.10.0.18
+date	98.08.11.06.37.33;	author alc;	state Exp;
+branches;
+next	10.10.0.19;
+
+10.10.0.19
+date	98.08.11.15.49.22;	author alc;	state Exp;
+branches;
+next	10.10.0.20;
+
+10.10.0.20
+date	98.08.11.18.58.48;	author alc;	state Exp;
+branches;
+next	10.10.0.21;
+
+10.10.0.21
+date	98.08.12.18.29.01;	author alc;	state Exp;
+branches;
+next	10.10.0.22;
+
+10.10.0.22
+date	98.08.12.18.38.56;	author alc;	state Exp;
+branches;
+next	10.10.0.23;
+
+10.10.0.23
+date	98.08.12.18.57.25;	author alc;	state Exp;
+branches;
+next	10.10.0.24;
+
+10.10.0.24
+date	98.08.12.19.09.14;	author alc;	state Exp;
+branches;
+next	10.10.0.25;
+
+10.10.0.25
+date	98.08.15.07.52.33;	author alc;	state Exp;
+branches;
+next	10.10.0.26;
+
+10.10.0.26
+date	98.08.15.22.30.47;	author alc;	state Exp;
+branches;
+next	10.10.0.27;
+
+10.10.0.27
+date	98.08.16.19.23.35;	author alc;	state Exp;
+branches;
+next	10.10.0.28;
+
+10.10.0.28
+date	98.08.16.19.45.44;	author alc;	state Exp;
+branches;
+next	10.10.0.29;
+
+10.10.0.29
+date	98.08.16.20.38.15;	author alc;	state Exp;
+branches;
+next	10.10.0.30;
+
+10.10.0.30
+date	98.08.17.16.02.57;	author alc;	state Exp;
+branches;
+next	10.10.0.31;
+
+10.10.0.31
+date	98.08.17.20.56.02;	author alc;	state Exp;
+branches;
+next	10.10.0.32;
+
+10.10.0.32
+date	98.08.19.18.53.24;	author alc;	state Exp;
+branches;
+next	10.10.0.33;
+
+10.10.0.33
+date	98.08.20.03.21.13;	author alc;	state Exp;
+branches;
+next	10.10.0.34;
+
+10.10.0.34
+date	98.08.21.16.18.07;	author alc;	state Exp;
+branches;
+next	10.10.0.35;
+
+10.10.0.35
+date	98.08.21.22.29.52;	author alc;	state Exp;
+branches;
+next	10.10.0.36;
+
+10.10.0.36
+date	98.08.22.01.08.26;	author alc;	state Exp;
+branches;
+next	10.10.0.37;
+
+10.10.0.37
+date	98.08.23.06.43.33;	author alc;	state Exp;
+branches;
+next	10.10.0.38;
+
+10.10.0.38
+date	98.08.24.03.06.56;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@A reduction barrier implementation
+@
+
+
+10.10
+log
+@Incorporated the initial revision from Rob Fowler.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: barrier.c,v 10.6.1.9 1998/06/16 04:59:14 alc Exp $
+ *
+ * Description:    
+ *	reduction barrier synchronization routines
+ *
+ * External Functions:
+ *			dhpf_reduction,
+ *			dhpf_reduction_initialize
+ *
+ * External Variables:
+ *			dhpf_reduction_sigio_handler
+ *			dhpf_reduction_sigio_duplicate_handler
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ *		dHPF runtime extensions
+ * History:
+ *	12-Jul-1998	Rob Fowler      Cloned from barrier.c
+ *					      in Tmk 1.0.3
+ *
+ */
+#include "Tmk.h"
+
+#define NREDUCTIONS TMK_NPROCS /* Potentially allow each node to manage a reduction */
+
+static	struct	barrier	{
+	unsigned char		manager;
+	unsigned volatile	mask;
+}			barrier_[NREDUCTIONS];
+
+
+struct	req_typ_red	{
+	unsigned	seqno;
+	unsigned char	from;
+	unsigned char	type;
+	unsigned short	id;
+        unsigned        n_red_words;
+};
+
+static	struct	req_typ_red req_typ_red
+          = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_REDUCTION , /*n*/ 0};
+
+static	char		req_data[MTU - sizeof(req_typ_red) - sizeof(proc_vector_time_)];
+
+static	struct	iovec	req_iov[4] = {
+	{ (caddr_t)&req_typ_red, sizeof(req_typ_red) },
+	{ 0 , 0 },
+	{ (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) },
+	{ req_data, 0 } };
+
+static	struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+
+static	struct	rep_typ_red	{
+	unsigned	seqno;
+	unsigned short	repo;
+        unsigned short  pad;
+        unsigned        n_red_words;
+	char		data[MTU - 2*sizeof(unsigned) - 2*sizeof(unsigned short)];
+}			rep;
+
+/*
+ *
+ */
+void
+dhpf_reduction(
+	unsigned	id,
+        unsigned        n_elem,       /* number of words */
+        void        *(*upcall)(unsigned, unsigned, void*, void*),
+	    /* procnum, actual length,  address, arg_struct */
+        unsigned        *local_data,  /* data  in*/
+	void		*result,      /* data out */
+	void		*args_struct /* other args of upcall */
+	)
+{
+#if defined(PTHREADS)
+	pthread_mutex_lock(&Tmk_monitor_lock);
+#endif
+	Tmk_stat.arrivals++;
+
+	if (Tmk_debug)
+	  Tmk_err("reduction:%d, n:%d\n", id, n_elem);  
+
+	if (id < NREDUCTIONS) {
+
+		struct barrier *barrier = &barrier_[id];
+		sigset_t	mask;
+		int		j, manager, repo, size;
+
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+		Tmk_interval_create(proc_vector_time_); 
+
+		if ((repo = Tmk_diff_repo_test()) == 0)
+			repo = Tmk_interval_repo_test();
+
+		if ((manager = barrier->manager) == Tmk_proc_id) {
+
+		  caddr_t  reply_consist_data = rep.data;
+
+		  struct req_typ_red *req;
+
+		  unsigned *red_result; 
+
+		        rep.n_red_words = 0;
+			rep.repo = repo;
+
+			for (j = 0; j < Tmk_nprocs; j++) {
+				if (j == Tmk_proc_id)
+					continue;
+
+				if ((1 << j) & barrier->mask) {
+				  unsigned prefix_size;
+				  caddr_t  consist_data;
+				  req = (struct  req_typ_red *) req_from_[j].req;
+					
+				  prefix_size = sizeof(unsigned) * req->n_red_words
+					  + sizeof(struct req_typ_red)
+					  + sizeof(short) * NPROCS;  /* vector_time */
+
+				  consist_data = (caddr_t) req + prefix_size;
+					
+				  Tmk_interval_incorporate(consist_data,
+							   req_from_[j].size - prefix_size,
+							   NULL);
+
+				  if (req->type == REQ_REDUCTION_REPO)
+				    rep.repo = 1;
+				}
+			}
+			barrier->mask |= 1 << Tmk_proc_id;
+
+			while (barrier->mask ^ Tmk_spinmask)
+				sigio_handler();
+
+			barrier->mask = 0;
+
+			if (upcall) {
+			  if(Tmk_debug) Tmk_err(" reduction master: upcall = %x\n", upcall);
+
+			  Tmk_page_inval_perform();
+
+#if 0
+			  sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+#endif
+			  /* Do the upcalls here to make sure they are done in order.
+			   * In general, reductions are associative, not commutative
+			   */
+			  for (j = 0; j < Tmk_nprocs; j++) {
+
+			    if (j == Tmk_proc_id) {
+			      red_result = (unsigned *) (*upcall)( j,
+					 n_elem,
+					 (void *) local_data,
+					 args_struct);
+			    } 
+			    else {
+				req = (struct req_typ_red *) req_from_[j].req;
+				red_result = (unsigned *) (*upcall)
+				          ( j,
+					    req->n_red_words,
+					    (void *) ( (caddr_t) req + sizeof(req_typ_red)),
+					   args_struct
+					   );
+			    }
+			  }
+
+			  /* Copy final reduction data to reply buffer.
+			   *  Design issue:  we could let the upcall compute
+			   *  directly into rep.data to avoid the cost of copying.
+			   *  OTOH, this ensures that the expected # of words copied.
+			   */
+			  
+                            {  unsigned* dst = (unsigned *) rep.data;
+			       int i;
+			       for( i = 0; i< n_elem; i++)
+			         *dst++ = red_result[i];  
+			       reply_consist_data = (caddr_t) dst;
+			       rep.n_red_words = n_elem;
+			    }
+
+#if 0
+			  sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+#endif
+			  if (Tmk_debug)
+			    Tmk_err(" reduction master: done with upcalls\n ", upcall);
+
+			  Tmk_interval_create(proc_vector_time_); 
+
+			}
+
+			for (j = 0; j < Tmk_nprocs; j++) {
+			  caddr_t vt;
+			  unsigned req_prefix_size;
+
+  			    if (j == Tmk_proc_id) continue;
+
+				req = (struct req_typ_red *) req_from_[j].req;
+
+				rep.seqno = req->seqno;
+
+				req_prefix_size =  sizeof(unsigned) * req->n_red_words
+				  + sizeof(struct req_typ_red);
+
+				vt = (caddr_t) req + req_prefix_size;
+				size = Tmk_interval_request(reply_consist_data,
+							    (const ushort *) vt)
+				  - (caddr_t)&rep;
+
+				Tmk_sigio_buffer_release(req);
+
+				while (0 > send(rep_fd_[j], (char *)&rep, size, 0))
+					Tmk_errno_check("Tmk_reduction<send>");
+			}
+
+
+
+			if (upcall) {
+			  if (( (unsigned *) result != red_result)) { 
+  			     /* copy back my data if necessary*/ 
+			     int i;
+			     for( i = 0; i< n_elem; i++)
+			      ((unsigned *)result)[i] = red_result[i];  
+                          }
+			}
+			else {
+			  /*
+			   * Perform the merged mprotects.
+			   */
+			  Tmk_page_inval_perform();
+			}
+
+		}
+		else {
+			unsigned	time;
+			int		count;
+			unsigned        *consist_data_start = (unsigned *) req_data;
+
+			req_typ_red.type
+			  = repo  ? REQ_REDUCTION_REPO
+			          : REQ_REDUCTION;
+
+			req_typ_red.id = id;
+
+			time = MAX(inverse_time_[manager], proc_array_[manager].prev->vector_time_[Tmk_proc_id]);
+
+
+			/* Add reduction data to message */
+			if (upcall){
+			
+			  if (n_elem > 128) { Tmk_err(" n_elem (= %d) > 128", count);
+			                     Tmk_perrexit("hpf_reduction");
+			  }
+			  req_typ_red.n_red_words = n_elem;
+			  req_iov[1].iov_len = sizeof(unsigned) * n_elem;
+			  req_iov[1].iov_base  = (caddr_t) local_data;
+			} else {
+			  req_typ_red.n_red_words =  req_iov[1].iov_len = 0;
+			}
+
+			req_iov[3].iov_len =
+			  Tmk_interval_request_proc(req_data, Tmk_proc_id, time) - req_data;
+
+			req_typ_red.seqno = req_seqno += SEQNO_INCR;
+	       rexmit:
+			while (0 > sendmsg(req_fd_[manager], &req_hdr, 0))
+				Tmk_errno_check("Tmk_barrier<sendmsg>");
+
+			Tmk_tout_flag = 0;
+
+			setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+		retry:
+			if ((size = recv(req_fd_[manager], (char *)&rep, sizeof(rep), 0)) < 0)
+				if (Tmk_tout_flag) {
+
+					if (Tmk_debug)
+						Tmk_err("Tmk_barrier: %d timed out (seqno %d)\n",
+							manager, req_typ_red.seqno);
+
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+					Tmk_perrexit("Tmk_reduction<recv>");
+
+			if (rep.seqno != req_typ_red.seqno) {
+
+				if (Tmk_debug)
+					Tmk_err("Tmk_reduction: bad seqno %d from %d (received %d)\n",
+						req_typ_red.seqno, manager, rep.seqno);
+
+				goto retry;
+			}
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+			Tmk_stat.messages++;
+			Tmk_stat.bytes += size;
+
+			{  unsigned *rep_results = (unsigned *) rep.data; 
+			   int i;
+			   if (upcall){
+			     for( i=0; i< rep.n_red_words; i++)
+			        ((unsigned *)result)[i] = *rep_results++;
+			   }
+			     Tmk_interval_incorporate((caddr_t) rep_results,
+						      size - sizeof(rep.seqno)
+						       -sizeof(rep.pad)
+						       - sizeof(rep.n_red_words)
+						       - sizeof(rep.repo),
+						      proc_vector_time_);
+			    
+			}
+		}
+		for (j = 0; j < Tmk_nprocs; j++) {
+			if (j == Tmk_proc_id)
+				continue;
+
+			inverse_time_[j] = proc_vector_time_[Tmk_proc_id];
+		}
+		if (rep.repo)
+			Tmk_repo();
+
+		sigio_mutex(SIG_SETMASK, &mask, NULL);
+	}
+	else
+		Tmk_errexit("Tmk_reduction: id == %d\n", id);
+#if defined(PTHREADS)
+	pthread_mutex_unlock(&Tmk_monitor_lock);
+#endif
+}
+
+/*
+ *
+ */
+void
+dhpf_reduction_sigio_handler(
+	const struct req_typ_red *req,
+	int		size)
+{
+	if ((barrier_[req->id].mask |= (1 << req->from)) & (1 << Tmk_proc_id)) {
+
+	  unsigned prefix_size = sizeof(unsigned) * req->n_red_words
+	                             + sizeof(struct req_typ_red)
+	                             + sizeof(short) * NPROCS;  /* vector_time */
+
+	  caddr_t consist_data = (caddr_t) req + prefix_size;
+
+	  if(Tmk_debug)
+	     Tmk_err("reduction sigio: arrival %d\n", req->from);
+	  
+	  Tmk_interval_incorporate(consist_data, size - sizeof(struct req_syn), NULL);
+
+	  if (req->type == REQ_REDUCTION_REPO)
+	    rep.repo = 1;
+	}
+}
+
+/*
+ *
+ */
+void
+dhpf_reduction_sigio_duplicate_handler(
+	const struct req_typ_red *req,
+	int		size)
+{
+	int		from = req->from;
+
+	if ((barrier_[req->id].mask & (1 << from)) == 0) {
+	  unsigned prefix_size =  sizeof(unsigned) * req->n_red_words
+	                                 + sizeof(struct req_typ_red);
+
+	  caddr_t vt = (caddr_t) req + prefix_size;
+
+	  int size = Tmk_interval_request(rep.data, (const ushort *) vt) - (caddr_t)&rep;
+
+	  rep.seqno = req->seqno;
+	/*	rep.repo = ? */
+
+	  while (0 > send(rep_fd_[from], (char *)&rep, size, 0))
+	    Tmk_errno_check("Tmk_barrier_sigio_duplicate_handler<send>");
+
+	  if (Tmk_debug)
+	    Tmk_err("Tmk_barrier_sigio_duplicate_handler: repeated seqno %d from %d\n",
+		    req->seqno, from);
+	}
+}
+
+/*
+ *
+ */
+void
+dhpf_reduction_initialize( void )
+{
+	int	i;
+
+	for (i = 0; i < NREDUCTIONS; i++)
+		barrier_[i].manager = i % Tmk_nprocs;
+
+	req_typ_red.from = Tmk_proc_id;
+}
+
+
+
+
+
+@
+
+
+10.10.0.1
+log
+@Added support for reductions.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10 1998/08/07 06:03:12 alc Exp alc $
+d45 6
+a50 4
+ *			Tmk_reduction,
+ *			Tmk_reduction_initialize
+ *			Tmk_reduction_sigio_handler
+ *			Tmk_reduction_sigio_duplicate_handler
+d61 1
+a61 1
+#define NREDUCTIONS	NPROCS	/* Potentially allow each node to manage a reduction */
+d102 1
+a102 1
+Tmk_reduction(
+d104 7
+a110 8
+        unsigned	n_elem,      /* number of words */
+        void	     *(*upcall)(unsigned proc_id,
+				unsigned len,
+				void *ptr,
+				void *args_struct),
+        unsigned       *local_data,  /* data in */
+	void	       *result,      /* data out */
+	void	       *args_struct) /* other args of upcall */
+d118 1
+a118 1
+		Tmk_err("reduction: %d, n: %d\n", id, n_elem);  
+d135 1
+a135 1
+			caddr_t  reply_consist_data = rep.data;
+d137 1
+a137 1
+			struct req_typ_red *req;
+d139 1
+a139 1
+			unsigned *red_result; 
+d149 3
+a151 4
+					unsigned prefix_size;
+					caddr_t  consist_data;
+
+					req = (struct req_typ_red *) req_from_[j].req;
+d153 3
+a155 3
+					prefix_size = sizeof(unsigned) * req->n_red_words
+						+ sizeof(struct req_typ_red)
+						+ sizeof(short) * NPROCS;  /* vector_time */
+d157 1
+a157 1
+					consist_data = (caddr_t) req + prefix_size;
+d159 3
+a161 3
+					Tmk_interval_incorporate(consist_data,
+								 req_from_[j].size - prefix_size,
+								 NULL);
+d163 2
+a164 2
+					if (req->type == REQ_REDUCTION_REPO)
+						rep.repo = 1;
+d175 1
+d177 1
+a177 2
+				if(Tmk_debug)
+					Tmk_err(" reduction master: upcall = %x\n", upcall);
+a178 1
+				Tmk_page_inval_perform();
+d180 1
+a180 1
+				sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+d182 35
+a216 21
+				/*
+				 * Do the upcalls here to make sure they are done in order.
+				 * In general, reductions are associative, not commutative
+				 */
+				for (j = 0; j < Tmk_nprocs; j++) {
+
+					if (j == Tmk_proc_id) {
+						red_result = (unsigned *) (*upcall)( j,
+										     n_elem,
+										     (void *) local_data,
+										     args_struct);
+					}
+					else {
+						req = (struct req_typ_red *) req_from_[j].req;
+						red_result = (unsigned *) (*upcall)
+							( j,
+							  req->n_red_words,
+							  (void *) ( (caddr_t) req + sizeof(req_typ_red)),
+							  args_struct);
+					}
+				}
+a217 14
+				/* Copy final reduction data to reply buffer.
+				 *  Design issue:  we could let the upcall compute
+				 *  directly into rep.data to avoid the cost of copying.
+				 *  OTOH, this ensures that the expected # of words copied.
+				 */
+			  
+				{
+					unsigned* dst = (unsigned *) rep.data;
+					int i;
+					for (i = 0; i < n_elem; i++)
+						*dst++ = red_result[i];  
+					reply_consist_data = (caddr_t) dst;
+					rep.n_red_words = n_elem;
+				}
+d219 1
+a219 1
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d221 4
+a224 2
+				if (Tmk_debug)
+					Tmk_err(" reduction master: done with upcalls\n ", upcall);
+a225 1
+				Tmk_interval_create(proc_vector_time_); 
+d229 2
+a230 2
+				caddr_t vt;
+				unsigned req_prefix_size;
+d232 1
+a232 2
+				if (j == Tmk_proc_id)
+					continue;
+a251 1
+			if (upcall) {
+a252 3
+				if (((unsigned *) result != red_result)) { 
+					/* copy back my data if necessary*/ 
+					int i;
+d254 7
+a260 3
+					for (i = 0; i < n_elem; i++)
+						((unsigned *)result)[i] = red_result[i];  
+				}
+d263 4
+a266 4
+				/*
+				 * Perform the merged mprotects.
+				 */
+				Tmk_page_inval_perform();
+d268 1
+d281 2
+a282 1
+			time = MAX(inverse_time_[manager], proc_interval_[manager].prev->vector_time_[Tmk_proc_id]);
+d285 1
+a285 1
+			if (upcall) {
+d287 8
+a294 10
+				if (n_elem > 128) {
+					Tmk_err(" n_elem (= %d) > 128", count);
+					Tmk_perrexit("hpf_reduction");
+				}
+				req_typ_red.n_red_words = n_elem;
+				req_iov[1].iov_len = sizeof(unsigned) * n_elem;
+				req_iov[1].iov_base  = (caddr_t) local_data;
+			}
+			else {
+				req_typ_red.n_red_words =  req_iov[1].iov_len = 0;
+d298 1
+a298 1
+				Tmk_interval_request_proc(req_data, Tmk_proc_id, time) - req_data;
+d340 13
+a352 15
+			{
+				unsigned *rep_results = (unsigned *) rep.data; 
+				int i;
+
+				if (upcall) {
+
+					for (i = 0; i < rep.n_red_words; i++)
+						((unsigned *)result)[i] = *rep_results++;
+				}
+				Tmk_interval_incorporate((caddr_t) rep_results,
+							 size - sizeof(rep.seqno)
+							 - sizeof(rep.pad)
+							 - sizeof(rep.n_red_words)
+							 - sizeof(rep.repo),
+							 proc_vector_time_);
+d377 1
+a377 1
+Tmk_reduction_sigio_handler(
+d403 1
+a403 1
+Tmk_reduction_sigio_duplicate_handler(
+d433 1
+a433 1
+Tmk_reduction_initialize( void )
+d442 5
+@
+
+
+10.10.0.2
+log
+@Corrected the error messages.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.1 1998/08/07 16:35:12 alc Exp alc $
+d117 1
+a117 1
+		Tmk_err("Tmk_reduction: %d, n: %d\n", id, n_elem);  
+d223 1
+a223 1
+					Tmk_err(" reduction master: done with upcalls\n");
+d287 2
+a288 1
+					Tmk_errexit("Tmk_reduction: n_elem (= %d) > 128", count);
+d304 1
+a304 1
+				Tmk_errno_check("Tmk_reduction<sendmsg>");
+d316 1
+a316 1
+						Tmk_err("Tmk_reduction: %d timed out (seqno %d)\n",
+d392 1
+a392 1
+	  if (Tmk_debug)
+d424 1
+a424 1
+	    Tmk_errno_check("Tmk_reduction_sigio_duplicate_handler<send>");
+d427 1
+a427 1
+	    Tmk_err("Tmk_reduction_sigio_duplicate_handler: repeated seqno %d from %d\n",
+@
+
+
+10.10.0.3
+log
+@Change a sizeof.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.2 1998/08/07 17:33:49 alc Exp alc $
+d385 3
+a387 3
+		unsigned	prefix_size = sizeof(unsigned) * req->n_red_words
+				+ sizeof(struct req_typ_red)
+				+ sizeof(proc_vector_time_);
+d389 1
+a389 1
+		caddr_t	consist_data = (caddr_t) req + prefix_size;
+d391 2
+a392 2
+		if (Tmk_debug)
+			Tmk_err("reduction sigio: arrival %d\n", req->from);
+d394 1
+a394 1
+		Tmk_interval_incorporate(consist_data, size - sizeof(struct req_syn), NULL);
+d396 2
+a397 2
+		if (req->type == REQ_REDUCTION_REPO)
+			rep.repo = 1;
+d412 1
+a412 2
+
+		unsigned	prefix_size =  sizeof(unsigned) * req->n_red_words
+d415 1
+a415 1
+		caddr_t vt = (caddr_t) req + prefix_size;
+d417 1
+a417 1
+		int size = Tmk_interval_request(rep.data, (const ushort *) vt) - (caddr_t)&rep;
+d419 1
+a419 1
+		rep.seqno = req->seqno;
+d422 2
+a423 2
+		while (0 > send(rep_fd_[from], (char *)&rep, size, 0))
+			Tmk_errno_check("Tmk_reduction_sigio_duplicate_handler<send>");
+d425 3
+a427 3
+		if (Tmk_debug)
+			Tmk_err("Tmk_reduction_sigio_duplicate_handler: repeated seqno %d from %d\n",
+				req->seqno, from);
+@
+
+
+10.10.0.4
+log
+@Both cosmetic and correctness changes to the size parameter
+required by the consistency routines.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.3 1998/08/07 21:07:08 alc Exp alc $
+a147 1
+
+d149 1
+d153 3
+a155 1
+					prefix_size = sizeof(struct req_typ_red) + sizeof(proc_vector_time_) + req->n_red_words*sizeof(unsigned);
+d157 3
+a159 1
+					Tmk_interval_incorporate((caddr_t) req + prefix_size,
+d176 1
+a176 1
+				if (Tmk_debug)
+d230 1
+d239 2
+a240 1
+				vt = (caddr_t) req + sizeof(struct req_typ_red) + req->n_red_words*sizeof(unsigned);
+d242 4
+a245 1
+				size = Tmk_interval_request(reply_consist_data, (const ushort *) vt) - (caddr_t)&rep;
+d342 1
+a345 2
+					int	i;
+
+d350 4
+a353 3
+							 size - sizeof(rep.seqno) - sizeof(rep.repo)
+							 - sizeof(rep.pad) - sizeof(rep.n_red_words)
+							 - rep.n_red_words*sizeof(unsigned),
+d385 10
+a394 4
+		unsigned
+			prefix_size = sizeof(struct req_typ_red) + req->n_red_words*sizeof(unsigned) + sizeof(proc_vector_time_);
+
+		Tmk_interval_incorporate((caddr_t) req + prefix_size, size - prefix_size, NULL);
+d413 4
+a416 2
+		unsigned short *
+			vector_time_ = (unsigned short *)((caddr_t) req + sizeof(struct req_typ_red) + req->n_red_words*sizeof(unsigned));
+d418 1
+a418 1
+		int	size = Tmk_interval_request(rep.data, vector_time_) - (caddr_t)&rep;
+d425 4
+@
+
+
+10.10.0.5
+log
+@Removed a harmless but incorrect initialization.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.4 1998/08/08 18:32:12 alc Exp alc $
+d76 1
+a76 1
+          = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_REDUCTION };
+@
+
+
+10.10.0.6
+log
+@Eliminate the "count" variable.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.5 1998/08/08 18:36:02 alc Exp alc $
+d263 1
+d274 1
+a274 3
+			/*
+			 * Add the reduction data to the message.
+			 */
+d277 3
+a279 3
+				if (n_elem > 128)
+					Tmk_errexit("Tmk_reduction: n_elem (= %d) > 128", n_elem);
+
+@
+
+
+10.10.0.7
+log
+@Eliminate the MAX computation of time.  Use inverse_time_[manager].
+(See also revision 10.6.1.8 of barrier.c.)
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.6 1998/08/08 21:25:00 alc Exp alc $
+d262 1
+d271 2
+d290 1
+a290 1
+				Tmk_interval_request_proc(req_data, Tmk_proc_id, inverse_time_[manager]) - req_data;
+@
+
+
+10.10.0.8
+log
+@Eliminated the unused "consist_data_start" variable in Tmk_reduction.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.7 1998/08/08 21:41:37 alc Exp alc $
+d262 2
+@
+
+
+10.10.0.9
+log
+@Removed the padding from the reply message.
+
+Moved some error messages.
+
+Eliminated some casts.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.8 1998/08/08 21:50:32 alc Exp alc $
+d91 3
+a93 2
+        unsigned short  n_red_words;
+	char		data[MTU - sizeof(unsigned) - 2*sizeof(unsigned short)];
+d140 1
+d172 3
+a178 3
+				if (Tmk_debug)
+					Tmk_err(" reduction master: upcall = %x\n", upcall);
+
+d184 1
+d186 4
+a189 5
+
+						red_result = (*upcall)(j,
+								       n_elem,
+								       local_data,
+								       args_struct);
+d193 5
+a197 5
+
+						red_result = (*upcall)(j,
+								       req->n_red_words,
+								       ((caddr_t) req + sizeof(req_typ_red)),
+								       args_struct);
+a214 3
+
+				if (Tmk_debug)
+					Tmk_err(" reduction master: done with upcalls\n");
+d218 3
+a222 2
+			else
+				rep.n_red_words = 0;
+d338 2
+a339 1
+							 size - sizeof(rep.seqno) - sizeof(rep.repo) - sizeof(rep.n_red_words)
+@
+
+
+10.10.0.10
+log
+@Changed the request message structure.  The vector timestamp
+now comes before the reduction data.  This reduces the amount
+of address computation since the vector timestamp is fixed
+size.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.9 1998/08/09 03:34:33 alc Exp alc $
+d66 2
+a67 1
+struct	req_red	{
+a71 1
+	unsigned short	vector_time_[NPROCS];
+d75 1
+a75 1
+static	struct	req_typ	req_typ_red
+d77 1
+a77 1
+static	unsigned	req_n_red_words;
+d80 1
+a80 1
+static	struct	iovec	req_iov[5] = {
+d82 1
+a83 2
+	{ (caddr_t)&req_n_red_words, sizeof(req_n_red_words) },
+	{ NULL, 0 },
+d135 1
+a135 1
+			struct req_red *req;
+d149 1
+a149 1
+					req = (struct req_red *) req_from_[j].req;
+d151 1
+a151 1
+					prefix_size = sizeof(struct req_red) + req->n_red_words*sizeof(unsigned);
+d190 1
+a190 1
+						req = (struct req_red *) req_from_[j].req;
+d194 1
+a194 1
+								       ((caddr_t) req + sizeof(struct req_red)),
+d225 2
+d230 1
+a230 1
+				req = (struct req_red *) req_from_[j].req;
+d234 3
+a236 1
+				size = Tmk_interval_request(reply_consist_data, req->vector_time_) - (caddr_t)&rep;
+d276 3
+a278 3
+				req_n_red_words = n_elem;
+				req_iov[3].iov_len  = n_elem*sizeof(unsigned);
+				req_iov[3].iov_base = (caddr_t) local_data;
+d281 1
+a281 1
+				req_n_red_words = req_iov[3].iov_len = 0;
+d284 2
+a285 1
+			req_iov[4].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, inverse_time_[manager]) - req_data;
+d327 4
+a330 2
+			if (upcall)
+				memcpy(result, rep.data, rep.n_red_words*sizeof(unsigned));
+d332 10
+a341 4
+			Tmk_interval_incorporate((caddr_t) rep.data + rep.n_red_words*sizeof(unsigned),
+						 size - sizeof(rep.seqno) - sizeof(rep.repo) - sizeof(rep.n_red_words)
+						 - rep.n_red_words*sizeof(unsigned),
+						 proc_vector_time_);
+d366 1
+a366 1
+	const struct req_red *req,
+d372 1
+a372 1
+			prefix_size = sizeof(struct req_red) + req->n_red_words*sizeof(unsigned);
+d386 1
+a386 1
+	const struct req_red *req,
+d393 4
+a396 1
+		int	size = Tmk_interval_request(rep.data, req->vector_time_) - (caddr_t)&rep;
+@
+
+
+10.10.0.11
+log
+@Move the initialization of "reply_consist_data" in Tmk_reduction.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.10 1998/08/09 06:32:49 alc Exp alc $
+d134 2
+a137 2
+			caddr_t	reply_consist_data;
+
+d207 2
+a208 4
+					unsigned *dst = (unsigned *) rep.data;
+
+					int	i;
+
+a210 1
+
+d222 1
+a222 2
+			else {
+				reply_consist_data = rep.data;
+d224 1
+a224 1
+			}
+d240 1
+@
+
+
+10.10.0.12
+log
+@Use "memcpy" to return the result.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.11 1998/08/09 18:10:21 alc Exp alc $
+d205 3
+d209 1
+a209 2
+				rep.n_red_words = n_elem;
+				reply_consist_data = rep.data + n_elem*sizeof(unsigned);
+d211 6
+a216 1
+				memcpy(rep.data, red_result, n_elem*sizeof(unsigned));
+d226 1
+a227 1
+				reply_consist_data = rep.data;
+d248 1
+d250 2
+a251 1
+					memcpy(result, red_result, n_elem*sizeof(unsigned));
+@
+
+
+10.10.0.13
+log
+@Defined TMK_NREDUCTIONS in a user (application-)visible place.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.12 1998/08/10 19:48:02 alc Exp alc $
+d58 2
+@
+
+
+10.10.0.14
+log
+@Defined TMK_MAX_REDUCTION_SIZE in a user (application-)visible place.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.13 1998/08/10 21:36:49 alc Exp alc $
+d262 1
+a262 1
+				if (n_elem > MAX_REDUCTION_SIZE/sizeof(unsigned))
+@
+
+
+10.10.0.15
+log
+@Add const-ipation.  Reorder the element count and upcall pointer.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.14 1998/08/10 21:56:39 alc Exp alc $
+d100 1
+d103 3
+a105 4
+				const void *ptr,
+				const void *args_struct),
+        unsigned	n_elem,      /* number of words */
+	const unsigned *local_data,  /* data in */
+d107 1
+a107 1
+	const void     *args_struct) /* other args of upcall */
+@
+
+
+10.10.0.16
+log
+@1.  Eliminate the "proc_id" argument.  2.  Introduce the "output"
+argument.  3.  Eliminate the "void *" return value.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.15 1998/08/10 22:43:45 alc Exp alc $
+d100 4
+a103 4
+        void	      (*upcall)(unsigned	n_elem,
+				const unsigned *input,
+				void	       *output,
+				const void     *args_struct),
+d105 2
+a106 2
+	const unsigned *input,       /* data in */
+	void	       *output,      /* data out */
+d136 2
+d180 1
+a180 6
+				if (Tmk_proc_id == 0)
+					memcpy(rep.data, input, n_elem*sizeof(unsigned));
+				else
+					memcpy(rep.data, (caddr_t) req_from_[0].req + sizeof(struct req_red), n_elem*sizeof(unsigned));
+
+				for (j = 1; j < Tmk_nprocs; j++) {
+d183 4
+a186 1
+						(*upcall)(n_elem, input, rep.data, args_struct);
+d191 4
+a194 1
+						(*upcall)(req->n_red_words, (unsigned *)((caddr_t) req + sizeof(struct req_red)), rep.data, args_struct);
+d198 6
+d207 2
+d235 8
+a242 2
+			if (upcall)
+				memcpy(output, rep.data, n_elem*sizeof(unsigned));
+d267 1
+a267 1
+				req_iov[3].iov_base = (caddr_t) input;
+d316 1
+a316 1
+				memcpy(output, rep.data, rep.n_red_words*sizeof(unsigned));
+@
+
+
+10.10.0.17
+log
+@Eliminate the reduction size in the reply message.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.16 1998/08/11 04:47:45 alc Exp alc $
+d90 2
+a91 1
+	char		data[MTU - sizeof(unsigned) - sizeof(unsigned short)];
+d195 1
+d205 2
+a206 1
+			else
+d208 1
+a208 1
+
+d299 1
+a299 1
+				memcpy(output, rep.data, n_elem*sizeof(unsigned));
+d301 3
+a303 2
+			Tmk_interval_incorporate((caddr_t) rep.data + n_elem*sizeof(unsigned),
+						 size - sizeof(rep.seqno) - sizeof(rep.repo) - n_elem*sizeof(unsigned),
+@
+
+
+10.10.0.18
+log
+@Change the units for "size" from "unsigned" to "char".
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.17 1998/08/11 05:11:39 alc Exp alc $
+d99 7
+a105 7
+	void	      (*upcall)( unsigned	size,
+				 const void    *input,
+				 void	       *output,
+				 const void    *args_struct ),
+        unsigned	length,
+	const void     *input,
+	void	       *output,
+d114 1
+a114 1
+		Tmk_err("Tmk_reduction: %d, n: %d\n", id, length);  
+d147 1
+a147 1
+					prefix_size = sizeof(struct req_red) + req->n_red_words;
+d178 1
+a178 1
+					memcpy(rep.data, input, length);
+d180 1
+a180 1
+					memcpy(rep.data, (caddr_t) req_from_[0].req + sizeof(struct req_red), length);
+d185 1
+a185 1
+						(*upcall)(length, input, rep.data, args_struct);
+d190 1
+a190 1
+						(*upcall)(length, (unsigned *)((caddr_t) req + sizeof(struct req_red)), rep.data, args_struct);
+d194 1
+a194 1
+				reply_consist_data = rep.data + length;
+d222 1
+a222 1
+				memcpy(output, rep.data, length);
+d242 2
+a243 2
+				if (length > MAX_REDUCTION_SIZE)
+					Tmk_errexit("Tmk_reduction: n_elem (= %d) > 128", length);
+d245 2
+a246 2
+				req_n_red_words = length;
+				req_iov[3].iov_len  = length;
+d296 1
+a296 1
+				memcpy(output, rep.data, length);
+d298 2
+a299 2
+			Tmk_interval_incorporate(rep.data + length,
+						 size - sizeof(rep.seqno) - sizeof(rep.repo) - length,
+d331 1
+a331 1
+			prefix_size = sizeof(struct req_red) + req->n_red_words;
+@
+
+
+10.10.0.19
+log
+@1. Check the reduction data size along both the manager and client
+paths.  2.  Pass the reduction data size by obscure means.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.18 1998/08/11 06:37:33 alc Exp alc $
+d75 1
+a75 1
+
+d81 1
+a81 1
+	{ (caddr_t)&req_iov[3].iov_len, sizeof(req_iov[3].iov_len) },
+a114 3
+			
+	if (length > MAX_REDUCTION_SIZE)
+		Tmk_errexit("Tmk_reduction: size > %d\n", MAX_REDUCTION_SIZE);
+d237 15
+a251 2
+			req_iov[3].iov_len  = length;
+			req_iov[3].iov_base = (caddr_t) input;
+@
+
+
+10.10.0.20
+log
+@Eliminate the copy of the reduction output on the client side.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.19 1998/08/11 15:49:22 alc Exp alc $
+d87 1
+a87 1
+static	struct	rep_typ	{
+a92 7
+static	struct	iovec	rep_iov[3] = {
+	{ (caddr_t)&rep, sizeof(rep.seqno) + sizeof(rep.repo) },
+	{ NULL,          0 },
+	{ rep.data,      sizeof(rep.data) } };
+
+static	struct	msghdr	rep_hdr = { 0, 0, rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0]), 0, 0 };
+
+d234 3
+a236 2
+			req_typ_red.type = repo ? REQ_REDUCTION_REPO :
+						  REQ_REDUCTION;
+a254 3
+
+			rep_iov[1].iov_len  = length;
+			rep_iov[1].iov_base = output;
+d256 1
+a256 1
+			if ((size = recvmsg(req_fd_[manager], &rep_hdr, 0)) < 0)
+d270 1
+a270 1
+					Tmk_perrexit("Tmk_reduction<recvmsg>");
+d285 4
+a288 1
+			Tmk_interval_incorporate(rep.data,
+@
+
+
+10.10.0.21
+log
+@Fixed the duplicate handler.  It now returns the resulting reduction data.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.20 1998/08/11 18:58:48 alc Exp alc $
+d337 1
+a337 2
+ * The size of the reduction data was checked upon receipt
+ * of the original message.
+d348 1
+a348 1
+		int	size = Tmk_interval_request(rep.data + req->n_red_words, req->vector_time_) - (caddr_t)&rep;
+@
+
+
+10.10.0.22
+log
+@It's simpler to recompute the starting point of the consistency data
+in the reply message.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.21 1998/08/12 18:29:01 alc Exp alc $
+d143 2
+d204 2
+d213 2
+d224 1
+a224 1
+				size = Tmk_interval_request(rep.data + length, req->vector_time_) - (caddr_t)&rep;
+@
+
+
+10.10.0.23
+log
+@Renamed "n_red_words" to "reduct_size" in the request message.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.22 1998/08/12 18:38:56 alc Exp alc $
+d70 1
+a70 1
+	unsigned	reduct_size;
+d73 2
+a74 1
+static	struct	req_typ	req_typ_red = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_REDUCTION };
+d155 1
+a155 1
+					prefix_size = sizeof(struct req_red) + req->reduct_size;
+d321 1
+a321 1
+			prefix_size = sizeof(struct req_red) + req->reduct_size;
+d343 1
+a343 1
+		int	size = Tmk_interval_request(rep.data + req->reduct_size, req->vector_time_) - (caddr_t)&rep;
+@
+
+
+10.10.0.24
+log
+@Eliminated an unnecessary cast.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.23 1998/08/12 18:57:25 alc Exp alc $
+d197 1
+a197 1
+						(*upcall)(length, (caddr_t) req + sizeof(struct req_red), rep.data, args_struct);
+@
+
+
+10.10.0.25
+log
+@Don't clear the mask until the upcalls are done.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.24 1998/08/12 19:09:14 alc Exp alc $
+a163 1
+
+d169 2
+a207 7
+
+			/*
+			 * The mask shouldn't be cleared until the upcalls are completed
+			 * in case signals are unblocked by a page fault in the upcall
+			 * and a duplicate arrival message appears.
+			 */
+			barrier->mask = 0;
+@
+
+
+10.10.0.26
+log
+@Verify the size of the reduction data.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.25 1998/08/15 07:52:33 alc Exp alc $
+d185 2
+a186 2
+				else {
+					req = (struct req_red *) req_from_[0].req;
+d188 2
+a189 5
+					if (req->reduct_size != length)
+						Tmk_errexit("Tmk_reduction: size from %d doesn't match\n", 0);
+
+					memcpy(rep.data, (caddr_t) req + sizeof(struct req_red), length);
+				}
+a190 2
+				for (j = 1; j < Tmk_nprocs; j++) {
+					if (j == Tmk_proc_id)
+d192 1
+a194 3
+
+						if (req->reduct_size != length)
+							Tmk_errexit("Tmk_reduction: size from %d doesn't match\n", j);
+@
+
+
+10.10.0.27
+log
+@Changed a lot in order to force the alignment of the output buffer
+for reductions on the manager.  (It needs to be aligned to support
+double-precision floating point data.)  In the process, the overall
+buffer management was improved.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.26 1998/08/15 22:30:47 alc Exp alc $
+a63 3
+/*
+ *
+ */
+a72 8
+struct	rep_typ	{
+	unsigned	seqno;
+	unsigned short	repo;
+};
+
+/*
+ *
+ */
+d75 1
+a75 1
+static	char		req_data_[MTU - sizeof(struct req_red)];
+d77 6
+a82 6
+static	struct	iovec	req_iov_[5] = {
+	{ (caddr_t)&req_typ_red,         sizeof(req_typ_red) },
+	{ (caddr_t) proc_vector_time_,   sizeof(proc_vector_time_) },
+	{ (caddr_t)&req_iov_[3].iov_len, sizeof(req_iov_[3].iov_len) },  /* reduct_size */
+	{           NULL,                0 },
+	{           req_data_,           0 } };
+d84 1
+a84 1
+static	struct	msghdr	req_hdr = { NULL, 0, req_iov_, sizeof(req_iov_)/sizeof(req_iov_[0]) };
+d86 5
+a90 14
+/*
+ * The output buffer for the reduction data MUST be aligned
+ * to support double-precision data.
+ */
+static	struct	rep_typ	rep;
+
+static	double		rep_output_[MAX_REDUCTION_SIZE/sizeof(double)];
+
+static	char		rep_data_[MTU - sizeof(rep)];
+
+static	struct	iovec	rep_recv_iov_[3] = {
+	{ (caddr_t)&rep,         sizeof(rep) },
+	{           NULL,        0 },
+	{           rep_data_,   sizeof(rep_data_) } };
+d92 4
+a95 1
+static	struct	msghdr	rep_recv_hdr = { NULL, 0, rep_recv_iov_, sizeof(rep_recv_iov_)/sizeof(rep_recv_iov_[0]) };
+d97 1
+a97 6
+static	struct	iovec	rep_send_iov_[3] = {
+	{ (caddr_t)&rep,         sizeof(rep) },
+	{ (caddr_t) rep_output_, 0 },
+	{           rep_data_,   0 } };
+
+static	struct	msghdr	rep_send_hdr = { NULL, 0, rep_send_iov_, sizeof(rep_send_iov_)/sizeof(rep_send_iov_[0]) };
+d184 1
+a184 1
+					memcpy(rep_output_, input, length);
+d191 1
+a191 1
+					memcpy(rep_output_, (caddr_t) req + sizeof(struct req_red), length);
+d196 1
+a196 1
+						(*upcall)(length, input, rep_output_, args_struct);
+d203 1
+a203 1
+						(*upcall)(length, (caddr_t) req + sizeof(struct req_red), rep_output_, args_struct);
+a221 2
+			rep_send_iov_[1].iov_len = length;
+
+d230 1
+a230 1
+				rep_send_iov_[2].iov_len = Tmk_interval_request(rep_data_, req->vector_time_) - rep_data_;
+d234 2
+a235 2
+				while (0 > sendmsg(rep_fd_[j], &rep_send_hdr, 0))
+					Tmk_errno_check("Tmk_reduction<sendmsg>");
+d238 1
+a238 1
+				memcpy(output, rep_output_, length);
+d252 2
+a253 2
+			req_iov_[3].iov_len  = length;
+			req_iov_[3].iov_base = (caddr_t) input;
+d255 1
+a255 1
+			req_iov_[4].iov_len = Tmk_interval_request_proc(req_data_, Tmk_proc_id, inverse_time_[manager]) - req_data_;
+d268 2
+a269 2
+			rep_recv_iov_[1].iov_len  = length;
+			rep_recv_iov_[1].iov_base = output;
+d271 1
+a271 1
+			if ((size = recvmsg(req_fd_[manager], &rep_recv_hdr, 0)) < 0)
+d300 2
+a301 2
+			Tmk_interval_incorporate(rep_data_,
+						 size - sizeof(rep) - length,
+a344 3
+ *
+ * The output data from the reduction and its size are still
+ * in the buffer.
+d355 2
+d360 1
+a360 3
+		rep_send_iov_[2].iov_len = Tmk_interval_request(rep_data_, req->vector_time_) - rep_data_;
+
+		while (0 > sendmsg(rep_fd_[from], &rep_send_hdr, 0))
+@
+
+
+10.10.0.28
+log
+@Modified some comments.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.27 1998/08/16 19:23:35 alc Exp alc $
+d99 1
+a99 1
+ * to support double-precision floating-point.
+a193 4
+				/*
+				 * Perform the merged mprotects in case the upcall accesses
+				 * shared data.
+				 */
+@
+
+
+10.10.0.29
+log
+@It's clear that we won't unblock signals during the upcall.  So, removed
+the #if 0'ed code.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.28 1998/08/16 19:45:44 alc Exp alc $
+d199 3
+a201 1
+
+d235 3
+a237 1
+
+@
+
+
+10.10.0.30
+log
+@Put the consistency data before the reduction data in the request
+message.  Thus, byte-sized reduction data won't screw up
+the alignment of the consistency data.
+
+N.B.  The reduction data in the request message isn't aligned
+in this version.  In other words, this code only works on the i386.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.29 1998/08/16 20:38:15 alc Exp alc $
+d73 1
+a73 2
+	unsigned short	size;
+	unsigned char	data_[1];
+d86 1
+a86 1
+static	short		req_data_[(MTU - sizeof(struct req_syn) - sizeof(unsigned short))/sizeof(unsigned short)];
+d88 1
+a88 1
+static	struct	iovec	req_iov_[4] = {
+d91 3
+a93 2
+	{ (caddr_t) req_data_,           0 },
+	{           NULL,                0 } };
+d172 2
+d175 2
+d178 3
+a180 1
+					Tmk_interval_incorporate(req->data_, req->size, NULL);
+d210 1
+a210 3
+					struct	req_red *req = (struct req_red *) req_from_[0].req;
+
+					caddr_t	req_input = &req->data_[req->size];
+d212 1
+a212 1
+					if ((req_input + length) != ((caddr_t) req + req_from_[0].size))
+d215 1
+a215 1
+					memcpy(rep_output_, req_input, length);
+d222 1
+a222 1
+						struct	req_red *req = (struct req_red *) req_from_[j].req;
+d224 1
+a224 3
+						caddr_t	req_input = &req->data_[req->size];
+
+						if ((req_input + length) != ((caddr_t) req + req_from_[j].size))
+d227 1
+a227 1
+						(*upcall)(length, req_input, rep_output_, args_struct);
+a275 4
+			req_data_[0] = Tmk_interval_request_proc((caddr_t)&req_data_[1], Tmk_proc_id, inverse_time_[manager]) - (caddr_t)&req_data_[1];
+
+			req_iov_[2].iov_len = req_data_[0] + sizeof(req_data_[0]);
+
+d279 2
+d356 4
+a359 1
+		Tmk_interval_incorporate((caddr_t) req->data_, req->size, NULL);
+@
+
+
+10.10.0.31
+log
+@If the reduction size is zero, perform the upcall exactly once.
+(Also, made a minor change to the upcall messages.)
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.30 1998/08/17 16:02:57 alc Exp alc $
+d195 1
+a195 1
+					Tmk_err("  performing reduction...");
+d197 6
+a202 17
+				if (length == 0) {
+					/*
+					 * If the length is zero, perform the upcall exactly once.
+					 */
+					for (j = 0; j < Tmk_nprocs; j++) {
+						if (j == Tmk_proc_id)
+							(*upcall)(0, NULL, NULL, args_struct);
+						else {
+							struct	req_red *req = (struct req_red *) req_from_[j].req;
+
+							caddr_t	req_input = &req->data_[req->size];
+
+							if (req_input != ((caddr_t) req + req_from_[j].size))
+								Tmk_errexit("Tmk_reduction: size from %d doesn't match\n", j);
+						}
+					}
+				}
+d204 1
+a204 8
+					/*
+					 * Do the upcalls here to make sure they are done in order.
+					 * In general, reductions are associative, not commutative
+					 */
+					if (Tmk_proc_id == 0)
+						memcpy(rep_output_, input, length);
+					else {
+						struct	req_red *req = (struct req_red *) req_from_[0].req;
+d206 1
+a206 1
+						caddr_t	req_input = &req->data_[req->size];
+d208 2
+a209 2
+						if ((req_input + length) != ((caddr_t) req + req_from_[0].size))
+							Tmk_errexit("Tmk_reduction: size from %d doesn't match\n", 0);
+d211 2
+a212 2
+						memcpy(rep_output_, req_input, length);
+					}
+d214 5
+a218 5
+					for (j = 1; j < Tmk_nprocs; j++) {
+						if (j == Tmk_proc_id)
+							(*upcall)(length, input, rep_output_, args_struct);
+						else {
+							struct	req_red *req = (struct req_red *) req_from_[j].req;
+d220 1
+a220 1
+							caddr_t	req_input = &req->data_[req->size];
+d222 2
+a223 2
+							if ((req_input + length) != ((caddr_t) req + req_from_[j].size))
+								Tmk_errexit("Tmk_reduction: size from %d doesn't match\n", j);
+d225 1
+a225 2
+							(*upcall)(length, req_input, rep_output_, args_struct);
+						}
+d228 1
+d230 1
+a230 1
+					Tmk_err("done.\n");
+@
+
+
+10.10.0.32
+log
+@Performed a little restructuring.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.31 1998/08/17 20:56:02 alc Exp alc $
+d186 2
+a187 1
+			if (upcall != NULL) {
+d197 18
+a214 1
+				if (length > 0) {
+d216 2
+a217 2
+					 * Always perform the upcalls in the same order.  In general,
+					 * reductions are associative but not commutative.
+a243 17
+						}
+					}
+				}
+				else {
+					/*
+					 * If the length is zero, perform the upcall exactly once.
+					 */
+					for (j = 0; j < Tmk_nprocs; j++) {
+						if (j == Tmk_proc_id)
+							(*upcall)(0, NULL, NULL, args_struct);
+						else {
+							struct	req_red *req = (struct req_red *) req_from_[j].req;
+
+							caddr_t	req_input = &req->data_[req->size];
+
+							if (req_input != ((caddr_t) req + req_from_[j].size))
+								Tmk_errexit("Tmk_reduction: size from %d doesn't match\n", j);
+@
+
+
+10.10.0.33
+log
+@Modified the error checking and messages.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.32 1998/08/19 18:53:24 alc Exp alc $
+d142 1
+a142 1
+		Tmk_err("reduction: %d (size: %d)\n", id, length);  
+d144 4
+a147 2
+	if ((id < NREDUCTIONS) &&
+	    (length <= MAX_REDUCTION_SIZE)) {
+d357 1
+a357 1
+		Tmk_errexit("Tmk_reduction: id == %d (size == %d)\n", id, length);
+@
+
+
+10.10.0.34
+log
+@Added some casts of (unsigned char *) to (caddr_t) to pacify
+the Solaris compiler.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.33 1998/08/20 03:21:13 alc Exp alc $
+d172 1
+a172 1
+					Tmk_interval_incorporate((caddr_t) req->data_, req->size, NULL);
+d204 1
+a204 1
+						caddr_t	req_input = (caddr_t)&req->data_[req->size];
+d218 1
+a218 1
+							caddr_t	req_input = (caddr_t)&req->data_[req->size];
+d237 1
+a237 1
+							caddr_t	req_input = (caddr_t)&req->data_[req->size];
+@
+
+
+10.10.0.35
+log
+@Guarantee the alignment of the input data for the reduction.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.34 1998/08/21 16:18:07 alc Exp alc $
+a58 8
+#if	defined(__i386)
+#	define	DOUBLE_ALIGNMENT_MASK	3
+#else
+#	define	DOUBLE_ALIGNMENT_MASK	7
+#endif
+
+#	define	DOUBLE_ALIGN(ptr)	(((unsigned long)(ptr) + DOUBLE_ALIGNMENT_MASK) &~ DOUBLE_ALIGNMENT_MASK)
+
+d204 1
+a204 1
+						caddr_t	req_input = (caddr_t) DOUBLE_ALIGN(&req->data_[req->size]);
+d218 1
+a218 1
+							caddr_t	req_input = (caddr_t) DOUBLE_ALIGN(&req->data_[req->size]);
+a291 8
+
+			if (length > 0) {
+				/*
+				 * Add padding to the end of the consistency data so that
+				 * the reduction data is properly aligned.
+				 */
+				req_iov_[2].iov_len = DOUBLE_ALIGN(req_iov_[2].iov_len + sizeof(struct req_syn)) - sizeof(struct req_syn);
+			}
+@
+
+
+10.10.0.36
+log
+@Drop the last parameter to the reduction.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.35 1998/08/21 22:29:52 alc Exp alc $
+d137 2
+a138 1
+				 void	       *output ),
+d141 2
+a142 1
+	void	       *output)
+d222 1
+a222 1
+							(*upcall)(length, input, rep_output_);
+d231 1
+a231 1
+							(*upcall)(length, req_input, rep_output_);
+d241 1
+a241 1
+							(*upcall)(0, NULL, NULL);
+@
+
+
+10.10.0.37
+log
+@Renamed "Tmk_reduction" to "Tmk_barrier_reduce".
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.36 1998/08/22 01:08:26 alc Exp alc $
+d45 1
+a45 1
+ *			Tmk_barrier_reduce,
+d70 1
+a70 1
+}			barrier_[NBARRIERS];
+d133 1
+a133 1
+Tmk_barrier_reduce(
+d150 1
+a150 1
+	if ((id < NBARRIERS) &&
+d426 1
+a426 1
+	for (i = 0; i < NBARRIERS; i++)
+@
+
+
+10.10.0.38
+log
+@1.  Tmk_barrier_reduce replaces Tmk_barrier.  Tmk_barrier is now
+a stub that calls Tmk_barrier_reduce.  2.  The file barrier.c is
+dropped.  3.  The file reduction.c is renamed barrier_reduce.c.
+@
+text
+@d39 1
+a39 1
+ * $Id: reduction.c,v 10.10.0.37 1998/08/23 06:43:33 alc Exp alc $
+a44 1
+ *			Tmk_barrier,
+d46 3
+a48 3
+ *			Tmk_barrier_sigio_handler,
+ *			Tmk_barrier_sigio_duplicate_handler,
+ *			Tmk_barrier_initialize
+d93 1
+a93 1
+static	struct	req_typ	req_typ_red = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_ARRIVAL };
+a132 10
+Tmk_barrier(
+	unsigned	id)
+{
+	Tmk_barrier_reduce(id, NULL, 0, NULL, NULL);
+}
+
+/*
+ *
+ */
+void
+d148 1
+a148 1
+		Tmk_err("barrier: %d (reduction size: %d)\n", id, length);  
+d180 1
+a180 1
+					if (req->type == REQ_ARRIVAL_REPO)
+d213 1
+a213 1
+							Tmk_errexit("Tmk_barrier_reduce: size from %d doesn't match\n", 0);
+d227 1
+a227 1
+								Tmk_errexit("Tmk_barrier_reduce: size from %d doesn't match\n", j);
+d246 1
+a246 1
+								Tmk_errexit("Tmk_barrier_reduce: size from %d doesn't match\n", j);
+d278 1
+a278 1
+					Tmk_errno_check("Tmk_barrier_reduce<sendmsg>");
+d290 2
+a291 2
+			req_typ_red.type = repo ? REQ_ARRIVAL_REPO :
+						  REQ_ARRIVAL;
+d313 1
+a313 1
+				Tmk_errno_check("Tmk_barrier_reduce<sendmsg>");
+d328 1
+a328 1
+						Tmk_err("Tmk_barrier_reduce: %d timed out (seqno %d)\n",
+d338 1
+a338 1
+					Tmk_perrexit("Tmk_barrier_reduce<recvmsg>");
+d343 1
+a343 1
+					Tmk_err("Tmk_barrier_reduce: bad seqno %d from %d (received %d)\n",
+d369 1
+a369 1
+		Tmk_errexit("Tmk_barrier_reduce: id == %d (size == %d)\n", id, length);
+d379 1
+a379 1
+Tmk_barrier_sigio_handler(
+d387 1
+a387 1
+		if (req->type == REQ_ARRIVAL_REPO)
+d400 1
+a400 1
+Tmk_barrier_sigio_duplicate_handler(
+d414 1
+a414 1
+			Tmk_errno_check("Tmk_barrier_sigio_duplicate_handler<send>");
+d422 1
+a422 1
+Tmk_barrier_initialize( void )
+@

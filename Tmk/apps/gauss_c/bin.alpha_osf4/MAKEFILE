@@ -1,0 +1,14 @@
+ #
+ # $Id: Makefile,v 1.1 1998/09/13 07:33:30 alc Exp $
+ #
+ARCH	= alpha_osf4
+
+CC	= cc
+CFLAGS	= -migrate -g3 -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm
+
+all: gauss.udp
+
+include ../.common

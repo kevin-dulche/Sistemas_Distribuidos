@@ -1,0 +1,42 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.08.03.25.40;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Initial revision
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= rs6k_aix4
+
+CC	= cc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm
+
+LL	= /usr/lpp/LoadL/nfs
+
+all:
+	@@if [ -f $(TmkLIB)/libTmk_udp.a    ]; then $(MAKE) raytrace.udp    ; fi
+	@@if [ -f $(TmkLIB)/libTmk_udp_ll.a ]; then $(MAKE) raytrace.udp_ll ; fi
+
+include ../.common
+@

@@ -1,0 +1,206 @@
+/*
+ * $Id: is.c,v 1.4 1997/12/21 05:04:36 alc Exp $
+ */
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <math.h>
+
+#if	defined(__sun)
+#if   ! defined(__GNUC__)
+#include <sunmath.h>
+#else
+double	aint(double);
+#endif
+#else
+double	aint(double x)
+{
+	return (x > 0.0) ? floor(x) : ceil(x);
+}
+#endif
+
+#include <sys/time.h>
+
+#include <Tmk.h>
+
+#define mY_DEBUG
+
+/*
+ ****** Parameters of the program 
+ */
+#define A       1220703125.0
+#define S       314159265.0
+
+
+/* Determine problem size */
+
+int	N = 1 << 21;
+int	MAXKEY = 1 << 15;
+int	numreps = 10;
+
+/*
+ ****** Global variables
+ */
+double  half23, half46, two23, two46;
+
+int    *local_keyden;
+int     start, finish, count;
+int    *shared_keyden;
+
+void    init_rand()
+{
+	int	i;
+
+	half23 = half46 = two23 = two46 = 1.0;
+
+	for (i = 23; i > 0; i--) {
+
+		half23 *= 0.5;
+		half46 *= 0.5 * 0.5;
+
+		two23 *= 2.0;
+		two46 *= 2.0 * 2.0;
+	}
+}  
+
+double	randlc(double *x, double a)
+{
+	double a1, a2, b1, b2, t1, t2, t3, t4, t5;
+
+	a1 = aint(half23 * a);
+	a2 = a - two23 * a1;
+	b1 = aint(half23 * *x);
+	b2 = *x - two23 * b1;
+	t1 = a1 * b2 + a2 * b1;
+	t2 = aint(half23 * t1); 
+	t3 = t1 - two23 * t2;
+	t4 = two23 * t3 + a2 * b2;
+	t5 = aint(half46 * t4);
+	*x = t4 - two46 * t5;
+
+	return (half46 * *x);
+}
+
+void	bucksort(int key[], int rank[])
+{
+	int	i, j, k;
+
+	memset(local_keyden, 0, sizeof(local_keyden));
+
+	for (i = 0; i < count; i++)
+		local_keyden[key[i]]++;
+
+	for (i = 1; i < MAXKEY; i++)
+		local_keyden[i] += local_keyden[i-1];
+  
+	if (Tmk_nprocs > 1) {
+
+		j = Tmk_proc_id*MAXKEY/Tmk_nprocs;
+
+		k = (Tmk_proc_id + 1)*MAXKEY/Tmk_nprocs;
+
+		memcpy(&shared_keyden[j], &local_keyden[j], (k - j)*sizeof(local_keyden[0]));
+
+		Tmk_barrier(0); 
+
+		for (i = 1; i < Tmk_nprocs; i++) {
+
+			j = (i + Tmk_proc_id)%Tmk_nprocs*MAXKEY/Tmk_nprocs;
+
+			for (k = ((i + Tmk_proc_id)%Tmk_nprocs + 1)*MAXKEY/Tmk_nprocs; j < k; j++)
+				local_keyden[j] = shared_keyden[j] += local_keyden[j];
+
+			Tmk_barrier(0);
+ 		} 
+		for (i = MAXKEY-1; i > 0; i--)
+			local_keyden[i] += shared_keyden[i-1] - local_keyden[i-1];
+	}
+	for (i = 0; i < count; i++) 
+		rank[i] = --local_keyden[key[i]];
+}
+
+void    main(int argc, char **argv)
+{
+	int            *key, *rank;
+	int             c, i, j;
+	double          x, seed;
+	struct timeval  time1, time2;
+
+	while ((c = getopt(argc, argv, "k:n:r:")) != -1);
+
+	Tmk_startup(argc, argv);
+
+	/* Initialize shared memory */
+
+	if (Tmk_proc_id == 0) {
+
+		shared_keyden = (int *) Tmk_malloc(MAXKEY*sizeof(int));
+
+		Tmk_distribute((char *)&shared_keyden, sizeof(shared_keyden));
+	}
+	Tmk_barrier(0);
+
+	printf("", numreps, N, MAXKEY);
+
+	/* Find start and finish of each processor's section */
+
+	start  =       Tmk_proc_id*N/Tmk_nprocs;
+	finish = (Tmk_proc_id + 1)*N/Tmk_nprocs;
+
+	count  = finish - start;
+
+	/* allocate local key array */
+
+	key  = (int *) malloc(count*sizeof(int));
+	rank = (int *) malloc(count*sizeof(int));
+
+	local_keyden = (int *) malloc(MAXKEY*sizeof(int));
+
+#ifdef MY_DEBUG  
+	fprintf(stderr, "start = %d\nend = %d\n", start, finish);
+#endif
+	/* Initialize seed for random number generator */
+
+	init_rand(); seed = S;
+
+	/* Initialize keys with a Gaussian distribution in key densities */
+
+	for (i = 0; i < N; i++) {
+
+		x  = randlc(&seed, A);
+		x += randlc(&seed, A);
+		x += randlc(&seed, A);
+		x += randlc(&seed, A);
+
+		if (i >= start && i < finish)
+			key[i-start] = x*(MAXKEY/4);
+	}
+	printf("Initialization completed.\nSorting.\n");
+
+	Tmk_barrier(0);
+
+	gettimeofday(&time1, NULL);
+
+	for (i = 1; i <= numreps; i++) {
+
+		/* Assume that elems i,i+numreps always belong to the processor 0 */
+
+		if (Tmk_proc_id == 0) {
+
+			key[i] = i;
+			key[i+numreps] = MAXKEY - i;
+		}
+		bucksort(key, rank);
+
+		if (Tmk_nprocs > 1)
+			Tmk_barrier(0);
+	}
+	gettimeofday(&time2, NULL);
+
+	if (Tmk_proc_id == 0)
+		printf("Performed %d rankings in time: %6.3f seconds\n", numreps,
+		       ((time2.tv_sec - time1.tv_sec) * 1.0e6 + 
+			(time2.tv_usec - time1.tv_usec)) * 1.0e-6);
+
+	Tmk_exit(0);
+}

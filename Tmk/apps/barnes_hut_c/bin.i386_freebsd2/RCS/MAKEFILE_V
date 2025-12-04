@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.14.19.42.23;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Barnes-Hut Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= i386_freebsd2
+
+CC      = cc
+CFLAGS  = -pipe -g -O2
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm -lcompat
+
+all: barnes.udp
+
+include	../.common
+@

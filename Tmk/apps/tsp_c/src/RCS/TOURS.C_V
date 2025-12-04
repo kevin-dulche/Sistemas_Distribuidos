@@ -1,0 +1,153 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	97.12.20.22.48.06;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.02.08.19.47;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@TSP
+@
+
+
+1.2
+log
+@Make the function "set_best" return "void."
+@
+text
+@#include <stdio.h>
+
+#include "tsp.h"
+
+char tour_str[256];
+
+/*
+ * new_tour():
+ *
+ *    Create a new tour structure given an existing tour structure and
+ *  the next edge to add to the tour.  Returns the index of the new structure.
+ *
+ */
+new_tour(prev_index, move)
+    int prev_index, move;
+{
+    int index, i;
+    register TourElement *curr, *prev;
+
+    /* get index of a blank tour */
+    if (global->TourStackTop >= 0)
+	index = global->TourStack[global->TourStackTop--];
+    else {
+	fprintf(stderr, "TourStackTop: %d\n", global->TourStackTop);
+	fflush(stderr);
+	exit(-1);
+    }
+
+    curr = &global->Tours[index];
+    prev = &global->Tours[prev_index];
+
+    for (i = 0; i < TspSize; i++) {
+	curr->prefix[i] = prev->prefix[i];
+	curr->conn = prev->conn;
+    }
+    curr->last = prev->last;
+    curr->prefix_weight = prev->prefix_weight + 
+			  global->weights[curr->prefix[curr->last]][move];
+    curr->prefix[++(curr->last)] = move;
+    if (debug) {
+	MakeTourString(curr->last, curr->prefix);
+    }
+
+    /* add our new move */
+    curr->conn |= 1 << move;
+
+    /* calculate and return the new lower bound */
+    return calc_bound(index);
+}
+
+
+/*
+ * set_best():
+ *
+ *  Set the global `best' value.
+ *
+ */
+void
+set_best(best, path)
+int best;
+int *path;
+{
+    int i;
+
+    if (best >= global->MinTourLen) {
+	if (debug)
+	    fprintf(stderr, "\nset_best: %d <-> %d\n", best, global->MinTourLen);
+	return;	/* MinTourLen monotonically decreases */
+    }
+
+    /* Ensure that changes to the minimum are serialized. */
+
+    Tmk_lock_acquire(global->MinLock);
+
+    if (best < global->MinTourLen) {
+	if (debug || debugPrioQ) {
+	    MakeTourString(TspSize, path);
+	}
+	fprintf(stderr, "MinTourLen: %d (old: %d)\n", best, global->MinTourLen);
+	global->MinTourLen = best;
+	for (i = 0; i < TspSize; i++)
+	    global->MinTour[i] = path[i];
+    }
+    Tmk_lock_release(global->MinLock);
+}
+
+
+/*
+ *  MakeTourString(len, path):
+ *
+ *  Make a string for printing that describes the tour passed via len and path.
+ *
+ */
+void
+MakeTourString(len, path)
+int len;
+int *path;
+{
+    int i, j;
+
+    for (i = j = 0; i < len; i++) {
+	sprintf((tour_str + j), "%1d - ", (int)path[i]);
+	if ((int)path[i] >= 10) j += 5;	/* Two digit number. */
+	else j += 4;
+    }
+    sprintf((tour_str + j), "%1d\0", (int) path[i]);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d58 1
+d68 1
+a68 1
+	return(0);	/* MinTourLen monotonically decreases */
+d94 1
+d96 2
+a97 2
+int   	len;
+int 	*path;
+@

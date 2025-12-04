@@ -1,0 +1,1074 @@
+head	11.2;
+access;
+symbols
+	Tmk-1_0_3_2R:10.4.1.2
+	Tmk-1_0_3_1R:10.4.1.2
+	Tmk-1_0_3R:10.4.1.2
+	Tmk-1_2:10.4.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.4.1.2
+	Tmk-1_0_1R:10.4.1.1
+	Tmk-1_1:11
+	Tmk-1_0:10.4.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.4;
+locks; strict;
+comment	@ * @;
+
+
+11.2
+date	97.11.05.06.27.04;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.07.10.06.31.54;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	97.01.12.00.37.26;	author alc;	state Exp;
+branches
+	10.4.1.1;
+next	10.3;
+
+10.3
+date	97.01.10.08.35.17;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.01.10.08.19.28;	author alc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	97.01.10.07.39.20;	author alc;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	97.01.09.19.07.07;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.01.09.06.30.37;	author alc;	state Exp;
+branches;
+next	;
+
+10.4.1.1
+date	97.11.05.07.31.03;	author alc;	state Exp;
+branches;
+next	10.4.1.2;
+
+10.4.1.2
+date	98.05.09.19.27.09;	author alc;	state Exp;
+branches;
+next	10.4.1.3;
+
+10.4.1.3
+date	98.07.26.05.25.28;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Supports mmaping files into the shared heap.
+@
+
+
+11.2
+log
+@Added Tmk_msync.  Rewrote Tmk_mmap to (correctly) check
+the address range bounds.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1997						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: mmap.c,v 11.1 1997/07/10 06:31:54 alc Exp alc $
+ *
+ * Description:    
+ *	page management routines
+ *
+ * External Functions:
+ *			Tmk_mmap,
+ *			Tmk_msync
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	 8-Jan-1997	Vivek Pai	Created from a skeleton
+ *					 by Alan L. Cox
+ *	10-Jan-1997	Alan L. Cox	Support addr == NULL behavior and
+ *					 errnop
+ *	Version 0.10.2
+ */
+#include "Tmk.h"
+
+#include <sys/types.h>
+#include <sys/mman.h>
+
+#include "Tmk_mman.h"
+
+#define PAGE_ALIGNED(_addr)	( ! ((unsigned long) _addr & \
+				     (unsigned long)(Tmk_page_size - 1)))
+
+#define RANGE_WITHIN_BOUNDS(_addr, _len) \
+				((_addr >= page_array_[0].vadr) && \
+				 (_addr + _len > _addr) && \
+				 (_addr + _len <= page_array_[Tmk_npages].vadr))
+
+/*
+ *
+ */
+static
+caddr_t
+do_mmap(
+	caddr_t	addr,
+	size_t	len,
+	int	prot,
+	int	flags,
+	int	fd,
+	off_t	offset,
+	int    *errnop)	/*OUT*/
+{
+	page_t	page;
+
+	sigset_t
+		mask;
+    
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+	/*
+	 * Needs comment.  :-)
+	 */
+	for (page = &page_array_[(addr - page_array_[0].vadr) >> page_shift];
+	     page->vadr < addr + len;
+	     page++) {
+
+		if ((page->state == exclusive) ||
+		    (page->state == modified))
+			continue;
+		else if (page->twin == NULL) {
+
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+				Tmk_perrexit("do_mmap<mprotect>");
+
+			switch (page->state) {
+			case invalid:
+				if (page->empty) {
+
+					Tmk_page_request(page);
+
+					Tmk_diff_reapply(page);
+				}
+				Tmk_diff_request(page);
+			case shared:
+				Tmk_twin_alloc_and_copy(page);
+	  
+				Tmk_page_dirty_merge(page);
+
+				break;
+			}
+		}
+		else
+			assert(page->state == shared);
+	}
+	if (errnop)
+		*errnop = 0;
+
+	/*
+	 * Assert: munmap only fails if addr isn't page aligned or len < 0.
+	 */
+	if (0 > munmap(addr, len)) {
+
+		addr = (caddr_t) MAP_FAILED;
+
+		if (errnop)
+			*errnop = errno;
+	}
+	else {
+		flags |= MAP_FIXED;
+
+		/*
+		 * Assert: mmap won't fail as a consequence of MAP_FIXED.
+		 */
+		if ((addr = mmap(addr, len, prot, flags, fd, offset)) == (caddr_t) MAP_FAILED) {
+
+			if (errnop)
+				*errnop = errno;
+		}
+	}
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+
+	return addr;
+}
+
+/*
+ * A limitation of Tmk_mmap is that we don't enforce "prot" access on
+ * any processor but the one that performed the Tmk_mmap.  A program
+ * may FAIL UNPREDICTABLY if a processor writes to a PROT_READ page. 
+ */
+caddr_t
+Tmk_mmap(
+	caddr_t	addr,
+	size_t	len,
+	int	prot,
+	int	flags,
+	int	fd,
+	off_t	offset,
+	int    *errnop)	/*OUT*/
+{
+	if ((prot & PROT_WRITE) == 0)
+		Tmk_err("Warning: Tmk_mmap doesn't (yet) enforce write protection.\n");
+
+	if (flags & MAP_FIXED) {
+
+		/*
+		 * If the address is page aligned and the address range is
+		 * within the bounds of the shared memory, ...
+		 */
+		if (PAGE_ALIGNED(addr) && RANGE_WITHIN_BOUNDS(addr, len)) {
+
+			addr = do_mmap(addr, len, prot, flags, fd, offset, errnop);
+		}
+		else {
+			if (errnop)
+				*errnop = EINVAL;
+
+			addr = (caddr_t) MAP_FAILED;
+		}
+	}
+	else {
+		if (addr)
+			Tmk_err("Warning: Tmk_mmap doesn't (yet) use the address hint.\n");
+
+		/*
+		 * Assert: Tmk_malloc returns a page aligned address
+		 * if the request is for one or more pages.
+		 */
+		if (addr = Tmk_malloc((len + (Tmk_page_size - 1)) &~ (Tmk_page_size - 1))) {
+
+			addr = do_mmap(addr, len, prot, flags, fd, offset, errnop);
+		}
+		else {
+			if (errnop) {
+				/*
+				 * It's not evident which error to return.  ENOMEM is
+				 * used to indicate that the range isn't available for
+				 * mapping, which makes some sense.
+				 */
+				*errnop = ENOMEM;
+			}
+			addr = (caddr_t) MAP_FAILED;
+		}
+	}
+	return addr;
+}
+
+/*
+ * N.B.  The program is responsible for synchronizing the processor
+ * performing the msync with any processors that have modified the
+ * specified address range.
+ */
+int
+Tmk_msync(
+	caddr_t	addr,
+	size_t	len,
+	int	flags,
+	int    *errnop)	/*OUT*/
+{
+	int	err;
+
+	/*
+	 * If the address is page aligned and the address range is
+	 * within the bounds of the shared memory, ...
+	 */
+	if (PAGE_ALIGNED(addr) && RANGE_WITHIN_BOUNDS(addr, len)) {
+
+		caddr_t	cur_addr;
+
+		sigset_t
+			mask;
+    
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+		/*
+		 * Touch each page to trigger an update.
+		 */
+		for (cur_addr = addr; cur_addr < addr + len; cur_addr += Tmk_page_size)
+			*(volatile char *) cur_addr;
+
+#if	defined(__bsdi)
+		if (flags)
+			Tmk_err("Warning: BSD/OS doesn't (yet) support flags on (Tmk_)msync.\n");
+
+		if ((err = msync(addr, len)) < 0) {
+#else
+		if ((err = msync(addr, len, flags)) < 0) {
+#endif
+			if (errnop)
+				*errnop = errno;
+		}
+		sigio_mutex(SIG_SETMASK, &mask, NULL);
+	}
+	else {
+		/*
+		 * Simulate the behavior of msync, which uses EINVAL
+		 * to indicate that the address range is invalid.
+		 */
+		if (errnop)
+			*errnop = EINVAL;
+
+		err = -1;
+	}
+	return err;
+}
+@
+
+
+11.1
+log
+@Use the new page states.
+
+N.B. I haven't tested this revision!
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 10.4 1997/01/12 00:37:26 alc Exp alc $
+d45 2
+a46 1
+ *			Tmk_mmap
+d63 8
+d72 1
+a72 3
+ * A limitation of Tmk_mmap is that we don't enforce "prot" access on
+ * any processor but the one that performed the Tmk_mmap.  A program
+ * may FAIL UNPREDICTABLY if a processor writes to a PROT_READ page. 
+d74 10
+a83 8
+caddr_t	Tmk_mmap(addr, len, prot, flags, fd, offset, errnop)
+	caddr_t	addr;
+	size_t	len;
+	int	prot;
+	int	flags;
+	int	fd;
+	off_t	offset;
+	int    *errnop;	/*OUT*/
+d85 1
+a85 1
+	unsigned i;
+d87 4
+a90 2
+	if ((prot & PROT_WRITE) == 0)
+		Tmk_err("Warning: Tmk_mmap doesn't (yet) enforce write protection.\n");
+d93 1
+a93 2
+	 * Assert: Tmk_malloc returns a page aligned address if the
+	 * request is for one or more pages.
+d95 8
+a102 4
+	if (((flags & MAP_FIXED) == 0) &&
+	    ((addr == NULL) ||
+	     (addr <= Tmk_sbrk(0))))
+		addr = Tmk_malloc((len + (Tmk_page_size - 1)) &~ (Tmk_page_size - 1));
+d104 2
+a105 7
+	/*
+	 * If addr > Tmk_sbrk(0), the heap and the mapped region may
+	 * collide with unpredictable results.
+	 */
+	if ((i = (addr - page_array_[0].vadr) >> page_shift) < Tmk_npages) {
+    
+		page_t	page = &page_array_[i];
+d107 3
+a109 3
+		sigset_t	mask;
+    
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d111 1
+a111 4
+		/*
+		 * Iterate if addr is page aligned and len > 0.
+		 */
+		for ( ; page->vadr >= addr && page->vadr < addr + len; page++) {
+d113 5
+a117 25
+			/*
+			 * Flush at termination is required (only) if MAP_SHARED,
+			 * because a MAP_PRIVATE file is copy-on-write.
+			 */
+			if (flags & MAP_SHARED)
+				page->isMmapped = 1;
+
+			if (page->state == exclusive)
+				continue;
+			else if (page->twin == NULL) {
+
+				if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+					Tmk_perrexit("<mprotect>Tmk_mmap");
+
+				switch (page->state) {
+				case invalid:
+					if (page->empty) {
+
+						Tmk_page_request(page);
+
+						Tmk_diff_reapply(page);
+					}
+					Tmk_diff_request(page);
+				case shared:
+					Tmk_twin_alloc_and_copy(page);
+d119 1
+a119 1
+					Tmk_page_dirty_merge(page);
+d121 1
+a121 5
+					break;
+				default:
+					assert((page->state == invalid) || 
+					       (page->state == shared));
+				}
+d123 2
+d126 11
+a136 1
+		}
+d138 4
+a141 1
+			*errnop = 0;
+d144 1
+a144 1
+		 * Assert: munmap only fails if addr isn't page aligned or len < 0.
+d146 1
+a146 3
+		if (0 > munmap(addr, len)) {
+
+			addr = (caddr_t) -1;
+d151 34
+d186 2
+a187 1
+			flags |= MAP_FIXED;
+d189 12
+a200 4
+			/*
+			 * Assert: mmap won't fail as a consequence of MAP_FIXED.
+			 */
+			if ((addr = mmap(addr, len, prot, flags, fd, offset)) == (caddr_t) -1) {
+d202 10
+a211 2
+				if (errnop)
+					*errnop = errno;
+d213 49
+d267 2
+a268 3
+		 * It's not evident which error to return.  ENOMEM is
+		 * used to indicate that the range isn't available for
+		 * mapping, which makes some sense.
+d271 1
+a271 1
+			*errnop = ENOMEM;
+d273 1
+a273 1
+		addr = (caddr_t) -1;
+d275 1
+a275 1
+	return addr;
+@
+
+
+10.4
+log
+@Added a warning about write protection.  Updated the comments.  Added
+check of the validity of errnop.
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 10.3 1997/01/10 08:35:17 alc Exp alc $
+d114 1
+a114 1
+			if (page->state == private)
+a121 2
+				case empty:
+					Tmk_page_request(page);
+d123 6
+d130 1
+a130 1
+				case valid:
+d137 2
+a138 3
+					assert((page->state == empty)  ||
+					       (page->state == invalid) || 
+					       (page->state == valid));
+d141 1
+a141 1
+			assert(page->state == valid);
+@
+
+
+10.4.1.1
+log
+@Added Tmk_msync.  Rewrote Tmk_mmap to (correctly) check
+the address range bounds.  (Identical to revision 11.2.)
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 11.2 1997/11/05 06:27:04 alc Exp $
+d45 1
+a45 2
+ *			Tmk_mmap,
+ *			Tmk_msync
+a61 8
+#define PAGE_ALIGNED(_addr)	( ! ((unsigned long) _addr & \
+				     (unsigned long)(Tmk_page_size - 1)))
+
+#define RANGE_WITHIN_BOUNDS(_addr, _len) \
+				((_addr >= page_array_[0].vadr) && \
+				 (_addr + _len > _addr) && \
+				 (_addr + _len <= page_array_[Tmk_npages].vadr))
+
+d63 3
+a65 1
+ *
+d67 8
+a74 10
+static
+caddr_t
+do_mmap(
+	caddr_t	addr,
+	size_t	len,
+	int	prot,
+	int	flags,
+	int	fd,
+	off_t	offset,
+	int    *errnop)	/*OUT*/
+d76 1
+a76 1
+	page_t	page;
+d78 2
+a79 4
+	sigset_t
+		mask;
+    
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d82 2
+a83 1
+	 * Needs comment.  :-)
+d85 4
+a88 33
+	for (page = &page_array_[(addr - page_array_[0].vadr) >> page_shift];
+	     page->vadr < addr + len;
+	     page++) {
+
+		if (page->state == private)
+			continue;
+		else if (page->twin == NULL) {
+
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ|PROT_WRITE))
+				Tmk_perrexit("do_mmap<mprotect>");
+
+			switch (page->state) {
+			case empty:
+				Tmk_page_request(page);
+			case invalid:
+				Tmk_diff_request(page);
+			case valid:
+				Tmk_twin_alloc_and_copy(page);
+	  
+				Tmk_page_dirty_merge(page);
+
+				break;
+			default:
+				assert((page->state == empty)  ||
+				       (page->state == invalid) || 
+				       (page->state == valid));
+			}
+		}
+		else
+			assert(page->state == valid);
+	}
+	if (errnop)
+		*errnop = 0;
+d91 2
+a92 1
+	 * Assert: munmap only fails if addr isn't page aligned or len < 0.
+d94 3
+a96 1
+	if (0 > munmap(addr, len)) {
+d98 3
+a100 7
+		addr = (caddr_t) MAP_FAILED;
+
+		if (errnop)
+			*errnop = errno;
+	}
+	else {
+		flags |= MAP_FIXED;
+d103 1
+a103 1
+		 * Assert: mmap won't fail as a consequence of MAP_FIXED.
+d105 25
+a129 1
+		if ((addr = mmap(addr, len, prot, flags, fd, offset)) == (caddr_t) MAP_FAILED) {
+d131 8
+a138 2
+			if (errnop)
+				*errnop = errno;
+d140 2
+a141 25
+	}
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+
+	return addr;
+}
+
+/*
+ * A limitation of Tmk_mmap is that we don't enforce "prot" access on
+ * any processor but the one that performed the Tmk_mmap.  A program
+ * may FAIL UNPREDICTABLY if a processor writes to a PROT_READ page. 
+ */
+caddr_t
+Tmk_mmap(
+	caddr_t	addr,
+	size_t	len,
+	int	prot,
+	int	flags,
+	int	fd,
+	off_t	offset,
+	int    *errnop)	/*OUT*/
+{
+	if ((prot & PROT_WRITE) == 0)
+		Tmk_err("Warning: Tmk_mmap doesn't (yet) enforce write protection.\n");
+
+	if (flags & MAP_FIXED) {
+d144 1
+a144 2
+		 * If the address is page aligned and the address range is
+		 * within the bounds of the shared memory, ...
+d146 3
+a148 1
+		if (PAGE_ALIGNED(addr) && RANGE_WITHIN_BOUNDS(addr, len)) {
+d150 2
+a151 1
+			addr = do_mmap(addr, len, prot, flags, fd, offset, errnop);
+d154 1
+a154 2
+			if (errnop)
+				*errnop = EINVAL;
+d156 4
+a159 6
+			addr = (caddr_t) MAP_FAILED;
+		}
+	}
+	else {
+		if (addr)
+			Tmk_err("Warning: Tmk_mmap doesn't (yet) use the address hint.\n");
+d161 2
+a162 16
+		/*
+		 * Assert: Tmk_malloc returns a page aligned address
+		 * if the request is for one or more pages.
+		 */
+		if (addr = Tmk_malloc((len + (Tmk_page_size - 1)) &~ (Tmk_page_size - 1))) {
+
+			addr = do_mmap(addr, len, prot, flags, fd, offset, errnop);
+		}
+		else {
+			if (errnop) {
+				/*
+				 * It's not evident which error to return.  ENOMEM is
+				 * used to indicate that the range isn't available for
+				 * mapping, which makes some sense.
+				 */
+				*errnop = ENOMEM;
+a163 49
+			addr = (caddr_t) MAP_FAILED;
+		}
+	}
+	return addr;
+}
+
+/*
+ * N.B.  The program is responsible for synchronizing the processor
+ * performing the msync with any processors that have modified the
+ * specified address range.
+ */
+int
+Tmk_msync(
+	caddr_t	addr,
+	size_t	len,
+	int	flags,
+	int    *errnop)	/*OUT*/
+{
+	int	err;
+
+	/*
+	 * If the address is page aligned and the address range is
+	 * within the bounds of the shared memory, ...
+	 */
+	if (PAGE_ALIGNED(addr) && RANGE_WITHIN_BOUNDS(addr, len)) {
+
+		caddr_t	cur_addr;
+
+		sigset_t
+			mask;
+    
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+		/*
+		 * Touch each page to trigger an update.
+		 */
+		for (cur_addr = addr; cur_addr < addr + len; cur_addr += Tmk_page_size)
+			*(volatile char *) cur_addr;
+
+#if	defined(__bsdi)
+		if (flags)
+			Tmk_err("Warning: BSD/OS doesn't (yet) support flags on (Tmk_)msync.\n");
+
+		if ((err = msync(addr, len)) < 0) {
+#else
+		if ((err = msync(addr, len, flags)) < 0) {
+#endif
+			if (errnop)
+				*errnop = errno;
+d169 3
+a171 2
+		 * Simulate the behavior of msync, which uses EINVAL
+		 * to indicate that the address range is invalid.
+d174 1
+a174 1
+			*errnop = EINVAL;
+d176 1
+a176 1
+		err = -1;
+d178 1
+a178 1
+	return err;
+@
+
+
+10.4.1.2
+log
+@Tmk_diff_request doesn't set the page state anymore.  Do it here.
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 10.4.1.1 1997/11/05 07:31:03 alc Exp alc $
+a109 2
+				page->state = valid;
+
+@
+
+
+10.4.1.3
+log
+@Changed the definition of "page_t".  The new definition enables
+the use of "const" page pointers.
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 10.4.1.2 1998/05/09 19:27:09 alc Exp alc $
+d85 1
+a85 1
+	page_t *page;
+@
+
+
+10.3
+log
+@Flush at termination is required (only) if MAP_SHARED,
+because a MAP_PRIVATE file is copy-on-write.
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 10.2 1997/01/10 08:19:28 alc Exp alc $
+d62 5
+d78 3
+d144 1
+a144 2
+		 * Assert: munmap only fails if len < 0.  addr is mapped
+		 * and page aligned.  Let Tmk_errno report len < 0.
+d157 1
+a157 1
+			 * Assert: mmap won't fail here because of MAP_FIXED.
+d168 7
+a174 1
+		*errnop = ENOMEM;
+@
+
+
+10.2
+log
+@Check the page alignment of addr and the sign of len.
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 1.3 1997/01/10 07:39:20 alc Exp alc $
+d99 6
+a104 1
+			page->isMmapped = 1;
+@
+
+
+1.3
+log
+@Added support for addr == NULL behavior and error reporting
+with errorp.
+@
+text
+@d39 1
+a39 1
+ * $Id: mmap.c,v 1.2 1997/01/09 19:07:07 alc Exp alc $
+d93 5
+a97 2
+    
+		for ( ; page->vadr < addr + len; page++) {
+@
+
+
+1.2
+log
+@Reformatted and added the copyright message.
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1996						     *
+d39 1
+a39 1
+ * $Id$
+d49 1
+a49 1
+ *	 9-Jan-1996	Vivek Pai	Created from a skeleton
+d51 2
+d57 2
+d60 1
+a60 4
+/* if testing with a version prior to 0.10.2, define PRE_0_10_2
+   and the glue code gets activated. Note that there are some
+   wrapper functions even for 0.10.2 and above just to make the
+   glue code work */
+d62 1
+a62 66
+#ifdef PRE_0_10_2
+
+#define	page_copy(twin, vadr)	memcpy((twin), (vadr), Tmk_page_size)
+
+/* these page states are being used to transition from the 0.10.1.1
+   code to the 0.10.2 code - at some point, they can be removed */
+
+/*
+   if (valid && twin != NULL) page is writeable
+   elif (valid && twin == NULL) page is only readable
+   elif ( ! valid && ! empty) page only needs diffs to bring up to date
+   elif ( ! valid && empty) need to fetch a full copy of the page before
+   any diffs are fetched.
+   
+   (The above all hold for shared pages, i.e., copyset isn't a singleton.)
+   */
+
+enum	state	{ valid, invalid, private, empty };
+
+/* sigio_mutex is something from 0.10.2 - replace for the
+   time being with the definition valid for most cases -
+   this should eventually get removed, but isn't too "unsafe"
+   as long as sigio_mutex is defined in future versions */
+
+#ifndef sigio_mutex
+#define	sigio_mutex(how, set, oset) sigprocmask(how, set, oset)
+#endif
+
+static void Tmk_page_dirty_merge(page_t page)
+{
+  /* Tmk_page_dirty_merge(page); - this is from 0.10.2 
+     replace it with the manual addition to dirty list */
+  page->next = page_dirty;
+  page_dirty = page;
+}
+
+static enum state GetPageState(page_t page)
+{
+  if (page->valid) {
+    if (page->copyset == (1<<Tmk_proc_id)) {
+      /* if the page is valid and only our bit is set,
+	 then the page must be private */
+      return(private);
+    }
+    /* the page is valid, and may have been written.
+       let the switch statement handle creating a
+       fake diff if the page has been written already */
+    return(valid);
+  }
+
+  /* if page is not valid, copyset has no meaning */
+  if (page->empty) {
+    /* need to get page's data before getting diffs */
+    return(empty);
+  }
+  /* just get the diffs */
+  return(invalid);
+}
+
+#else  /* PRE_0_10_2 */
+
+#define GetPageState(p) ((p)->state)
+
+#endif /* PRE_0_10_2 */
+
+caddr_t	Tmk_mmap(addr, len, prot, flags, fd, offset)
+d69 1
+d71 16
+a86 3
+	unsigned i = (addr - page_array_[0].vadr) >> page_shift;
+  
+	if (i < Tmk_npages) {
+d98 13
+a110 8
+			switch (GetPageState(page)) {
+			case empty:
+				Tmk_page_request(page);
+			case invalid:
+				Tmk_diff_request(page);
+			case valid:
+				if (page->twin == 0) {
+	  
+d114 6
+a120 6
+			case private:
+				break;
+			default:
+			  /* just do a bogus exit - programmer error */
+			  Tmk_errexit("<switch statement>Tmk_mmap");
+			  break;
+d122 1
+d124 21
+a144 7
+		if (0 > munmap(addr, len))
+			Tmk_perrexit("<munmap>Tmk_mmap");
+    
+		flags |= MAP_FIXED;
+    
+		if ((caddr_t) -1 == mmap(addr, len, prot, flags, fd, offset))
+			Tmk_perrexit("<mmap>Tmk_mmap");
+d146 4
+a150 2
+    
+		return addr;
+d152 6
+a157 1
+	return (caddr_t) -1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 52
+d127 6
+a132 6
+     caddr_t addr;
+     size_t	len;
+     int	prot;
+     int	flags;
+     int	fd;
+     off_t	offset;
+d134 1
+a134 1
+  unsigned i = (addr - page_array_[0].vadr) >> page_shift;
+d136 1
+a136 1
+  if (i < Tmk_npages) {
+d138 3
+a140 2
+    sigset_t	mask;
+    page_t	page = &page_array_[i];
+d142 1
+a142 1
+    sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d144 11
+a154 10
+    for ( ; page->vadr < addr + len; page++) {
+      page->isMmapped = 1;
+
+      switch (GetPageState(page)) {
+      case empty:
+	Tmk_page_request(page);
+      case invalid:
+	Tmk_diff_request(page);
+      case valid:
+	if (page->twin == 0) {
+d156 1
+a156 1
+	  Tmk_twin_alloc_and_copy(page);
+d158 12
+a169 12
+	  Tmk_page_dirty_merge(page);
+	}
+      case private:
+	break;
+      default:
+	/* just do a bogus exit - programmer error */
+	Tmk_perrexit("<switch statement>Tmk_mmap");
+	break;
+      }
+    }
+    if (0 > munmap(addr, len))
+      Tmk_perrexit("<munmap>Tmk_mmap");
+d171 1
+a171 1
+    flags |= MAP_FIXED;
+d173 2
+a174 2
+    if ((caddr_t) -1 == mmap(addr, len, prot, flags, fd, offset))
+      Tmk_perrexit("<mmap>Tmk_mmap");
+d176 1
+a176 1
+    sigio_mutex(SIG_SETMASK, &mask, NULL);
+d178 3
+a180 3
+    return addr;
+  }
+  return (caddr_t) -1;
+@

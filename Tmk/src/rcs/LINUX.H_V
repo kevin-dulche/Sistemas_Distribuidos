@@ -1,0 +1,258 @@
+head	10.4;
+access;
+symbols
+	Tmk-1_0_1R:10.4
+	Tmk-1_1:11
+	Tmk-1_0:10
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.4
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+10.4
+date	97.03.08.07.28.10;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.03.08.06.57.07;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.03.08.06.55.50;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.04.24.05.22.27;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.11.08;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	;
+
+
+desc
+@Emulation code for system calls that are unsupported by Linux 1.2.13.
+@
+
+
+10.4
+log
+@Eliminated #include <asm/sigcontext.h>.  Moved to segv.c.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: linux.h,v 10.3 1997/03/08 06:57:07 alc Exp alc $
+ *
+ * Description:    
+ *	emulation code for system calls that are unsupported by Linux 1.2.13
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	20-Apr-1996	Robert J. Fowler
+ *					Created
+ *	Version 0.10.1
+ */
+#include <linux/version.h>
+
+#if (LINUX_VERSION_CODE < 131072)
+/*
+ * Message header for recvmsg and sendmsg calls.
+ */
+struct	msghdr	{
+        caddr_t msg_name;               /* optional address */
+        int     msg_namelen;            /* size of address */
+        struct  iovec *msg_iov;         /* scatter/gather array */  
+        int     msg_iovlen;             /* # elements in msg_iov */
+        caddr_t msg_accrights;          /* access rights sent/received */
+        int     msg_accrightslen;
+};
+
+/*
+ * 
+ */
+#define	recvmsg	Tmk_recvmsg
+
+/*
+ *
+ */
+#define	sendmsg	Tmk_sendmsg
+
+#endif
+@
+
+
+10.3
+log
+@Eliminated MAP_VARIABLE definition.  It's now defined for Linux
+in page.c.
+@
+text
+@d39 1
+a39 1
+ * $Id: linux.h,v 10.2 1997/03/08 06:55:50 alc Exp alc $
+a51 12
+/*
+ * Include the sigcontext_struct
+ */
+#if (LINUX_VERSION_CODE >= 131072)
+#include <asm/sigcontext.h>
+#else
+#include <asm/signal.h>
+#endif
+
+/*
+ * Linux 1.2.13 requires emulation code for the scatter/gather primitives.
+ */
+d65 8
+a73 2
+
+#define	recvmsg	Tmk_recvmsg
+@
+
+
+10.2
+log
+@Updated for Linux 2.0.x.  Eliminated scatter/gather emulation code.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+a59 6
+
+/*
+ * The Linux mman.h doesn't define MAP_VARIABLE.  It is,
+ * however, the default behavior.
+ */
+#define MAP_VARIABLE	0
+@
+
+
+10.1
+log
+@Tmk-0.10.1R: Linux support.
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		linux.h
+d49 2
+a50 4
+ *
+ * $Id$
+ *
+ *****************************************************************************/
+d55 3
+d59 1
+d68 4
+d86 2
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@d48 1
+a48 1
+ * $Id: linux.h,v 10.1 1996/04/24 05:22:27 alc Rel $
+@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@d48 1
+a48 1
+ * $Id: linux.h,v 10.1 1996/04/24 05:22:27 alc Rel $
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@d48 1
+a48 1
+ * $Id: linux.h,v 10.1 1996/04/24 05:22:27 alc Rel $
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@d48 1
+a48 1
+ * $Id: linux.h,v 10.1 1996/04/24 05:22:27 alc Rel $
+@

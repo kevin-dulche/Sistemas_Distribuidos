@@ -1,0 +1,1099 @@
+head	10.17;
+access;
+symbols
+	Tmk-1_2:10
+	Tmk-1_0_3_2R:10.13.0.3
+	Tmk-1_0_3_1R:10.13.0.2
+	Tmk-1_0:10.13.0
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.13
+	Tmk-1_0_3R:10.13;
+locks
+	alc:10.13.0.3; strict;
+comment	@# @;
+
+
+10.17
+date	98.09.13.23.13.52;	author alc;	state Exp;
+branches;
+next	10.16;
+
+10.16
+date	98.09.12.19.15.37;	author alc;	state Exp;
+branches;
+next	10.15;
+
+10.15
+date	98.09.11.23.11.29;	author alc;	state Exp;
+branches;
+next	10.14;
+
+10.14
+date	98.08.24.03.31.54;	author alc;	state Exp;
+branches;
+next	10.13;
+
+10.13
+date	98.08.06.21.37.48;	author alc;	state Exp;
+branches
+	10.13.0.1;
+next	10.12;
+
+10.12
+date	98.01.09.22.58.21;	author alc;	state Exp;
+branches;
+next	10.11;
+
+10.11
+date	97.12.08.06.54.20;	author alc;	state Exp;
+branches;
+next	10.10;
+
+10.10
+date	97.10.01.06.04.24;	author alc;	state Exp;
+branches;
+next	10.9;
+
+10.9
+date	97.09.21.19.14.42;	author alc;	state Exp;
+branches;
+next	10.8;
+
+10.8
+date	97.07.27.06.51.07;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	97.07.23.06.52.11;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	97.06.03.05.45.39;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	97.06.01.08.11.45;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	97.05.22.22.06.17;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.05.11.05.37.11;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.03.18.21.34.27;	author alc;	state Exp;
+branches;
+next	10.0;
+
+10.0
+date	96.03.17.17.39.03;	author alc;	state Rel;
+branches;
+next	9.7;
+
+9.7
+date	96.03.17.17.32.51;	author alc;	state Rel;
+branches;
+next	9.6;
+
+9.6
+date	96.03.17.04.56.32;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.16.07.50.16;	author alc;	state Exp;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.23.55.29;	author alc;	state Exp;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.16.21.37.09;	author alc;	state Exp;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.17.16.35.41;	author alc;	state Exp;
+branches;
+next	;
+
+10.13.0.1
+date	98.09.11.23.07.45;	author alc;	state Exp;
+branches;
+next	10.13.0.2;
+
+10.13.0.2
+date	98.09.13.18.39.35;	author alc;	state Exp;
+branches;
+next	10.13.0.3;
+
+10.13.0.3
+date	98.11.04.03.50.45;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.17
+log
+@Change the date.  Merge revision 10.13.0.2.
+@
+text
+@-/-\- Current and Past Releases -/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-
+
+--- Version 1.2.0 / 12 Sep 1998 -----------------------------------------------
+
+	Programs
+
+		Added a reduction barrier test program.
+
+	Interface
+
+		Added Tmk_madvise.  The only supported advice is
+		MADV_DONTNEED.
+
+		Added support for reduction barriers.  The interface is
+
+			void
+			Tmk_barrier_reduce(
+				unsigned    barrier_id,
+				void      (*upcall)( unsigned    size,
+						     const void *input,
+						     void       *output ),
+				unsigned    size,
+				const void *input,
+				void	   *output );
+
+		If size == 0, the input and output buffers are ignored and
+		the upcall function is called once.  The upcall function may
+		read from or write to shared memory.
+
+		If size > 0, the upcall function is called Tmk_nprocs - 1
+		times.  (The output buffer is initialized to the input buffer
+		from processor 0.)  The input and output buffers must be
+		in private memory.
+
+	Implementation
+
+		The file barrier.c was replaced by the file barrier_reduce.c.
+
+		A more compact encoding for write notices, in particular,
+		for ranges of pages, was introduced.
+
+--- Version 1.0.3.1 / 12 Sep 1998 ---------------------------------------------
+
+	Implementation
+
+		Corrected a machine/compiler-dependent error in the Tmk_repo
+		optimizations added in Version 1.0.3.
+
+		Corrected the Linux-specific Makefiles and Tmk.h
+		for omissions in Version 1.0.3.
+
+	Notes
+
+		This version builds under RedHat 5.1 Linux.  The f2c and
+		fort77 packages are required for the Fortran programs.
+
+--- Version 1.0.3 /  6 Aug 1998 -----------------------------------------------
+
+	Programs
+
+		Corrected a mistake in the port of the Barnes-Hut program.
+
+	Interface
+
+		Introduced "const" in declarations of Tmk_distribute
+		and Tmk_startup.  (The effects of this change are
+		transparent.)
+
+	Implementation
+
+		Reduced the overhead of Tmk_repo by pruning the set of pages
+		that it touches.
+
+		Tuned Tmk_diff_create for the register-starved x86.  Ick!
+
+		Changed the buffer management scheme used by the SIGIO
+		handlers.  (This new scheme corrects a non-fatal, but
+		annoying problem under IBM's MPL.)  This change is transparent
+		except for synchronization operations, such as Tmk_barrier
+		and Tmk_sched_fork, that hold incoming request messages
+		for later processing.  (See Tmk_sigio_buffer_release and
+		SIGIO_BUFFER_HOLD in src/sigio.c.)
+
+		Sped up the sorting of write notices in Tmk_diff_request.
+
+		Introduced "const" in numerous declarations.
+
+		Changed the definition of Tmk_spinmask to include all
+		of the processors.
+
+		Changed the dispatch method in the SIGIO handler to use
+		a table instead of a switch/case statement.
+
+		Changed a few internal names for clarity or consistency
+		with related functions/variables.
+
+		Deleted the BSD/OS-specific files.  The ENOBUFS condition
+		on send is handled by Tmk_errno_check.
+
+		Deleted the Linux-specific files.  Their primary function
+		was to emulate the scatter/gather capabilities of sendmsg
+		and recvmsg.  Linux kernels since version 2.0 support sendmsg
+		and recvmsg.
+
+	Notes
+
+		This implementation works on 32 processors.  It's been tested
+		on 32 PCs running FreeBSD 2.2.6-STABLE and a 32-processor SP2
+		running AIX 4.1.
+
+		The changes to Tmk_repo significantly reduce the execution
+		overhead of configurations with a large number of pages.
+
+--- Version 1.0.1 /  8 Jan 1998 -----------------------------------------------
+
+	Programs
+
+		Added the C and Fortran Gaussian Elimination programs.  Added
+		the raytrace program from SPLASH 2.
+
+	Interface
+
+		Added support for POSIX Pthreads-like condition variables,
+		specifically, Tmk_lock_cond_broadcast(lock_id, cond_id),
+		Tmk_lock_cond_signal(lock_id, cond_id), and
+		Tmk_lock_cond_wait(lock_id, cond_id).  These functions
+		only differ from their Pthreads counterparts in that
+		the association between locks and conditions is explicit.
+		For example, in contrast to the Pthreads broadcast and
+		signal, our broadcast and signal require the specification
+		of the lock.
+
+		Changed the Fortran API: a common block holds
+		the proc_id, nprocs, page_size and npages.
+
+		Added the "-v" option, which initializes the shared pages
+		as valid but write protected on every node.  This option
+		generally reduces the number of messages and the
+		amount of data transferred early in the execution.
+
+		Added Tmk_mmap, which maps a file into shared memory.  Its
+		interface matches the underlying machine's mmap operation.
+
+		Added the "-S" option, which reports the per process statistics
+		as well as the cumulative statistics.  Added the repo and twin
+		counts to the statistics.
+
+		Added the "-P" option, which sets the number of shared
+		memory pages.
+
+		Changed Tmk_distribute, Tmk_malloc, Tmk_free, and Tmk_sbrk
+		to use "void *" instead of "char *" for consistency with
+		their POSIX counterparts.
+
+	Implementation
+
+		Added MAP_NORESERVE/MAP_AUTORESRV (Solaris/Irix) to the mmap
+		options, enabling the shared heap to grow beyond the swap
+		space available on a single processor.  (Some of the other
+		operating systems allocate swap space on demand, i.e., lazily,
+		for MAP_PRIVATE memory by default.)  N.B.  A processor cannot
+		touch more memory than it has swap space to back.
+
+		Modified fd_create to retry the receive buffer allocation
+		with a smaller size if it fails.  If the first allocation
+		fails, fd_create prints a warning.  If the second allocation
+		fails, fd_create panics.  IN EITHER CASE, your system
+		administrator should increase MAXUSERS in your system's
+		configuration.
+
+		Added Fortran support for DEC UNIX V4.0A and IRIX 6.
+
+		Updated the Alpha support to Digital UNIX V4.0A.  Added
+		support for Linux 2.0.x on the Alpha.  However, it won't
+		work until Linux provides a complete sigcontext.
+
+		Updated the Linux/x86 support to Linux 2.0.x.
+
+		Added support for Solaris 2.5 on the x86.
+
+		Initialize the Tmk_malloc heap upon the first call
+		rather than during startup.  This corrects the bogus
+		check made to differentiate C/C++ from Fortran.
+
+	Notes
+
+		The source distribution now contains the full RCS archive,
+		including the next version, Tmk-1.1.0.  "co -rTmk-1_1 *.{c,h}"
+		in src/ and include/ will check out a (read-only) copy
+		of these sources.  (See Future Releases for details.)
+
+		Death to Ultrix.  It's no longer supported, but some
+		vestiges remain.
+
+
+--- Version 0.10.1.2 / 10 May 1997 --------------------------------------------
+
+	Programs
+
+		Changed the IS Makefile on Alpha/Digital UNIX V4.0A to link
+		with "-lm".
+
+	Implementation
+
+		Added an additional barrier in Tmk_repo.  Without this barrier,
+		a lost repo barrier departure message could result in a post
+		repo lock request returning out-of-date consistency
+		information.
+
+		Changed the implementation of the "-m" option to use "atol"
+		instead of "atoi".  Changed start_process to use "%ld"
+		as well.  (These changes are required for Alpha/Digital
+		UNIX V4.0A.)
+
+
+--- Version 0.10.1.1 / 11 Nov 1996 --------------------------------------------
+
+	Implementation
+
+		Updated the SGI support to IRIX 6.2.
+
+
+--- Version 0.10.1 / 22 May 1996 ----------------------------------------------
+
+	Interface
+
+		Changed the Makefile structure for Fortran applications.
+
+		Windows opened by the "-x" option persist until the user types
+		control-C in the window.
+
+		Changed the default page size under AIX 3.2.5/4.1
+		to 8K bytes!  Use the "-X" command-line option to override
+		the default page size.  "-X0" changes the page size to 4K
+		bytes.
+
+	Implementation
+
+		Completed the Linux 1.2.13 port, including Fortran support.
+
+		Added Fortran support to AIX 4.1, FreeBSD 2.1R, and
+		Solaris 2.x (SunOS 5.x).
+
+		Use atexit or on_exit (SunOS 4.1) to delay closing slave
+		windows until the user types a control-C.
+
+		Changed Tmk_interval_incorporate to allow 65536-NPROCS-1 pages.
+
+		Changed Tmk_page_initialize to ENFORCE the placement
+		of the shared heap at the same address on every node.
+
+		Eliminated empty_mask and BUS_or_SEGV_mask.  Use SIG_UNBLOCK
+		instead.
+
+		Added read/write differentiation in segv_handler
+		for __sparc Solaris and __386 FreeBSD 2.1R.
+
+		Optimized the page copy on the Pentium.
+
+
+--- Version 0.10 / 27 January 1996 --------------------------------------------
+
+	Interface
+
+		Application programs on the AIX 3.2.5 and 4.1 ports don't 
+		require the "bsd" compatibility library anymore.
+
+	Implementation
+
+		Completed the Solaris 2.x port (except for Fortran
+		support).  Many absurd casts were required to pacify
+		the compiler.
+
+		Substituted the sigaction/sigprocmask (POSIX) functions
+		for sigvec/sigblock/sigsetmask.
+
+
+--- Version 0.9.7 / 19 January 1996 -------------------------------------------
+
+	Interface
+
+		Application programs on the DEC UNIX 3.2 port don't require
+		the "bsd" compatibility library.
+
+	Implementation
+
+		Completed the FreeBSD 2.1 port for the Intel x86 (except 
+		for Fortran support).  The segv_handler and Tmk_diff_create
+		still require optimization for the Intel x86.
+
+		Changed bcopy to memcpy.  Many compilers, e.g., i386 and
+		rs6k, inline memcpy's of fixed length.
+
+		Moved the mprotect in Tmk_diff_sigio_handler after the 
+		send, reducing the diff fetching latency, especially
+		on AIX 3.2.5/4.1 where mprotects can be slow.
+
+		Simplified the sigio_handler code.
+
+		Added #error directives to detect (many) omissions during
+		the porting process.
+
+
+--- Version 0.9.6 / 11 November 1995 ------------------------------------------
+
+	Interface
+
+		Added cold miss count to the reported statistics.
+
+		The SunOS 4.1.x/Fortran port doesn't require the "-align"
+		linker directive on "Tmk_shared_common_" anymore.  (See,
+		e.g., apps/Jacobi/bin.sparc/Makefile.)
+
+	Implementation
+
+		Implemented mprotect merging to minimize mprotects by
+		Tmk_interval_incorporate.  This (often) reduces the length 
+		of the vm_map_entry list.
+
+		Corrected the .Tmkrc file processing.  If "-n" wasn't
+		used, the process limit check failed.  (This error was
+		introduced in version 0.9.5.)
+
+		Completed the AIX 4.1 port (except for Fortran support).
+
+		Changed the sparc/fortran support to use mmap to setup
+		"Tmk_shared_common_".
+
+
+--- Version 0.9.5 / 1 September 1995 ------------------------------------------
+
+	Interface
+
+		Added support for LoadLeveler on the IBM SP2.
+
+	Implementation
+
+		Corrected the process limit check in Tmk_startup: The
+		check was omitted when the "-h" command-line argument
+		was used.
+
+		Modified Tmk_page_initialize to use a single mprotect
+		over the entire shared heap instead of an mprotect per
+		page.  (This reduces the length of the vm_map_entry
+		list that is traversed by mprotect in OSF-based
+		systems.)
+
+
+--- Version 0.9.4 / 31 July 1995 ----------------------------------------------
+
+	Programs
+
+		Created a test program (apps/test/src/diff.c) that measures
+		the diff creation and retrieval latency for empty and full
+		diffs.  (The latency for the page retrieval test should fall
+		between these two values.)
+
+	Interface
+
+		No changes.
+
+	Implementation
+
+		Modified the page sigio handler to prevent a memory
+		inconsistency error when a page and then a diff are requested 
+		from the same processor.  The page sigio handler returns the
+		twin if it exists.
+
+		Modified the segv_handler for HPUX/HPPA to correctly
+		differentiate reads from writes.
+
+		Optimized the page copy loop in the segv_handler for the HPPA
+		and SPARC.  (The other architectures have fast bcopy routines.)
+
+		Completed the IRIX 6.0/R8000 (Power Challenge) port.
+
+		Adapted the Fortran interface to HPUX/HPPA.
+
+
+--- Version 0.9.3 / 17 June 1995 ----------------------------------------------
+
+	Interface
+
+		Eliminated the "-I" and "-D" command-line arguments.  (See
+		below.)
+
+		Added support for program debugging.  To use a debugger,
+		define the environment variable "DEBUGGER" as one of gdb,
+		dbx, etc. and issue the command-line argument "-d".
+		A window is started on each machine with the program
+		loaded into the debugger.  You will have to type a "run"
+		command to each debugger.  The master process will print
+		the arguments that you should include with the "run" command.
+		(See also the "-x" command-line argument in the manual.)
+
+			N.B.  With most debuggers you will have to issue
+			a command instructing them to ignore SIGSEGVs (and
+			perhaps SIGIOs).
+
+		The former (undocumented) "-d" command-line argument
+		was renamed "-t".
+
+		Added a primitive Fortran interface on AIX, SunOS 4.1.x,
+		and Ultrix.   Provides a single, shared common block
+		named Tmk_shared_common.
+
+	Implementation
+
+		Interval and diff storage grows automatically according
+		to program requirements.
+
+		Optimized the diff creation code to avoid conflict misses
+		on direct map caches.
+
+		Fixed a retransmission error that caused unnecessary
+		retransmissions.
+
+		Completed HPUX/HPPA and IRIX/R4x00 ports.  SunOS 5.3 (Solaris)
+		is supported using the bsd compatibility compiler/library.
+
+		Reduced the amount of internal fragmentation
+		by the Tmk_malloc allocator.
+
+
+-/-\- Future Releases -\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-
+
+
+--- Version 2.0 ---------------------------------------------------------------
+
+	Interface
+
+		Add full-fledged SMP support.
+
+	Implementation
+
+		Add full-fledged SMP support using POSIX Pthreads.
+
+
+--- Version 1.2 ---------------------------------------------------------------
+
+	Interface
+
+		Add prefetching.
+
+	Implementation
+
+		Add prefetching.
+
+
+--- Version 1.1 ---------------------------------------------------------------
+
+	Implementation
+
+		Add the adaptive multiple-writer/single-writer protocol.
+
+		Add support for process creation after Tmk_startup.
+
+		Add support for a modest degree of heterogeneity, i.e.,
+		architectures that use the same byte ordering.  Add a
+		version of Tmk_distribute that uses the symbol table
+		rather than the address to update global variables.
+
+		Release swap space allocated to empty pages.
+
+--- To Be Announced -----------------------------------------------------------
+
+	Port to Windows NT
+
+
+-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-
+
+$Id: ReleaseNotes,v 10.16 1998/09/12 19:15:37 alc Exp alc $
+@
+
+
+10.16
+log
+@Added entries for Tmk_madvise and the consistency data change.
+@
+text
+@d3 1
+a3 1
+--- Version 1.2.0 / 25 Aug 1998 -----------------------------------------------
+d54 2
+a55 1
+		All of the changes in this release are bug fixes.
+d472 1
+a472 1
+$Id: ReleaseNotes,v 10.15 1998/09/11 23:11:29 alc Exp alc $
+@
+
+
+10.15
+log
+@Merged the entry for Version 1.0.3.1.
+@
+text
+@d11 3
+d39 3
+d471 1
+a471 1
+$Id: ReleaseNotes,v 10.14 1998/08/24 03:31:54 alc Exp alc $
+@
+
+
+10.14
+log
+@Added the description of Tmk_barrier_reduce.
+@
+text
+@d36 14
+d465 1
+a465 1
+$Id: ReleaseNotes,v 10.13 1998/08/06 21:37:48 alc Exp alc $
+@
+
+
+10.13
+log
+@Added the entry for Version 1.0.3.
+@
+text
+@d3 32
+d451 1
+a451 1
+$Id: ReleaseNotes,v 10.12 1998/01/09 22:58:21 alc Exp alc $
+@
+
+
+10.13.0.1
+log
+@Added the entry for Version 1.0.3.1.
+@
+text
+@a3 14
+--- Version 1.0.3.1 / 12 Sep 1998 ---------------------------------------------
+
+	Implementation
+
+		Corrected a machine/compiler-dependent error in the Tmk_repo
+		optimizations added in Version 1.0.3.
+
+		Corrected the Linux-specific Makefiles and Tmk.h
+		for omissions in Version 1.0.3.
+
+	Notes
+
+		All of the changes in this release are bug fixes.
+
+d419 1
+a419 1
+$Id: ReleaseNotes,v 10.13 1998/08/06 21:37:48 alc Exp alc $
+@
+
+
+10.13.0.2
+log
+@Changed "Notes" section.  Mention RedHat 5.1.
+@
+text
+@d16 1
+a16 2
+		This version builds under RedHat 5.1 Linux.  The f2c and
+		fort77 packages are required for the Fortran programs.
+d433 1
+a433 1
+$Id: ReleaseNotes,v 10.13.0.1 1998/09/11 23:07:45 alc Exp alc $
+@
+
+
+10.13.0.3
+log
+@Added the entry for Version 1.0.3.2.  This release is specifically
+for the SP2 using MPL.  None of the other ports are affected.
+@
+text
+@a3 17
+--- Version 1.0.3.2 /  2 Nov 1998 ---------------------------------------------
+
+	Programs
+
+		Corrected the program Makefiles for MPL.  All
+		of the programs now build.
+
+	Implementation
+
+		Updated the MPL support to compile correctly under AIX 4.2.x.
+
+	Notes
+
+		This release is specifically for the IBM SP2 using MPL.  None
+		of the changes affect the other ports, including AIX without
+		MPL.
+
+d434 1
+a434 1
+$Id: ReleaseNotes,v 10.13.0.2 1998/09/13 18:39:35 alc Exp alc $
+@
+
+
+10.12
+log
+@API Changes.
+@
+text
+@d4 58
+a61 1
+--- Version 1.0.1 / 8 Jan 1998 -----------------------------------------------
+d419 1
+a419 1
+$Id: ReleaseNotes,v 10.11 1997/12/08 06:54:20 alc Exp alc $
+@
+
+
+10.11
+log
+@Added the raytrace program.
+@
+text
+@d4 1
+a4 1
+--- Version 1.0.0 / 7 Dec 1997 -----------------------------------------------
+d41 4
+d71 4
+d362 1
+a362 1
+$Id: ReleaseNotes,v 10.10 1997/10/01 06:04:24 alc Exp alc $
+@
+
+
+10.10
+log
+@Documented the "-P" option.
+@
+text
+@d4 1
+a4 1
+--- Version 1.0.0 / 23 Jul 1997 -----------------------------------------------
+d8 2
+a9 1
+		Added the Gaussian Elimination program.
+d354 1
+a354 1
+$Id: ReleaseNotes,v 10.9 1997/09/21 19:14:42 alc Exp alc $
+@
+
+
+10.9
+log
+@Added the note about the inclusion of the RCS archive in the source
+distribution.
+@
+text
+@d37 3
+d353 1
+a353 1
+$Id: ReleaseNotes,v 10.8 1997/07/27 06:51:07 alc Exp alc $
+@
+
+
+10.8
+log
+@Added the MAP_NORESERVE description.
+@
+text
+@d65 5
+d350 1
+a350 1
+$Id: ReleaseNotes,v 10.7 1997/07/23 06:52:11 alc Exp alc $
+@
+
+
+10.7
+log
+@Documented the "-S" option.
+@
+text
+@d39 7
+d336 1
+d345 1
+a345 1
+$Id: ReleaseNotes,v 10.6 1997/06/03 05:45:39 alc Exp alc $
+@
+
+
+10.6
+log
+@Added Fortran support for DEC UNIX.
+@
+text
+@d4 1
+a4 1
+--- Version 1.0.0 / 1 Jun 1997 ------------------------------------------------
+d33 4
+d337 1
+a337 1
+$Id: ReleaseNotes,v 10.5 1997/06/01 08:11:45 alc Exp alc $
+@
+
+
+10.5
+log
+@Added the Fortran API change.
+@
+text
+@d42 1
+a42 1
+		Added Fortran support for IRIX 6.
+d333 1
+a333 1
+$Id: ReleaseNotes,v 10.4 1997/05/22 22:06:17 alc Exp alc $
+@
+
+
+10.4
+log
+@Sectioned off.  Added future plans at the bottom.  Added a description
+of the condition variables.
+@
+text
+@d22 3
+d333 1
+a333 1
+$Id: ReleaseNotes,v 10.3 1997/05/11 05:37:11 alc Exp alc $
+@
+
+
+10.3
+log
+@Added the entry for Version 0.10.1.2.
+@
+text
+@d1 4
+a4 1
+Version 1.0.0 / 1 Feb 1997
+d12 10
+d27 2
+a28 1
+		Added Tmk_mmap, which maps a file into shared memory.
+d54 2
+a55 1
+Version 0.10.1.2 / 10 May 1997
+d66 2
+a67 1
+		repo lock request returning out-of-date consistency information.
+d74 2
+a75 1
+Version 0.10.1.1 / 11 Nov 1996
+d81 2
+a82 1
+Version 0.10.1 / 22 May 1996
+d119 2
+a120 1
+Version 0.10 / 27 January 1996
+d136 2
+a137 1
+Version	0.9.7 / 19 January 1996
+d162 2
+a163 1
+Version 0.9.6 / 11 November 1995
+d188 2
+a189 1
+Version 0.9.5 / 1 September 1995
+d207 2
+a208 1
+Version 0.9.4 / 31 July 1995
+d238 2
+a239 1
+Version 0.9.3 / 17 June 1995
+d283 48
+a330 1
+$Id: ReleaseNotes,v 10.2 1997/03/18 21:34:27 alc Exp alc $
+@
+
+
+10.2
+log
+@Unreleased 0.10.2.  Preparation for 1.0.0.
+@
+text
+@d40 18
+d259 1
+a259 1
+$Id: ReleaseNotes,v 10.3 1997/03/18 20:59:55 alc Exp $
+@
+
+
+10.0
+log
+@Tmk-0.10R
+@
+text
+@d1 82
+a98 9
+	Future
+
+		Version 1.0.0 will reduce data movement at the beginning
+		of execution by using diffs to distribute data instead
+		of full pages.  Every page is valid but write-protected
+		on every processor, taking advantage of the fact that
+		every page is initialized to zeroes.  Programs like FFT,
+		Jacobi, and SOR benefit.
+
+d240 2
+@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d1 1
+a1 1
+Version	0.9.7 / 21 January 1996
+d5 2
+a6 2
+		Eliminated the need for the Alpha port to use -lbsd, the
+		Berkeley compatibility library, in application makefiles.
+d10 3
+a12 14
+		Completed the FreeBSD 2.1 port for the Intel x86 (except 
+		for Fortran support).  Some essential optimizations are
+		missing from Tmk_diff_create and segv_handler.
+
+		Changed bcopy to memcpy.  Many compilers, e.g., i386 and
+		rs6k, inline memcpy's of fixed length.  (Replaced bzero
+		with memset for continuity.)
+
+		Moved the mprotect in Tmk_diff_sigio_handler after the 
+		send, reducing the diff fetching latency, especially
+		on AIX 3.2.5/4.1.
+
+		Added #error directives to detect (many) omissions during
+		the porting process.
+d14 2
+a15 4
+		Changed the Alpha port to use mmap instead of valloc.
+
+		Moved the definition of getpagesize from page.c to Tmk.h,
+		fixing the HP-UX port.
+d25 25
+@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d1 38
+d51 4
+a62 9
+
+	Future
+
+		Version 1.0.0 will reduce data movement at the beginning
+		of execution by using diffs to distribute data instead
+		of full pages.  Every page is valid but write-protected
+		on every processor, taking advantage of the fact that
+		every page is initialized to zeroes.  Programs like FFT,
+		Jacobi, and SOR benefit.
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@d17 1
+a17 1
+		Completed the AIX 4.1 port.
+@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d1 30
+a48 9
+	Future
+
+		Version 1.0.0 will reduce data movement at the beginning
+		of execution by using diffs to distribute data instead
+		of full pages.  Every page is valid but write-protected
+		on every processor, taking advantage of the fact that
+		every page is initialized to zeroes.  Programs like FFT,
+		Jacobi, and SOR benefit.
+
+d75 1
+a75 1
+		Completed IRIX 6.0/R8000 (Power Challenge) port.
+@
+
+
+9.5.1.1
+log
+@*** empty log message ***
+@
+text
+@d1 27
+a56 13
+ 
+	Future
+
+		Version 0.9.5 will support LoadLeveler on the IBM SP2.
+		 (The urgency of the bug fixes forced us to delay the
+		  introduction of LoadLeveler support until Version 0.9.5.)
+
+		Version 1.0.0 will reduce data movement at the beginning
+		of execution by using diffs to distribute data instead
+		of full pages.  Every page is valid but write-protected
+		on every processor, taking advantage of the fact that
+		every page is initialized to zeroes.  Programs like FFT,
+		Jacobi, and SOR benefit.
+@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@d1 27
+a56 13
+ 
+	Future
+
+		Version 0.9.5 will support LoadLeveler on the IBM SP2.
+		 (The urgency of the bug fixes forced us to delay the
+		  introduction of LoadLeveler support until Version 0.9.5.)
+
+		Version 1.0.0 will reduce data movement at the beginning
+		of execution by using diffs to distribute data instead
+		of full pages.  Every page is valid but write-protected
+		on every processor, taking advantage of the fact that
+		every page is initialized to zeroes.  Programs like FFT,
+		Jacobi, and SOR benefit.
+@

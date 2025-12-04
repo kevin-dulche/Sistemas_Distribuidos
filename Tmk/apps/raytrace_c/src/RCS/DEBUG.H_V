@@ -1,0 +1,64 @@
+head	1.2;
+access
+	delara
+	alc;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	97.12.21.00.23.14;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.05.12.18.30.34;	author delara;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Text following an #endif must be a comment.
+@
+text
+@#ifndef DEBUG_H
+#define DEBUG_H
+
+#define TRUE 1
+#define FALSE 0
+
+typedef int bool;
+
+
+/* Interface to debugging routines. */
+
+
+/* enable printing debug messages */
+extern void DebugInit(char* flags);	 
+
+/* is debug flag enabled? */
+extern bool DebugIsEnabled(char flag); 	
+
+/* print debug message if flag is enabled */
+extern void DEBUG (char flag, char* format, ...);  	 
+						
+
+#endif /* DEBUG_H */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d23 1
+a23 1
+#endif DEBUG_H
+@

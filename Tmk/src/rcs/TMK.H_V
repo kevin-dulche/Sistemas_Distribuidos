@@ -1,0 +1,3810 @@
+head	11.20;
+access;
+symbols
+	Tmk-1_0_3_2R:10.27.1.23.0.3
+	Tmk-1_0_3_1R:10.27.1.23.0.2
+	Tmk-2_0:10.27.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.27.1.35
+	Tmk-1_0_3R:10.27.1.23.0.1
+	Tmk-1_2:10.27.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.27.1.23
+	Tmk-1_0_1R:10.27.1.8
+	Tmk-1_1_0_TO-1_1_1_BRANCH_POINT:11.10
+	Tmk-1_1:11
+	Tmk-1_0:10.27.1.23.0
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.27
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.20
+date	98.03.02.03.22.36;	author alc;	state Exp;
+branches;
+next	11.19;
+
+11.19
+date	98.01.09.22.38.20;	author alc;	state Exp;
+branches;
+next	11.18;
+
+11.18
+date	97.12.24.06.11.42;	author alc;	state Exp;
+branches;
+next	11.17;
+
+11.17
+date	97.12.08.06.43.46;	author alc;	state Exp;
+branches;
+next	11.16;
+
+11.16
+date	97.11.09.07.52.18;	author alc;	state Exp;
+branches;
+next	11.15;
+
+11.15
+date	97.10.28.22.21.14;	author alc;	state Exp;
+branches;
+next	11.14;
+
+11.14
+date	97.09.26.05.46.44;	author alc;	state Exp;
+branches;
+next	11.13;
+
+11.13
+date	97.09.03.06.20.59;	author alc;	state Exp;
+branches;
+next	11.12;
+
+11.12
+date	97.09.01.19.10.50;	author alc;	state Exp;
+branches;
+next	11.11;
+
+11.11
+date	97.07.30.02.29.24;	author pparker;	state Exp;
+branches;
+next	11.10;
+
+11.10
+date	97.07.11.06.27.32;	author alc;	state Exp;
+branches;
+next	11.9;
+
+11.9
+date	97.07.09.21.28.00;	author alc;	state Exp;
+branches;
+next	11.8;
+
+11.8
+date	97.06.26.22.38.57;	author alc;	state Exp;
+branches;
+next	11.7;
+
+11.7
+date	97.06.26.04.04.33;	author alc;	state Exp;
+branches;
+next	11.6;
+
+11.6
+date	97.06.25.18.28.53;	author alc;	state Exp;
+branches;
+next	11.5;
+
+11.5
+date	97.06.05.21.51.36;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	97.06.05.07.06.31;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.06.02.01.38.32;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.05.27.02.25.29;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.05.26.22.04.01;	author alc;	state Exp;
+branches;
+next	10.27;
+
+10.27
+date	97.05.22.03.36.18;	author alc;	state Exp;
+branches
+	10.27.1.1;
+next	10.26;
+
+10.26
+date	97.05.21.06.35.28;	author alc;	state Exp;
+branches;
+next	10.25;
+
+10.25
+date	97.05.19.02.14.53;	author alc;	state Exp;
+branches;
+next	10.24;
+
+10.24
+date	97.04.12.21.11.04;	author alc;	state Exp;
+branches;
+next	10.23;
+
+10.23
+date	97.04.12.20.55.53;	author alc;	state Exp;
+branches;
+next	10.22;
+
+10.22
+date	97.03.07.23.49.23;	author alc;	state Exp;
+branches;
+next	10.21;
+
+10.21
+date	97.03.07.23.32.41;	author alc;	state Exp;
+branches;
+next	10.20;
+
+10.20
+date	97.01.12.00.41.43;	author alc;	state Exp;
+branches;
+next	10.19;
+
+10.19
+date	97.01.09.06.20.59;	author alc;	state Exp;
+branches;
+next	10.18;
+
+10.18
+date	96.09.25.04.03.49;	author alc;	state Exp;
+branches;
+next	10.17;
+
+10.17
+date	96.09.24.21.56.13;	author alc;	state Exp;
+branches;
+next	10.16;
+
+10.16
+date	96.08.25.20.39.36;	author alc;	state Exp;
+branches;
+next	10.15;
+
+10.15
+date	96.08.24.21.39.32;	author alc;	state Exp;
+branches;
+next	10.14;
+
+10.14
+date	96.08.24.21.10.49;	author alc;	state Exp;
+branches;
+next	10.13;
+
+10.13
+date	96.08.24.20.01.11;	author alc;	state Exp;
+branches;
+next	10.12;
+
+10.12
+date	96.08.18.06.27.58;	author alc;	state Exp;
+branches;
+next	10.11;
+
+10.11
+date	96.08.09.21.15.00;	author alc;	state Exp;
+branches;
+next	10.10;
+
+10.10
+date	96.08.08.19.06.59;	author alc;	state Exp;
+branches;
+next	10.9;
+
+10.9
+date	96.08.08.18.31.29;	author alc;	state Exp;
+branches;
+next	10.8;
+
+10.8
+date	96.08.08.04.51.46;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	96.08.03.21.10.13;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	96.08.03.17.29.49;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	96.07.28.07.23.56;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.07.26.20.02.27;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.07.26.04.10.34;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.06.23.16.20.27;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.45.30;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.17.59.54;	author alc;	state Exp;
+branches;
+next	9.7.2.2;
+
+9.7.2.2
+date	96.03.18.03.23.30;	author alc;	state Exp;
+branches;
+next	9.7.2.3;
+
+9.7.2.3
+date	96.05.21.16.05.35;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches;
+next	10.0.2.2;
+
+10.0.2.2
+date	96.03.18.01.35.17;	author alc;	state Exp;
+branches;
+next	10.0.2.3;
+
+10.0.2.3
+date	96.03.18.03.53.06;	author alc;	state Exp;
+branches
+	10.0.2.3.2.1;
+next	10.0.2.4;
+
+10.0.2.4
+date	96.04.20.21.56.23;	author alc;	state Exp;
+branches;
+next	10.0.2.5;
+
+10.0.2.5
+date	96.05.21.16.14.02;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.2.3.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.2;
+
+10.0.2.3.2.2
+date	96.03.27.06.54.32;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.3;
+
+10.0.2.3.2.3
+date	96.03.29.05.50.08;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.4;
+
+10.0.2.3.2.4
+date	96.03.30.22.02.46;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.5;
+
+10.0.2.3.2.5
+date	96.03.31.04.22.59;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.6;
+
+10.0.2.3.2.6
+date	96.05.29.21.59.22;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	10.1.2.2;
+
+10.1.2.2
+date	96.08.01.19.59.52;	author alc;	state Exp;
+branches;
+next	10.1.2.3;
+
+10.1.2.3
+date	96.08.02.19.34.19;	author alc;	state Exp;
+branches;
+next	10.1.2.4;
+
+10.1.2.4
+date	96.08.03.07.34.53;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	10.1.4.2;
+
+10.1.4.2
+date	96.07.30.20.52.50;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.07.01.16.41.09;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.07.01.23.06.21;	author tmiller;	state Exp;
+branches;
+next	10.1.5.5;
+
+10.1.5.5
+date	96.07.02.22.34.57;	author tmiller;	state Exp;
+branches;
+next	10.1.5.6;
+
+10.1.5.6
+date	96.07.03.19.32.35;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.27.1.1
+date	97.07.04.21.35.47;	author alc;	state Exp;
+branches;
+next	10.27.1.2;
+
+10.27.1.2
+date	97.09.01.19.14.02;	author alc;	state Exp;
+branches;
+next	10.27.1.3;
+
+10.27.1.3
+date	97.09.03.07.10.26;	author alc;	state Exp;
+branches;
+next	10.27.1.4;
+
+10.27.1.4
+date	97.11.05.07.19.46;	author alc;	state Exp;
+branches;
+next	10.27.1.5;
+
+10.27.1.5
+date	97.11.09.07.55.48;	author alc;	state Exp;
+branches;
+next	10.27.1.6;
+
+10.27.1.6
+date	97.12.24.06.15.32;	author alc;	state Exp;
+branches;
+next	10.27.1.7;
+
+10.27.1.7
+date	98.01.07.07.27.29;	author alc;	state Exp;
+branches;
+next	10.27.1.8;
+
+10.27.1.8
+date	98.01.09.22.39.47;	author alc;	state Exp;
+branches;
+next	10.27.1.9;
+
+10.27.1.9
+date	98.03.02.03.10.51;	author alc;	state Exp;
+branches;
+next	10.27.1.10;
+
+10.27.1.10
+date	98.03.02.03.27.20;	author alc;	state Exp;
+branches;
+next	10.27.1.11;
+
+10.27.1.11
+date	98.03.07.19.34.42;	author alc;	state Exp;
+branches;
+next	10.27.1.12;
+
+10.27.1.12
+date	98.05.09.07.09.50;	author alc;	state Exp;
+branches;
+next	10.27.1.13;
+
+10.27.1.13
+date	98.05.10.05.06.23;	author alc;	state Exp;
+branches;
+next	10.27.1.14;
+
+10.27.1.14
+date	98.05.14.20.10.16;	author alc;	state Exp;
+branches;
+next	10.27.1.15;
+
+10.27.1.15
+date	98.05.14.20.40.48;	author alc;	state Exp;
+branches;
+next	10.27.1.16;
+
+10.27.1.16
+date	98.05.26.05.34.10;	author alc;	state Exp;
+branches;
+next	10.27.1.17;
+
+10.27.1.17
+date	98.05.28.16.16.21;	author alc;	state Exp;
+branches;
+next	10.27.1.18;
+
+10.27.1.18
+date	98.05.31.00.39.46;	author alc;	state Exp;
+branches;
+next	10.27.1.19;
+
+10.27.1.19
+date	98.06.11.20.49.52;	author alc;	state Exp;
+branches;
+next	10.27.1.20;
+
+10.27.1.20
+date	98.06.13.18.39.11;	author alc;	state Exp;
+branches;
+next	10.27.1.21;
+
+10.27.1.21
+date	98.06.15.18.33.50;	author alc;	state Exp;
+branches;
+next	10.27.1.22;
+
+10.27.1.22
+date	98.06.16.19.09.01;	author alc;	state Exp;
+branches;
+next	10.27.1.23;
+
+10.27.1.23
+date	98.07.12.00.07.02;	author alc;	state Exp;
+branches
+	10.27.1.23.0.1;
+next	10.27.1.24;
+
+10.27.1.24
+date	98.07.26.05.25.28;	author alc;	state Exp;
+branches;
+next	10.27.1.25;
+
+10.27.1.25
+date	98.07.26.06.26.40;	author alc;	state Exp;
+branches;
+next	10.27.1.26;
+
+10.27.1.26
+date	98.07.27.18.42.55;	author alc;	state Exp;
+branches;
+next	10.27.1.27;
+
+10.27.1.27
+date	98.07.31.18.55.59;	author alc;	state Exp;
+branches;
+next	10.27.1.28;
+
+10.27.1.28
+date	98.07.31.20.17.33;	author alc;	state Exp;
+branches;
+next	10.27.1.29;
+
+10.27.1.29
+date	98.07.31.20.23.38;	author alc;	state Exp;
+branches;
+next	10.27.1.30;
+
+10.27.1.30
+date	98.08.10.19.52.12;	author alc;	state Exp;
+branches;
+next	10.27.1.31;
+
+10.27.1.31
+date	98.08.10.21.36.49;	author alc;	state Exp;
+branches;
+next	10.27.1.32;
+
+10.27.1.32
+date	98.08.10.21.56.39;	author alc;	state Exp;
+branches;
+next	10.27.1.33;
+
+10.27.1.33
+date	98.08.23.06.43.33;	author alc;	state Exp;
+branches;
+next	10.27.1.34;
+
+10.27.1.34
+date	98.08.24.03.06.56;	author alc;	state Exp;
+branches;
+next	10.27.1.35;
+
+10.27.1.35
+date	98.09.06.07.22.11;	author alc;	state Exp;
+branches;
+next	10.27.1.36;
+
+10.27.1.36
+date	98.10.17.22.45.25;	author alc;	state Exp;
+branches;
+next	;
+
+10.27.1.23.0.1
+date	98.07.31.20.29.00;	author alc;	state Exp;
+branches;
+next	10.27.1.23.0.2;
+
+10.27.1.23.0.2
+date	98.09.12.19.03.16;	author alc;	state Exp;
+branches;
+next	10.27.1.23.0.3;
+
+10.27.1.23.0.3
+date	98.11.02.23.40.07;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.20
+log
+@Rename toggle and toggle2 for clarity.  Their new names are inval_toggle
+and dirty_toggle, respectively.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1997						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: Tmk.h,v 11.19 1998/01/09 22:38:20 alc Exp alc $
+ *
+ * Description:    
+ *	external type, variable and function declarations
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Apr-1993	Alan L. Cox	Created
+ *	17-Nov-1993	Alan L. Cox	Adapted for RS/6000
+ *	 7-Jan-1994	Alan L. Cox	Corrected MTU for UDP over ATM
+ *	16-Jun-1994	Alan L. Cox	Adapted for Alpha
+ *					 (changes provided by Povl T. Koch)
+ *	Version 0.9.0
+ *
+ *	Version 0.9.1
+ *
+ *	10-Dec-1994	Alan L. Cox	Changed to a single seqno counter
+ *					 (suggested by Pete Keleher)
+ *	Version 0.9.2
+ *
+ *	 4-Apr-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *	10-Apr-1995	Cristiana Amza	Adapted for HPPA/HPUX
+ *
+ *	Version 0.9.3
+ *
+ *	14-Jul-1995	Alan L. Cox	Reduced the MTU for HPUX and changed
+ *					 the included files for IRIX 6.0
+ *	Version 0.9.4
+ *
+ *	11-Nov-1995	Alan L. Cox	Adapted for AIX 4.1
+ *	16-Nov-1995	Alan L. Cox	Added fields to the page structure to
+ *					 implement mprotect merging
+ *	29-Nov-1995	Sandhya Dwarkadas
+ *					Extended the page array by one entry
+ *					 for mprotect merging to work
+ *	Version 0.9.6			 on the last real page
+ *
+ *	15-Jan-1996	Alan L. Cox	Adapted for FreeBSD 2.1/Intel x86
+ *	21-Jan-1996	Alan L. Cox	Defined getpagesize as sysconf
+ *					 for HP-UX and Solaris
+ *	Version 0.9.7
+ *
+ *	27-Jan-1996	Alan L. Cox	Changed to POSIX signal handling
+ *
+ *	Version 0.10
+ *
+ *	20-Apr-1996	Robert J. Fowler
+ *					Adapted for Linux 1.2.13/Intel x86
+ *	Version 0.10.1
+ */
+#include <stdlib.h>
+#include <stdio.h>
+#include <assert.h>
+#include <errno.h>
+
+/*
+ * Required before <fcntl.h> which includes <sys/types.h>
+ */
+#if   ! defined(__linux)
+#ifdef	FD_SETSIZE
+#undef	FD_SETSIZE
+#endif
+#define	FD_SETSIZE	128
+#endif
+
+#include <fcntl.h>
+#include <netdb.h>
+#include <signal.h>
+#include <string.h>	/* for inline memcpy */
+#if	defined(__sun) && ! defined(__SVR4)
+#include <memory.h>	/* SunOS 4.1.3 defines memcpy and memset in memory.h */
+#endif
+#include <unistd.h>
+
+/*
+ *
+ */
+#if	defined(_AIX) && ! defined(MPL)
+#include <sys/select.h>
+#endif
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/file.h>
+#include <sys/socket.h>
+
+/*
+ * Required before <sys/ioctl.h>.
+ */
+#if	defined(__sun) && defined(__SVR4)
+#	define	BSD_COMP
+#endif
+#include <sys/ioctl.h>
+#include <sys/uio.h>
+#include <sys/mman.h>
+#include <sys/param.h>
+
+#if   ! defined(MAX)
+#	define	MAX(a,b)	(((a) > (b)) ? (a) : (b))
+#endif
+
+#if   ! defined(MIN)
+#	define	MIN(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
+
+/*
+ * Include the TreadMarks public interface definitions.
+ */
+#include <Tmk.h>
+
+/*
+ * Include emulation code required by some systems.
+ */
+#if	defined(_AIX) && defined(MPL)
+#include "mpl.h"
+#elif	defined(__bsdi)
+#include "bsdi.h"
+#elif	defined(__linux)
+#include "linux.h"
+#endif
+
+/*
+ *
+ */
+#if	defined(__hpux)
+typedef int    *fd_set_t;
+#else
+typedef fd_set *fd_set_t;
+#endif
+
+/*
+ *
+ */
+#if	defined(__hpux)
+#	define	getpagesize()	sysconf(_SC_PAGE_SIZE)	/* defined by unistd.h */
+#elif	defined(__sun) && defined(__SVR4)
+#	define	getpagesize()	sysconf(_SC_PAGESIZE)
+#endif
+
+/*
+ * Define the internal synchronization macros.
+ */
+#if	defined(_AIX) && defined(MPL)
+#	define	sigio_mutex(how, set, oset) \
+			if (oset == NULL) { \
+ \
+				int old_dummy; \
+ \
+				if (how == SIG_BLOCK) \
+					mpc_lockrnc(1, &old_dummy); \
+				else if (how == SIG_UNBLOCK) \
+					mpc_lockrnc(0, &old_dummy); \
+				else if (how == SIG_SETMASK) { \
+ \
+					int	new = *(int *) set; \
+ \
+					mpc_lockrnc(new, &old_dummy); \
+				} else \
+					assert(0); \
+			} else if (how == SIG_BLOCK) \
+				mpc_lockrnc(1, oset); \
+			else if (how == SIG_UNBLOCK) \
+				mpc_lockrnc(0, oset); \
+			else if (how == SIG_SETMASK) { \
+ \
+				int	new = *(int *) set; \
+ \
+				mpc_lockrnc(new, oset); \
+			} else \
+				assert(0)
+#elif	defined(THREADS)
+# if	defined(_AIX)
+#	define	pthread_sigmask(how, set, oset) \
+			sigthreadmask(how, set, oset)
+# endif
+#	define	sigio_mutex(how, set, oset) \
+			if (how == SIG_BLOCK) { \
+				pthread_sigmask(how, set, oset); \
+				pthread_mutex_lock(&sigio_lock); \
+			} else if (how == SIG_UNBLOCK) { \
+				pthread_mutex_unlock(&sigio_lock); \
+				pthread_sigmask(how, set, oset); \
+			} else if (how == SIG_SETMASK) { \
+				if (sigismember(set, SIGIO)) { \
+					pthread_sigmask(how, set, oset); \
+					pthread_mutex_lock(&sigio_lock); \
+				} else { \
+					pthread_mutex_unlock(&sigio_lock); \
+					pthread_sigmask(how, set, oset); \
+				} \
+			} else \
+				assert(0)
+#else
+#	define	sigio_mutex(how, set, oset) \
+			sigprocmask(how, set, oset)
+#endif
+
+/*
+ * Define the maximum number of scatter/gather entries.
+ */
+#if	defined(MSG_MAXIOVLEN)
+/*
+ * The actual value is one less than advertised by most systems.
+ */
+#	undef	MSG_MAXIOVLEN
+# if	defined(_AIX41)
+#	define	MSG_MAXIOVLEN	1024
+# else
+#	define	MSG_MAXIOVLEN	15
+# endif
+
+#elif	defined(__bsdi) || defined(__FreeBSD__)
+
+#	define	MSG_MAXIOVLEN	1024
+
+#elif	defined(__linux)
+/*
+ * Sendmsg and recvmsg don't exist in Linux 1.2.13.  The TreadMarks emulation
+ * of sendmsg and recvmsg supports an arbitrary number of iovec entries.
+ */
+# if	(LINUX_VERSION_CODE >= 131072)
+#	define	MSG_MAXIOVLEN	UIO_MAXIOV
+# else
+#	define	MSG_MAXIOVLEN	1024
+# endif
+
+#else
+#error in Tmk.h: incomplete port
+#endif
+
+/*
+ * Define the MTU for each system.
+ */
+#if	defined(__linux) || defined(__sgi) || defined(__sun)
+/*
+ * Linux (alpha/x86), SGI and SunOS/Solaris (SPARC/x86)
+ *
+ * UDP MTU
+ */
+#	define	MTU	32768
+
+#elif	defined(__bsdi) || defined(__FreeBSD__) || defined(__hpux) || defined(__osf__)
+/*
+ * BSD/OS, FreeBSD, HPUX and DEC UNIX (__osf__)
+ *
+ * UDP MTU
+ */
+#	define	MTU	49152
+
+#elif	defined(_AIX)
+/*
+ * AIX RS/6000, specifically SP2
+ */
+#	define	MTU	65492
+
+#else
+#error in Tmk.h: incomplete port
+#endif
+
+/*
+ *
+ */
+#define NPROCS		TMK_NPROCS
+#define	NPAGES		TMK_NPAGES /* Update NBUCKETS (in sh_malloc.c) if NPAGES changes */
+#define NBARRIERS	TMK_NBARRIERS
+#define	NCONDS		TMK_NCONDS
+#define NLOCKS		TMK_NLOCKS
+
+#if	defined(MPL)
+#	define	SEQNO_INCR	0
+#else
+#	define	SEQNO_INCR	NPROCS
+#endif
+
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, REQ_COND_BROADCAST, REQ_COND_SIGNAL, REQ_COND_WAIT, REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_JOIN, REQ_JOIN_REPO, REQ_LOCK, REQ_OWNERSHIP, REQ_PAGE, REQ_REPO, REQ_SPAWN };
+
+struct	req_typ	{
+	unsigned	seqno;
+	unsigned char	from;
+	unsigned char	type;
+	unsigned short	id;
+};
+
+struct	req_con	{
+	unsigned	seqno;
+	unsigned char	from;
+	unsigned char	type;
+	unsigned short	id;	/* unused */
+	unsigned	port_[NPROCS];
+};
+
+struct	req_dif	{
+	unsigned	seqno;
+	unsigned char	from;
+	unsigned char	type;
+	unsigned short	id;
+	unsigned short	data[(MTU - sizeof(struct req_typ))/sizeof(unsigned short)];
+};
+
+struct	req_dis	{
+	unsigned	seqno;
+	unsigned char	from;
+	unsigned char	type;
+	unsigned short	UnUsed;
+	unsigned	size;
+	caddr_t		ptr;
+};
+
+struct	req_syn	{
+	unsigned	seqno;
+	unsigned char	from;
+	unsigned char	type;
+	unsigned short	id;
+	unsigned short	vector_time[NPROCS];
+};
+
+struct  req_cond        {  
+        unsigned        seqno;
+        unsigned char   from;
+        unsigned char   type;
+        unsigned short  id;	/* lock */
+        unsigned short  vector_time[NPROCS];
+        unsigned short  id2;	/* cond */
+};
+
+/*
+ *
+ */
+typedef
+struct	interval       *interval_t;
+
+typedef
+struct	write_notice   *write_notice_t;
+
+struct	write_notice	{
+	write_notice_t	next;
+
+	caddr_t		diff;
+	unsigned short	diff_size;
+
+	interval_t	interval;
+};
+
+/*
+ *
+ */
+typedef
+enum	protocol	protocol_t;
+
+enum	protocol {
+	multiple_writer = 1,
+	  single_writer = 2
+};
+
+typedef
+struct	write_notice_range
+		       *write_notice_range_t;
+
+struct	write_notice_range {
+	write_notice_range_t
+			next;
+	unsigned short	first;	/* page id    */
+	unsigned short	last;	/* page id    */
+	unsigned char	proto;	/* protocol_t */
+};
+
+struct	interval	{
+	interval_t	prev;
+	interval_t	next;
+
+	int		id;
+
+	unsigned short	vector_time_[NPROCS];
+
+	struct	write_notice_range
+			head;
+};
+
+/*
+ *  The four page states:  A page's initial state is either "private"
+ *  or "empty."  A page is "private" on its manager, and "empty" everywhere
+ *  else.  When the manager receives the first request for a page, it changes
+ *  the page's state to "valid."
+ */
+enum	state	{ modified, exclusive, shared, invalid };
+
+/*
+ *  Warning!  Member "next" is used to implement the dirty page ("page_dirty")
+ *  list and the invalidate merging list ("Tmk_page_inval_merge").
+ */
+typedef
+struct	page	       *page_t;
+
+struct	page	{
+	page_t		prev;
+	page_t		next;
+	page_t		partner;
+
+	caddr_t		vadr;
+	caddr_t		twin;
+
+	unsigned char	inval_toggle;
+	unsigned char	dirty_toggle;
+
+	unsigned char	empty;
+	unsigned char	state;
+	unsigned char	proto;
+
+	unsigned char	owner;
+
+	unsigned char	writer;
+
+	unsigned short *vector_time_;
+
+	write_notice_t	write_notice_[NPROCS];
+};
+
+/*
+ *
+ */
+extern	char		req_fd_[NPROCS];
+extern	fd_set		req_fds;
+extern	int		req_maxfdp1;
+extern	unsigned	req_seqno;
+
+extern	char		rep_fd_[NPROCS];
+extern	fd_set		rep_fds;
+extern	int		rep_maxfdp1;
+extern	unsigned	rep_seqno_[NPROCS];
+
+extern	struct	page	page_array_[NPAGES + 1];
+extern	unsigned	page_shift;
+extern	struct	page	page_dirty;
+
+extern	struct interval proc_array_[NPROCS];
+extern	unsigned short	proc_vector_time_[NPROCS];
+
+extern	unsigned short	inverse_time_[NPROCS];
+
+extern	sigset_t	ALRM_and_IO_mask;
+
+extern	unsigned	Tmk_spinmask;
+
+extern	int		Tmk_debug;
+
+extern	unsigned	Tmk_port_[NPROCS][NPROCS];
+
+extern	char		Tmk_hostlist[NPROCS][MAXHOSTNAMELEN];
+
+extern struct itimerval	Tmk_tout;
+
+extern	unsigned	Tmk_tout_flag;
+
+extern	unsigned	tmk_stat_flag;
+
+extern	void	      (*Tmk_barrier_sigio_handler)();
+
+extern	void	      (*Tmk_sched_sigio_handler)();
+
+extern	unsigned	Tmk_page_init_to_valid;
+
+extern	protocol_t	Tmk_page_init_proto;
+
+extern int              Tmk_nhosts_listed_cmdline;
+
+/*
+ * Function Prototypes
+ */
+void	Tmk_accept( int i );
+
+void	Tmk_accept_initialize( int i );
+
+void	Tmk_barrier_initialize( void );
+
+void	Tmk_barrier_sigio_duplicate_handler();
+
+void	Tmk_connect( int i );
+
+void	Tmk_connect_initialize( void );
+
+void	Tmk_connect_sigio_duplicate_handler();
+
+void	Tmk_diff_create( page_t page, write_notice_t write_notice );
+
+void	Tmk_diff_initialize( void );
+
+void	Tmk_diff_repo( void );
+
+int	Tmk_diff_repo_test( void );
+
+void	Tmk_diff_request( page_t page );
+
+void	Tmk_diff_sigio_handler();
+
+void	Tmk_distribute_initialize( void );
+
+void	Tmk_distribute_sigio_handler();
+
+void	Tmk_distribute_sigio_duplicate_handler();
+
+void	Tmk_exit_sigio_handler( struct req_typ *req );
+
+void	Tmk_err( char *format, ... );
+
+void	Tmk_errexit( char *format, ... ) __attribute__((__noreturn__));
+
+void	Tmk_free_twin( page_t page );
+
+void	Tmk_herrexit( char *format, ... ) __attribute__((__noreturn__));
+
+void	Tmk_interval_create( unsigned short vector_time_[] );
+
+void	Tmk_interval_incorporate( caddr_t msg, int size, unsigned short vector_time_[] );
+
+void	Tmk_interval_initialize( void );
+
+void	Tmk_interval_repo( void );
+
+int	Tmk_interval_repo_test( void );
+
+caddr_t Tmk_interval_request( caddr_t msg, unsigned short vector_time_[] );
+
+caddr_t	Tmk_interval_request_proc( caddr_t msg, int proc_id, unsigned time );
+
+void	Tmk_lock_initialize( void );
+
+void	Tmk_lock_sigio_handler();
+
+void	Tmk_lock_sigio_duplicate_handler();
+
+void	Tmk_page_dirty_merge( page_t page );
+
+void	Tmk_page_initialize( void );
+
+void	Tmk_page_inval_merge( page_t page );
+
+void	Tmk_page_inval_perform( void );
+
+void	Tmk_page_request( page_t page );
+
+void	Tmk_page_sigio_handler( struct req_typ *req );
+
+void	Tmk_perrexit( char *format, ... ) __attribute__((__noreturn__));
+
+void	Tmk_repo( void );
+
+void	Tmk_repo_initialize( void );
+
+void	Tmk_repo_sigio_handler();
+
+void	Tmk_repo_sigio_duplicate_handler();
+
+void	Tmk_sched_initialize( void );
+
+void	Tmk_sched_sigio_duplicate_handler();
+
+void	Tmk_segv_initialize( void );
+
+void	Tmk_sigio_initialize( void );
+
+void	Tmk_tout_initialize( void );
+
+void	Tmk_twin_alloc_and_copy( page_t page );
+@
+
+
+11.19
+log
+@Eliminate Tmk_heap_initialize.  Initialize the heap
+during the first call to Tmk_malloc, Tmk_free, or Tmk_sbrk.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.18 1997/12/24 06:11:42 alc Exp alc $
+d439 2
+a440 2
+	unsigned char	toggle;
+	unsigned char	toggle2;	/* dirty */
+@
+
+
+11.18
+log
+@Use __linux and __osf__ to distinguish the Alpha variants.  Use the same
+MTU on Linux/Alpha as Linux/x86.  Use a larger MTU on Digital UNIX.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.17 1997/12/08 06:43:46 alc Exp alc $
+a544 2
+
+void	Tmk_heap_initialize( void );
+@
+
+
+11.17
+log
+@Added "noreturn" attributes to the exit routines.  (This reduces
+the code size by a measureable amount.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.16 1997/11/09 07:52:18 alc Exp alc $
+d271 1
+a271 1
+#if	defined(__alpha) || defined(__linux) || defined(__sgi) || defined(__sun)
+d273 1
+a273 1
+ * Alpha, Linux, SGI and SPARC
+d279 1
+a279 1
+#elif	defined(__bsdi) || defined(__FreeBSD__) || defined(__hpux)
+d281 1
+a281 1
+ * BSD/OS, FreeBSD and HPUX
+d289 1
+a289 1
+ * RS/6000, specifically SP2
+@
+
+
+11.16
+log
+@Added a function prototype for Tmk_herrexit.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.15 1997/10/28 22:21:14 alc Exp alc $
+d542 1
+a542 1
+void	Tmk_errexit( char *format, ... );
+d548 1
+a548 1
+void	Tmk_herrexit( char *format, ... );
+d582 1
+a582 1
+void	Tmk_perrexit( char *format, ... );
+@
+
+
+11.15
+log
+@Eliminated "isMmapped" from the page struct.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.14 1997/09/26 05:46:44 alc Exp alc $
+d547 2
+@
+
+
+11.14
+log
+@Added Tmk_page_init_proto: a single-writer/multiple-writer protocol
+switch.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.13 1997/09/03 06:20:59 alc Exp alc $
+a440 2
+
+	unsigned char	isMmapped;	/* XXX this shouldn't be here. */
+@
+
+
+11.13
+log
+@Included the BSD/OS-specific header file.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.12 1997/09/01 19:10:50 alc Exp alc $
+d500 2
+@
+
+
+11.12
+log
+@Added MTU and MSG_MAXIOVLEN for BSD/OS 3.0.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.11 1997/07/30 02:29:24 pparker Exp alc $
+d151 5
+a155 1
+#if	defined(__linux)
+a156 2
+#elif	defined(_AIX) && defined(MPL)
+#include "mpl.h"
+@
+
+
+11.11
+log
+@Added Tmk_nhosts_listed_cmdline for spawn fix
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.10 1997/07/11 06:27:32 alc Exp pparker $
+d247 1
+a247 1
+#elif	defined(__FreeBSD__)
+d277 1
+a277 1
+#elif	defined(__FreeBSD__) || defined(__hpux)
+d279 1
+a279 1
+ * FreeBSD and HPUX
+@
+
+
+11.10
+log
+@Define protocol_t.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.9 1997/07/09 21:28:00 alc Exp alc $
+d498 2
+@
+
+
+11.9
+log
+@Changed the page state definition: Use modified, exclusive, shared, and
+invalid.  Rename "page->mode" to "page->proto".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.8 1997/06/26 22:38:57 alc Exp alc $
+d382 7
+a388 1
+enum	proto	{ multiple_writer = 1, single_writer = 2 };
+d397 3
+a399 3
+	unsigned short	first;	/* page id */
+	unsigned short	last;	/* page id */
+	unsigned char	proto;
+@
+
+
+11.8
+log
+@Renamed "page->SW_WN_vector_time_" to "page->vector_time_".  Deleted
+"page->time".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.7 1997/06/26 04:04:33 alc Exp alc $
+d379 5
+a390 1
+	unsigned char	mode;
+d393 1
+d414 1
+a414 6
+enum	state	{ valid, invalid, private, empty };
+
+/*
+ *
+ */
+enum	mode	{ multi_writer = 1, single_writer = 2 };
+a430 2
+	unsigned char	state;
+
+d436 3
+a438 1
+	unsigned char	mode;
+@
+
+
+11.7
+log
+@Added "page->SW_WN_vector_time_".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.6 1997/06/25 18:28:53 alc Exp alc $
+d444 1
+a444 3
+	unsigned short	time;
+
+	unsigned short *SW_WN_vector_time_;
+@
+
+
+11.6
+log
+@Eliminated "page->vers_no".  Replaced "page->manager" by "page->writer".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.5 1997/06/05 21:51:36 alc Exp alc $
+d445 2
+@
+
+
+11.5
+log
+@Added the owner and time fields to the page struct.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.4 1997/06/05 07:06:31 alc Exp alc $
+d432 1
+a432 1
+	unsigned char	manager;
+d438 2
+d442 1
+a442 3
+	unsigned char	mode;
+
+	unsigned short	vers_no;
+@
+
+
+11.4
+log
+@Added a mode field to the write_notice_range.  Changed the first
+and last page id field names.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.3 1997/06/02 01:38:32 alc Exp alc $
+d438 2
+d443 2
+@
+
+
+11.3
+log
+@Added the initial support for the adaptive protocol, including the mode
+and vers_no fields in the page struct.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.2 1997/05/27 02:25:29 alc Exp alc $
+d386 3
+a388 2
+	unsigned short	first_page_id;
+	unsigned short	end_page_id;
+@
+
+
+11.2
+log
+@Replaced static spinmask by extern Tmk_spinmask.  (Required
+by Tmk_spawn.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.1 1997/05/26 22:04:01 alc Exp alc $
+d310 1
+a310 1
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, REQ_COND_BROADCAST, REQ_COND_SIGNAL, REQ_COND_WAIT, REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_JOIN, REQ_JOIN_REPO, REQ_LOCK, REQ_PAGE, REQ_REPO, REQ_SPAWN };
+d411 5
+d436 4
+@
+
+
+11.1
+log
+@Added support for Tmk_spawn.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27 1997/05/22 03:36:18 alc Exp alc $
+d458 2
+@
+
+
+10.27
+log
+@Defined NCONDS as TMK_NCONDS.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.26 1997/05/21 06:35:28 alc Exp alc $
+d310 1
+a310 1
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, REQ_COND_BROADCAST, REQ_COND_SIGNAL, REQ_COND_WAIT, REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_JOIN, REQ_JOIN_REPO, REQ_LOCK, REQ_PAGE, REQ_REPO };
+@
+
+
+10.27.1.1
+log
+@Added basic Pthreads support.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27 1997/05/22 03:36:18 alc Exp alc $
+a88 12
+#if	defined(PTHREADS)
+/*
+ * Note: To use PTHREADS under Solaris, use the compiler flag
+ * -D_POSIX_C_SOURCE=199506L
+ */
+#if	defined(__osf__)
+#define	_PTHREAD_USE_INLINE
+#elif	defined(__sun) && defined(__SVR4)
+#define	__EXTENSIONS__
+#endif
+#include <pthread.h>
+#endif
+d206 1
+a206 1
+#elif	defined(PTHREADS)
+d214 1
+a214 1
+				pthread_mutex_lock(&Tmk_sigio_lock); \
+d216 1
+a216 1
+				pthread_mutex_unlock(&Tmk_sigio_lock); \
+d221 1
+a221 1
+					pthread_mutex_lock(&Tmk_sigio_lock); \
+d223 1
+a223 1
+					pthread_mutex_unlock(&Tmk_sigio_lock); \
+a422 3
+#if	defined(PTHREADS)
+	caddr_t		v_alias;
+#endif
+a475 8
+
+#if	defined(PTHREADS)
+
+extern  pthread_mutex_t Tmk_sigio_lock;
+
+extern  pthread_mutex_t Tmk_monitor_lock;
+
+#endif
+@
+
+
+10.27.1.2
+log
+@Added MTU and MSG_MAXIOVLEN for BSD/OS 3.0.  (Identical to revision 11.12.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.1 1997/07/04 21:35:47 alc Exp alc $
+d259 1
+a259 1
+#elif	defined(__bsdi) || defined(__FreeBSD__)
+d289 1
+a289 1
+#elif	defined(__bsdi) || defined(__FreeBSD__) || defined(__hpux)
+d291 1
+a291 1
+ * BSD/OS, FreeBSD and HPUX
+@
+
+
+10.27.1.3
+log
+@Included the BSD/OS-specific header file.  (Identical to revision 11.13.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.2 1997/09/01 19:14:02 alc Exp alc $
+d163 3
+a165 1
+#if	defined(_AIX) && defined(MPL)
+a166 4
+#elif	defined(__bsdi)
+#include "bsdi.h"
+#elif	defined(__linux)
+#include "linux.h"
+@
+
+
+10.27.1.4
+log
+@Eliminated "isMmapped" from the page struct.  (Identical to revision 11.15.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.3 1997/09/03 07:10:26 alc Exp alc $
+d446 2
+@
+
+
+10.27.1.5
+log
+@Added a function prototype for Tmk_herrexit.  (Identical to revision 11.16.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.4 1997/11/05 07:19:46 alc Exp alc $
+a543 2
+
+void	Tmk_herrexit( char *format, ... );
+@
+
+
+10.27.1.6
+log
+@Use __linux and __osf__ to distinguish the Alpha variants.  Use the same
+MTU on Linux/Alpha as Linux/x86.  Use a larger MTU on Digital UNIX.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.5 1997/11/09 07:55:48 alc Exp alc $
+d283 1
+a283 1
+#if	defined(__linux) || defined(__sgi) || defined(__sun)
+d285 1
+a285 1
+ * Linux (alpha/x86), SGI, and SunOS/Solaris (SPARC/x86)
+d291 1
+a291 1
+#elif	defined(__bsdi) || defined(__FreeBSD__) || defined(__hpux) || defined(__osf__)
+d293 1
+a293 1
+ * BSD/OS, FreeBSD, HPUX and DEC UNIX (__osf__)
+d301 1
+a301 1
+ * AIX RS/6000, specifically SP2
+@
+
+
+10.27.1.7
+log
+@Use a single GLOBAL spinmask instead of multiple static spinmasks.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.6 1997/12/24 06:15:32 alc Exp alc $
+a472 2
+
+extern	unsigned	Tmk_spinmask;
+@
+
+
+10.27.1.8
+log
+@Eliminate Tmk_heap_initialize.  Initialize the heap
+during the first call to Tmk_malloc, Tmk_free, or Tmk_sbrk.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.7 1998/01/07 07:27:29 alc Exp alc $
+d544 2
+@
+
+
+10.27.1.9
+log
+@Rename toggle and toggle2 for clarity.  Their new names are inval_toggle
+and dirty_toggle, respectively.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.8 1998/01/09 22:39:47 alc Exp alc $
+d444 2
+a445 2
+	unsigned char	inval_toggle;
+	unsigned char	dirty_toggle;
+@
+
+
+10.27.1.10
+log
+@Change end_page_id to last_page_id for consistency with version 1.1+.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.9 1998/03/02 03:10:51 alc Exp alc $
+d401 1
+a401 1
+	unsigned short	last_page_id;
+@
+
+
+10.27.1.11
+log
+@Added "noreturn" attributes to the exit routines.  (This reduces
+the code size by a measureable amount.)
+(Identical to revision 11.17.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.10 1998/03/02 03:27:20 alc Exp alc $
+d541 1
+a541 1
+void	Tmk_errexit( char *format, ... ) __attribute__((__noreturn__));
+d545 1
+a545 1
+void	Tmk_herrexit( char *format, ... ) __attribute__((__noreturn__));
+d579 1
+a579 1
+void	Tmk_perrexit( char *format, ... ) __attribute__((__noreturn__));
+@
+
+
+10.27.1.12
+log
+@Added the "const" attribute to the format parameter for several error
+reporting functions.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.11 1998/03/07 19:34:42 alc Exp alc $
+d539 1
+a539 1
+void	Tmk_err( const char *format, ... );
+d541 1
+a541 1
+void	Tmk_errexit( const char *format, ... ) __attribute__((__noreturn__));
+d545 1
+a545 1
+void	Tmk_herrexit( const char *format, ... ) __attribute__((__noreturn__));
+d579 1
+a579 1
+void	Tmk_perrexit( const char *format, ... ) __attribute__((__noreturn__));
+@
+
+
+10.27.1.13
+log
+@Rename "Tmk_free_twin" to "Tmk_twin_free" for consistency
+with the rest of the interface.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.12 1998/05/09 07:09:50 alc Exp alc $
+d543 2
+a599 2
+
+void    Tmk_twin_free( page_t page );
+@
+
+
+10.27.1.14
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.13 1998/05/10 05:06:23 alc Exp alc $
+a539 2
+
+void	Tmk_errno_check( const char *format, ... );
+@
+
+
+10.27.1.15
+log
+@The addition of Tmk_errno_check makes the BSD/OS-specific code redundant.
+(Deleted bsdi.c and bsdi.h as well.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.14 1998/05/14 20:10:16 alc Exp alc $
+d165 2
+@
+
+
+10.27.1.16
+log
+@Added the "const" attribute to the message argument
+to Tmk_exit_sigio_handler and Tmk_page_sigio_handler.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.15 1998/05/14 20:40:48 alc Exp alc $
+d535 1
+a535 1
+void	Tmk_exit_sigio_handler( const struct req_typ *req );
+d575 1
+a575 1
+void	Tmk_page_sigio_handler( const struct req_typ *req );
+@
+
+
+10.27.1.17
+log
+@Added prototypes for the condition signal handlers.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.16 1998/05/26 05:34:10 alc Exp alc $
+a509 8
+
+void	Tmk_cond_broadcast_sigio_handler();
+
+void	Tmk_cond_signal_sigio_handler();
+
+void	Tmk_cond_wait_sigio_handler();
+
+void	Tmk_cond_wait_sigio_duplicate_handler();
+@
+
+
+10.27.1.18
+log
+@Added the "const" attribute to the vector time argument
+to Tmk_interval_request.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.17 1998/05/28 16:16:21 alc Exp alc $
+d563 1
+a563 1
+caddr_t Tmk_interval_request( caddr_t msg, const unsigned short vector_time_[] );
+@
+
+
+10.27.1.19
+log
+@Added the req_entry_t definition.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.18 1998/05/31 00:39:46 alc Exp alc $
+a372 8
+typedef	struct	req_entry
+			req_entry_t;
+
+struct	req_entry	{
+	struct req_syn *req;
+	unsigned	size;
+};
+
+a454 2
+
+extern	req_entry_t	req_from_[NPROCS];
+@
+
+
+10.27.1.20
+log
+@Made changes to barrier and sched to facilitate integration
+of the FASTLINK barriers:
+
+1. Use a single sigio handler for barriers and scheds (regardless
+of whether the manager has arrived or not).
+
+2. Use barrier->mask and sched->mask to determine whether or not
+the manager has arrived/joined.
+
+3. Redefine Tmk_spinmask to include the "host" processor.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.19 1998/06/11 20:49:52 alc Exp alc $
+d496 4
+a518 2
+void	Tmk_barrier_sigio_handler();
+
+a605 2
+
+void	Tmk_sched_sigio_handler();
+@
+
+
+10.27.1.21
+log
+@Added a prototype for Tmk_sigio_buffer_release.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.20 1998/06/13 18:39:11 alc Exp alc $
+a609 2
+
+void	Tmk_sigio_buffer_release();
+@
+
+
+10.27.1.22
+log
+@Added a new cast to the MPL-specific code.  This eliminates
+a lot of warnings under AIX 4.2.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.21 1998/06/15 18:33:50 alc Exp alc $
+d208 1
+a208 1
+				mpc_lockrnc(1, (int *) oset); \
+d210 1
+a210 1
+				mpc_lockrnc(0, (int *) oset); \
+d215 1
+a215 1
+				mpc_lockrnc(new, (int *) oset); \
+@
+
+
+10.27.1.23
+log
+@Eliminated the #include "linux.h".  It's no longer needed.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.22 1998/06/16 19:09:01 alc Exp alc $
+d165 2
+a166 2
+#elif	defined(__linux) && (LINUX_VERSION_CODE < 131072)
+#error in Tmk.h: unsupported kernel
+@
+
+
+10.27.1.23.0.1
+log
+@Eliminated some linux specific code that is no longer required
+by recent versions.  (See also revision 10.27.1.23.)
+
+(Identical to revision 10.27.1.29.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.23 1998/07/12 00:07:02 alc Exp alc $
+d260 1
+d262 1
+d264 5
+d270 4
+@
+
+
+10.27.1.23.0.2
+log
+@Added #include <linux/version.h> before the version code test.
+(Identical to revision 10.27.1.37.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.23.0.1 1998/07/31 20:29:00 alc Exp alc $
+d165 1
+a165 3
+#elif	defined(__linux)
+#include <linux/version.h>
+#if	(LINUX_VERSION_CODE < 131072)
+a166 1
+#endif
+@
+
+
+10.27.1.23.0.3
+log
+@The MPL restriction on the #include <sys/select.h> is
+unnecessary with revision 10.4.1.2 of mpl.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.23.0.2 1998/09/12 19:03:16 alc Exp alc $
+d128 1
+a128 1
+#if	defined(_AIX)
+@
+
+
+10.27.1.24
+log
+@Changed the definition of "page_t".  The new definition enables
+the use of "const" page pointers.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.23 1998/07/12 00:07:02 alc Exp alc $
+d435 1
+a435 1
+struct	page		page_t;
+d438 3
+a440 3
+	page_t	       *prev;
+	page_t	       *next;
+	page_t	       *partner;
+d471 1
+a471 1
+extern	page_t		page_array_[NPAGES + 1];
+d473 1
+a473 1
+extern	page_t		page_dirty;
+d533 1
+a533 1
+void	Tmk_diff_create( const page_t *page, write_notice_t write_notice );
+d541 1
+a541 1
+void	Tmk_diff_request( const page_t *page );
+d581 1
+a581 1
+void	Tmk_page_dirty_merge( page_t *page );
+d585 1
+a585 1
+void	Tmk_page_inval_merge( page_t *page );
+d589 1
+a589 1
+void	Tmk_page_request( const page_t *page );
+d617 1
+a617 1
+void	Tmk_twin_alloc_and_copy( page_t *page );
+d619 1
+a619 1
+void    Tmk_twin_free( page_t *page );
+@
+
+
+10.27.1.25
+log
+@Changed the definition of "interval_t".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.24 1998/07/26 05:25:28 alc Exp alc $
+d385 1
+a385 1
+struct	interval	interval_t;
+d396 1
+a396 1
+	interval_t     *interval;
+d411 2
+a412 2
+	interval_t     *prev;
+	interval_t     *next;
+d475 1
+a475 1
+extern	interval_t	proc_array_[NPROCS];
+@
+
+
+10.27.1.26
+log
+@Renamed "proc_array_" to "proc_interval_".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.25 1998/07/26 06:26:40 alc Exp alc $
+d475 1
+a475 1
+extern	interval_t	proc_interval_[NPROCS];
+@
+
+
+10.27.1.27
+log
+@Changed the definition of "write_notice_range_t".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.26 1998/07/27 18:42:55 alc Exp alc $
+d401 1
+a401 1
+			write_notice_range_t;
+d405 1
+a405 1
+		       *next;
+d418 1
+a418 1
+	write_notice_range_t
+@
+
+
+10.27.1.28
+log
+@Changed the definition of "write_notice_t".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.27 1998/07/31 18:55:59 alc Exp alc $
+d388 1
+a388 1
+struct	write_notice	write_notice_t;
+d391 1
+a391 1
+	write_notice_t *next;
+d453 1
+a453 1
+	write_notice_t *write_notice_[NPROCS];
+d533 1
+a533 1
+void	Tmk_diff_create( const page_t *page, write_notice_t *write_notice );
+@
+
+
+10.27.1.29
+log
+@Eliminated some linux specific code that is no longer required
+by recent versions.  (See also revision 10.27.1.23.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.28 1998/07/31 20:17:33 alc Exp alc $
+d260 1
+d262 1
+d264 5
+d270 4
+@
+
+
+10.27.1.30
+log
+@Added support for reduction barriers.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.29 1998/07/31 20:23:38 alc Exp alc $
+d311 1
+a311 14
+enum	req_typ_type
+{
+	REQ_ARRIVAL, REQ_ARRIVAL_REPO,
+	REQ_COND_BROADCAST, REQ_COND_SIGNAL, REQ_COND_WAIT,
+	REQ_CONNECT,
+	REQ_DIFF,
+	REQ_DISTRIBUTE,
+	REQ_EXIT,
+	REQ_JOIN, REQ_JOIN_REPO,
+	REQ_LOCK,
+	REQ_PAGE,
+	REQ_REDUCTION, REQ_REDUCTION_REPO,
+	REQ_REPO
+};
+a582 6
+
+void	Tmk_reduction_initialize( void );
+
+void	Tmk_reduction_sigio_handler();
+
+void	Tmk_reduction_sigio_duplicate_handler();
+@
+
+
+10.27.1.31
+log
+@Defined TMK_NREDUCTIONS in a user (application-)visible place.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.30 1998/08/10 19:52:12 alc Exp alc $
+a303 1
+#define NREDUCTIONS	TMK_NREDUCTIONS
+@
+
+
+10.27.1.32
+log
+@Defined TMK_MAX_REDUCTION_SIZE in a user (application-)visible place.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.31 1998/08/10 21:36:49 alc Exp alc $
+a304 3
+
+#define MAX_REDUCTION_SIZE \
+			TMK_MAX_REDUCTION_SIZE
+@
+
+
+10.27.1.33
+log
+@Renamed "Tmk_reduction" to "Tmk_barrier_reduce".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.32 1998/08/10 21:56:39 alc Exp alc $
+d304 1
+@
+
+
+10.27.1.34
+log
+@1.  Tmk_barrier_reduce replaces Tmk_barrier.  Tmk_barrier is now
+a stub that calls Tmk_barrier_reduce.  2.  The file barrier.c is
+dropped.  3.  The file reduction.c is renamed barrier_reduce.c.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.33 1998/08/23 06:43:33 alc Exp alc $
+d325 1
+d599 6
+@
+
+
+10.27.1.35
+log
+@Sort the write notice ranges in interval create.  This enables
+interval request to use a more compact encoding.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.34 1998/08/24 03:06:56 alc Exp alc $
+a595 2
+
+void	Tmk_page_sort( page_t *page );
+@
+
+
+10.27.1.36
+log
+@Added #include <linux/version.h> before the version code test.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.27.1.36 1998/10/17 22:41:37 alc Exp alc $
+d165 1
+a165 3
+#elif	defined(__linux)
+#include <linux/version.h>
+#if	(LINUX_VERSION_CODE < 131072)
+a166 1
+#endif
+@
+
+
+10.26
+log
+@Reorganized req_cond struct to match, i.e., overlap, the req_syn struct
+for a lock acquire.  Thus, we can simply change the type field and
+reuse the condition request as a lock request.
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1996						     *
+d39 1
+a39 1
+ * $Id: Tmk.h,v 10.25 1997/05/19 02:14:53 alc Exp alc $
+d301 1
+a302 1
+#define	NCONDS	8	/* XXX */
+@
+
+
+10.25
+log
+@Eliminated the monitor (condition variable) reply status codes.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.24 1997/04/12 21:11:04 alc Exp alc $
+a317 18
+struct  req_cond_hdr    {  /* Requesting operations on conditions */
+        unsigned        seqno;
+        unsigned char   from;
+        unsigned char   type;
+        unsigned short  id;
+        unsigned short  id2;
+        unsigned short  padding;
+};
+
+struct  req_cond        {  
+        unsigned        seqno;
+        unsigned char   from;
+        unsigned char   type;
+        unsigned short  id;
+        unsigned short  id2;
+        unsigned short  padding;
+        unsigned short  vector_time[NPROCS];
+};
+d350 9
+@
+
+
+10.24
+log
+@Eliminated the implicit binding (mis)feature of the condition variable
+code.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.23 1997/04/12 20:55:53 alc Exp alc $
+d309 1
+a309 1
+enum    rep_status        { REP_SUCCESS, REP_FAILURE, REP_YOU_MANAGE };	/* XXX */
+@
+
+
+10.23
+log
+@Merged support for POSIX-like condition variables.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.22 1997/03/07 23:49:23 alc Exp alc $
+d310 1
+a310 1
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, REQ_COND_BIND, REQ_COND_BROADCAST, REQ_COND_SIGNAL, REQ_COND_WAIT, REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_JOIN, REQ_JOIN_REPO, REQ_LOCK, REQ_PAGE, REQ_REPO };
+@
+
+
+10.22
+log
+@Eliminated tmk_MTU.  This variable exists to work-around an Ultrix
+ATM driver bug.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.21 1997/03/07 23:32:41 alc Exp alc $
+d302 1
+d309 2
+a310 2
+
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_JOIN, REQ_JOIN_REPO, REQ_LOCK, REQ_PAGE, REQ_REPO };
+d317 18
+@
+
+
+10.21
+log
+@Reorganized the contents.  Eliminated the last vestiges of Ultrix support.
+Updated the maximum number of scatter/gather entries for Linux 2.0.x.
+Moved SIGBUS_or_SEGV to segv.c.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.20 1997/01/12 00:41:43 alc Exp alc $
+a459 2
+
+extern	unsigned	tmk_MTU;
+@
+
+
+10.20
+log
+@Added support for Tmk_mmap.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.19 1997/01/09 06:20:59 alc Exp alc $
+d97 1
+a97 1
+#if ! defined(__linux)
+d108 1
+a108 1
+#if defined(__sun) && ! defined(__SVR4)
+d116 1
+a116 1
+#if defined(_AIX) && ! defined(MPL)
+d127 2
+a128 2
+#if defined(__sun) && defined(__SVR4)
+#define	BSD_COMP
+d135 13
+d149 1
+a149 1
+ *
+d151 1
+a151 1
+#if defined(__linux)
+d153 1
+a153 1
+#elif defined(_AIX) && defined(MPL)
+d160 1
+a160 1
+#if defined(__hpux)
+d169 4
+a172 4
+#if defined(__hpux)
+#define	getpagesize()	sysconf(_SC_PAGE_SIZE)	/* defined by unistd.h */
+#elif defined(__sun) && defined(__SVR4)
+#define	getpagesize()	sysconf(_SC_PAGESIZE)
+d176 1
+a176 1
+ *  Define the internal synchronization macros.
+a232 1
+#if ! defined(__ultrix)
+d234 5
+a238 1
+ * The actual value is one less than advertised.
+d240 6
+a245 2
+#ifdef	MSG_MAXIOVLEN
+#undef	MSG_MAXIOVLEN
+d247 3
+a249 5
+#if  defined(_AIX41)
+#define	MSG_MAXIOVLEN	1024
+#else
+#define	MSG_MAXIOVLEN	15
+#endif
+d251 1
+a251 1
+#elif defined(__FreeBSD__) || defined(__linux)
+d256 5
+a260 1
+#define MSG_MAXIOVLEN	1024
+a264 15
+#endif
+
+#if defined(__hpux) || defined(__FreeBSD__)
+#define	SIGBUS_or_SEGV	SIGBUS
+#else
+#define	SIGBUS_or_SEGV	SIGSEGV
+#endif
+
+#if ! defined(MIN)
+#define	MIN(a,b)	(((a)<(b))?(a):(b))
+#endif
+
+#if ! defined(MAX)
+#define	MAX(a,b)	(((a)>(b))?(a):(b))
+#endif
+a265 3
+#include <Tmk.h>
+
+#if defined(__ultrix)
+d267 1
+a267 3
+ * DECstation-5000/2x0 (MIPS R3000)
+ *
+ * AAL3/4 and UDP MTU
+d269 1
+a269 3
+#define	MTU	9188
+
+#elif defined(__alpha) || defined(__linux) || defined(__sgi) || defined(__sun)
+d275 1
+a275 1
+#define	MTU	32768
+d277 1
+a277 1
+#elif defined(__FreeBSD__) || defined(__hpux)
+d283 1
+a283 1
+#define	MTU	49152
+d285 1
+a285 1
+#elif defined(_AIX)
+d289 1
+a289 1
+#define MTU	65492
+d295 3
+d303 2
+a304 2
+#if defined(MPL)
+#define SEQNO_INCR	0
+d306 1
+a306 1
+#define SEQNO_INCR	NPROCS
+@
+
+
+10.19
+log
+@Added the "-v" option that initializes the shared pages
+as valid but write protected on every node.  This option
+generally reduces the number of messages and the
+amount of data transferred early in the execution.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.18 1996/09/25 04:03:49 alc Exp alc $
+d417 2
+d562 2
+@
+
+
+10.18
+log
+@Corrected the MPL version of the sigio_mutex.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.17 1996/09/24 21:56:13 alc Exp alc $
+d461 2
+@
+
+
+10.17
+log
+@Reordered definitions and includes for the MPL support.  Replaced
+MPL's sigio_mutex definition.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.16 1996/08/25 20:39:36 alc Exp alc $
+d168 12
+a179 7
+				int old_lock; \
+				if (how == SIG_BLOCK) { \
+					mpc_lockrnc(1, &old_lock); \
+				} else if (how == SIG_UNBLOCK) { \
+					mpc_lockrnc(0, &old_lock); \
+				} else if (how == SIG_SETMASK) { \
+					mpc_lockrnc(set, &old_lock); \
+d182 1
+a182 1
+			} else if (how == SIG_BLOCK) { \
+d184 1
+a184 1
+			} else if (how == SIG_UNBLOCK) { \
+d186 5
+a190 2
+			} else if (how == SIG_SETMASK) { \
+				mpc_lockrnc(set, oset); \
+@
+
+
+10.16
+log
+@Standardize the sigio handler interfaces.  Specifically, eliminate
+the "fd" parameter.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.15 1996/08/24 21:39:32 alc Exp alc $
+d94 3
+d103 1
+d113 3
+a115 6
+#if defined(__hpux)
+#define	getpagesize()	sysconf(_SC_PAGE_SIZE)	/* defined by unistd.h */
+#elif defined(__sun) && defined(__SVR4)
+#define	getpagesize()	sysconf(_SC_PAGESIZE)
+#endif
+
+a119 5
+#if defined(__hpux)
+typedef int    *fd_set_t;
+#else
+typedef fd_set *fd_set_t;
+#endif
+d123 4
+d145 18
+d167 18
+a184 1
+			tmk_mplmutex(how, set, oset)
+@
+
+
+10.15
+log
+@Don't include "select.h" under MPL.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.14 1996/08/24 21:10:49 alc Exp alc $
+d494 1
+a494 1
+void	Tmk_page_sigio_handler( int fd, struct req_typ *req );
+@
+
+
+10.14
+log
+@Replaced sigprocmask by sigio_mutex.  Sigio_mutex is defined
+in Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.13 1996/08/24 20:01:11 alc Exp alc $
+d115 1
+a115 1
+#if defined(_AIX)
+@
+
+
+10.13
+log
+@Replaced "seqno += NPROCS" by "+= SEQNO_INCR".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.12 1996/08/18 06:27:58 alc Exp $
+d142 33
+@
+
+
+10.12
+log
+@Replaced the bit fields in "struct page" by unsigned chars.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.11 1996/08/09 21:15:00 alc Exp alc $
+d223 6
+@
+
+
+10.11
+log
+@Replace "page->private" with "page->state".  Alter bit field
+declarations in page.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.10 1996/08/08 19:06:59 alc Exp alc $
+d308 8
+d330 4
+a333 9
+	enum	state	{
+		valid,
+		invalid,
+		private,
+		empty
+	}		state	: 8;
+	unsigned	manager	: 8;
+	unsigned	toggle	: 8;
+	unsigned	toggle2	: 8;
+@
+
+
+10.10
+log
+@Added #include "mpl.h".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.9 1996/08/08 18:31:29 alc Exp alc $
+d325 1
+d329 2
+a330 3
+	unsigned	private	: 1;
+	unsigned	toggle	: 1;
+	unsigned	toggle2	: 1;
+@
+
+
+10.9
+log
+@Changed page_dirty list and intervals to use ranges.  (Imported
+from the 10.1.2 branch.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.8 1996/08/08 04:51:46 alc Exp alc $
+d135 3
+d140 2
+@
+
+
+10.8
+log
+@Replace "page->valid" and "page->empty" with "page->state".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7 1996/08/03 21:10:13 alc Exp alc $
+d270 1
+a270 1
+struct	write_notice {
+d272 1
+a272 1
+	write_notice_t	next_proc_array;
+d275 1
+a275 1
+	unsigned short	page_id;
+d279 12
+a290 1
+struct	interval {
+d293 1
+d295 1
+d297 3
+a299 1
+	struct	write_notice	head;
+d324 2
+d345 1
+a345 1
+extern	page_t		page_dirty;
+d436 2
+@
+
+
+10.7
+log
+@Replaced "copyset" bit mask by "private" Boolean.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.6 1996/08/03 17:29:49 alc Exp alc $
+d298 1
+a299 4
+	unsigned char	valid;
+	unsigned char	empty;
+	unsigned char	manager;
+	unsigned char	private;
+d301 9
+@
+
+
+10.6
+log
+@Eliminated "toggle" from the page structure.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.5 1996/07/28 07:23:56 alc Exp alc $
+d302 1
+a302 1
+	unsigned	copyset;
+@
+
+
+10.5
+log
+@Create req_typ_type REQ_JOIN, replacing NEW_REQ_ARRIVAL.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.4 1996/07/26 20:02:27 alc Exp alc $
+a301 1
+	unsigned char	toggle;
+@
+
+
+10.4
+log
+@Initial integration of the loop scheduling routines.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.3 1996/07/26 04:10:34 alc Exp alc $
+d219 1
+a219 1
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_LOCK, REQ_PAGE, REQ_REPO, NEW_REQ_ARRIVAL, NEW_REQ_ARRIVAL_REPO };
+@
+
+
+10.3
+log
+@Define BSD_COMP to include the ioctl definitions required
+by the SIOCGIFCONF request in test_hostlist (startup.c).
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d219 1
+a219 1
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_LOCK, REQ_PAGE, REQ_REPO };
+d348 2
+d434 4
+@
+
+
+10.2
+log
+@Moved "struct req_dis" to Tmk.h with the other request structures.
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		Tmk.h
+d88 1
+a88 4
+ *
+ * $Id: Tmk.h,v 10.1 1996/05/27 04:45:30 alc Rel alc $
+ *
+ *****************************************************************************/
+d127 3
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.0.2.5 1996/05/21 16:14:02 alc Exp $
+d240 9
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1 1996/05/27 04:45:30 alc Rel $
+@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1.5.6 1996/07/03 19:32:35 tmiller Exp $
+a89 55
+#if defined(THREADS)
+/*
+ * Note: To use THREADS under Solaris, use compiler flag
+ * -D_POSIX_C_SOURCE=199506L
+ */
+#define __EXTENSIONS__
+#include <pthread.h>
+#endif
+
+#include <signal.h>
+
+#if defined(MPL)
+
+#include "tmkmpl.h"
+
+#       define  sigio_mutex(how, set, oset, action) \
+                  tmk_mplmutex(how, set, oset)
+#	define	sig_mask(how, set, oset) \
+                  tmk_mplmutex(how, set, oset)
+
+
+#else
+
+#if     defined(THREADS)
+#if     defined(_AIX)
+#       define  pthread_sigmask(how, set, oset) \
+                        sigthreadmask(how, set, oset)
+#endif
+#define LOCK	1
+#define UNLOCK	2
+#       define  sigio_mutex(how, set, oset, action) \
+                        if (how == SIG_BLOCK) { \
+                                pthread_sigmask(how, set, oset); \
+                                pthread_mutex_lock(&sigio_lock); \
+                        } else if (how == SIG_UNBLOCK) { \
+                                pthread_mutex_unlock(&sigio_lock); \
+                                pthread_sigmask(how, set, oset); \
+                        } else if (action == LOCK) { \
+                                pthread_sigmask(how, set, oset); \
+				pthread_mutex_lock(&sigio_lock); \
+			} else if (action == UNLOCK) { \
+				pthread_mutex_unlock(&sigio_lock); \
+				pthread_sigmask(how, set, oset); \
+			}
+#	define	sig_mask(how, set, oset) \
+			pthread_sigmask(how, set, oset)
+#else
+#       define  sigio_mutex(how, set, oset, action) \
+                        sigprocmask(how, set, oset)
+#	define	sig_mask(how, set, oset) \
+			sigprocmask(how, set, oset)
+#endif
+#endif
+
+
+a94 4
+#if !defined(MPL) && defined(_AIX)
+#include <sys/select.h>
+#endif
+
+a101 3
+
+#if  !defined(MPL)
+
+d103 1
+a103 3
+
+#endif
+
+d116 3
+a118 1
+
+a119 1
+
+a124 1
+
+a287 3
+#if defined(THREADS)
+	caddr_t		v_alias;
+#endif
+a320 2
+extern	sigset_t	IO_mask;
+
+a322 1
+#if !defined(MPL)
+a323 1
+#endif
+a335 6
+
+#if defined(THREADS)
+extern  pthread_mutex_t sigio_lock;
+
+extern  pthread_mutex_t monitor_lock;
+#endif
+@
+
+
+10.1.4.2
+log
+@Eliminated seqno and extra copying from MPL messages.
+@
+text
+@a280 7
+
+#if defined(MPL)
+#define SEQNO_INCR	0
+#else
+#define SEQNO_INCR	NPROCS
+#endif
+
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1 1996/05/27 04:45:30 alc Rel $
+a287 3
+#if defined(THREADS)
+	caddr_t		v_alias;
+#endif
+@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1.5.1 1996/06/27 16:38:16 tmiller Exp tmiller $
+a136 5
+#if defined(THREADS)
+#define _REENTRANT
+#include <pthread.h>
+#endif
+
+a338 6
+
+#if defined(THREADS)
+extern  pthread_mutex_t sigio_lock;
+
+extern  pthread_mutex_t monitor_lock;
+#endif
+@
+
+
+10.1.5.3
+log
+@#include <pthread.h> first (needed for AIX)
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1.5.2 1996/06/27 23:05:15 tmiller Exp tmiller $
+a89 8
+#if defined(THREADS)
+/*
+ * Note: To use THREADS under Solaris, use compiler flag
+ * -D_POSIX_C_SOURCE=199506L
+ */  
+#include <pthread.h>
+#endif
+
+d135 5
+@
+
+
+10.1.5.4
+log
+@#define __EXTENSIONS__
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1.5.3 1996/07/01 16:41:09 tmiller Exp tmiller $
+d94 1
+a94 2
+ */
+#define __EXTENSIONS__
+@
+
+
+10.1.5.5
+log
+@Cleaned up sigprocmask/pthread_sigmask/sigthreadmask and sigio
+locking/unlocking with sigio_mutex macro
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1.5.4 1996/07/01 23:06:21 tmiller Exp tmiller $
+a98 28
+#include <signal.h>
+
+#if     defined(THREADS)
+#if     defined(_AIX)
+#       define  pthread_sigmask(how, set, oset) \
+                        sigthreadmask(how, set, oset)
+#endif
+#define LOCK	1
+#define UNLOCK	2
+#       define  sigio_mutex(how, set, oset, action) \
+                        if (how == SIG_BLOCK) { \
+                                pthread_sigmask(how, set, oset); \
+                                pthread_mutex_lock(&sigio_lock); \
+                        } else if (how == SIG_UNBLOCK) { \
+                                pthread_mutex_unlock(&sigio_lock); \
+                                pthread_sigmask(how, set, oset); \
+                        } else if (action == LOCK) { \
+                                pthread_sigmask(SIG_SETMASK, set, oset); \
+				pthread_mutex_lock(&sigio_lock); \
+			} else if (action == UNLOCK) { \
+				pthread_mutex_unlock(&sigio_lock); \
+				pthread_sigmask(SIG_SETMASK, set, oset); \
+			}
+#else
+#       define  sigio_mutex(how, set, oset, action) \
+                        sigprocmask(how, set, oset)
+#endif
+
+d112 1
+@
+
+
+10.1.5.6
+log
+@cleaned up signal masks
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.1.5.5 1996/07/02 22:34:57 tmiller Exp $
+d116 1
+a116 1
+                                pthread_sigmask(how, set, oset); \
+d120 1
+a120 1
+				pthread_sigmask(how, set, oset); \
+a121 2
+#	define	sig_mask(how, set, oset) \
+			pthread_sigmask(how, set, oset)
+a124 2
+#	define	sig_mask(how, set, oset) \
+			sigprocmask(how, set, oset)
+a358 2
+
+extern	sigset_t	IO_mask;
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@d87 1
+a87 3
+ *	 7-Jun-1996	Tim Miller	Changed dirty page list, intervals,
+ *					 release messages to use ranges
+ *					 of pages
+a88 2
+ * $Id: Tmk.h,v 10.1.1.2 1996/06/12 22:49:23 tmiller Exp $
+ *
+d261 1
+a267 11
+typedef
+struct write_notice_range   *write_notice_range_t;
+
+struct write_notice_range {
+	unsigned short first_page_id;
+	unsigned short end_page_id;
+	write_notice_range_t next;
+};
+
+#define RANGE ((unsigned short)~NPROCS)
+
+d273 1
+a273 1
+	struct	write_notice_range	head;
+d277 2
+a278 3
+ *  Warning!  Members "next" and "prev" are used to implement both the
+ *  dirty page ("page_dirty") list and the invalidate merging list
+ *  ("Tmk_page_inval_merge").
+d404 1
+a404 1
+void	Tmk_page_merge( page_t page1, page_t list_head, unsigned char bitmask );
+a426 8
+
+/* Tmk_page_merge macros and definitions */
+#define INVAL (0x1)
+#define DIRTY (0x80)
+
+#define Tmk_page_inval_merge(page) Tmk_page_merge(page, &page_array_[NPAGES], INVAL)
+
+#define Tmk_page_dirty_merge(page) Tmk_page_merge(page, page_dirty, DIRTY)
+@
+
+
+10.1.2.2
+log
+@Removed "page_id" from the write notice structure.
+@
+text
+@d91 1
+a91 1
+ * $Id: Tmk.h,v 10.1.2.1 1996/06/25 19:28:51 tmiller Exp alc $
+d267 1
+d272 1
+a272 2
+struct	write_notice_range
+		       *write_notice_range_t;
+d274 4
+a277 5
+struct	write_notice_range	{
+	write_notice_range_t
+			next;
+	unsigned short	first_page_id;
+	unsigned short	end_page_id;
+d287 1
+a287 2
+	struct	write_notice_range
+			head;
+@
+
+
+10.1.2.3
+log
+@Eliminated the extra level of indirection in the page dirty list.
+@
+text
+@d91 1
+a91 1
+ * $Id: Tmk.h,v 10.1.2.2 1996/08/01 19:59:52 alc Exp alc $
+d329 1
+a329 1
+extern	struct	page	page_dirty;
+d451 1
+a451 1
+#define Tmk_page_dirty_merge(page) Tmk_page_merge(page, &page_dirty, DIRTY)
+@
+
+
+10.1.2.4
+log
+@Hide RANGE in interval.c.
+@
+text
+@d91 1
+a91 1
+ * $Id: Tmk.h,v 10.1.2.3 1996/08/02 19:34:19 alc Exp alc $
+d280 2
+@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@d40 1
+a40 1
+ *	what it does.
+d83 6
+d95 1
+d100 1
+d133 5
+a137 1
+#if ! defined(ultrix)
+d150 5
+a154 2
+#elif defined(__FreeBSD__)
+
+d180 1
+a180 1
+ * DECstation
+d186 1
+a186 1
+#elif defined(__alpha) || defined(__FreeBSD__) || defined(__sgi) || defined(__sun)
+d188 1
+a188 1
+ * Alpha, SGI and SPARC
+d194 1
+a194 1
+#elif defined(__hpux)
+d196 1
+a196 1
+ * HPUX
+a319 2
+extern	sigset_t	BUS_or_SEGV_mask;
+extern	sigset_t	empty_mask;
+a321 2
+
+extern	char		Tmk_timestamp[];
+@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@a88 1
+#if ! defined(linux)
+a92 2
+#endif
+
+a141 7
+#elif defined(linux)
+
+/* Note -- current version uses a software emulation of sendmsg, so
+ * there is really no limit.
+ */
+#define MSG_MAXIOVLEN	1024
+
+d171 1
+a171 1
+#elif defined(__alpha) || defined(__FreeBSD__) || defined(linux) || defined(__sgi) || defined(__sun)
+a194 5
+#endif
+
+
+#if defined(linux)
+#include "linux.h"
+@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.2
+log
+@Eliminated empty_mask and BUS_or_SEGV_mask.  Use SIG_UNBLOCK instead.
+@
+text
+@d125 1
+a125 1
+#if ! defined(__ultrix)
+d305 2
+@
+
+
+10.0.2.3
+log
+@Increased the FreeBSD MTU.  (Taken from the 9.7.2 branch.)
+@
+text
+@d165 1
+a165 1
+ * DECstation-5000/2x0 (MIPS R3000)
+d171 1
+a171 1
+#elif defined(__alpha) || defined(__sgi) || defined(__sun)
+d179 1
+a179 1
+#elif defined(__FreeBSD__) || defined(__hpux)
+d181 1
+a181 1
+ * FreeBSD and HPUX
+@
+
+
+10.0.2.4
+log
+@Ported to Linux 1.2.13.  Changes provided by Robert J. Fowler.
+@
+text
+@d40 1
+a40 1
+ *	external type, variable and function declarations
+a82 6
+ *	20-Apr-1996	Robert J. Fowler
+ *					Adapted for Linux 1.2.13/Intel x86
+ *	Version 0.10.1
+ *
+ * $Id$
+ *
+a88 1
+#if ! defined(__linux)
+a92 1
+#endif
+a124 4
+#if defined(__linux)
+#include "linux.h"
+#endif
+
+d138 2
+a139 5
+#elif defined(__FreeBSD__) || defined(__linux)
+/*
+ * Sendmsg and recvmsg don't exist in Linux 1.2.13.  The TreadMarks emulation
+ * of sendmsg and recvmsg supports an arbitrary number of iovec entries.
+ */
+d171 1
+a171 1
+#elif defined(__alpha) || defined(__linux) || defined(__sgi) || defined(__sun)
+d173 1
+a173 1
+ * Alpha, Linux, SGI and SPARC
+@
+
+
+10.0.2.5
+log
+@Eliminated Tmk_timestamp declaration.  It wasn't used.
+(This change was brought over from version 9.7.2.3.)
+@
+text
+@d87 1
+a87 1
+ * $Id: Tmk.h,v 10.0.2.4 1996/04/20 21:56:23 alc Exp alc $
+d322 2
+@
+
+
+10.0.2.3.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.3.2.2
+log
+@Added the v_alias field to the page struct.
+@
+text
+@a272 3
+#if	defined(__sgi)
+	caddr_t		v_alias;
+#endif
+@
+
+
+10.0.2.3.2.3
+log
+@Define _SGI_MP_SOURCE.  This enables the use of a private errno
+variable. <SMP>
+@
+text
+@a86 3
+#if	defined(__sgi)	/* SMP */
+#	define	_SGI_MP_SOURCE
+#endif
+@
+
+
+10.0.2.3.2.4
+log
+@Added the sigio lock. <SMP>
+@
+text
+@a88 1
+#include <abi_mutex.h>
+a328 4
+
+#if    defined(__sgi)	/* SMP */
+extern	abilock_t	sigio_lock;
+#endif
+@
+
+
+10.0.2.3.2.5
+log
+@Defined the prda_usr structure that is mapped to the PRDA.  Moved
+Tmk_tout_flag to the PRDA. <SMP>
+@
+text
+@a166 11
+#if defined(__sgi)
+#include <sys/prctl.h>
+
+struct	prda_usr	{
+	unsigned	tout_flag;
+};
+
+#define	PRDAUSR	((struct prda_usr *)(&PRDA->usr_prda))
+
+#endif
+
+d322 1
+a322 3
+#if	defined(__sgi)
+#	define		Tmk_tout_flag	(PRDAUSR->tout_flag)
+#else
+d324 1
+a324 1
+#endif
+@
+
+
+10.0.2.3.2.6
+log
+@Added "busy" (in transit) flag to the page structure.
+@
+text
+@a82 2
+ * $Id$
+ *
+a294 3
+#if	defined(__sgi)
+	unsigned char volatile	busy;	/* SMP */
+#endif
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@d324 2
+a333 2
+
+void	Tmk_barrier_sigio_handler();
+@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d79 4
+d94 1
+a94 4
+
+#if defined(sgi)
+#define	_BSD_SIGNALS
+#endif
+a95 1
+
+d153 8
+d163 1
+a163 1
+#if defined(ultrix)
+d303 4
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@d194 1
+a194 2
+enum	req_typ_type	{ REQ_ARRIVAL, REQ_ARRIVAL_REPO, NEW_REQ_ARRIVAL, NEW_REQ_ARRIVAL_REPO, 
+			    REQ_CONNECT, REQ_DIFF, REQ_DISTRIBUTE, REQ_EXIT, REQ_LOCK, REQ_PAGE, REQ_REPO };
+a313 2
+extern	void	      (*Tmk_barrier_sigio_new_handler)();
+
+a323 2
+
+void	Tmk_barrier_sigio_duplicate_new_handler();
+@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@d157 1
+a157 1
+ * DECstation-5000/2x0 (MIPS R3000)
+d163 1
+a163 1
+#elif defined(__alpha) || defined(__sgi) || defined(__sun)
+d171 1
+a171 1
+#elif defined(__FreeBSD__) || defined(__hpux)
+d173 1
+a173 1
+ * FreeBSD and HPUX
+@
+
+
+9.7.2.2
+log
+@Changed sgi to __sgi and ultrix to __ultrix.
+@
+text
+@d91 1
+a91 1
+#if defined(__sgi)
+d125 1
+a125 1
+#if ! defined(__ultrix)
+d155 1
+a155 1
+#if defined(__ultrix)
+@
+
+
+9.7.2.3
+log
+@Eliminated Tmk_timestamp declaration.  It wasn't used.
+@
+text
+@a78 2
+ * $Id$
+ *
+d297 2
+@
+
+
+9.6
+log
+@Tmk-0.9.6R
+@
+text
+@d74 5
+a88 1
+
+a91 2
+#include <bstring.h>
+#include <string.h>
+d94 1
+d96 4
+a99 1
+#include <signal.h>
+d102 6
+d137 7
+d147 6
+d163 1
+a163 1
+#elif defined(__alpha) || defined(sgi) || defined(sparc)
+d185 2
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@a66 1
+ *
+d69 4
+a72 1
+ *	Version 0.9.6
+d260 1
+a260 1
+extern	struct	page	page_array_[NPAGES];
+d285 2
+a294 2
+
+void	Tmk_barrier_sigio_handler();
+@
+
+
+9.5
+log
+@Tmk-0.9.5R
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d66 8
+d96 1
+a96 1
+#if defined(_IBMR2)
+d120 3
+d124 1
+a124 1
+
+d154 1
+a154 1
+#elif defined(_IBMR2)
+d158 1
+a158 1
+#define MTU	65508
+d226 4
+d231 1
+a231 1
+struct	page   *page_t;
+d234 1
+d236 1
+d241 1
+d260 1
+a260 1
+extern	struct	page	page_array_[NPAGES];
+d353 4
+@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@d268 2
+a277 2
+
+void	Tmk_barrier_sigio_handler();
+@
+
+
+9.4
+log
+@Tmk-0.9.4R
+@
+text
+@@

@@ -1,0 +1,30 @@
+ #
+ # $Id: .common,v 1.2 1998/11/03 16:07:52 alc Exp $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) Jacobi.o timer.o
+
+Jacobi.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+Jacobi.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+Jacobi.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+Jacobi.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+Jacobi.o: ../src/Jacobi.f
+	$(FC) $(FFLAGS) -c ../src/Jacobi.f
+
+timer.o: ../src/timer.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/timer.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll

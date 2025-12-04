@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	98.09.13.07.33.30;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@TSP Makefile for Alpha/OSF.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= alpha_osf4
+
+CC	= cc
+CFLAGS	= -migrate -g3 -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS=
+
+all: tsp.udp
+
+include ../.common
+@

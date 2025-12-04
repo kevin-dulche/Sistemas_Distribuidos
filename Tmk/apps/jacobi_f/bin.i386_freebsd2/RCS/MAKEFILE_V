@@ -1,0 +1,64 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	97.12.14.19.42.23;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.02.05.39.40;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Jacobi Makefile for FreeBSD 2.x
+@
+
+
+1.2
+log
+@Added "-pipe" option.
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= i386_freebsd2
+
+CC	= cc
+CFLAGS	= -pipe -g -O2
+
+FC	= f77
+FFLAGS  = -pipe -g -O3
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS= -lcompat
+
+all: Jacobi.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) -o $@@ $(TmkLIB)/support/common_symbol.s
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+d7 1
+a7 1
+CFLAGS	= -O2
+d10 1
+a10 1
+FFLAGS  = -O3
+@

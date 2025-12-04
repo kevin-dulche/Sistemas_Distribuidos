@@ -1,0 +1,539 @@
+head	1.1;
+access;
+symbols
+	Tmk-1_2:1.1.0;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	98.08.10.22.08.52;	author alc;	state Exp;
+branches
+	1.1.0.1;
+next	;
+
+1.1.0.1
+date	98.08.10.22.35.50;	author alc;	state Exp;
+branches;
+next	1.1.0.2;
+
+1.1.0.2
+date	98.08.11.05.09.01;	author alc;	state Exp;
+branches;
+next	1.1.0.3;
+
+1.1.0.3
+date	98.08.22.01.08.26;	author alc;	state Exp;
+branches;
+next	1.1.0.4;
+
+1.1.0.4
+date	98.08.22.06.53.05;	author alc;	state Exp;
+branches;
+next	1.1.0.5;
+
+1.1.0.5
+date	98.08.23.05.59.54;	author alc;	state Exp;
+branches;
+next	1.1.0.6;
+
+1.1.0.6
+date	98.08.23.06.04.25;	author alc;	state Exp;
+branches;
+next	1.1.0.7;
+
+1.1.0.7
+date	98.08.23.06.15.55;	author alc;	state Exp;
+branches;
+next	1.1.0.8;
+
+1.1.0.8
+date	98.08.23.06.24.26;	author alc;	state Exp;
+branches;
+next	1.1.0.9;
+
+1.1.0.9
+date	98.08.23.06.43.33;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@The test program for the reduction operation.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * $Id: barrier.c,v 1.1 1997/04/12 08:55:40 alc Exp $
+ */
+#include <sys/time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "Tmk.h"
+
+
+unsigned  global_array[128];
+
+unsigned  global_length;
+
+unsigned *
+simple_upcall(unsigned procid, unsigned length,
+	      unsigned *data, void *xtraarg)
+{
+  int j;
+
+#if o
+  fprintf(stderr, "In upcall, procid = %d, length = %d \n", procid, length);
+#endif
+
+  if (length != global_length) {
+    fprintf(stderr, "Whoops (length(%d) != global_length(%d)\n",
+	    length, global_length);
+    return global_array;
+  }
+  for (j= 0; j< length; j++)  global_array[j] += data[j];
+
+   return global_array; 
+}
+
+main(argc, argv)
+	int		argc;
+	char	       *argv[];
+{
+	struct timeval	start, end;
+	int lengtharg = 0;
+	int touchresult = 0;
+	int mysum = 0;
+	int		c, i, j;
+	unsigned local_data[128];
+	unsigned local_result[128];
+
+   while ((c = getopt(argc, argv, "l:t")) != -1)
+                switch (c) {
+                case 'l':
+                        lengtharg = atoi(optarg);
+                        break;
+		case 't':
+		        touchresult = 1;
+			break;
+                }
+
+   if (lengtharg>0) {
+     Tmk_err("Vector reduction length %d, ", lengtharg);
+     if (touchresult>0)
+       Tmk_err("touching the result.\n");
+     else
+       Tmk_err("not touching result.\n");
+   }
+   else
+     Tmk_err("Running reduction code with no upcall\n");
+
+
+	Tmk_startup(argc, argv);
+
+#if 0
+        if (Tmk_proc_id == 0) {
+                 global_array = (unsigned *) Tmk_malloc(16*Tmk_page_size); /* allocate some extra */
+                 Tmk_distribute((char *)&global_array, sizeof(global_array));
+         }
+#endif
+
+	Tmk_barrier(0);
+
+	/*  global_length = 128; */
+	global_length = lengtharg;
+
+	if (Tmk_proc_id == 0) {
+
+		gettimeofday(&start, NULL);
+	}
+		for (i = 0; i < 1024; i++) {
+#if 0
+		      fprintf(stderr, "Proc %d Iteration %d\n", Tmk_proc_id, i);
+#endif
+
+		      if (global_length >=1 && global_length <=128) {
+			if (Tmk_proc_id == 0)
+			  for (j = 0; j<global_length; j++){
+			    global_array[j] = 0;
+			  }
+
+			for (j = 0; j<global_length; j++){
+			  local_data[j] = i + j;
+			}
+			Tmk_reduction(0,
+				       global_length,
+				       simple_upcall,
+				       local_data,
+				       local_result,
+				       NULL);
+#if 0
+			if(touchresult) {
+			  mysum += global_array[0]
+			    + global_array[global_length-1];
+			}
+#else
+			if (touchresult){
+			  mysum += local_result[0] + local_result[global_length-1];
+			}
+#endif
+		      }
+		      else {
+			Tmk_reduction(0, 0, 0, 0, 0, 0);
+		      }
+		  }
+
+	if (Tmk_proc_id == 0) {
+		gettimeofday(&end, NULL);
+		printf("Elapsed time: %.3f milliseconds\n",
+		       (((1000000.0*end.tv_sec) + end.tv_usec) -
+			((1000000.0*start.tv_sec) + start.tv_usec))/1024000.0);
+	}
+
+	/*   if(Tmk_proc_id ==0) */
+#if 0
+    fprintf(stderr, "target[0-3] = %d %d %d %d target[%d] = %d \n",
+	    global_array[0], global_array[1], global_array[2], global_array[3],
+	    127, global_array[127]);
+#else
+    fprintf(stderr, "target[0-3] = %d %d %d %d target[%d] = %d \n",
+	    local_result[0], local_result[1], local_result[2], local_result[3],
+	    127, local_result[127]);
+#endif
+
+	Tmk_exit(0);
+}
+@
+
+
+1.1.0.1
+log
+@Add const-ipation.  Reorder the element count and upcall pointer.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1 1998/08/10 22:08:52 alc Exp alc $
+d14 1
+a14 1
+void *
+d16 1
+a16 1
+	      const void *ptr, const void *xtraarg)
+a17 1
+  const unsigned *data = ptr;
+d100 5
+a104 5
+				      simple_upcall,
+				      global_length,
+				      local_data,
+				      local_result,
+				      NULL);
+@
+
+
+1.1.0.2
+log
+@1.  Eliminate the "proc_id" argument.  2.  Introduce the "output"
+argument.  3.  Eliminate the "void *" return value.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.1 1998/08/10 22:35:50 alc Exp alc $
+d14 3
+a16 6
+void
+simple_upcall(
+  unsigned length,
+  const unsigned *input,
+  void *output,
+  const void *xtraarg)
+d18 1
+a18 2
+  const unsigned *data = input;
+  unsigned *global_array = output;
+d25 6
+a30 6
+  if (length != global_length)
+    {
+      fprintf(stderr, "Whoops (length(%d) != global_length(%d)\n",
+	      length, global_length);
+      return;
+    }
+d32 1
+a32 2
+  for (j = 0; j < length; j++)
+    global_array[j] += data[j];
+@
+
+
+1.1.0.3
+log
+@Drop the last parameter to the reduction.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.2 1998/08/11 05:09:01 alc Exp alc $
+d17 3
+a19 2
+  const void *input,
+  void *output)
+d109 2
+a110 1
+				      local_result);
+d123 1
+a123 1
+			Tmk_reduction(0, NULL, 0, NULL, NULL);
+@
+
+
+1.1.0.4
+log
+@1.  Consistent white-space usage.  2.  Delete unnecessary messages.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.3 1998/08/22 01:08:26 alc Exp alc $
+d7 1
+a8 1
+#include "Tmk.h"
+d16 3
+a18 3
+	unsigned	length,
+	const void     *input,
+	void	       *output)
+d20 7
+a26 3
+	const unsigned *data = input;
+	unsigned *global_array = output;
+	int j;
+d28 9
+a36 2
+	for (j = 0; j < length; j++)
+		global_array[j] += data[j];
+d51 1
+a51 1
+	while ((c = getopt(argc, argv, "l:t")) != -1)
+d61 9
+a69 1
+	if (lengtharg > 0) {
+a70 1
+		Tmk_err("Vector reduction length %d, ", lengtharg);
+d72 1
+a72 7
+		if (touchresult > 0)
+			Tmk_err("touching the result.\n");
+		else
+			Tmk_err("not touching result.\n");
+	}
+	else
+		Tmk_err("Running reduction code with no upcall\n");
+a73 1
+	Tmk_startup(argc, argv);
+d76 3
+a78 3
+		global_array = (unsigned *) Tmk_malloc(16*Tmk_page_size); /* allocate some extra */
+		Tmk_distribute((char *)&global_array, sizeof(global_array));
+	}
+d80 1
+d90 1
+a90 1
+	for (i = 0; i < 1024; i++) {
+d92 1
+a92 1
+		fprintf(stderr, "Proc %d Iteration %d\n", Tmk_proc_id, i);
+d94 2
+a95 1
+		if (global_length >=1 && global_length <= 128) {
+d97 3
+a99 3
+				for (j = 0; j < global_length; j++) {
+					global_array[j] = 0;
+				}
+d101 2
+a102 2
+			for (j = 0; j<global_length; j++) {
+				local_data[j] = i + j;
+a103 1
+
+d110 3
+a112 2
+			if (touchresult) {
+				mysum += global_array[0] + global_array[global_length-1];
+d115 2
+a116 2
+			if (touchresult) {
+				mysum += local_result[0] + local_result[global_length-1];
+d119 2
+a120 2
+		}
+		else
+d122 2
+a123 1
+	}
+@
+
+
+1.1.0.5
+log
+@Reworked to eliminate the dead code.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.4 1998/08/22 06:53:05 alc Exp alc $
+d10 4
+d20 3
+a22 4
+	const int      *in = input;
+	int	       *out = output;
+	int		elems = length / sizeof(in[0]);
+	int		j;
+d24 2
+a25 2
+	for (j = 0; j < elems; j++)
+		out[j] += in[j];
+d32 7
+a38 7
+	struct	timeval	start, end;
+	int	length = 0;
+	int	touchresult = 0;
+	int	mysum = 0;
+	int	c, i, j;
+	int	local_data[TMK_MAX_REDUCTION_SIZE];
+	int	local_result[TMK_MAX_REDUCTION_SIZE];
+d43 1
+a43 1
+                        length = atoi(optarg)*sizeof(local_data[0]);
+d50 1
+a50 3
+	Tmk_startup(argc, argv);
+
+	if (length > 0) {
+d52 1
+a52 1
+		Tmk_err("Reduction data size: %d bytes, ", length);
+d60 1
+a60 1
+		Tmk_err("Running reduction code with no upcall.\n");
+d62 7
+d71 5
+a75 1
+	if (Tmk_proc_id == 0)
+d77 1
+a77 1
+
+d79 8
+d88 1
+a88 4
+		if ((length > 0) &&
+		    (length <= TMK_MAX_REDUCTION_SIZE)) {
+
+			for (j = 0; j < length; j++)
+d90 1
+d94 1
+a94 1
+				      length,
+d97 9
+a105 3
+
+			if (touchresult)
+				mysum += local_result[0] + local_result[length - 1];
+a111 1
+
+a112 1
+
+d118 10
+a127 4
+	if (Tmk_proc_id == 0)
+		fprintf(stderr, "target[0-3] = %d %d %d %d target[%d] = %d\n",
+			local_result[0], local_result[1], local_result[2], local_result[3],
+			127, local_result[127]);
+@
+
+
+1.1.0.6
+log
+@Delete "touch result" code.  Unless the reduction data is
+in shared memory, it doesn't serve any purpose.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.5 1998/08/23 05:59:54 alc Exp alc $
+d31 2
+d37 1
+a37 1
+	while ((c = getopt(argc, argv, "l:")) != -1)
+d42 3
+d49 9
+a57 2
+	if (length > 0)
+		Tmk_err("Reduction data size: %d bytes.\n", length);
+d79 3
+@
+
+
+1.1.0.7
+log
+@Correctly size the reduction data buffers.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.6 1998/08/23 06:04:25 alc Exp alc $
+d32 2
+a33 2
+	int	local_data[TMK_MAX_REDUCTION_SIZE/sizeof(int)];
+	int	local_result[TMK_MAX_REDUCTION_SIZE/sizeof(int)];
+@
+
+
+1.1.0.8
+log
+@Fixed up the final message and conditioned it on the length
+of the reduction data.
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.7 1998/08/23 06:15:55 alc Exp alc $
+d79 1
+d81 4
+a84 6
+		if (length > 0)
+			printf("target[0-3] = %d %d %d %d\ntarget[%d] = %d\n",
+			       local_result[0], local_result[1], local_result[2], local_result[3],
+			       (length - 1)/sizeof(local_result[0]),
+			       local_result[(length - 1)/sizeof(local_result[0])]);
+	}
+@
+
+
+1.1.0.9
+log
+@Renamed "Tmk_reduction" to "Tmk_barrier_reduce".
+@
+text
+@d2 1
+a2 1
+ * $Id: reduction.c,v 1.1.0.8 1998/08/23 06:24:26 alc Exp alc $
+d62 5
+a66 5
+			Tmk_barrier_reduce(0,
+					   simple_upcall,
+					   length,
+					   local_data,
+					   local_result);
+d69 1
+a69 1
+			Tmk_barrier_reduce(0, NULL, 0, NULL, NULL);
+@

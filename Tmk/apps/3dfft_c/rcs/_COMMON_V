@@ -1,0 +1,58 @@
+head	1.1;
+access;
+symbols
+	Tmk-1_2:1.1
+	Tmk-1_0_3_2R:1.1
+	Tmk-1_0_3_1R:1.1
+	Tmk-1_0_3R:1.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:1.1
+	Tmk-1_0:1;
+locks
+	alc:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	98.08.07.03.32.52;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Architecture independent portion of the Makefile.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) fft.o
+
+fft.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+fft.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+fft.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+fft.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+fft.o: ../src/fft.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/fft.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@

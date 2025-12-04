@@ -1,0 +1,14 @@
+ #
+ # $Id: Makefile,v 10.5 1997/12/14 07:03:25 alc Exp $
+ #
+ARCH	= hppa_hpux10
+
+CC	= cc
+CFLAGS	= -Ae -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm
+
+all: fft.udp
+
+include ../.common

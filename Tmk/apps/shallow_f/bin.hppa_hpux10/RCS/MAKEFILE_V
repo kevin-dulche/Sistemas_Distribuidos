@@ -1,0 +1,105 @@
+head	10.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.4
+date	97.12.14.07.01.20;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.11.09.00.18.54;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.11.08.21.21.58;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	97.11.08.21.03.33;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.4
+log
+@Specify optimization level to the Fortran compiiler.  Use the "Extended
+ANSI C" flag to the C compiler.
+@
+text
+@ #
+ # $Id: Makefile,v 10.3 1997/11/09 00:18:54 alc Exp alc $
+ #
+ARCH	= hppa_hpux10
+
+CC	= cc
+CFLAGS	= -Ae -O
+
+FC	= fort77
+FFLAGS	= -O2 +ppu
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS= +U77
+
+all: shallow.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) $(ASFLAGS) $(TmkLIB)/support/common_symbol.s
+@
+
+
+10.3
+log
+@Eliminated the directive that includes the BSD emulation library.
+@
+text
+@d2 1
+a2 1
+ # $Id: Makefile,v 10.2 1997/11/08 21:21:58 alc Exp alc $
+d6 2
+a7 2
+CC	= c89
+CFLAGS	= -O -D_HPUX_SOURCE
+d10 1
+a10 1
+FFLAGS	= -O +ppu
+@
+
+
+10.2
+log
+@Updated to hpux10.
+@
+text
+@d2 1
+a2 1
+ # $Id: Makefile,v 10.1 1997/11/08 21:03:33 alc Exp alc $
+d13 1
+a13 1
+MACHDEP_LIBS= -lBSD +U77
+@
+
+
+10.1
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d4 1
+a4 1
+ARCH	= hppa_hpux9
+@

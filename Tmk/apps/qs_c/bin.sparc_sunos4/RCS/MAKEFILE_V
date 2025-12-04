@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.15.03.58.39;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@QS Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= sparc_sunos4
+
+CC	= gcc
+CFLAGS	= -pipe -g -O2
+
+MACHDEP_OBJS=
+MACHDEP_LIBS=
+
+all: qs.udp
+
+include ../.common
+@

@@ -1,0 +1,75 @@
+head	10.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.4
+date	97.12.24.07.49.03;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.06.03.05.25.51;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.06.03.05.21.32;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Zelig Makefile for DEC UNIX
+@
+
+
+10.4
+log
+@Added $Id$ tag.
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= alpha_osf4
+
+CC	= cc
+CFLAGS	= -g3 -O
+
+FC	= f77
+FFLAGS	= -g3 -O
+
+MACHDEP_OBJS= common_symbol.o
+MACHDEP_LIBS=
+
+all: zelig.udp
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) -o $@@ $(TmkLIB)/support/common_symbol.s
+@
+
+
+10.3
+log
+@Enabled: Working Version
+@
+text
+@d1 3
+@
+
+
+10.2
+log
+@Initial revision
+@
+text
+@d9 1
+a9 1
+MACHDEP_OBJS=
+d15 3
+@

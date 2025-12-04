@@ -1,0 +1,26 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	97.06.02.08.31.06;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Water
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@extern double  TEMP,RHO,TSTEP,BOXL,BOXH,CUTOFF,CUT2;
+extern int    NMOL,NORDER,NATMO,NATMO3,NMOL1;
+@

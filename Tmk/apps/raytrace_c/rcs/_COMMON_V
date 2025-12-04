@@ -1,0 +1,221 @@
+head	1.4;
+access;
+symbols
+	Tmk-1_0_3_2R:1.4
+	Tmk-1_0_3_1R:1.4
+	Tmk-1_0:1;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	97.12.22.07.18.05;	author alc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	97.12.14.19.51.28;	author alc;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	97.12.08.03.28.32;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.12.08.03.27.22;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Shared Makefile
+@
+
+
+1.4
+log
+@Add rules for mpl and LoadLeveler.
+@
+text
+@ #
+ # $Id: .common,v 1.3 1997/12/14 19:51:28 alc Exp alc $
+ #
+TmkDIR  = ../../..
+TmkLIB  = $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) bbox.o cr.o env.o fbuf.o geo.o huprn.o \
+	  husetup.o hutv.o isect.o main.o matrix.o memory.o poly.o \
+	 raystack.o shade.o sph.o trace.o tri.o workpool.o debug.o
+
+raytrace.atm: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+raytrace.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+raytrace.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+raytrace.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+bbox.o: ../src/rt.h ../src/bbox.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/bbox.c
+
+cr.o:	../src/rt.h ../src/cr.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/cr.c	
+
+env.o:	../src/rt.h ../src/env.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/env.c
+
+fbuf.o: ../src/rt.h ../src/fbuf.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/fbuf.c
+
+geo.o:	../src/rt.h ../src/geo.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/geo.c
+
+huprn.o: ../src/rt.h ../src/huprn.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/huprn.c
+
+husetup.o: ../src/rt.h ../src/husetup.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/husetup.c
+
+hutv.o: ../src/rt.h ../src/hutv.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/hutv.c
+
+isect.o: ../src/rt.h ../src/isect.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/isect.c
+
+main.o: ../src/rt.h ../src/main.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/main.c
+
+matrix.o: ../src/rt.h ../src/matrix.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/matrix.c
+
+memory.o: ../src/rt.h ../src/memory.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/memory.c
+
+poly.o: ../src/rt.h ../src/poly.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/poly.c
+
+raystack.o: ../src/rt.h ../src/raystack.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/raystack.c
+
+shade.o: ../src/rt.h ../src/shade.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/shade.c
+
+sph.o:	../src/rt.h ../src/sph.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/sph.c
+
+trace.o: ../src/rt.h ../src/trace.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/trace.c
+
+tri.o:	../src/rt.h ../src/tri.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/tri.c
+
+workpool.o: ../src/rt.h ../src/workpool.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/workpool.c
+
+debug.o: ../src/debug.h ../src/debug.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/debug.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@
+
+
+1.3
+log
+@Rearranged the order of the options for consistency with the other Makefiles.
+@
+text
+@d2 1
+a2 1
+ # $Id: .common,v 1.2 1997/12/08 03:28:32 alc Exp alc $
+d16 3
+d21 3
+@
+
+
+1.2
+log
+@Added the "Id" tag.
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d20 1
+a20 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/bbox.c
+d23 1
+a23 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/cr.c	
+d26 1
+a26 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/env.c
+d29 1
+a29 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/fbuf.c
+d32 1
+a32 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/geo.c
+d35 1
+a35 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/huprn.c
+d38 1
+a38 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/husetup.c
+d41 1
+a41 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/hutv.c
+d44 1
+a44 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/isect.c
+d47 1
+a47 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/main.c
+d50 1
+a50 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/matrix.c
+d53 1
+a53 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/memory.c
+d56 1
+a56 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/poly.c
+d59 1
+a59 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/raystack.c
+d62 1
+a62 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/shade.c
+d65 1
+a65 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/sph.c
+d68 1
+a68 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/trace.c
+d71 1
+a71 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/tri.c
+d74 1
+a74 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/workpool.c
+d77 1
+a77 1
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) ../src/debug.c
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+@

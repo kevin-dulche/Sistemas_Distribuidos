@@ -1,0 +1,351 @@
+head	10.3;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+10.3
+date	97.07.20.05.00.59;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.07.19.18.28.01;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.02.08.28.51;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Red-Black SOR
+@
+
+
+10.3
+log
+@Parallelize the array initialization procedure.  Consequently, delete
+the code to reset the statistics after the first iteration.  It's now
+pointless.  Rename two procedures and variables for clarity.
+@
+text
+@/*
+ * A Red-Black SOR
+ *
+ *	using separate red and block matrices
+ *	to minimize false sharing
+ *
+ * Solves a M+2 by 2N+2 array
+ *
+ * $Id: sor.c,v 10.2 1997/07/19 18:28:01 alc Exp alc $
+ */
+#include <stdio.h>
+
+#include <sys/time.h>
+
+struct	timeval	start, finish;
+
+#include <Tmk.h>
+
+int	iterations = 10;
+
+int	M = 2000;
+int	N = 500;	/* N.B. There are 2N columns. */
+
+float **red_;
+float **black_;
+
+/*
+ * The first row's index odd.
+ */
+void	sor_first_row_odd(first_row, end)
+	int	first_row;
+	int	end;
+{
+	int	i, j, k;
+
+	for (i = 0; i < iterations; i++) {
+
+		for (j = first_row; j <= end; j++) {
+
+			for (k = 0; k < N; k++) {
+
+				black_[j][k] = (red_[j-1][k] + red_[j+1][k] + red_[j][k] + red_[j][k+1])/(float) 4.0;
+			}
+			if ((j += 1) > end)
+				break;
+
+			for (k = 1; k <= N; k++) {
+
+				black_[j][k] = (red_[j-1][k] + red_[j+1][k] + red_[j][k-1] + red_[j][k])/(float) 4.0;
+			}
+		}
+		Tmk_barrier(0);
+
+		for (j = first_row; j <= end; j++) {
+
+			for (k = 1; k <= N; k++) {
+
+				red_[j][k] = (black_[j-1][k] + black_[j+1][k] + black_[j][k-1] + black_[j][k])/(float) 4.0;
+			}
+			if ((j += 1) > end)
+				break;
+
+			for (k = 0; k < N; k++) {
+
+				red_[j][k] = (black_[j-1][k] + black_[j+1][k] + black_[j][k] + black_[j][k+1])/(float) 4.0;
+			}
+		}				
+		Tmk_barrier(0);
+	}
+}
+
+/*
+ * The first row's index is even.
+ */
+void	sor_first_row_even(first_row, end)
+	int	first_row;
+	int	end;
+{
+	int	i, j, k;
+
+	for (i = 0; i < iterations; i++) {
+
+		for (j = first_row; j <= end; j++) {
+
+			for (k = 1; k <= N; k++) {
+
+				black_[j][k] = (red_[j-1][k] + red_[j+1][k] + red_[j][k-1] + red_[j][k])/(float) 4.0;
+			}
+			if ((j += 1) > end)
+				break;
+
+			for (k = 0; k < N; k++) {
+
+				black_[j][k] = (red_[j-1][k] + red_[j+1][k] + red_[j][k] + red_[j][k+1])/(float) 4.0;
+			}
+		}
+		Tmk_barrier(0);
+
+		for (j = first_row; j <= end; j++) {
+
+			for (k = 0; k < N; k++) {
+
+				red_[j][k] = (black_[j-1][k] + black_[j+1][k] + black_[j][k] + black_[j][k+1])/(float) 4.0;
+			}
+			if ((j += 1) > end)
+				break;
+
+			for (k = 1; k <= N; k++) {
+
+				red_[j][k] = (black_[j-1][k] + black_[j+1][k] + black_[j][k-1] + black_[j][k])/(float) 4.0;
+			}
+		}				
+		Tmk_barrier(0);
+	}
+}
+
+extern	char	       *optarg;
+
+main(argc, argv)
+	int		argc;
+	char	       *argv[];
+{
+	int		c, i, j;
+	int		first_row, last_row;
+
+	while ((c = getopt(argc, argv, "i:m:n:")) != -1)
+		switch (c) {
+		case 'i':
+			iterations = atoi(optarg);
+			break;
+		case 'm':
+			M = atoi(optarg);
+			break;
+		case 'n':
+			N = atoi(optarg);
+			break;
+		}
+
+	Tmk_startup(argc, argv);
+
+	printf("Red-Black SOR: %d processors running %d iterations over a %d by %d array\n",
+	       Tmk_nprocs, iterations, M, 2*N);
+
+	if (Tmk_proc_id == 0) {
+
+		if ((red_ = (float **) Tmk_malloc((M + 2)*sizeof(float *))) == 0)
+			Tmk_errexit("out of shared memory");
+
+		if ((black_ = (float **) Tmk_malloc((M + 2)*sizeof(float *))) == 0)
+			Tmk_errexit("out of shared memory");
+
+		for (i = 0; i <= M + 1; i++) {
+
+			if ((red_[i] = (float *) Tmk_malloc((N + 1)*sizeof(float))) == 0)
+				Tmk_errexit("out of shared memory");
+
+			if ((black_[i] = (float *) Tmk_malloc((N + 1)*sizeof(float))) == 0)
+				Tmk_errexit("out of shared memory");
+		}
+		Tmk_distribute((char *)&red_, sizeof(red_));
+
+		Tmk_distribute((char *)&black_, sizeof(black_));
+	}
+	Tmk_barrier(0);
+
+	first_row = (M*Tmk_proc_id)/Tmk_nprocs + 1;
+	last_row  = (M*(Tmk_proc_id + 1))/Tmk_nprocs;
+
+	for (i = first_row; i <= last_row; i++) {
+		/*
+		 * Initialize the top edge.
+		 */
+		if (i == 1)
+			for (j = 0; j <= N; j++)
+				red_[0][j] = black_[0][j] = (float) 1.0;
+		/*
+		 * Initialize the left and right edges.
+		 */
+		if (i & 1) {
+			red_[i][0] = (float) 1.0;
+			black_[i][N] = (float) 1.0;
+		}
+		else {
+			black_[i][0] = (float) 1.0;
+			red_[i][N] = (float) 1.0;
+		}
+		/*
+		 * Initialize the bottom edge.
+		 */
+		if (i == M)
+			for (j = 0; j <= N; j++)
+				red_[i+1][j] = black_[i+1][j] = (float) 1.0;
+	}
+	Tmk_barrier(0);
+
+	gettimeofday(&start, NULL);
+
+	if (first_row & 1)
+		sor_first_row_odd(first_row, last_row);
+	else
+		sor_first_row_even(first_row, last_row);
+
+	gettimeofday(&finish, NULL);
+
+	printf("Elapsed time: %.2f seconds\n",
+	       (((finish.tv_sec * 1000000.0) + finish.tv_usec) -
+		((start.tv_sec * 1000000.0) + start.tv_usec)) / 1000000.0);
+
+	Tmk_exit(0);
+}
+@
+
+
+10.2
+log
+@Added $Id.
+@
+text
+@d9 1
+a9 1
+ * $Id$
+a18 6
+/*
+ * To begin statistics collection after the first iteration
+ * has completed use the following #define
+ *
+#define	RESET_AFTER_ONE_ITERATION
+ */
+d28 1
+a28 1
+ * begin is odd
+d30 2
+a31 2
+void	sor_odd(begin, end)
+	int	begin;
+d38 1
+a38 1
+		for (j = begin; j <= end; j++) {
+d54 1
+a54 1
+		for (j = begin; j <= end; j++) {
+a68 8
+#ifdef	RESET_AFTER_ONE_ITERATION
+		if (i == 0) {
+
+			bzero(&Tmk_stat, sizeof(Tmk_stat));
+
+			gettimeofday(&start, NULL);
+		}
+#endif
+d73 1
+a73 1
+ * begin is even
+d75 2
+a76 2
+void	sor_even(begin, end)
+	int	begin;
+d83 1
+a83 1
+		for (j = begin; j <= end; j++) {
+d99 1
+a99 1
+		for (j = begin; j <= end; j++) {
+a113 8
+#ifdef	RESET_AFTER_ONE_ITERATION
+		if (i == 0) {
+
+			bzero(&Tmk_stat, sizeof(Tmk_stat));
+
+			gettimeofday(&start, NULL);
+		}
+#endif
+d124 1
+a124 1
+	int		begin, end;
+d138 1
+d141 3
+a158 12
+
+			if ((i == 0) || (i == M + 1))
+				for (j = 0; j <= N; j++)
+					red_[i][j] = black_[i][j] = 1.0;
+			else if (i & 1) {
+				red_[i][0] = 1.0;
+				black_[i][N] = 1.0;
+			}
+			else {
+				black_[i][0] = 1.0;
+				red_[i][N] = 1.0;
+			}
+d164 1
+a164 2
+	begin = (M*Tmk_proc_id)/Tmk_nprocs + 1;
+	end   = (M*(Tmk_proc_id + 1))/Tmk_nprocs;
+d166 2
+a167 2
+	if (Tmk_proc_id == 0)
+		printf("Running %d iterations over a %d by %d array\n", iterations, M, 2*N);
+d169 25
+d198 2
+a199 2
+	if (begin & 1)
+		sor_odd(begin, end);
+d201 1
+a201 1
+		sor_even(begin, end);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 2
+@

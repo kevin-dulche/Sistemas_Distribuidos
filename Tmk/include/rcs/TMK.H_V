@@ -1,0 +1,1178 @@
+head	11.9;
+access;
+symbols
+	Tmk-1_2:10.7.1
+	Tmk-1_1:11
+	Tmk-1_0_3_2R:10.7.1.7.0.1
+	Tmk-1_0_3_1R:10.7.1.7.0.1
+	Tmk-1_0_3R:10.7.1.7.0.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.7.1.7
+	Tmk-1_0_1R:10.7.1.5
+	Tmk-1_0:10.7.1.7.0
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.7;
+locks
+	alc:10.7.1.16
+	alc:10.7.1.7.0.1; strict;
+comment	@ * @;
+
+
+11.9
+date	98.05.09.06.04.53;	author alc;	state Exp;
+branches;
+next	11.8;
+
+11.8
+date	98.01.09.21.13.54;	author alc;	state Exp;
+branches;
+next	11.7;
+
+11.7
+date	97.12.08.06.46.32;	author alc;	state Exp;
+branches;
+next	11.6;
+
+11.6
+date	97.07.24.05.43.10;	author alc;	state Exp;
+branches;
+next	11.5;
+
+11.5
+date	97.07.17.05.39.02;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	97.07.15.07.34.29;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.07.10.06.23.16;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.06.03.19.56.30;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.05.27.03.13.29;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	97.05.22.03.33.02;	author alc;	state Exp;
+branches
+	10.7.1.1;
+next	10.6;
+
+10.6
+date	97.04.12.08.32.06;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	97.03.18.06.24.02;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	97.03.18.03.10.04;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.03.18.03.04.58;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.01.10.04.43.04;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.07.26.06.17.19;	author alc;	state Exp;
+branches;
+next	10.0;
+
+10.0
+date	96.07.26.06.13.24;	author alc;	state Exp;
+branches;
+next	9.7;
+
+9.7
+date	96.03.17.05.29.41;	author alc;	state Exp;
+branches
+	9.7.1.1;
+next	9.6;
+
+9.6
+date	96.03.17.04.59.12;	author alc;	state Exp;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.16.07.56.14;	author alc;	state Exp;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.23.57.58;	author alc;	state Exp;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.16.21.23.02;	author alc;	state Exp;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.17.06.30.04;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.1.1
+date	96.03.17.06.42.33;	author alc;	state Exp;
+branches;
+next	;
+
+10.7.1.1
+date	97.06.01.17.20.20;	author alc;	state Exp;
+branches;
+next	10.7.1.2;
+
+10.7.1.2
+date	97.06.01.17.38.49;	author alc;	state Exp;
+branches;
+next	10.7.1.3;
+
+10.7.1.3
+date	97.07.17.05.34.45;	author alc;	state Exp;
+branches;
+next	10.7.1.4;
+
+10.7.1.4
+date	97.07.23.07.13.37;	author alc;	state Exp;
+branches;
+next	10.7.1.5;
+
+10.7.1.5
+date	98.01.09.21.15.40;	author alc;	state Exp;
+branches;
+next	10.7.1.6;
+
+10.7.1.6
+date	98.04.10.22.30.42;	author alc;	state Exp;
+branches;
+next	10.7.1.7;
+
+10.7.1.7
+date	98.05.09.06.06.03;	author alc;	state Exp;
+branches
+	10.7.1.7.0.1;
+next	10.7.1.8;
+
+10.7.1.8
+date	98.07.17.05.21.30;	author alc;	state Exp;
+branches;
+next	10.7.1.9;
+
+10.7.1.9
+date	98.08.10.19.54.04;	author alc;	state Exp;
+branches;
+next	10.7.1.10;
+
+10.7.1.10
+date	98.08.10.21.36.49;	author alc;	state Exp;
+branches;
+next	10.7.1.11;
+
+10.7.1.11
+date	98.08.10.21.56.39;	author alc;	state Exp;
+branches;
+next	10.7.1.12;
+
+10.7.1.12
+date	98.08.10.22.43.45;	author alc;	state Exp;
+branches;
+next	10.7.1.13;
+
+10.7.1.13
+date	98.08.11.04.47.45;	author alc;	state Exp;
+branches;
+next	10.7.1.14;
+
+10.7.1.14
+date	98.08.11.06.37.33;	author alc;	state Exp;
+branches;
+next	10.7.1.15;
+
+10.7.1.15
+date	98.08.22.01.08.26;	author alc;	state Exp;
+branches;
+next	10.7.1.16;
+
+10.7.1.16
+date	98.08.23.06.43.33;	author alc;	state Exp;
+branches;
+next	;
+
+10.7.1.7.0.1
+date	98.07.17.04.16.04;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.9
+log
+@Added "const" to the Tmk_startup definition.  This is consistent
+with getopt.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1997						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: Tmk.h,v 11.8 1998/01/09 21:13:54 alc Exp alc $
+ *
+ * Description:    
+ *	user include file
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Apr-1993	Alan L. Cox	Created
+ *	16-Jun-1994	Alan L. Cox	Adapted for Alpha
+ *					 (changes provided by Povl T. Koch)
+ *	28-Aug-1994	Alan L. Cox	Adapted for C++
+ */
+#ifndef	__Tmk_h
+#define	__Tmk_h
+
+#if ! defined(__GNUC__)
+#define __attribute__(dummy)
+#endif
+
+#define TMK_NPROCS	8
+#if _mips == 4
+#define	TMK_NPAGES	8192	/* Tmk_page_size == 16384 */
+#else
+#define	TMK_NPAGES	16384	/* Tmk_page_size == 4096 or 8192 */
+#endif
+#define TMK_NBARRIERS	32
+#define TMK_NCONDS	4
+#define TMK_NLOCKS	1024
+
+struct	Tmk_stat	{
+	unsigned	acquires;
+	unsigned	acquire_time; /* in microseconds */
+	unsigned	arrivals;
+	unsigned	broadcasts;
+	unsigned	signals;
+	unsigned	waits;
+	unsigned	bytes;
+	unsigned	bytes_of_data;
+	unsigned	cold_misses;
+	unsigned	messages;
+	unsigned	messages_for_acquires;
+	unsigned	messages_for_ownership;
+	unsigned	yes;
+	unsigned	rexmits;
+	unsigned	diffs;
+	unsigned	twins;
+	unsigned	repos;
+	unsigned	total_diff_size; /* in bytes */
+};
+
+struct	Tmk_sched_arg	{
+	int		sharedLen;
+	int		byvalueLen;
+	void	       *shared[15];
+	union {
+		short	short_by_value;
+		int	int_by_value;
+		long	long_by_value;
+		float	float_by_value;
+		double	double_by_value;
+	}	byvalue[15];
+};
+
+typedef
+struct	Tmk_sched_arg  *Tmk_sched_arg_t;
+
+struct	Tmk		{
+	unsigned	proc_id;
+	unsigned	nprocs;
+	unsigned	page_size;
+	unsigned	npages;
+};
+
+#if defined(__cplusplus)
+extern "C" {
+#endif /* __cplusplus */
+extern	struct	Tmk	tmk_;	/* accessible thru a Fortran common block */
+
+#define Tmk_proc_id	tmk_.proc_id
+#define Tmk_nprocs	tmk_.nprocs
+
+#define Tmk_page_size	tmk_.page_size
+#define Tmk_npages	tmk_.npages
+
+extern	struct	Tmk_stat
+			Tmk_stat;
+
+#if defined(__cplusplus) || __STDC__ == 1
+extern	void		Tmk_startup( int argc, char * const *argv );
+extern	void		Tmk_exit( int status ) __attribute__((__noreturn__));
+extern	void		Tmk_barrier( unsigned barrier_id );
+extern	void		Tmk_lock_acquire( unsigned lock_id );
+extern	void		Tmk_lock_release( unsigned lock_id );
+extern	void		Tmk_lock_cond_broadcast( unsigned lock_id,
+						 unsigned cond_id );
+extern	void		Tmk_lock_cond_signal( unsigned lock_id,
+					      unsigned cond_id );
+extern	void		Tmk_lock_cond_wait( unsigned lock_id,
+					    unsigned cond_id );
+extern	void		Tmk_distribute( void *ptr, int size );
+extern	void	       *Tmk_malloc( unsigned size );
+extern	void		Tmk_free( void *ptr );
+extern	void	       *Tmk_sbrk( unsigned incr );
+extern	int		Tmk_sched_start( unsigned proc_id );
+extern	void		Tmk_sched_fork( void (*func)( Tmk_sched_arg_t arg ),
+					Tmk_sched_arg_t arg );
+extern	void		Tmk_sched_exit( void );
+extern	void		Tmk_spawn( char *hostname, int argc, char **argv );
+#else
+extern	void		Tmk_startup();
+extern	void		Tmk_exit();
+extern	void		Tmk_barrier();
+extern	void		Tmk_lock_acquire();
+extern	void		Tmk_lock_release();
+extern	void		Tmk_lock_cond_broadcast();
+extern	void		Tmk_lock_cond_signal();
+extern	void		Tmk_lock_cond_wait();
+extern	void		Tmk_distribute();
+extern	void	       *Tmk_malloc();
+extern	void		Tmk_free();
+extern	void	       *Tmk_sbrk();
+extern	int		Tmk_sched_start();
+extern	void		Tmk_sched_fork();
+extern	void		Tmk_sched_exit();
+extern	void		Tmk_spawn();
+#endif
+#if defined(__cplusplus)
+}
+#endif /* __cplusplus */
+#endif /* __Tmk_h */
+@
+
+
+11.8
+log
+@Use "void *" instead of "char *" for consistency
+with the POSIX specifications of sbrk, malloc, and free.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.7 1997/12/08 06:46:32 alc Exp alc $
+d127 1
+a127 1
+extern	void		Tmk_startup( int argc, char **argv );
+@
+
+
+11.7
+log
+@Added "noreturn" attributes to the exit routines.  (This reduces
+the code size by a measureable amount.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.6 1997/07/24 05:43:10 alc Exp alc $
+d138 2
+a139 2
+extern	void		Tmk_distribute( char *ptr, int size );
+extern	char	       *Tmk_malloc( unsigned size );
+d141 1
+a141 1
+extern	char	       *Tmk_sbrk( unsigned incr );
+d157 1
+a157 1
+extern	char	       *Tmk_malloc();
+d159 1
+a159 1
+extern	char	       *Tmk_sbrk();
+@
+
+
+11.6
+log
+@Added twin count to the statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.5 1997/07/17 05:39:02 alc Exp alc $
+d54 4
+d128 1
+a128 1
+extern	void		Tmk_exit( int status );
+@
+
+
+11.5
+log
+@Increase the default number of shared pages to provide 64Mbytes.  (Identical
+to revision 10.7.1.3.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.4 1997/07/15 07:34:29 alc Exp alc $
+a77 1
+	unsigned	repos;
+d80 2
+@
+
+
+11.4
+log
+@Added repo count to the statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.3 1997/07/10 06:23:16 alc Exp alc $
+d56 1
+a56 1
+#define	TMK_NPAGES	4096	/* Tmk_page_size == 16384 */
+d58 1
+a58 1
+#define	TMK_NPAGES	8192	/* Tmk_page_size == 4096 or 8192 */
+@
+
+
+11.3
+log
+@Added counters to Tmk_stat for ownership requests and successes.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.2 1997/06/03 19:56:30 alc Exp alc $
+d78 1
+@
+
+
+11.2
+log
+@Changed the Fortran API to use a common block to hold the proc_id,
+nprocs, page_size and npages.  Dropped the trailing "_" from
+struct Tmk_, and added page_size and npages.  (Identical to
+revision 10.7.1.1.)
+
+Deleted the TMK_DISTRIBUTE macro.  (Identical to revision 10.7.1.2.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 11.1 1997/05/27 03:13:29 alc Exp alc $
+d76 2
+@
+
+
+11.1
+log
+@Added Tmk_spawn.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7 1997/05/22 03:33:02 alc Exp alc $
+a63 3
+#define	TMK_DISTRIBUTE(variable) \
+			Tmk_distribute((char *)&variable, sizeof(variable))
+
+d97 1
+a97 1
+struct	Tmk_		{
+d100 2
+d107 1
+a107 5
+extern	unsigned	Tmk_page_size;
+
+extern	unsigned	Tmk_npages;
+
+extern	struct	Tmk_	Tmk_;
+d109 2
+a110 1
+#define	Tmk_proc_id	Tmk_.proc_id
+d112 2
+a113 1
+#define	Tmk_nprocs	Tmk_.nprocs
+@
+
+
+10.7
+log
+@Renamed "condition" functions to "lock_cond".  This reflects
+the fact that conditions are relative to a lock.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.6 1997/04/12 08:32:06 alc Exp alc $
+d141 1
+d158 1
+@
+
+
+10.7.1.1
+log
+@Changed the Fortran API to use a common block to hold the proc_id,
+nprocs, page_size and npages.  Dropped the trailing "_" from
+struct Tmk_, and added page_size and npages.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7 1997/05/22 03:33:02 alc Exp alc $
+d100 1
+a100 1
+struct	Tmk		{
+a102 2
+	unsigned	page_size;
+	unsigned	npages;
+d108 1
+a108 1
+extern	struct	Tmk	tmk_;	/* accessible thru a Fortran common block */
+d110 1
+a110 2
+#define Tmk_proc_id	tmk_.proc_id
+#define Tmk_nprocs	tmk_.nprocs
+d112 5
+a116 2
+#define Tmk_page_size	tmk_.page_size
+#define Tmk_npages	tmk_.npages
+@
+
+
+10.7.1.2
+log
+@Deleted the TMK_DISTRIBUTE macro.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.1 1997/06/01 17:20:20 alc Exp alc $
+d63 3
+@
+
+
+10.7.1.3
+log
+@Increase the default number of shared pages to provide 64Mbytes.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.2 1997/06/01 17:38:49 alc Exp alc $
+d56 1
+a56 1
+#define	TMK_NPAGES	8192	/* Tmk_page_size == 16384 */
+d58 1
+a58 1
+#define	TMK_NPAGES	16384	/* Tmk_page_size == 4096 or 8192 */
+@
+
+
+10.7.1.4
+log
+@Added the twin and repo count to the statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.3 1997/07/17 05:34:45 alc Exp alc $
+a77 2
+	unsigned	twins;
+	unsigned	repos;
+@
+
+
+10.7.1.5
+log
+@Use "void *" instead of "char *" for consistency
+with the POSIX specifications of sbrk, malloc, and free.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.4 1997/07/23 07:13:37 alc Exp alc $
+d132 2
+a133 2
+extern	void		Tmk_distribute( void *ptr, int size );
+extern	void	       *Tmk_malloc( unsigned size );
+d135 1
+a135 1
+extern	void	       *Tmk_sbrk( unsigned incr );
+d150 1
+a150 1
+extern	void	       *Tmk_malloc();
+d152 1
+a152 1
+extern	void	       *Tmk_sbrk();
+@
+
+
+10.7.1.6
+log
+@Added "noreturn" attributes to the exit routines.  (This reduces
+the code size by a measureable amount.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.5 1998/01/09 21:15:40 alc Exp alc $
+a53 4
+#if ! defined(__GNUC__)
+#define __attribute__(dummy)
+#endif
+
+d122 1
+a122 1
+extern	void		Tmk_exit( int status ) __attribute__((__noreturn__));
+@
+
+
+10.7.1.7
+log
+@Added "const" to the Tmk_startup definition.  This is consistent
+with getopt.  (Identical to revision 11.9.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.6 1998/04/10 22:30:42 alc Exp alc $
+d125 1
+a125 1
+extern	void		Tmk_startup( int argc, char * const *argv );
+@
+
+
+10.7.1.8
+log
+@Added the "const" attribute to Tmk_distribute's "ptr" argument.
+(Identical to revision 10.7.1.7.0.1.)
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.7.0.1 1998/07/17 04:16:04 alc Exp $
+d136 1
+a136 1
+extern	void		Tmk_distribute( const void *ptr, int size );
+@
+
+
+10.7.1.9
+log
+@Added support for reduction barriers.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.8 1998/07/17 05:21:30 alc Exp alc $
+a127 9
+extern	void		Tmk_reduction( unsigned	 barrier_id,
+				       unsigned  n_elem,       /* number of words */
+				       void   *(*upcall)(unsigned proc_id,
+							 unsigned len,
+							 void *ptr,
+							 void *arg_struct),
+				       unsigned *local_data,   /* data in */
+				       void	*result,       /* data out */
+				       void	*args_struct); /* other args of upcall */
+a147 1
+extern	void		Tmk_reduction();
+@
+
+
+10.7.1.10
+log
+@Defined TMK_NREDUCTIONS in a user (application-)visible place.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.9 1998/08/10 19:54:04 alc Exp alc $
+a66 1
+#define TMK_NREDUCTIONS	32
+@
+
+
+10.7.1.11
+log
+@Defined TMK_MAX_REDUCTION_SIZE in a user (application-)visible place.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.10 1998/08/10 21:36:49 alc Exp alc $
+a67 3
+
+#define TMK_MAX_REDUCTION_SIZE \
+			4096	/* in bytes */
+@
+
+
+10.7.1.12
+log
+@Add const-ipation.  Reorder the element count and upcall pointer.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.11 1998/08/10 21:56:39 alc Exp alc $
+d133 1
+d136 3
+a138 5
+							 const void *ptr,
+							 const void *arg_struct),
+				       unsigned  n_elem,       /* number of words */
+				       const unsigned *
+						 local_data,   /* data in */
+d140 1
+a140 2
+				       const void *
+						 args_struct); /* other args of upcall */
+@
+
+
+10.7.1.13
+log
+@1.  Eliminate the "proc_id" argument.  2.  Introduce the "output"
+argument.  3.  Eliminate the "void *" return value.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.12 1998/08/10 22:43:45 alc Exp alc $
+d133 5
+a137 5
+				       void    (*upcall)(unsigned	 n_elem,
+							 const unsigned *input,
+							 void		*output,
+							 const void	*arg_struct),
+				       unsigned  n_elem,	/* number of words */
+d139 2
+a140 2
+						 input,		/* data in */
+				       void	*output,	/* data out */
+@
+
+
+10.7.1.14
+log
+@Change the units for "size" from "unsigned" to "char".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.13 1998/08/11 04:47:45 alc Exp alc $
+d133 10
+a142 8
+				       void    (*upcall)( unsigned    size,
+							  const void *input,
+							  void	     *output,
+							  const void *arg_struct ),
+				       unsigned    size,
+				       const void *input,
+				       void	  *output,
+				       const void *args_struct );
+@
+
+
+10.7.1.15
+log
+@Drop the last parameter to the reduction.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.14 1998/08/11 06:37:33 alc Exp alc $
+d132 5
+a136 4
+extern	void		Tmk_reduction( unsigned	   barrier_id,
+				       void      (*upcall)( unsigned    size,
+							    const void *input,
+							    void       *output ),
+d139 2
+a140 1
+				       void	  *output );
+@
+
+
+10.7.1.16
+log
+@Renamed "Tmk_reduction" to "Tmk_barrier_reduce".
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.15 1998/08/22 01:08:26 alc Exp alc $
+d67 1
+d132 7
+a138 8
+extern	void		Tmk_barrier_reduce(
+				     unsigned	 barrier_id,
+				     void      (*upcall)( unsigned    size,
+							  const void *input,
+							  void       *output ),
+				     unsigned    size,
+				     const void *input,
+				     void	*output );
+d159 1
+a159 1
+extern	void		Tmk_barrier_reduce();
+@
+
+
+10.7.1.7.0.1
+log
+@Added the "const" attribute to Tmk_distribute's "ptr" argument.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.7.1.7 1998/05/09 06:06:03 alc Exp alc $
+d136 1
+a136 1
+extern	void		Tmk_distribute( const void *ptr, int size );
+@
+
+
+10.6
+log
+@Added a lock id to the prototype for condition signal and condition
+broadcast.
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1996						     *
+d39 1
+a39 1
+ * $Id: Tmk.h,v 10.5 1997/03/18 06:24:02 alc Exp alc $
+d61 1
+a61 1
+#define TMK_NCONDS	64
+d127 6
+a132 6
+extern	void		Tmk_condition_broadcast( unsigned condition_id,
+						 unsigned lock_id );
+extern	void		Tmk_condition_signal( unsigned condition_id,
+					      unsigned lock_id );
+extern	void		Tmk_condition_wait( unsigned condition_id,
+					    unsigned lock_id );
+d147 3
+a149 3
+extern	void		Tmk_condition_broadcast();
+extern	void		Tmk_condition_signal();
+extern	void		Tmk_condition_wait();
+@
+
+
+10.5
+log
+@Added prototypes for the functions manipulating condition variables.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.4 1997/03/18 03:10:04 alc Exp alc $
+d127 6
+a132 3
+extern	void		Tmk_condition_broadcast( unsigned condition_id );
+extern	void		Tmk_condition_signal( unsigned condition_id );
+extern	void		Tmk_condition_wait( unsigned condition_id, unsigned lock_id );
+d138 2
+a139 1
+extern	void		Tmk_sched_fork( void (*func)( Tmk_sched_arg_t arg ), Tmk_sched_arg_t arg );
+@
+
+
+10.4
+log
+@Added support for POSIX Pthreads-like condition variables.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.3 1997/03/18 03:04:58 alc Exp alc $
+d124 6
+a129 3
+extern	void		Tmk_barrier( unsigned id );
+extern	void		Tmk_lock_acquire( unsigned id );
+extern	void		Tmk_lock_release( unsigned id );
+d143 3
+@
+
+
+10.3
+log
+@To improve the locality of reference, created the Tmk_ struct
+containing nprocs and the proc_id.
+@
+text
+@d39 1
+a39 1
+ * $Id: Tmk.h,v 10.2 1997/01/10 04:43:04 alc Exp alc $
+d61 1
+d71 3
+@
+
+
+10.2
+log
+@Added Tmk_sched_*.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d96 5
+d108 3
+a110 1
+extern	unsigned	Tmk_proc_id;
+d112 1
+a112 1
+extern	unsigned	Tmk_nprocs;
+d114 2
+a115 1
+extern	struct Tmk_stat	Tmk_stat;
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		Tmk.h
+d50 1
+a50 2
+ *
+ *****************************************************************************/
+d66 1
+a66 1
+struct Tmk_stat {
+d80 16
+d110 12
+a121 9
+extern	void		Tmk_startup(int argc, char **argv);
+extern	void		Tmk_exit(int status);
+extern	void		Tmk_barrier(unsigned id);
+extern	void		Tmk_lock_acquire(unsigned id);
+extern	void		Tmk_lock_release(unsigned id);
+extern	void		Tmk_distribute(char *ptr, int size);
+extern	char	       *Tmk_malloc(unsigned size);
+extern	void		Tmk_free(void *ptr);
+extern	char	       *Tmk_sbrk(unsigned incr);
+d132 3
+@
+
+
+10.0
+log
+@Tmk-0.10R: POSIX Version
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d53 1
+a53 1
+#define TMK_NPROCS	10
+@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d54 1
+a54 1
+#define TMK_NPROCS	8
+@
+
+
+9.7.1.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@a77 1
+	unsigned	repos;
+@
+
+
+9.6
+log
+@Tmk-0.9.6R
+@
+text
+@@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@d54 3
+a56 5
+#define TMK_NPROCS	10
+#if defined(__alpha)
+#define	TMK_NPAGES	16384	/* Tmk_page_size == 8192 */
+#elif defined(ultrix)
+#define TMK_NPAGES	16384
+d58 1
+a58 1
+#define	TMK_NPAGES	32768	/* Tmk_page_size == 4096 */
+d60 2
+a61 2
+#define TMK_NBARRIERS	(1 << TMK_NPROCS)
+#define TMK_NLOCKS	TMK_NPROCS	/* ilink doesn't use locks */
+a88 2
+extern	unsigned	Tmk_proc_mask;
+
+a89 2
+
+extern	unsigned	Tmk_mask;
+@
+
+
+9.5
+log
+@Tmk-0.9.5R
+@
+text
+@d72 1
+@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@d55 2
+a56 4
+#if defined(__alpha)
+#define	TMK_NPAGES	12288	/* Tmk_page_size == 8192 */
+#elif defined(ultrix)
+#define TMK_NPAGES	8192
+d58 1
+a58 1
+#define	TMK_NPAGES	24576	/* Tmk_page_size == 4096 */
+d60 2
+a61 2
+#define TMK_NBARRIERS	(1 << TMK_NPROCS)
+#define TMK_NLOCKS	TMK_NPROCS	/* ilink doesn't use locks */
+a76 2
+
+	double		departure_time;
+a87 2
+extern	unsigned	Tmk_proc_mask;
+
+a88 2
+
+extern	unsigned	Tmk_mask;
+@
+
+
+9.4
+log
+@Tmk-0.9.4R
+@
+text
+@@

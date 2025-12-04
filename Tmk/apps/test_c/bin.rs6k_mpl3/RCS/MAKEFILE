@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	98.11.03.16.46.58;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Dropped the "-us" argument to the link rule.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id: Makefile,v 1.1 1998/09/13 07:33:30 alc Exp alc $
+ #
+ARCH	= rs6k_mpl3
+
+CC	= mpcc
+CFLAGS	= -g -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS=
+
+all: tsp.mpl
+
+include ../.common
+@

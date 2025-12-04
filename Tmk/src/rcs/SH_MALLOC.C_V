@@ -1,0 +1,992 @@
+head	11.5;
+access;
+symbols
+	Tmk-1_0_3_2R:10.1.1.5
+	Tmk-1_0_3_1R:10.1.1.5
+	Tmk-1_0_3R:10.1.1.5
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.1.1.5
+	Tmk-1_0_1R:10.1.1.5
+	Tmk-1_1:11
+	Tmk-1_0:10.1.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.1
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.5
+date	98.01.09.22.38.20;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	98.01.09.22.12.26;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	98.01.09.21.13.54;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	98.01.09.18.15.50;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.09.29.18.46.49;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.48.40;	author alc;	state Rel;
+branches
+	10.1.1.1
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.1.1
+date	97.10.01.05.59.39;	author alc;	state Exp;
+branches;
+next	10.1.1.2;
+
+10.1.1.2
+date	98.01.09.18.16.10;	author alc;	state Exp;
+branches;
+next	10.1.1.3;
+
+10.1.1.3
+date	98.01.09.21.15.40;	author alc;	state Exp;
+branches;
+next	10.1.1.4;
+
+10.1.1.4
+date	98.01.09.22.12.56;	author alc;	state Exp;
+branches;
+next	10.1.1.5;
+
+10.1.1.5
+date	98.01.09.22.39.47;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.11.08;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.07.02.00.19.31;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.08.07.17.39.28;	author tmiller;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.5
+log
+@Eliminate Tmk_heap_initialize.  Initialize the heap
+during the first call to Tmk_malloc, Tmk_free, or Tmk_sbrk.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+ *									     *
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: sh_malloc.c,v 11.4 1998/01/09 22:12:26 alc Exp alc $
+ *
+ * Description:    
+ *	shared heap management routines
+ *
+ * External Functions:
+ *			Tmk_malloc,
+ *			Tmk_free,
+ *			Tmk_heap_initialize
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	10-May-1993	Alan L. Cox	Created
+ *	28-Jun-1993	Alan L. Cox	Added curbrk to table
+ *	 3-Aug-1993	Alan L. Cox	Corrected alignment for SPARC
+ *	25-Aug-1993	Alan L. Cox	Added Tmk_sbrk
+ *	31-Mar-1994	Povl T. Koch	Adapted for Alpha
+ *
+ *	Version 0.9.0
+ *
+ *	Version 0.9.1
+ *
+ *	22-Nov-1994	Alan L. Cox	Modified Tmk_free to check ptr
+ *
+ *	Version 0.9.2
+ *
+ *	 9-Apr-1995	Alan L. Cox	Added block sizes of (3/4)*x^2 bytes
+ *
+ *	Version 0.9.3
+ */
+#include "Tmk.h"
+
+/*
+ *
+ */
+#define TABLE_LOCK	0
+
+/*
+ * BUCKET_BEGIN is the first bucket's index.  BUCKET_END is the last bucket's
+ * index.  We sacrifice the first few entries in the array of buckets, up to
+ * BUCKET_BEGIN, to simplify the computation of BUCKET_SIZE.
+ */
+#define	BUCKET_END	59
+
+#define	BUCKET_BEGIN	8
+
+#define	BUCKET_SIZE(i)	((2 | (i & 1)) << (i >> 1))
+
+/*
+ * Warning:
+ *
+ * You must not change the order of the fields in struct Chain.
+ */
+typedef
+struct	Chain  *chain_t;
+
+struct	Chain	{
+	unsigned long	index;
+	chain_t		chain;		
+};
+
+/*
+ * XOR the bucket # with C_xor_index to compute the index, and
+ * XOR the index with C_xor_index to compute the bucket #.
+ */
+#define C_xor_index	((unsigned long) -16909321)
+
+struct	Table	{
+	caddr_t		curbrk;
+	chain_t		nextfit[BUCKET_END];
+};
+
+/*
+ * global is a private pointer to the shared data structures used by
+ * the memory allocater.
+ */
+static
+struct	Table  *table;
+
+/*
+ * Assumes that TABLE_LOCK is held.
+ */
+static
+void	table_initialize( void )
+{
+	unsigned long	bucket = BUCKET_BEGIN;
+
+	while (BUCKET_SIZE(bucket) < sizeof(struct Table))
+		bucket++;
+
+	table = (struct Table *) page_array_[0].vadr;
+	table->curbrk = page_array_[0].vadr + BUCKET_SIZE(bucket);
+
+	memset(table->nextfit, 0, sizeof(table->nextfit));
+
+	Tmk_distribute(&table, sizeof(table));
+}
+
+/*
+ * Tmk_sbrk
+ *
+ * Permanently allocates a chunk of shared memory.  Size is increased
+ * to the next double-word boundary.  The chunk of shared memory is
+ * double-word aligned.
+ *
+ * The smallest allocatable size is eight bytes.
+ */
+void   *Tmk_sbrk(size)
+        unsigned        size;
+{
+	caddr_t		vadr;
+
+	size = (size + 7) &~ 7;
+
+        Tmk_lock_acquire(TABLE_LOCK);
+
+	if (table == NULL)
+		table_initialize();
+
+	vadr = (caddr_t)((unsigned long)(table->curbrk + 7) &~ (unsigned long) 7);
+
+	if ((vadr + size) > page_array_[Tmk_npages].vadr)
+		vadr = 0;
+	else
+		table->curbrk = vadr + size;
+
+        Tmk_lock_release(TABLE_LOCK);
+
+	return (void *) vadr;
+}
+
+/*
+ * sh_resize
+ *
+ * Searches for a free chunk of memory larger than the requested size.
+ *
+ * Recursively splits one half of the chunk into halves until (1) two
+ * chunks of the requested size are created, (2) three chunks of the
+ * requested size are created, or (3) two chunks of the requested size
+ * and one chunk of the next smaller size, a power of two, are created.
+ *
+ * Returns 1 if a free chunk is found.  Otherwise, returns 0.
+ *
+ * Assumes that TABLE_LOCK is held.
+ */
+static	int		sh_resize(start)
+	unsigned long	start;
+{
+	unsigned long	bucket;
+
+        for (bucket = start + 2; bucket < BUCKET_END; bucket++)
+                if (table->nextfit[bucket]) {
+                        while (bucket > start + 1) {
+
+				chain_t	chain = table->nextfit[bucket];
+
+				table->nextfit[bucket] = chain->chain;
+
+				assert(bucket == chain->index ^ C_xor_index);
+
+				if ((bucket -= 2) == start + 1) {
+
+					bucket--;   /* bucket == start */
+					bucket &= ~ (unsigned long) 1;
+
+					chain->index = bucket ^ C_xor_index;
+					chain->chain = table->nextfit[bucket];
+
+					table->nextfit[bucket] = chain;
+
+					chain = (chain_t)((caddr_t) chain + BUCKET_SIZE(bucket));
+
+					bucket = start;
+				}
+				chain->index = bucket ^ C_xor_index;
+				chain->chain = table->nextfit[bucket];
+
+				table->nextfit[bucket] = chain;
+
+				chain = (chain_t)((caddr_t) chain + BUCKET_SIZE(bucket));
+				chain->index = bucket ^ C_xor_index;
+				chain->chain = table->nextfit[bucket];
+
+				table->nextfit[bucket] = chain;
+                        }
+                        return 1;
+                }
+	return 0;
+}
+
+/*
+ * Tmk_malloc
+ *
+ * Calls sh_resize if the bucket corresponding to the requested size
+ * is empty.
+ *
+ * The smallest allocatable size is twenty-eight bytes.
+ *
+ * Leaks a small amount of memory if the request is larger than
+ * available memory.
+ */
+void   *Tmk_malloc(size)
+	unsigned	size;
+{
+	unsigned long	bucket = BUCKET_BEGIN;
+	chain_t		chain;
+
+	while (BUCKET_SIZE(bucket) < (size + sizeof(chain->index)))
+		bucket++;
+
+	Tmk_lock_acquire(TABLE_LOCK);
+
+	if (table == NULL)
+		table_initialize();
+
+	while ((chain = table->nextfit[bucket]) == 0)
+		if (0 == sh_resize(bucket)) {
+
+			if (BUCKET_SIZE(bucket) >= Tmk_page_size)
+				table->curbrk = (caddr_t)(((unsigned long)(table->curbrk + Tmk_page_size) &~ (unsigned long)(Tmk_page_size - 1)) - sizeof(chain->index));
+
+			/*
+			 * Enforce double-word alignment for &chain->chain
+			 */
+			chain = (chain_t)(table->curbrk = (caddr_t)((unsigned long) table->curbrk | sizeof(chain->index)));
+			chain->index = bucket ^ C_xor_index;
+
+			if ((table->curbrk += BUCKET_SIZE(bucket)) > page_array_[Tmk_npages].vadr) {
+
+				table->curbrk = (caddr_t) chain;
+
+				Tmk_lock_release(TABLE_LOCK);
+
+				return 0;
+			}
+			goto unlock;
+		}
+
+        table->nextfit[bucket] = chain->chain;
+ unlock:
+	Tmk_lock_release(TABLE_LOCK);
+
+	assert(bucket == chain->index ^ C_xor_index);
+
+	return (void *)&chain->chain;
+}
+
+/*
+ * Tmk_free
+ *
+ * Checks the pointer for validity: tests whether the XORed index is
+ * a valid bucket #.
+ */
+void	Tmk_free(ptr)
+	void	       *ptr;
+{
+	if (ptr) {
+
+		chain_t		chain = (chain_t)((caddr_t) ptr - sizeof(chain->index));
+		unsigned long	bucket = chain->index ^ C_xor_index;
+
+		if (bucket < BUCKET_END) {
+
+			Tmk_lock_acquire(TABLE_LOCK);
+
+			if (table == NULL)
+				table_initialize();
+
+			chain->chain = table->nextfit[bucket];
+			table->nextfit[bucket] = chain;
+
+			Tmk_lock_release(TABLE_LOCK);
+		}
+		else
+			Tmk_err("Tmk_free: bad ptr == %d\n", ptr);
+	}
+}
+@
+
+
+11.4
+log
+@Replace "table->lock" by "TABLE_LOCK".
+@
+text
+@d40 1
+a40 1
+ * $Id: sh_malloc.c,v 11.3 1998/01/09 21:13:54 alc Exp alc $
+d116 21
+a136 1
+static	struct	Table  *table;
+d156 3
+d183 1
+a183 1
+ * Assumes that TABLE_LOCK is held.  
+d252 3
+d305 3
+a314 20
+	}
+}
+
+/*
+ * Tmk_heap_initialize
+ */
+void	Tmk_heap_initialize()
+{
+	table = (struct Table *) page_array_[0].vadr;
+
+	if (Tmk_proc_id == 0) {
+
+		unsigned long	bucket = BUCKET_BEGIN;
+
+		while (BUCKET_SIZE(bucket) < sizeof(struct Table))
+			bucket++;
+
+		table->curbrk = page_array_[0].vadr + BUCKET_SIZE(bucket);
+
+		memset(table->nextfit, 0, sizeof(table->nextfit));
+@
+
+
+11.3
+log
+@Use "void *" instead of "char *" for consistency
+with the POSIX specifications of sbrk, malloc, and free.
+@
+text
+@d40 1
+a40 1
+ * $Id: sh_malloc.c,v 11.2 1998/01/09 18:15:50 alc Exp alc $
+d70 1
+d72 4
+a75 1
+#include "Tmk.h"
+a107 1
+	unsigned	lock;
+d134 1
+a134 1
+        Tmk_lock_acquire(table->lock);
+d143 1
+a143 1
+        Tmk_lock_release(table->lock);
+d160 1
+a160 1
+ * Assumes that table->lock is held.  
+d227 1
+a227 1
+	Tmk_lock_acquire(table->lock);
+d245 1
+a245 1
+				Tmk_lock_release(table->lock);
+d254 1
+a254 1
+	Tmk_lock_release(table->lock);
+d277 1
+a277 1
+			Tmk_lock_acquire(table->lock);
+d282 1
+a282 1
+			Tmk_lock_release(table->lock);
+a302 1
+		table->lock = 0;
+@
+
+
+11.2
+log
+@Added $Id$ tag.
+@
+text
+@d40 1
+a40 1
+ * $Id$
+d124 1
+a124 1
+char   *Tmk_sbrk(size)
+d142 1
+a142 1
+	return (char *) vadr;
+d215 1
+a215 1
+char   *Tmk_malloc(size)
+d255 1
+a255 1
+	return (char *)&chain->chain;
+@
+
+
+11.1
+log
+@Modified Tmk_sbrk and Tmk_malloc to allow the dynamic allocation
+of the page array.
+@
+text
+@d38 4
+a41 2
+/*****************************************************************************
+ * File:		sh_malloc.c
+d69 2
+a70 2
+ *
+ *****************************************************************************/
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d133 1
+a133 1
+	if ((vadr + size) > (page_array_[NPAGES - 1].vadr + Tmk_page_size))
+d236 1
+a236 1
+			if ((table->curbrk += BUCKET_SIZE(bucket)) > (page_array_[NPAGES - 1].vadr + Tmk_page_size)) {
+@
+
+
+10.1.1.1
+log
+@Modified Tmk_sbrk and Tmk_malloc to allow the dynamic allocation
+of the page array.  (Identical to revision 11.1.)
+@
+text
+@d133 1
+a133 1
+	if ((vadr + size) > page_array_[Tmk_npages].vadr)
+d236 1
+a236 1
+			if ((table->curbrk += BUCKET_SIZE(bucket)) > page_array_[Tmk_npages].vadr) {
+@
+
+
+10.1.1.2
+log
+@Added $Id$ tag.
+@
+text
+@d38 2
+a39 4
+
+/*
+ * $Id$
+ *
+d67 2
+a68 2
+ */
+
+@
+
+
+10.1.1.3
+log
+@Use "void *" instead of "char *" for consistency
+with the POSIX specifications of sbrk, malloc, and free.
+@
+text
+@d40 1
+a40 1
+ * $Id: sh_malloc.c,v 10.1.1.2 1998/01/09 18:16:10 alc Exp alc $
+d124 1
+a124 1
+void   *Tmk_sbrk(size)
+d142 1
+a142 1
+	return (void *) vadr;
+d215 1
+a215 1
+void   *Tmk_malloc(size)
+d255 1
+a255 1
+	return (void *)&chain->chain;
+@
+
+
+10.1.1.4
+log
+@Replace "table->lock" by "TABLE_LOCK".
+(Identical to revision 11.4.)
+@
+text
+@d40 1
+a40 1
+ * $Id: sh_malloc.c,v 10.1.1.3 1998/01/09 21:15:40 alc Exp alc $
+d70 1
+a73 5
+ *
+ */
+#define TABLE_LOCK	0
+
+/*
+d104 1
+d131 1
+a131 1
+        Tmk_lock_acquire(TABLE_LOCK);
+d140 1
+a140 1
+        Tmk_lock_release(TABLE_LOCK);
+d157 1
+a157 1
+ * Assumes that TABLE_LOCK is held.  
+d224 1
+a224 1
+	Tmk_lock_acquire(TABLE_LOCK);
+d242 1
+a242 1
+				Tmk_lock_release(TABLE_LOCK);
+d251 1
+a251 1
+	Tmk_lock_release(TABLE_LOCK);
+d274 1
+a274 1
+			Tmk_lock_acquire(TABLE_LOCK);
+d279 1
+a279 1
+			Tmk_lock_release(TABLE_LOCK);
+d300 1
+@
+
+
+10.1.1.5
+log
+@Eliminate Tmk_heap_initialize.  Initialize the heap
+during the first call to Tmk_malloc, Tmk_free, or Tmk_sbrk.
+@
+text
+@d40 1
+a40 1
+ * $Id: sh_malloc.c,v 11.4 1998/01/09 22:12:26 alc Exp alc $
+d116 1
+a116 21
+static
+struct	Table  *table;
+
+/*
+ * Assumes that TABLE_LOCK is held.
+ */
+static
+void	table_initialize( void )
+{
+	unsigned long	bucket = BUCKET_BEGIN;
+
+	while (BUCKET_SIZE(bucket) < sizeof(struct Table))
+		bucket++;
+
+	table = (struct Table *) page_array_[0].vadr;
+	table->curbrk = page_array_[0].vadr + BUCKET_SIZE(bucket);
+
+	memset(table->nextfit, 0, sizeof(table->nextfit));
+
+	Tmk_distribute(&table, sizeof(table));
+}
+a135 3
+	if (table == NULL)
+		table_initialize();
+
+d160 1
+a160 1
+ * Assumes that TABLE_LOCK is held.
+a228 3
+	if (table == NULL)
+		table_initialize();
+
+a278 3
+			if (table == NULL)
+				table_initialize();
+
+d286 20
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@a218 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+a252 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+a264 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+a281 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+@
+
+
+10.1.5.3
+log
+@eliminated deadlock (temporarily)
+@
+text
+@d219 3
+d256 3
+d271 3
+d291 3
+@
+
+
+10.1.5.4
+log
+@Added $Id$
+@
+text
+@a67 2
+ * $Id$
+ *
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d301 1
+a301 1
+		bzero((char *) table->nextfit, sizeof(table->nextfit));
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

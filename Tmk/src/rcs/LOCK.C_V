@@ -1,0 +1,4203 @@
+head	11.3;
+access;
+symbols
+	Tmk-1_0_3_2R:10.20.1.7.0.3
+	Tmk-1_0_3_1R:10.20.1.7.0.3
+	Tmk-2_0:10.20.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.20.1.8
+	Tmk-1_0_3R:10.20.1.7.0.3
+	Tmk-1_2:10.20.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.20.1.7
+	Tmk-1_0_1R:10.20.1.4
+	Tmk-1_1:11
+	Tmk-1_0:10.20.1.7.0
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.20
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.3
+date	97.12.24.06.48.32;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.07.24.20.00.59;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.07.24.05.49.27;	author alc;	state Exp;
+branches;
+next	10.20;
+
+10.20
+date	97.06.03.18.11.24;	author alc;	state Exp;
+branches
+	10.20.1.1;
+next	10.19;
+
+10.19
+date	97.05.25.17.00.09;	author alc;	state Exp;
+branches;
+next	10.18;
+
+10.18
+date	97.05.25.07.01.11;	author alc;	state Exp;
+branches;
+next	10.17;
+
+10.17
+date	97.05.25.06.55.38;	author alc;	state Exp;
+branches;
+next	10.16;
+
+10.16
+date	97.05.24.06.37.32;	author alc;	state Exp;
+branches;
+next	10.15;
+
+10.15
+date	97.05.22.15.29.54;	author alc;	state Exp;
+branches;
+next	10.14;
+
+10.14
+date	97.05.22.03.39.00;	author alc;	state Exp;
+branches;
+next	10.13;
+
+10.13
+date	97.05.21.17.08.51;	author alc;	state Exp;
+branches;
+next	10.12;
+
+10.12
+date	97.05.21.17.02.08;	author alc;	state Exp;
+branches;
+next	10.11;
+
+10.11
+date	97.05.21.06.54.14;	author alc;	state Exp;
+branches;
+next	10.10;
+
+10.10
+date	97.05.21.05.30.41;	author alc;	state Exp;
+branches;
+next	10.9;
+
+10.9
+date	97.05.21.03.31.12;	author alc;	state Exp;
+branches;
+next	10.8;
+
+10.8
+date	97.05.21.03.25.21;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	97.05.19.20.09.08;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	97.05.19.07.17.41;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	97.04.12.17.37.31;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.08.24.21.10.49;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.08.24.20.01.11;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.08.24.18.30.28;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.48.40;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.1.2.2;
+
+10.0.2.1.2.2
+date	96.03.30.21.26.31;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	10.1.4.2;
+
+10.1.4.2
+date	96.07.30.20.52.50;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.06.28.20.24.01;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.07.02.22.34.57;	author tmiller;	state Exp;
+branches;
+next	10.1.5.5;
+
+10.1.5.5
+date	96.07.03.19.32.35;	author tmiller;	state Exp;
+branches;
+next	10.1.5.6;
+
+10.1.5.6
+date	96.08.07.17.32.57;	author tmiller;	state Exp;
+branches;
+next	10.1.5.7;
+
+10.1.5.7
+date	96.08.19.21.23.18;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.20.1.1
+date	97.07.23.06.40.42;	author alc;	state Exp;
+branches;
+next	10.20.1.2;
+
+10.20.1.2
+date	97.07.24.05.24.11;	author alc;	state Exp;
+branches;
+next	10.20.1.3;
+
+10.20.1.3
+date	97.07.24.19.55.48;	author alc;	state Exp;
+branches;
+next	10.20.1.4;
+
+10.20.1.4
+date	97.12.24.06.52.42;	author alc;	state Exp;
+branches;
+next	10.20.1.5;
+
+10.20.1.5
+date	98.03.22.00.25.57;	author alc;	state Exp;
+branches;
+next	10.20.1.6;
+
+10.20.1.6
+date	98.05.14.20.10.16;	author alc;	state Exp;
+branches;
+next	10.20.1.7;
+
+10.20.1.7
+date	98.05.31.05.05.08;	author alc;	state Exp;
+branches
+	10.20.1.7.0.1;
+next	10.20.1.8;
+
+10.20.1.8
+date	98.07.17.05.01.08;	author alc;	state Exp;
+branches;
+next	10.20.1.9;
+
+10.20.1.9
+date	98.10.17.21.07.39;	author alc;	state Exp;
+branches;
+next	;
+
+10.20.1.7.0.1
+date	98.07.17.04.29.37;	author alc;	state Exp;
+branches;
+next	10.20.1.7.0.2;
+
+10.20.1.7.0.2
+date	98.07.17.04.36.11;	author alc;	state Exp;
+branches;
+next	10.20.1.7.0.3;
+
+10.20.1.7.0.3
+date	98.07.17.04.41.57;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.3
+log
+@HP-UX 10.x's select misbehaves: It returns 0 when the timeout
+is infinite.  AIX 3.2.5 had a similar problem.  Handle it the
+same way.
+
+Add a cast to pacify the HP-UX cc.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1997						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: lock.c,v 11.2 1997/07/24 20:00:59 alc Exp alc $
+ *
+ * Description:    
+ *	lock synchronization routines
+ *
+ * External Functions:
+ *			Tmk_lock_acquire,
+ *			Tmk_lock_release,
+ *			Tmk_lock_initialize,
+ *			Tmk_lock_sigio_handler,
+ *			Tmk_lock_sigio_duplicate_handler
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Apr-1993	Alan L. Cox 	Created
+ *	 8-Aug-1993	Alan L. Cox	Added reliable message protocol
+ *	19-Jul-1994	Alan L. Cox	Reduced
+ *
+ *	Version 0.9.1
+ *
+ *	14-Jan-1995	Alan L. Cox	Adapted for STREAMS
+ *
+ *	Version 0.9.2
+ *
+ *	21-May-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *
+ *	Version 0.9.3
+ *
+ *	15-Jul-1995	Alan L. Cox	Simplified the lock sigio handler
+ *
+ *	Version 0.9.4
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigblock and sigsetmask
+ *					 with sigprocmask
+ *	Version 0.10
+ */
+#include "Tmk.h"
+
+typedef
+struct	waitq_entry    *waitq_entry_t;
+
+static
+struct	waitq_entry {
+	waitq_entry_t	next;
+	struct req_cond	req;
+	volatile int	queued;
+}	waitq_[NPROCS];
+
+struct	cond	{
+	waitq_entry_t	waitq_head;
+	waitq_entry_t	waitq_tail;
+	unsigned short	signal_vector_time_[NPROCS];
+};
+
+static
+unsigned char	tail_[NPROCS];
+
+static
+unsigned short	vector_time[NPROCS][NPROCS];
+
+static
+struct	lock	{
+	unsigned char	manager;
+	unsigned char	tail;
+	unsigned char	held;
+	unsigned char	next;
+	unsigned	release_seqno;
+	unsigned	time;
+	struct cond	cond_[NCONDS];
+}		lock_array_[NLOCKS];
+
+static
+struct	req_typ	req_acquire = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_LOCK };
+
+static
+struct	iovec	req_acquire_iov[] = {
+    { (caddr_t)&req_acquire, sizeof(req_acquire) },
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) } };
+
+static
+struct	msghdr	req_acquire_hdr = { 0, 0, req_acquire_iov, sizeof(req_acquire_iov)/sizeof(req_acquire_iov[0]), 0, 0 };
+
+static
+struct	req_typ	req_broadcast = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_BROADCAST };
+
+static
+unsigned short	req_broadcast_id2;
+
+static
+struct	iovec	req_broadcast_iov[] = {
+    { (caddr_t)&req_broadcast, sizeof(req_broadcast)},
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) },
+    { (caddr_t)&req_broadcast_id2, sizeof(req_broadcast_id2)} };
+
+static
+struct	msghdr	req_broadcast_hdr = { 0, 0, req_broadcast_iov, sizeof(req_broadcast_iov)/sizeof(req_broadcast_iov[0]), 0, 0 };
+
+static
+struct	req_typ	req_signal = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_SIGNAL };
+
+static
+unsigned short	req_signal_id2;
+
+static
+struct	iovec	req_signal_iov[] = {
+    { (caddr_t)&req_signal, sizeof(req_signal)},
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) },
+    { (caddr_t)&req_signal_id2, sizeof(req_signal_id2)} };
+
+static
+struct	msghdr	req_signal_hdr = { 0, 0, req_signal_iov, sizeof(req_signal_iov)/sizeof(req_signal_iov[0]), 0, 0 };
+
+static
+struct	req_typ	req_wait = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_WAIT };
+
+static
+unsigned short	req_wait_id2;
+
+static
+struct	iovec	req_wait_iov[] = {
+    { (caddr_t)&req_wait, sizeof(req_wait) },
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) },
+    { (caddr_t)&req_wait_id2, sizeof(req_wait_id2) } };
+
+static
+struct	msghdr	req_wait_hdr = { 0, 0, req_wait_iov, sizeof(req_wait_iov)/sizeof(req_wait_iov[0]), 0, 0 };
+
+struct	rep_typ {
+	unsigned	seqno;
+	char		data[MTU - sizeof(unsigned)];
+};
+
+/*
+ * Reserved for future use.
+ */
+int	Tmk_lock_allocate(ip)
+	unsigned       *ip;
+{
+	*ip = 1;
+
+	return -1;
+}
+
+/*
+ * Reserved for future use.
+ */
+int	Tmk_lock_cond_allocate(lock_id, ip)
+	unsigned	lock_id;
+	unsigned       *ip;
+{
+	*ip = 1;
+
+	return -1;
+}
+
+/*
+ *
+ */
+void	Tmk_lock_acquire(lock_id)
+	unsigned	lock_id;
+{
+	if (lock_id < NLOCKS) {
+
+		struct	lock   *lock = &lock_array_[lock_id];
+		struct	timeval	start, end;
+		struct	rep_typ	rep;
+		int		fd, from, j, size;
+		unsigned short	vector_time_[NPROCS];
+		sigset_t	mask;
+
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+		Tmk_stat.acquires++;
+
+		if (lock->held)
+			Tmk_errexit("Tmk_lock_acquire: %d REacquired (value: %d)\n", lock_id, lock->held);
+
+		lock->held = 1;
+
+		if (lock->next != Tmk_proc_id) {
+
+			lock->next = Tmk_proc_id;
+
+			if ((from = lock->manager) == Tmk_proc_id) {
+
+				from = lock->tail;
+
+				lock->tail = Tmk_proc_id;
+			}
+			if (tmk_stat_flag > 2)
+				gettimeofday(&start, NULL);
+
+			req_acquire.id = lock_id;
+			req_acquire.seqno = req_seqno += SEQNO_INCR;
+		rexmit:
+			if (0 > sendmsg(req_fd_[from], &req_acquire_hdr, 0))
+				Tmk_perrexit("Tmk_lock_acquire<sendmsg>");
+
+			Tmk_tout_flag = 0;
+
+			setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+			memcpy(vector_time_, proc_vector_time_, sizeof(proc_vector_time_));
+
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+
+			if (Tmk_debug)
+				Tmk_err("lock: %d (to: %d) ", lock_id, from);
+	         retry:
+			if (lock->manager == Tmk_proc_id)
+				fd = req_fd_[from];
+			else {
+				fd_set	readfds = req_fds;
+
+				if (0 > select(req_maxfdp1, (fd_set_t)&readfds, NULL, NULL, NULL))
+					if (Tmk_tout_flag) {
+
+						if (Tmk_debug)
+							Tmk_err("Tmk_lock_acquire<timeout: %d>: %d seqno == %d\n",
+								from, lock_id, req_acquire.seqno);
+
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+						goto rexmit;
+					}
+					else if (errno == EINTR)
+						goto retry;
+#if defined(__sun) && defined(__SVR4)
+					else if (errno == 0)
+						goto retry;
+#endif
+					else
+						Tmk_perrexit("Tmk_lock_acquire<select>");
+
+				for (j = 0; j < Tmk_nprocs; j++) {
+					if (j == Tmk_proc_id)
+						continue;
+
+					fd = req_fd_[j];
+
+					if (FD_ISSET(fd, &readfds))
+						goto receive;
+				}
+#if defined(_AIX) || defined(__hpux)
+				goto retry;
+#else
+				Tmk_errexit("Tmk_lock_acquire<req_fds>");
+#endif
+			}
+	       receive:
+			if ((size = recv(fd, (char *)&rep, sizeof(rep), 0)) < 0)
+				if (Tmk_tout_flag) {
+
+					if (Tmk_debug)
+						Tmk_err("Tmk_lock_acquire<timeout: %d>: %d seqno == %d\n",
+							from, lock_id, req_acquire.seqno);
+
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+					Tmk_perrexit("Tmk_lock_acquire<recv>");
+
+			if (rep.seqno != req_acquire.seqno) {
+
+				if (Tmk_debug)
+					Tmk_err("Tmk_lock_acquire<bad seqno: %d>: %d seqno == %d (received: %d)\n",
+						j, lock_id, req_acquire.seqno, rep.seqno);
+
+				goto retry;
+			}
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+			if (tmk_stat_flag > 2) {
+
+				gettimeofday(&end, NULL);
+
+				Tmk_stat.acquire_time += 1000000*(end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
+			}
+			Tmk_stat.bytes += size;
+			Tmk_stat.messages_for_acquires++;
+
+			Tmk_interval_incorporate(rep.data, size - sizeof(rep.seqno), vector_time_);
+		}
+		sigio_mutex(SIG_SETMASK, &mask, NULL);
+	}
+	else
+		Tmk_errexit("Tmk_lock_acquire: lock id == %d\n", lock_id);
+}
+
+/*
+ *
+ */
+void	Tmk_lock_sigio_handler(req)
+	struct req_syn *req;
+{
+	struct rep_typ	rep;
+
+	struct lock    *lock = &lock_array_[req->id];
+
+	int		from = req->from;
+
+	if (lock->next == Tmk_proc_id) {
+
+		if ( ! lock->held) {
+
+			if (lock->time == proc_vector_time_[Tmk_proc_id])
+				Tmk_interval_create(proc_vector_time_);
+
+			lock->release_seqno = rep.seqno = req->seqno;
+
+			if (0 > send(rep_fd_[from], (char *)&rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+				Tmk_perrexit("Tmk_lock_sigio_handler<send>");
+
+			inverse_time_[from] = proc_vector_time_[Tmk_proc_id];
+		}
+		else
+			memcpy(vector_time[from], req->vector_time, sizeof(req->vector_time));
+
+		lock->next = from;
+
+		if (lock->manager == Tmk_proc_id)
+			lock->tail = from;
+	}
+	else if (lock->manager == Tmk_proc_id) {
+
+		int	tail = lock->tail;
+
+		if (0 > send(req_fd_[tail], (char *) req, sizeof(struct req_syn), 0))
+			Tmk_perrexit("Tmk_lock_sigio_handler<send>");
+
+		tail_[from] = tail;
+
+		lock->tail = from;
+	}
+	else
+		Tmk_errexit("Tmk_lock_sigio_handler<next == %d>: id == %d\n", lock->next, req->id);
+}
+
+/*
+ *
+ */
+void	Tmk_lock_sigio_duplicate_handler(req)
+	struct req_syn *req;
+{
+	struct rep_typ	rep;
+
+	struct lock    *lock = &lock_array_[req->id];
+
+	int		from = req->from;
+
+	if (lock->release_seqno == req->seqno) {
+
+		rep.seqno = req->seqno;
+
+		if (0 > send(rep_fd_[from], (char *)&rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+			Tmk_perrexit("Tmk_lock_sigio_duplicate_handler<send>");
+	}
+	else if (lock->held && lock->next == from) {
+		/*
+		 * This is a repeated request for a held lock.  Do nothing.
+		 */
+	}
+	else if (lock->manager == Tmk_proc_id) {
+
+		if (0 > send(req_fd_[tail_[from]], (char *) req, sizeof(struct req_syn), 0))
+			Tmk_perrexit("Tmk_lock_sigio_duplicate_handler<send>");
+	}
+	else
+		Tmk_err("Tmk_lock_sigio_duplicate_handler: lock->release_seqno == %d && req->seqno == %d\n",
+			lock->release_seqno, req->seqno);
+}
+
+/*
+ *
+ */
+void	Tmk_lock_release(lock_id)
+	unsigned	lock_id;
+{
+	if (lock_id < NLOCKS) {
+
+		struct	lock   *lock = &lock_array_[lock_id];
+
+		if (lock->held) {
+
+			int		to;
+
+			sigset_t	mask;
+
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+			lock->held = 0;
+
+			if ((to = lock->next) != Tmk_proc_id) {
+
+				struct	rep_typ	rep;
+
+				Tmk_interval_create(proc_vector_time_);
+
+				lock->release_seqno = rep.seqno = rep_seqno_[to];
+
+				if (0 > send(rep_fd_[to], (char *)&rep, Tmk_interval_request(rep.data, vector_time[to]) - (caddr_t)&rep, 0))
+					Tmk_perrexit("Tmk_lock_release<send>");
+
+				inverse_time_[to] = proc_vector_time_[Tmk_proc_id];
+			}
+			else
+				lock->time = proc_vector_time_[Tmk_proc_id];
+
+			sigio_mutex(SIG_SETMASK, &mask, NULL);
+		}
+		else
+			Tmk_errexit("Tmk_lock_release: %d REreleased\n", lock_id);
+	}
+	else
+		Tmk_errexit("Tmk_lock_release: lock id == %d\n", lock_id);
+}
+
+/*
+ *
+ */
+static
+void	update_time(struct cond *cond, unsigned short vector_time_[])
+{
+	int		i;
+
+	for (i = 0; i < NPROCS; i++)
+		if (vector_time_[i] > cond->signal_vector_time_[i])
+			cond->signal_vector_time_[i] = vector_time_[i]; 
+}
+    
+/*
+ *
+ */
+static
+waitq_entry_t
+	waitq_dequeue(struct cond *cond)
+{
+	waitq_entry_t	we;
+
+	if ((we = cond->waitq_head) != NULL) {
+
+		if ((cond->waitq_head = we->next) == NULL)
+			cond->waitq_tail = (waitq_entry_t)&cond->waitq_head;
+
+		we->queued = 0;
+
+		if (we->req.from != Tmk_proc_id) {
+
+			we->req.type = REQ_LOCK;
+
+			Tmk_lock_sigio_handler((struct req_syn *)&we->req);
+		}
+	}
+	return we;
+}
+
+/*
+ *
+ */
+void	Tmk_lock_cond_broadcast(lock_id, cond_id)
+	unsigned	lock_id;
+	unsigned	cond_id;
+{
+	if (lock_id < NLOCKS) {
+
+		if (cond_id < NCONDS) {
+
+			struct	lock   *lock;
+
+			unsigned	manager;
+
+			sigset_t	mask;
+
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+			Tmk_stat.broadcasts++;
+
+			lock = &lock_array_[lock_id];
+
+			if ((manager = lock->manager) == Tmk_proc_id) {
+
+				struct	cond   *cond = &lock->cond_[cond_id];
+
+				while (waitq_dequeue(cond));
+
+				update_time(cond, proc_vector_time_);
+			}
+			else {
+				unsigned	rep_seqno;
+
+				int		fd = req_fd_[manager], size;
+
+				req_broadcast.seqno = req_seqno += SEQNO_INCR;
+				req_broadcast.id = lock_id;
+				req_broadcast_id2 = cond_id;
+			rexmit:
+				if (0 > sendmsg(fd, &req_broadcast_hdr, 0))
+					Tmk_perrexit("Tmk_lock_cond_broadcast<sendmsg>");
+
+				Tmk_tout_flag = 0;
+
+				setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+				sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+
+				if (Tmk_debug)
+					Tmk_err("broadcast: %d %d (to: %d)\n", lock_id, cond_id, manager);
+			retry:
+				if ((size = recv(fd, (char *)&rep_seqno, sizeof(rep_seqno), 0)) < 0)
+					if (Tmk_tout_flag) {
+
+						if (Tmk_debug)
+							Tmk_err("Tmk_lock_cond_broadcast<timeout: %d>: %d %d seqno == %d\n",
+								manager, lock_id, cond_id, req_broadcast.seqno);
+
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+						goto rexmit;
+					}
+					else if (errno == EINTR)
+						goto retry;
+					else
+						Tmk_perrexit("Tmk_lock_cond_broadcast<recv>");
+
+				if (rep_seqno != req_broadcast.seqno) {
+
+					if (Tmk_debug)
+						Tmk_err("Tmk_lock_cond_broadcast<bad seqno: %d>: %d %d seqno == %d (received: %d)\n", 
+							manager, lock_id, cond_id, req_broadcast.seqno, rep_seqno);
+
+					goto retry;
+				}
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+			}
+			sigio_mutex(SIG_SETMASK, &mask, NULL);
+		}
+		else
+			Tmk_errexit("Tmk_lock_cond_broadcast: cond id == %d\n", cond_id);
+	}
+	else
+		Tmk_errexit("Tmk_lock_cond_broadcast: lock id == %d\n", lock_id);
+}
+
+/*
+ *
+ */
+void	Tmk_cond_broadcast_sigio_handler(req)
+	struct req_cond *req;
+{
+	struct	cond   *cond = &lock_array_[req->id].cond_[req->id2];
+
+	while (waitq_dequeue(cond));
+
+	update_time(cond, req->vector_time);
+
+	if (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_perrexit("Tmk_cond_broadcast_sigio_handler<send>");
+}
+
+/*
+ *
+ */
+void	Tmk_lock_cond_signal(lock_id, cond_id)
+	unsigned	lock_id;
+	unsigned	cond_id;
+{
+	if (lock_id < NLOCKS) {
+
+		if (cond_id < NCONDS) {
+
+			struct	lock   *lock;
+
+			unsigned	manager;
+
+			sigset_t	mask;
+
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+			Tmk_stat.signals++;
+
+			lock = &lock_array_[lock_id];
+
+			if ((manager = lock->manager) == Tmk_proc_id) {
+
+				struct	cond   *cond = &lock->cond_[cond_id];
+
+				waitq_dequeue(cond);
+
+				update_time(cond, proc_vector_time_);
+			}
+			else {
+				unsigned	rep_seqno;
+
+				int		fd = req_fd_[manager], size;
+
+				req_signal.seqno = req_seqno += SEQNO_INCR;
+				req_signal.id = lock_id;
+				req_signal_id2 = cond_id;
+			rexmit:
+				if (0 > sendmsg(fd, &req_signal_hdr, 0))
+					Tmk_perrexit("Tmk_lock_cond_signal<sendmsg>");
+
+				Tmk_tout_flag = 0;
+
+				setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+				sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+
+				if (Tmk_debug)
+					Tmk_err("signal: %d %d (to: %d)\n", lock_id, cond_id, manager);
+			retry:
+				if ((size = recv(fd, (char *)&rep_seqno, sizeof(rep_seqno), 0)) < 0)
+					if (Tmk_tout_flag) {
+
+						if (Tmk_debug)
+							Tmk_err("Tmk_lock_cond_signal<timeout: %d>: %d %d seqno == %d\n",
+								manager, lock_id, cond_id, req_signal.seqno);
+
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+						goto rexmit;
+					}
+					else if (errno == EINTR)
+						goto retry;
+					else
+						Tmk_perrexit("Tmk_lock_cond_signal<recv>");
+
+				if (rep_seqno != req_signal.seqno) {
+
+					if (Tmk_debug)
+						Tmk_err("Tmk_lock_cond_signal<bad seqno: %d>: %d %d seqno == %d (received: %d)\n", 
+							manager, lock_id, cond_id, req_signal.seqno, rep_seqno);
+
+					goto retry;
+				}
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+			}
+			sigio_mutex(SIG_SETMASK, &mask, NULL);
+		}
+		else
+			Tmk_errexit("Tmk_lock_cond_signal: cond id == %d\n", cond_id);
+	}
+	else
+		Tmk_errexit("Tmk_lock_cond_signal: lock id == %d\n", lock_id);
+}
+
+/*
+ *
+ */
+void    Tmk_cond_signal_sigio_handler(req)
+	struct req_cond *req;
+{
+	struct	cond   *cond = &lock_array_[req->id].cond_[req->id2];
+
+	waitq_dequeue(cond);
+
+	update_time(cond, req->vector_time);
+
+	if (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_perrexit("Tmk_cond_signal_sigio_handler<send>");
+}
+
+/*
+ *
+ */
+void    Tmk_lock_cond_wait(lock_id, cond_id)
+	unsigned        lock_id;
+	unsigned        cond_id;
+{   
+	if (lock_id < NLOCKS) {
+
+		if (cond_id < NCONDS) {
+
+			struct	lock   *lock;
+
+			unsigned	manager;
+
+			sigset_t	mask;
+
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+			Tmk_stat.waits++;
+
+			lock = &lock_array_[lock_id];
+
+			if ( ! lock->held)
+				Tmk_errexit("Tmk_lock_cond_wait: lock not held id == %d\n", lock_id);
+
+			while (lock->next == Tmk_proc_id) {
+
+				sigset_t	empty_mask;
+
+				sigemptyset(&empty_mask);
+
+				sigsuspend(&empty_mask);
+			}
+			Tmk_lock_release(lock_id);
+
+			if ((manager = lock->manager) == Tmk_proc_id) {
+
+				struct	cond   *cond = &lock->cond_[cond_id];
+
+				waitq_entry_t	we = &waitq_[Tmk_proc_id];
+
+				we->next = NULL;
+
+				cond->waitq_tail = cond->waitq_tail->next = we;
+
+				we->queued = 1;
+
+				/*
+				 *	we->req.from = Tmk_proc_id;
+				 */
+				while (we->queued) {
+
+					sigset_t	empty_mask;
+
+					sigemptyset(&empty_mask);
+
+					sigsuspend(&empty_mask);
+				}
+				Tmk_lock_acquire(lock_id);
+			}
+			else {
+				struct	rep_typ	rep;
+				int		fd, j, size;
+				fd_set		readfds;
+				unsigned short	vector_time_[NPROCS];
+
+				lock->held = 1;
+				lock->next = Tmk_proc_id;
+
+				req_wait.seqno = req_seqno += SEQNO_INCR;
+				req_wait.id = lock_id;
+				req_wait_id2 = cond_id;
+			rexmit:
+				if (0 > sendmsg(req_fd_[manager], &req_wait_hdr, 0))
+					Tmk_perrexit("Tmk_condition_wait<sendmsg>");
+
+				Tmk_tout_flag = 0;
+
+				setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+				memcpy(vector_time_, proc_vector_time_, sizeof(proc_vector_time_));
+
+				sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+
+				if (Tmk_debug)
+					Tmk_err("wait: %d %d (to: %d) ", lock_id, cond_id, manager);
+			retry:
+				readfds = req_fds;
+
+				if (0 > select(req_maxfdp1, (fd_set_t)&readfds, NULL, NULL, NULL))
+					if (Tmk_tout_flag) {
+
+						if (Tmk_debug)
+							Tmk_err("Tmk_condition_wait<timeout: %d>: %d %d seqno == %d\n",
+								manager, lock_id, cond_id, req_wait.seqno);
+
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+						goto rexmit;
+					}
+					else if (errno == EINTR)
+						goto retry;
+#if defined(__sun) && defined(__SVR4)
+					else if (errno == 0)
+						goto retry;
+#endif
+					else
+						Tmk_perrexit("Tmk_condition_wait<select>");
+
+				for (j = 0; j < Tmk_nprocs; j++) {
+
+					if (j == Tmk_proc_id)
+						continue;
+
+					fd = req_fd_[j];
+
+					if (FD_ISSET(fd, &readfds))
+						goto receive;
+				}
+#if defined(_AIX) || defined(__hpux)
+				goto retry;
+#else
+				Tmk_errexit("Tmk_lock_cond_wait<req_fds>");
+#endif
+		receive:
+				if ((size = recv(fd, (char *)&rep, MTU, 0)) < 0)
+					if (Tmk_tout_flag) {
+
+						if (Tmk_debug)
+							Tmk_err("Tmk_lock_cond_wait<timeout: %d>: %d %d seqno == %d\n", 
+								manager, lock_id, cond_id, req_wait.seqno);
+
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+						goto rexmit;
+					}
+					else if (errno == EINTR)
+						goto retry;
+					else
+						Tmk_perrexit("Tmk_lock_cond_wait<recv>");
+
+				if (rep.seqno != req_wait.seqno) {
+
+					if (Tmk_debug)
+						Tmk_err("Tmk_lock_cond_wait<bad seqno: %d>: %d %d seqno == %d (received: %d)\n",
+							j, lock_id, cond_id, req_wait.seqno, rep.seqno);
+
+					goto retry;
+				}
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+
+				Tmk_interval_incorporate(rep.data, size - sizeof(rep.seqno), vector_time_);
+			}
+			sigio_mutex(SIG_SETMASK, &mask, NULL);
+		}
+		else
+			Tmk_errexit("Tmk_lock_cond_wait: cond id == %d\n", cond_id);
+	}
+	else
+		Tmk_errexit("Tmk_lock_cond_wait: lock id == %d\n", lock_id);
+}
+
+/*
+ *
+ */
+void	Tmk_cond_wait_sigio_handler(req)
+	struct req_cond *req;
+{
+	struct	cond   *cond = &lock_array_[req->id].cond_[req->id2];
+
+	unsigned	from = req->from;
+
+	if (req->vector_time[from] <= cond->signal_vector_time_[from]) {
+
+		/*
+		 * The wait request is older than the last signal.
+		 */
+		req->type = REQ_LOCK;
+
+		Tmk_lock_sigio_handler((struct req_syn *) req);
+	}
+	else {
+		waitq_entry_t	we = &waitq_[from];
+
+		memcpy(&we->req, req, sizeof(*req));
+
+		we->next = NULL;
+
+		cond->waitq_tail = cond->waitq_tail->next = we;
+
+		we->queued = 1;
+	}
+}
+
+/*
+ *
+ */
+void    Tmk_cond_wait_sigio_duplicate_handler(req)
+	struct req_cond *req;
+{
+	waitq_entry_t	we = &waitq_[req->from];
+
+	if (we->queued && (we->req.seqno == req->seqno)) {
+		/*
+		 * This wait request is still queued.  Ignore the duplicate.
+		 */
+		return;
+	}
+
+	/*
+	 *
+	 */
+	req->type = REQ_LOCK;
+
+	Tmk_lock_sigio_duplicate_handler((struct req_syn *) req);
+}
+
+/*
+ *
+ */
+void	Tmk_lock_initialize()
+{
+	int	i, j;
+
+	for (i = 0; i < NLOCKS; i++) {
+
+		struct	lock   *lock = &lock_array_[i];
+
+		lock->manager = i % Tmk_nprocs;
+		lock->tail = 0;
+		lock->held = 0;
+		lock->next = 0;
+
+		for (j = 0; j < NCONDS; j++) {
+
+			struct	cond   *cond = &lock->cond_[j];
+
+			cond->waitq_head = NULL;
+			cond->waitq_tail = (waitq_entry_t)&cond->waitq_head;
+
+			memset(cond->signal_vector_time_, 0, sizeof(cond->signal_vector_time_));
+		}
+	}
+
+	/*
+	 * Required by waitq_dequeue.
+	 */
+	waitq_[Tmk_proc_id].req.from = Tmk_proc_id;
+
+	req_acquire.from =
+	req_broadcast.from =
+	req_signal.from =
+	req_wait.from = Tmk_proc_id;
+}
+@
+
+
+11.2
+log
+@Don't time the lock acquire unless tmk_stat_flag > 2, which is never
+the case in Tmk-1.0.0.  (Identical to 10.20.1.3.)
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 11.1 1997/07/24 05:49:27 alc Exp alc $
+d282 1
+a282 1
+#if defined(_AIX)
+d801 1
+a801 1
+				if (0 > select(req_maxfdp1, &readfds, NULL, NULL, NULL))
+d831 1
+a831 1
+#if defined(_AIX)
+@
+
+
+11.1
+log
+@Don't bother checking tmk_stat_flag for cheap to collect statistics.
+(Identical to revision 10.20.1.2.)
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20 1997/06/03 18:11:24 alc Exp alc $
+d228 1
+a228 1
+			if (tmk_stat_flag)
+d315 1
+a315 1
+			if (tmk_stat_flag) {
+@
+
+
+10.20
+log
+@Added casts to avoid warnings from the SGI compiler.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.19 1997/05/25 17:00:09 alc Exp alc $
+d211 1
+a211 2
+		if (tmk_stat_flag)
+		  	Tmk_stat.acquires++;
+a319 2
+				Tmk_stat.bytes += size;
+				Tmk_stat.messages_for_acquires++;
+d321 3
+d518 1
+a518 2
+			if (tmk_stat_flag)
+				Tmk_stat.broadcasts++;
+d577 2
+a578 4
+				if (tmk_stat_flag) {
+					Tmk_stat.messages++;
+					Tmk_stat.bytes += size;
+				}
+d624 1
+a624 2
+			if (tmk_stat_flag)
+				Tmk_stat.signals++;
+d683 2
+a684 4
+				if (tmk_stat_flag) {
+					Tmk_stat.messages++;
+					Tmk_stat.bytes += size;
+				}
+d730 1
+a730 2
+			if (tmk_stat_flag)
+				Tmk_stat.waits++;
+d863 3
+a865 4
+				if (tmk_stat_flag) {
+					Tmk_stat.messages++;
+					Tmk_stat.bytes += size;
+				}
+@
+
+
+10.20.1.1
+log
+@Added basic Pthreads support.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20 1997/06/03 18:11:24 alc Exp alc $
+a199 3
+#if defined(PTHREADS)
+	pthread_mutex_lock(&Tmk_monitor_lock);
+#endif
+a329 3
+#if defined(PTHREADS)
+	pthread_mutex_unlock(&Tmk_monitor_lock);
+#endif
+a505 3
+#if defined(PTHREADS)
+	pthread_mutex_lock(&Tmk_monitor_lock);
+#endif
+a589 3
+#if defined(PTHREADS)
+	pthread_mutex_unlock(&Tmk_monitor_lock);
+#endif
+a614 3
+#if defined(PTHREADS)
+	pthread_mutex_lock(&Tmk_monitor_lock);
+#endif
+a698 3
+#if defined(PTHREADS)
+	pthread_mutex_unlock(&Tmk_monitor_lock);
+#endif
+a723 3
+#if defined(PTHREADS)
+	pthread_mutex_lock(&Tmk_monitor_lock);
+#endif
+a882 3
+#if defined(PTHREADS)
+	pthread_mutex_unlock(&Tmk_monitor_lock);
+#endif
+@
+
+
+10.20.1.2
+log
+@Don't bother checking tmk_stat_flag for cheap to collect statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.1 1997/07/23 06:40:42 alc Exp alc $
+d214 2
+a215 1
+		Tmk_stat.acquires++;
+d324 2
+a326 3
+			Tmk_stat.bytes += size;
+			Tmk_stat.messages_for_acquires++;
+
+d527 2
+a528 1
+			Tmk_stat.broadcasts++;
+d587 4
+a590 2
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+d642 2
+a643 1
+			Tmk_stat.signals++;
+d702 4
+a705 2
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+d757 2
+a758 1
+			Tmk_stat.waits++;
+d891 4
+a894 3
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+
+@
+
+
+10.20.1.3
+log
+@Don't time the lock acquire unless tmk_stat_flag > 2, which is never
+the case in Tmk-1.0.0.  (We will likely provide more detailed statistics
+in the future using tmk_stat_flag > 2.)
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.2 1997/07/24 05:24:11 alc Exp alc $
+d231 1
+a231 1
+			if (tmk_stat_flag > 2)
+d318 1
+a318 1
+			if (tmk_stat_flag > 2) {
+@
+
+
+10.20.1.4
+log
+@HP-UX 10.x's select misbehaves: It returns 0 when the timeout
+is infinite.  AIX 3.2.5 had a similar problem.  Handle it the
+same way.
+
+Add a cast to pacify the HP-UX cc.
+
+(Identical to revision 11.3.)
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.3 1997/07/24 19:55:48 alc Exp alc $
+d285 1
+a285 1
+#if defined(_AIX) || defined(__hpux)
+d822 1
+a822 1
+				if (0 > select(req_maxfdp1, (fd_set_t)&readfds, NULL, NULL, NULL))
+d852 1
+a852 1
+#if defined(_AIX) || defined(__hpux)
+@
+
+
+10.20.1.5
+log
+@Change NPROCS to Tmk_nprocs.  (Delete some whitespace.)
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.4 1997/12/24 06:52:42 alc Exp alc $
+d472 1
+a472 1
+	int		i = 0;
+d474 1
+a474 1
+	do {
+d476 1
+a476 2
+			cond->signal_vector_time_[i] = vector_time_[i];
+	} while (++i < Tmk_nprocs);
+@
+
+
+10.20.1.6
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.5 1998/03/22 00:25:57 alc Exp alc $
+d237 2
+a238 2
+			while (0 > sendmsg(req_fd_[from], &req_acquire_hdr, 0))
+				Tmk_errno_check("Tmk_lock_acquire<sendmsg>");
+d359 2
+a360 2
+			while (0 > send(rep_fd_[from], (char *)&rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+				Tmk_errno_check("Tmk_lock_sigio_handler<send>");
+d376 2
+a377 2
+		while (0 > send(req_fd_[tail], (char *) req, sizeof(struct req_syn), 0))
+			Tmk_errno_check("Tmk_lock_sigio_handler<send>");
+d403 2
+a404 2
+		while (0 > send(rep_fd_[from], (char *)&rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+			Tmk_errno_check("Tmk_lock_sigio_duplicate_handler<send>");
+d413 2
+a414 2
+		while (0 > send(req_fd_[tail_[from]], (char *) req, sizeof(struct req_syn), 0))
+			Tmk_errno_check("Tmk_lock_sigio_duplicate_handler<send>");
+d449 2
+a450 2
+				while (0 > send(rep_fd_[to], (char *)&rep, Tmk_interval_request(rep.data, vector_time[to]) - (caddr_t)&rep, 0))
+					Tmk_errno_check("Tmk_lock_release<send>");
+d549 2
+a550 2
+				while (0 > sendmsg(fd, &req_broadcast_hdr, 0))
+					Tmk_errno_check("Tmk_lock_cond_broadcast<sendmsg>");
+d614 2
+a615 2
+	while (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_errno_check("Tmk_cond_broadcast_sigio_handler<send>");
+d661 2
+a662 2
+				while (0 > sendmsg(fd, &req_signal_hdr, 0))
+					Tmk_errno_check("Tmk_lock_cond_signal<sendmsg>");
+d726 2
+a727 2
+	while (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_errno_check("Tmk_cond_signal_sigio_handler<send>");
+d807 2
+a808 2
+				while (0 > sendmsg(req_fd_[manager], &req_wait_hdr, 0))
+					Tmk_errno_check("Tmk_condition_wait<sendmsg>");
+@
+
+
+10.20.1.7
+log
+@Added the "const" attribute to the req and vector time arguments
+to Tmk_cond_broadcast_sigio_handler, Tmk_cond_signal_sigio_handler
+and update_time.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.6 1998/05/14 20:10:16 alc Exp alc $
+d469 2
+a470 5
+static void
+update_time(
+	struct cond    *cond,
+	const unsigned short
+			vector_time_[])
+d605 2
+a606 3
+void
+Tmk_cond_broadcast_sigio_handler(
+	const struct req_cond *req)
+d717 2
+a718 3
+void
+Tmk_cond_signal_sigio_handler(
+	const struct req_cond *req)
+@
+
+
+10.20.1.8
+log
+@Integrate revisions 10.20.1.7.0.1 through 10.20.1.7.0.3.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.7.0.3 1998/07/17 04:41:57 alc Exp $
+d172 23
+d341 2
+a342 3
+void
+Tmk_lock_sigio_handler(
+	const struct req_syn *req)
+d390 2
+a391 3
+void
+Tmk_lock_sigio_duplicate_handler(
+	const struct req_syn *req)
+d965 1
+a965 2
+void
+Tmk_lock_initialize( void )
+@
+
+
+10.20.1.9
+log
+@Increment Tmk_stat.rexmits on lock and conditition retransmits.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.8 1998/07/17 05:01:08 alc Exp alc $
+a241 2
+						Tmk_stat.rexmits++;
+
+a277 2
+					Tmk_stat.rexmits++;
+
+a551 2
+						Tmk_stat.rexmits++;
+
+a664 2
+						Tmk_stat.rexmits++;
+
+a815 2
+						Tmk_stat.rexmits++;
+
+a850 2
+
+						Tmk_stat.rexmits++;
+@
+
+
+10.20.1.7.0.1
+log
+@Added the "const" attribute to Tmk_lock_sigio_handler's and
+Tmk_lock_sigio_duplicate_handler's "req" arguments.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.7 1998/05/31 05:05:08 alc Exp alc $
+d341 2
+a342 3
+void
+Tmk_lock_sigio_handler(
+	const struct req_syn *req)
+d390 2
+a391 3
+void
+Tmk_lock_sigio_duplicate_handler(
+	const struct req_syn *req)
+@
+
+
+10.20.1.7.0.2
+log
+@Add void to several function definitions.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.7.0.1 1998/07/17 04:29:37 alc Exp alc $
+d967 1
+a967 2
+void
+Tmk_lock_initialize( void )
+@
+
+
+10.20.1.7.0.3
+log
+@Eliminate the unused "allocate" functions.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.20.1.7.0.2 1998/07/17 04:36:11 alc Exp alc $
+d170 23
+@
+
+
+10.19
+log
+@Fixed the error messages.  Renamed the lock acquire message buffers
+for consistency with the others.  Used lock_id consistently throughout.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.18 1997/05/25 07:01:11 alc Exp alc $
+d493 1
+a493 1
+			Tmk_lock_sigio_handler(&we->req);
+d902 1
+a902 1
+		Tmk_lock_sigio_handler(req);
+d937 1
+a937 1
+	Tmk_lock_sigio_duplicate_handler(req);
+@
+
+
+10.18
+log
+@Purged #if defined(ultrix).  Use _AIX instead of _IBMR2 (where
+appropriate).
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.17 1997/05/25 06:55:38 alc Exp alc $
+d111 1
+a111 1
+struct	req_typ	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_LOCK };
+d114 3
+a116 3
+struct	iovec	req_iov[2] = {
+	{ (caddr_t)&req_typ, sizeof(req_typ) },
+	{ (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) } };
+d119 1
+a119 17
+struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+
+static
+struct	req_typ	req_wait = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_WAIT };
+
+static
+unsigned short	req_wait_id2;
+
+static
+struct	iovec	req_wait_iov[] = {
+    { (caddr_t)&req_wait, sizeof(req_wait) },
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) },
+    { (caddr_t)&req_wait_id2, sizeof(req_wait_id2) } };
+
+static
+struct	msghdr	req_wait_hdr =
+    { 0, 0, req_wait_iov, sizeof(req_wait_iov)/sizeof(req_wait_iov[0]), 0, 0 };
+d134 1
+a134 2
+struct	msghdr	req_broadcast_hdr =
+     { 0, 0, req_broadcast_iov, sizeof(req_broadcast_iov)/sizeof(req_broadcast_iov[0]), 0, 0 };
+d149 16
+a164 2
+struct	msghdr	req_signal_hdr =
+     { 0, 0, req_signal_iov, sizeof(req_signal_iov)/sizeof(req_signal_iov[0]), 0, 0 };
+d185 2
+a186 2
+int	Tmk_lock_cond_allocate(id, ip)
+	unsigned	id;
+d197 2
+a198 2
+void	Tmk_lock_acquire(i)
+	unsigned	i;
+d200 1
+a200 3
+	Tmk_stat.acquires++;
+
+	if (i < NLOCKS) {
+d202 1
+a202 1
+		struct	lock   *lock = &lock_array_[i];
+d211 3
+d215 1
+a215 1
+			Tmk_errexit("Tmk_lock_acquire: %d REacquired (value: %d)\n", i, lock->held);
+d232 2
+a233 2
+			req_typ.id = i;
+			req_typ.seqno = req_seqno += SEQNO_INCR;
+d235 2
+a236 2
+			if (0 > sendmsg(req_fd_[from], &req_hdr, 0))
+				Tmk_perrexit("<sendmsg>Tmk_lock_acquire");
+d247 1
+a247 1
+				Tmk_err("lock: %d (to: %d) ", i, from);
+d258 2
+a259 1
+							Tmk_err("<timeout: %d>Tmk_lock_acquire: %d seqno == %d\n", from, i, req_typ.seqno);
+d272 1
+a272 1
+						Tmk_perrexit("<select>Tmk_lock_acquire");
+d286 1
+a286 1
+				Tmk_errexit("<req_fds>Tmk_lock_acquire");
+d294 2
+a295 1
+						Tmk_err("<timeout: %d>Tmk_lock_acquire: %d seqno == %d\n", from, i, req_typ.seqno);
+d304 1
+a304 1
+					Tmk_perrexit("<recv>Tmk_lock_acquire");
+d306 1
+a306 1
+			if (rep.seqno != req_typ.seqno) {
+d309 2
+a310 1
+					Tmk_err("<bad seqno: %d>Tmk_lock_acquire: %d seqno == %d (received: %d)\n", j, i, req_typ.seqno, rep.seqno);
+d329 1
+a329 1
+		Tmk_errexit("Tmk_lock_acquire: id == %d\n", i);
+d354 1
+a354 1
+				Tmk_perrexit("<send>lock_sigio_handler_assist");
+d371 1
+a371 1
+			Tmk_perrexit("<send>Tmk_lock_sigio_handler");
+d378 1
+a378 1
+		Tmk_errexit("<next == %d>Tmk_lock_sigio_handler: id == %d\n", lock->next, req->id);
+d398 1
+a398 1
+			Tmk_perrexit("<send>Tmk_lock_sigio_duplicate_handler");
+d408 1
+a408 1
+			Tmk_perrexit("<send>Tmk_lock_sigio_duplicate_handler");
+d411 2
+a412 1
+		Tmk_err("Tmk_lock_sigio_duplicate_handler: lock->release_seqno == %d && req->seqno == %d\n", lock->release_seqno, req->seqno);
+d418 2
+a419 2
+void	Tmk_lock_release(i)
+	unsigned	i;
+d421 1
+a421 1
+	if (i < NLOCKS) {
+d423 1
+a423 1
+		struct	lock   *lock = &lock_array_[i];
+d427 3
+a429 3
+			int	id;
+			sigset_t
+				mask;
+d435 1
+a435 1
+			if ((id = lock->next) != Tmk_proc_id) {
+d441 1
+a441 1
+				lock->release_seqno = rep.seqno = rep_seqno_[id];
+d443 2
+a444 2
+				if (0 > send(rep_fd_[id], (char *)&rep, Tmk_interval_request(rep.data, vector_time[id]) - (caddr_t)&rep, 0))
+					Tmk_perrexit("<send>Tmk_lock_release");
+d446 1
+a446 1
+				inverse_time_[id] = proc_vector_time_[Tmk_proc_id];
+d454 1
+a454 1
+			Tmk_errexit("Tmk_lock_release: %d REreleased\n", i);
+d457 1
+a457 1
+		Tmk_errexit("Tmk_lock_release: id == %d\n", i);
+d786 1
+a786 1
+				lock->next = Tmk_proc_id;	/* XXX */
+d804 1
+a804 1
+					Tmk_err("wait: %d (to: %d) ", cond_id, manager);
+d812 2
+a813 2
+							Tmk_err("Tmk_condition_wait<timeout: %d>: %d seqno == %d\n",
+								manager, cond_id, req_wait.seqno);
+d848 2
+a849 2
+							Tmk_err("Tmk_lock_cond_wait<timeout: %d>: %d seqno == %d\n", 
+								manager, cond_id, req_wait.seqno);
+d863 2
+a864 2
+						Tmk_err("Tmk_lock_cond_wait<bad seqno: %d>: %d seqno == %d (received: %d)\n",
+							j, cond_id, req_wait.seqno, rep.seqno);
+d972 1
+d975 1
+a975 2
+	req_wait.from =
+	req_typ.from = Tmk_proc_id;
+@
+
+
+10.17
+log
+@Completed a candidate version.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.16 1997/05/24 06:37:32 alc Exp alc $
+d117 3
+a119 3
+#if ! defined(ultrix)
+static	struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+#endif
+a236 4
+#if defined(ultrix)
+			if (0 > writev(req_fd_[from], req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+				Tmk_perrexit("<writev>Tmk_lock_acquire");
+#else
+d239 1
+a239 1
+#endif
+d284 1
+a284 1
+#if defined(_IBMR2)
+a290 3
+#if defined(ultrix)
+			if ((size = read(fd, &rep, sizeof(rep))) < 0)
+#else
+a291 1
+#endif
+a303 3
+#if defined(ultrix)
+					Tmk_perrexit("<read>Tmk_lock_acquire");
+#else
+d305 1
+a305 1
+#endif
+d351 1
+a351 4
+#if defined(ultrix)
+			if (0 > write(rep_fd_[from], &rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep))
+				Tmk_perrexit("<write>lock_sigio_handler_assist");
+#else
+d354 1
+a354 1
+#endif
+d368 1
+a368 4
+#if defined(ultrix)
+		if (0 > write(req_fd_[tail], req, sizeof(struct req_syn)))
+			Tmk_perrexit("<write>Tmk_lock_sigio_handler");
+#else
+d371 1
+a371 1
+#endif
+d395 1
+a395 4
+#if defined(ultrix)
+		if (0 > write(rep_fd_[from], &rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep))
+			Tmk_perrexit("<write>Tmk_lock_sigio_duplicate_handler");
+#else
+a397 1
+#endif
+d405 1
+a405 4
+#if defined(ultrix)
+		if (0 > write(req_fd_[tail_[from]], req, sizeof(struct req_syn)))
+			Tmk_perrexit("<write>Tmk_lock_sigio_duplicate_handler");
+#else
+a407 1
+#endif
+d440 1
+a440 4
+#if defined(ultrix)
+				if (0 > write(rep_fd_[id], &rep, Tmk_interval_request(rep.data, vector_time[id]) - (caddr_t)&rep))
+					Tmk_perrexit("<write>Tmk_lock_release");
+#else
+d443 1
+a443 1
+#endif
+@
+
+
+10.16
+log
+@Improved the error handling.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.15 1997/05/22 15:29:54 alc Exp alc $
+d77 3
+d82 3
+a84 2
+	struct	waitq_entry    *next;
+	struct	req_cond	req;
+d88 2
+a89 1
+	struct	waitq_entry    *waitq_head;
+d154 1
+a154 1
+struct	req_typ	req_sig = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_SIGNAL };
+d157 1
+a157 1
+unsigned short	req_sig_id2;
+d160 2
+a161 2
+struct	iovec	req_sig_iov[] = {
+    { (caddr_t)&req_sig, sizeof(req_sig)},
+d163 1
+a163 1
+    { (caddr_t)&req_sig_id2, sizeof(req_sig_id2)} };
+d166 2
+a167 2
+struct	msghdr	req_sig_hdr =
+     { 0, 0, req_sig_iov, sizeof(req_sig_iov)/sizeof(req_sig_iov[0]), 0, 0 };
+d486 3
+a488 6
+/* For the purposes of the waiting/signal queuing,  only the waiting node component
+   of the vt is checked to determine if the incoming wait op is newer/older
+   than the most recent signal or broadcast.
+   For comparing the new wait op to the enqueued ones, the same test is
+   used.  Note that a different component is tested on each insertion.
+*/
+d490 8
+a497 2
+volatile
+unsigned	waiting_on_cond;
+d503 2
+a504 3
+void	broadcast_manager(cond, vector_time_)
+	struct	cond   *cond;
+	unsigned short	vector_time_[];
+d506 1
+a506 1
+	int		i;
+d508 1
+a508 3
+	struct	waitq_entry    *we;
+
+	while ((we = cond->waitq_head) != NULL) {
+d510 2
+a511 1
+		cond->waitq_head = we->next;
+d513 1
+a513 1
+		if (we->req.from == Tmk_proc_id) {
+d515 1
+a515 2
+			if ( ! waiting_on_cond)
+				Tmk_errexit(": Managing node not waiting!"); 
+a516 3
+			waiting_on_cond = 0;
+		}
+		else {
+d522 1
+a522 3
+	for (i = 0; i < NPROCS; i++)
+		if (vector_time_[i] > cond->signal_vector_time_[i])
+			cond->signal_vector_time_[i] = vector_time_[i]; 
+d528 3
+a530 3
+void	Tmk_lock_cond_broadcast(lock_ID, cond_ID)
+	unsigned	lock_ID;
+	unsigned	cond_ID;
+d532 1
+a532 1
+	if (lock_ID < NLOCKS) {
+d534 1
+a534 1
+		if (cond_ID < NCONDS) {
+d536 1
+a536 1
+			struct	lock   *lock = &lock_array_[lock_ID];
+d538 1
+a538 1
+			int		manager = lock->manager;
+d547 10
+a556 2
+			if (manager == Tmk_proc_id)
+				broadcast_manager(&lock->cond_[cond_ID], proc_vector_time_);
+d560 1
+a560 1
+				int		fd = req_fd_[manager], j, size;
+d563 2
+a564 2
+				req_broadcast.id = lock_ID;
+				req_broadcast_id2 = cond_ID;
+d576 1
+a576 1
+					Tmk_err("broadcast: %d (to: %d)\n", cond_ID, manager);
+d582 2
+a583 2
+							Tmk_err("Tmk_lock_cond_broadcast<timeout: %d>: %d seqno == %d\n",
+								manager, cond_ID, req_broadcast.seqno);
+d597 2
+a598 2
+						Tmk_err("Tmk_lock_cond_broadcast<bad seqno: %d>: %d seqno == %d (received: %d)\n", 
+							j, cond_ID, req_broadcast.seqno, rep_seqno);
+d612 1
+a612 1
+			Tmk_errexit("Tmk_lock_cond_broadcast: cond id == %d\n", cond_ID);
+d615 1
+a615 1
+		Tmk_errexit("Tmk_lock_cond_broadcast: lock id == %d\n", lock_ID);
+d624 1
+a624 1
+	broadcast_manager(&lock_array_[req->id].cond_[req->id2], req->vector_time);
+d626 1
+a626 14
+	if (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_perrexit("Tmk_cond_signal_sigio_handler<send>");
+}
+    
+/*
+ *
+ */
+static
+void	signal_manager(id, id2, vector_time_)
+	unsigned	id;
+	unsigned	id2;
+	unsigned short	vector_time_[];
+{
+	struct	cond   *cond = &lock_array_[id].cond_[id2];
+d628 1
+a628 1
+	struct	waitq_entry    *we;
+d630 2
+a631 22
+	int		i;
+
+	if ((we = cond->waitq_head) != NULL) {
+
+		cond->waitq_head = we->next;
+
+		if (we->req.from == Tmk_proc_id) {
+
+			if ( ! waiting_on_cond)
+				Tmk_errexit(": Managing node not waiting!"); 
+
+			waiting_on_cond = 0;
+		}
+		else {
+			we->req.type = REQ_LOCK;
+
+			Tmk_lock_sigio_handler(&we->req);
+		}
+	}
+	for (i = 0; i < NPROCS; i++)
+		if (vector_time_[i] > cond->signal_vector_time_[i])
+			cond->signal_vector_time_[i] = vector_time_[i]; 
+d637 3
+a639 3
+void	Tmk_lock_cond_signal(lock_ID, cond_ID)
+	unsigned	lock_ID;
+	unsigned	cond_ID;
+d641 1
+a641 1
+	if (lock_ID < NLOCKS) {
+d643 1
+a643 1
+		if (cond_ID < NCONDS) {
+d645 3
+a647 1
+			int		manager = lock_array_[lock_ID].manager;
+d656 10
+a665 2
+			if (manager == Tmk_proc_id)
+				signal_manager(lock_ID, cond_ID, proc_vector_time_);
+d669 1
+a669 1
+				int		fd = req_fd_[manager], j, size;
+d671 3
+a673 3
+				req_sig.seqno = req_seqno += SEQNO_INCR;
+				req_sig.id = lock_ID;
+				req_sig_id2 = cond_ID;
+d675 1
+a675 1
+				if (0 > sendmsg(fd, &req_sig_hdr, 0))
+d685 1
+a685 1
+					Tmk_err("signal: %d (to: %d)\n", cond_ID, manager);
+d691 2
+a692 2
+							Tmk_err("Tmk_lock_cond_signal<timeout: %d>: %d seqno == %d\n",
+								manager, cond_ID, req_sig.seqno);
+d703 1
+a703 1
+				if (rep_seqno != req_sig.seqno) {
+d706 2
+a707 2
+						Tmk_err("Tmk_lock_cond_signal<bad seqno: %d>: %d seqno == %d (received: %d)\n", 
+							j, cond_ID, req_sig.seqno, rep_seqno);
+d721 1
+a721 1
+			Tmk_errexit("Tmk_lock_cond_signal: cond id == %d\n", cond_ID);
+d724 1
+a724 1
+		Tmk_errexit("Tmk_lock_cond_signal: lock id == %d\n", lock_ID);
+d733 5
+a737 1
+	signal_manager(req->id, req->id2, req->vector_time);
+d746 3
+a748 13
+void    Tmk_cond_generic_sigio_duplicate_handler(req)
+	struct req_cond *req;
+{
+	if (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_perrexit("Tmk_cond_signal_sigio_duplicate_handler<send>");
+}
+
+/*
+ *
+ */
+void    Tmk_lock_cond_wait(lock_ID, cond_ID)
+	unsigned        lock_ID;
+	unsigned        cond_ID;
+d750 1
+a750 3
+	Tmk_stat.waits++;
+
+	if (lock_ID < NLOCKS) {
+d752 1
+a752 1
+		if (cond_ID < NCONDS) {
+d754 1
+a754 1
+			struct	lock   *lock = &lock_array_[lock_ID];
+d762 5
+d768 1
+a768 1
+				Tmk_errexit("Tmk_lock_cond_wait: lock not held id == %d\n", lock_ID);
+d778 1
+a778 1
+			Tmk_lock_release(lock_ID);
+d782 1
+a782 1
+				struct	cond   *cond = &lock->cond_[cond_ID];
+d784 1
+a784 1
+				unsigned	time = proc_vector_time_[Tmk_proc_id];
+d786 1
+a786 2
+				struct waitq_entry *we = &waitq_[Tmk_proc_id];
+				struct waitq_entry **q_head = &cond->waitq_head;
+d788 1
+a788 3
+				while ((*q_head != NULL) &&
+				       (time > (*q_head)->req.vector_time[Tmk_proc_id]))
+					q_head = &(*q_head)->next;      
+d790 1
+a790 2
+				we->next = *q_head;
+				*q_head = we;
+d795 1
+a795 3
+				memcpy(&we->req.vector_time, proc_vector_time_, sizeof(proc_vector_time_));
+          
+				for (waiting_on_cond = 1; waiting_on_cond; ) {
+d803 1
+a803 1
+				Tmk_lock_acquire(lock_ID);
+d815 2
+a816 2
+				req_wait.id = lock_ID;
+				req_wait_id2 = cond_ID;
+d830 1
+a830 1
+					Tmk_err("wait: %d (to: %d) ", cond_ID, manager);
+d839 1
+a839 1
+								manager, cond_ID, req_wait.seqno);
+d847 4
+d875 1
+a875 1
+								manager, cond_ID, req_wait.seqno);
+d890 1
+a890 1
+							j, cond_ID, req_wait.seqno, rep.seqno);
+d905 1
+a905 1
+			Tmk_errexit("Tmk_lock_cond_wait: cond id == %d\n", cond_ID);
+d908 1
+a908 1
+		Tmk_errexit("Tmk_lock_cond_wait: lock id == %d\n", lock_ID);
+a919 1
+	unsigned	time = req->vector_time[from];
+d921 1
+a921 4
+	if (time <= cond->signal_vector_time_[from]) {
+
+		if (Tmk_debug)
+			Tmk_err("Tmk_monitor_signal_handler: Wait request not queued.\n");
+d931 5
+a935 6
+		struct waitq_entry *we = &waitq_[from];
+		struct waitq_entry **q_head = &cond->waitq_head;
+          
+		while ((*q_head != NULL) &&
+		       (time > (*q_head)->req.vector_time[from]))
+			q_head = &(*q_head)->next;      
+d937 1
+a937 2
+		we->next = *q_head;
+		*q_head = we;
+d939 1
+a939 1
+		memcpy(&we->req, req, sizeof(struct req_cond));
+d949 1
+a949 1
+	struct	cond   *cond = &lock_array_[req->id].cond_[req->id2];
+d951 6
+a956 1
+	struct	waitq_entry    *we = cond->waitq_head;
+d958 3
+a960 7
+	while (we != NULL) { 
+
+		if (we->req.seqno == req->seqno)	/* still waiting, ignore duplicate */
+			return;
+
+		we = we->next;
+	}
+d987 1
+d994 1
+a994 1
+	 * required by signal_manager.
+d998 2
+a1000 2
+	req_broadcast.from =
+	req_sig.from =
+@
+
+
+10.15
+log
+@Split the broadcast and signal operations.  Reorganized the file.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.14 1997/05/22 03:39:00 alc Exp alc $
+d773 3
+a775 1
+	if ((cond_ID < NCONDS) && (lock_ID < NLOCKS)) {
+d777 3
+a779 1
+		struct	lock   *lock = &lock_array_[lock_ID];
+d781 1
+a781 1
+		unsigned	manager;
+d783 1
+a783 1
+		sigset_t	mask;
+d785 2
+a786 1
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d788 1
+a788 1
+		while (lock->next == Tmk_proc_id) {
+d790 1
+a790 1
+			sigset_t	empty_mask;
+d792 1
+a792 1
+			sigemptyset(&empty_mask);
+d794 3
+a796 3
+			sigsuspend(&empty_mask);
+		}
+		Tmk_lock_release(lock_ID);
+d798 1
+a798 1
+		if ((manager = lock->manager) == Tmk_proc_id) {
+d800 1
+a800 1
+			struct	cond   *cond = &lock->cond_[cond_ID];
+d802 1
+a802 1
+			unsigned	time = proc_vector_time_[Tmk_proc_id];
+d804 2
+a805 2
+			struct waitq_entry *we = &waitq_[Tmk_proc_id];
+			struct waitq_entry **q_head = &cond->waitq_head;
+d807 3
+a809 3
+			while ((*q_head != NULL) &&
+			       (time > (*q_head)->req.vector_time[Tmk_proc_id]))
+				q_head = &(*q_head)->next;      
+d811 2
+a812 2
+			we->next = *q_head;
+			*q_head = we;
+d814 4
+a817 4
+			/*
+			 *	we->req.from = Tmk_proc_id;
+			 */
+			memcpy(&we->req.vector_time, proc_vector_time_, sizeof(proc_vector_time_));
+d819 1
+a819 1
+			for (waiting_on_cond = 1; waiting_on_cond; ) {
+d821 1
+a821 1
+				sigset_t	empty_mask;
+d823 1
+a823 1
+				sigemptyset(&empty_mask);
+d825 3
+a827 1
+				sigsuspend(&empty_mask);
+d829 15
+a843 17
+			Tmk_lock_acquire(lock_ID);
+		}
+		else {
+			struct	rep_typ	rep;
+			int		fd, j, size;
+			fd_set		readfds;
+			unsigned short	vector_time_[NPROCS];
+
+			lock->held = 1;
+			lock->next = Tmk_proc_id;	/* XXX */
+
+			req_wait.seqno = req_seqno += SEQNO_INCR;
+			req_wait.id = lock_ID;
+			req_wait_id2 = cond_ID;
+		rexmit:
+			if (0 > sendmsg(req_fd_[manager], &req_wait_hdr, 0))
+				Tmk_perrexit("Tmk_condition_wait<sendmsg>");
+d845 1
+a845 1
+			Tmk_tout_flag = 0;
+d847 1
+a847 1
+			setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+d849 1
+a849 1
+			memcpy(vector_time_, proc_vector_time_, sizeof(proc_vector_time_));
+d851 1
+a851 1
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+d853 4
+a856 4
+			if (Tmk_debug)
+				Tmk_err("wait: %d (to: %d) ", cond_ID, manager);
+		retry:
+			readfds = req_fds;
+d858 2
+a859 2
+			if (0 > select(req_maxfdp1, &readfds, NULL, NULL, NULL))
+				if (Tmk_tout_flag) {
+d861 3
+a863 3
+					if (Tmk_debug)
+						Tmk_err("Tmk_condition_wait<timeout: %d>: %d seqno == %d\n",
+							manager, cond_ID, req_wait.seqno);
+d865 1
+a865 1
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d867 6
+a872 6
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+					Tmk_perrexit("Tmk_condition_wait<select>");
+d874 1
+a874 1
+			for (j = 0; j < Tmk_nprocs; j++) {
+d876 2
+a877 2
+				if (j == Tmk_proc_id)
+					continue;
+d879 1
+a879 1
+				fd = req_fd_[j];
+d881 5
+a885 5
+				if (FD_ISSET(fd, &readfds))
+					goto receive;
+			}
+#if defined(_IBMR2)
+			goto retry;
+d887 1
+a887 1
+			Tmk_errexit("Tmk_condition_wait<req_fds>");
+d890 2
+a891 2
+			if ((size = recv(fd, (char *)&rep, MTU, 0)) < 0)
+				if (Tmk_tout_flag) {
+d893 3
+a895 3
+					if (Tmk_debug)
+						Tmk_err("Tmk_condition_wait<timeout: %d>: %d seqno == %d\n", 
+							manager, cond_ID, req_wait.seqno);
+d897 1
+a897 1
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d899 6
+a904 6
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+					Tmk_perrexit("Tmk_condition_wait<recv>");
+d906 1
+a906 1
+			if (rep.seqno != req_wait.seqno) {
+d908 3
+a910 3
+				if (Tmk_debug)
+					Tmk_err("Tmk_condition_wait<bad seqno: %d>: %d seqno == %d (received: %d)\n",
+						j, cond_ID, req_wait.seqno, rep.seqno);
+d912 3
+a914 3
+				goto retry;
+			}
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d916 5
+a920 3
+			if (tmk_stat_flag) {
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+d922 1
+a922 1
+			Tmk_interval_incorporate(rep.data, size - sizeof(rep.seqno), vector_time_);
+d924 2
+a925 1
+		sigio_mutex(SIG_SETMASK, &mask, NULL);
+d928 1
+a928 1
+		Tmk_errexit("Tmk_lock_cond_wait: ID (%d,%d) out of range\n", lock_ID, cond_ID);
+@
+
+
+10.14
+log
+@Reordered the parameters to the "lock_cond" functions to have
+the lock first, and then the condition.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.13 1997/05/21 17:08:51 alc Exp alc $
+d133 16
+d337 150
+d495 2
+a496 5
+void	signal_manager(type, id, id2, vector_time_)
+	enum	req_typ_type
+			type;
+	unsigned	id;
+	unsigned	id2;
+d499 1
+a499 1
+	struct	cond   *cond = &lock_array_[id].cond_[id2];
+a502 6
+	int		i;
+
+	for (i = 0; i < NPROCS; i++)
+		if (vector_time_[i] > cond->signal_vector_time_[i])
+			cond->signal_vector_time_[i] = vector_time_[i]; 
+
+a518 2
+		if (type == REQ_COND_SIGNAL)
+			break; 
+d520 3
+d528 1
+a528 4
+static
+void    condition_assist(type, lock_ID, cond_ID)
+	enum	req_typ_type
+			type;
+d532 7
+a538 1
+	if ((cond_ID < NCONDS) && (lock_ID < NLOCKS)) {
+d540 1
+a540 1
+		int		manager = lock_array_[lock_ID].manager;
+d542 1
+a542 1
+		sigset_t	mask;
+d544 2
+a545 1
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d547 4
+a550 4
+		if (manager == Tmk_proc_id)
+			signal_manager(type, lock_ID, cond_ID, proc_vector_time_);
+		else {
+			unsigned	rep_seqno;
+d552 1
+a552 1
+			int		fd = req_fd_[manager], j, size;
+d554 6
+a559 7
+			req_sig.seqno = req_seqno += SEQNO_INCR;
+			req_sig.type = type;
+			req_sig.id = lock_ID;
+			req_sig_id2 = cond_ID;
+		rexmit:
+			if (0 > sendmsg(fd, &req_sig_hdr, 0))
+				Tmk_perrexit("<sendmsg>");
+d561 1
+a561 1
+			Tmk_tout_flag = 0;
+d563 1
+a563 1
+			setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+d565 1
+a565 1
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+d567 5
+a571 5
+			if (Tmk_debug)
+				Tmk_err("signal: %d (to: %d)\n", cond_ID, manager);
+		retry:
+			if ((size = recv(fd, (char *)&rep_seqno, sizeof(rep_seqno), 0)) < 0)
+				if (Tmk_tout_flag) {
+d573 3
+a575 3
+					if (Tmk_debug)
+						Tmk_err("<timeout: %d>: %d seqno == %d\n",
+							manager, cond_ID, req_sig.seqno);
+d577 1
+a577 1
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d579 6
+a584 6
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+					Tmk_perrexit("<recv>");
+d586 1
+a586 1
+			if (rep_seqno != req_sig.seqno) {
+d588 3
+a590 3
+				if (Tmk_debug)
+					Tmk_err("<bad seqno: %d>: %d seqno == %d (received: %d)\n", 
+						j, cond_ID, req_sig.seqno, rep_seqno);
+d592 3
+a594 3
+				goto retry;
+			}
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d596 4
+a599 3
+			if (tmk_stat_flag) {
+				Tmk_stat.messages++;
+				Tmk_stat.bytes += size;
+d601 1
+d603 2
+a604 1
+		sigio_mutex(SIG_SETMASK, &mask, NULL);
+d606 2
+d613 2
+a614 3
+void	Tmk_lock_cond_broadcast(lock_ID, cond_ID)
+	unsigned	lock_ID;
+	unsigned	cond_ID;
+d616 1
+a616 2
+	if (tmk_stat_flag)
+		Tmk_stat.broadcasts++;
+d618 39
+a656 1
+	condition_assist(REQ_COND_BROADCAST, lock_ID, cond_ID);
+d666 7
+a672 2
+	if (tmk_stat_flag)
+		Tmk_stat.signals++;
+d674 4
+a677 2
+	condition_assist(REQ_COND_SIGNAL, lock_ID, cond_ID);
+}
+d679 4
+a682 6
+/* For the purposes of the waiting/signal queuing,  only the waiting node component
+   of the vt is checked to determine if the incoming wait op is newer/older
+   than the most recent signal or broadcast.
+   For comparing the new wait op to the enqueued ones, the same test is
+   used.  Note that a different component is tested on each insertion.
+*/
+d684 1
+a684 7
+/*
+ *
+ */
+void	Tmk_cond_wait_sigio_handler(req)
+	struct req_cond *req;
+{
+	struct	cond   *cond = &lock_array_[req->id].cond_[req->id2];
+d686 6
+a691 2
+	unsigned	from = req->from;
+	unsigned	time = req->vector_time[from];
+d693 1
+a693 1
+	if (time <= cond->signal_vector_time_[from]) {
+d695 1
+a695 2
+		if (Tmk_debug)
+			Tmk_err("Tmk_monitor_signal_handler: Wait request not queued.\n");
+d697 1
+a697 4
+		/*
+		 * The wait request is older than the last signal.
+		 */
+		req->type = REQ_LOCK;
+d699 5
+a703 9
+		Tmk_lock_sigio_handler(req);
+	}
+	else {
+		struct waitq_entry *we = &waitq_[from];
+		struct waitq_entry **q_head = &cond->waitq_head;
+          
+		while ((*q_head != NULL) &&
+		       (time > (*q_head)->req.vector_time[from]))
+			q_head = &(*q_head)->next;      
+d705 3
+a707 2
+		we->next = *q_head;
+		*q_head = we;
+d709 1
+a709 3
+		memcpy(&we->req, req, sizeof(struct req_cond));
+	}
+}
+d711 6
+a716 7
+/*
+ *
+ */
+void    Tmk_cond_wait_sigio_duplicate_handler(req)
+	struct req_cond *req;
+{
+	struct	cond   *cond = &lock_array_[req->id].cond_[req->id2];
+d718 1
+a718 1
+	struct	waitq_entry    *we = cond->waitq_head;
+d720 3
+a722 1
+	while (we != NULL) { 
+d724 3
+a726 2
+		if (we->req.seqno == req->seqno)	/* still waiting, ignore duplicate */
+			return;
+d728 9
+a736 1
+		we = we->next;
+d738 2
+a739 3
+	req->type = REQ_LOCK;
+
+	Tmk_lock_sigio_duplicate_handler(req);
+d748 1
+a748 1
+	signal_manager(req->type, req->id, req->id2, req->vector_time);
+d757 1
+a757 1
+void    Tmk_cond_signal_sigio_duplicate_handler(req)
+a812 2
+
+			assert(time >= cond->signal_vector_time_[Tmk_proc_id]);
+d920 1
+a920 1
+		Tmk_errexit("Tmk_condition_wait: ID (%d,%d) out of range\n", lock_ID, cond_ID);
+d926 2
+a927 2
+void	Tmk_lock_sigio_handler(req)
+	struct req_syn *req;
+d929 1
+a929 1
+	struct rep_typ	rep;
+d931 2
+a932 1
+	struct lock    *lock = &lock_array_[req->id];
+d934 1
+a934 1
+	int		from = req->from;
+d936 2
+a937 1
+	if (lock->next == Tmk_proc_id) {
+d939 4
+a942 1
+		if ( ! lock->held) {
+d944 1
+a944 20
+			if (lock->time == proc_vector_time_[Tmk_proc_id])
+				Tmk_interval_create(proc_vector_time_);
+
+			lock->release_seqno = rep.seqno = req->seqno;
+#if defined(ultrix)
+			if (0 > write(rep_fd_[from], &rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep))
+				Tmk_perrexit("<write>lock_sigio_handler_assist");
+#else
+			if (0 > send(rep_fd_[from], (char *)&rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+				Tmk_perrexit("<send>lock_sigio_handler_assist");
+#endif
+			inverse_time_[from] = proc_vector_time_[Tmk_proc_id];
+		}
+		else
+			memcpy(vector_time[from], req->vector_time, sizeof(req->vector_time));
+
+		lock->next = from;
+
+		if (lock->manager == Tmk_proc_id)
+			lock->tail = from;
+d946 7
+a952 1
+	else if (lock->manager == Tmk_proc_id) {
+d954 2
+a955 9
+		int	tail = lock->tail;
+#if defined(ultrix)
+		if (0 > write(req_fd_[tail], req, sizeof(struct req_syn)))
+			Tmk_perrexit("<write>Tmk_lock_sigio_handler");
+#else
+		if (0 > send(req_fd_[tail], (char *) req, sizeof(struct req_syn), 0))
+			Tmk_perrexit("<send>Tmk_lock_sigio_handler");
+#endif
+		tail_[from] = tail;
+d957 1
+a957 1
+		lock->tail = from;
+a958 2
+	else
+		Tmk_errexit("<next == %d>Tmk_lock_sigio_handler: id == %d\n", lock->next, req->id);
+d964 2
+a965 2
+void	Tmk_lock_sigio_duplicate_handler(req)
+	struct req_syn *req;
+d967 1
+a967 1
+	struct rep_typ	rep;
+d969 1
+a969 1
+	struct lock    *lock = &lock_array_[req->id];
+d971 1
+a971 1
+	int		from = req->from;
+d973 2
+a974 1
+	if (lock->release_seqno == req->seqno) {
+d976 1
+a976 8
+		rep.seqno = req->seqno;
+#if defined(ultrix)
+		if (0 > write(rep_fd_[from], &rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep))
+			Tmk_perrexit("<write>Tmk_lock_sigio_duplicate_handler");
+#else
+		if (0 > send(rep_fd_[from], (char *)&rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+			Tmk_perrexit("<send>Tmk_lock_sigio_duplicate_handler");
+#endif
+d978 1
+a978 17
+	else if (lock->held && lock->next == from) {
+		/*
+		 * This is a repeated request for a held lock.  Do nothing.
+		 */
+	}
+	else if (lock->manager == Tmk_proc_id) {
+#if defined(ultrix)
+		if (0 > write(req_fd_[tail_[from]], req, sizeof(struct req_syn)))
+			Tmk_perrexit("<write>Tmk_lock_sigio_duplicate_handler");
+#else
+		if (0 > send(req_fd_[tail_[from]], (char *) req, sizeof(struct req_syn), 0))
+			Tmk_perrexit("<send>Tmk_lock_sigio_duplicate_handler");
+#endif
+	}
+	else
+		Tmk_err("Tmk_lock_sigio_duplicate_handler: lock->release_seqno == %d && req->seqno == %d\n", lock->release_seqno, req->seqno);
+}
+d980 1
+a980 46
+/*
+ *
+ */
+void	Tmk_lock_release(i)
+	unsigned	i;
+{
+	if (i < NLOCKS) {
+
+		struct	lock   *lock = &lock_array_[i];
+
+		if (lock->held) {
+
+			int	id;
+			sigset_t
+				mask;
+
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+			lock->held = 0;
+
+			if ((id = lock->next) != Tmk_proc_id) {
+
+				struct	rep_typ	rep;
+
+				Tmk_interval_create(proc_vector_time_);
+
+				lock->release_seqno = rep.seqno = rep_seqno_[id];
+#if defined(ultrix)
+				if (0 > write(rep_fd_[id], &rep, Tmk_interval_request(rep.data, vector_time[id]) - (caddr_t)&rep))
+					Tmk_perrexit("<write>Tmk_lock_release");
+#else
+				if (0 > send(rep_fd_[id], (char *)&rep, Tmk_interval_request(rep.data, vector_time[id]) - (caddr_t)&rep, 0))
+					Tmk_perrexit("<send>Tmk_lock_release");
+#endif
+				inverse_time_[id] = proc_vector_time_[Tmk_proc_id];
+			}
+			else
+				lock->time = proc_vector_time_[Tmk_proc_id];
+
+			sigio_mutex(SIG_SETMASK, &mask, NULL);
+		}
+		else
+			Tmk_errexit("Tmk_lock_release: %d REreleased\n", i);
+	}
+	else
+		Tmk_errexit("Tmk_lock_release: id == %d\n", i);
+d1014 2
+a1015 1
+	req_wait.from = 
+@
+
+
+10.13
+log
+@Deleted Tmk_lock_held and renamed Tmk_condition_allocate
+to Tmk_lock_cond_allocate.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.12 1997/05/21 17:02:08 alc Exp alc $
+d447 2
+a448 1
+void	Tmk_condition_broadcast(cond_ID, lock_ID)
+a449 1
+	unsigned	lock_ID;
+d460 2
+a461 1
+void	Tmk_condition_signal(cond_ID, lock_ID)
+a462 1
+	unsigned	lock_ID;
+d562 2
+a563 1
+void    Tmk_condition_wait(cond_ID, lock_ID)
+a564 1
+	unsigned        lock_ID;
+@
+
+
+10.12
+log
+@Made the condition array part of the lock struct.  Conditions are now
+specific to a lock.  Multiple conditions (NCONDS) are supported per
+lock.
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1996						     *
+d39 1
+a39 1
+ * $Id: lock.c,v 10.11 1997/05/21 06:54:14 alc Exp alc $
+d154 1
+a154 1
+ *
+d165 1
+a165 1
+ *
+d167 3
+a169 2
+int	Tmk_lock_held(i)
+	unsigned	i;
+d171 1
+a171 4
+	if (i < NLOCKS)
+		return lock_array_[i].held;
+	else
+		Tmk_errexit("Tmk_lock_held: id == %d\n", i);
+a323 11
+
+/*
+ *
+ */
+int	Tmk_condition_allocate(ip)
+	unsigned       *ip;
+{
+	*ip = 1;
+
+	return -1;
+}
+@
+
+
+10.11
+log
+@Reorganized req_cond struct to match, i.e., overlap, the req_syn struct
+for a lock acquire.  Thus, we can simply change the type field and
+reuse the condition request as a lock request.
+
+Fixed a (potential) bug: Preinitialize the req.from field for Tmk_proc_id
+(in Tmk_lock_initialize) so that signal_manager recognizes a local waiter.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.10 1997/05/21 05:30:41 alc Exp alc $
+d77 5
+a81 1
+static	unsigned char	tail_[NPROCS];
+d83 4
+a86 1
+static	unsigned short	vector_time[NPROCS][NPROCS];
+d88 8
+a95 1
+static	struct	lock	{
+d102 1
+d106 1
+a106 4
+struct	waitq_entry {
+	struct	waitq_entry    *next;
+	struct	req_cond	req;
+}	waitq_[NPROCS];
+d109 1
+a109 8
+struct	cond	{
+	struct	waitq_entry    *waitq_head;           /* Queued waits kept in increasing TS order */
+	unsigned short	signal_vector_time_[NPROCS]; /* VT of most recently seen signal */
+}	cond_array_[NCONDS];
+
+static	struct	req_typ	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_LOCK };
+
+static	struct	iovec	req_iov[2] = {
+d342 1
+a342 2
+void	signal_manager(id2, type, vector_time_)
+	unsigned	id2;
+d345 2
+d349 1
+a349 1
+	struct	cond   *cond = &cond_array_[id2];
+d381 1
+a381 1
+ * Consider setting shorter timeout for this kind of request.
+d384 3
+a386 1
+void    condition_req_assist(lock_ID, cond_ID, type, EPstring)
+a388 2
+	enum	req_typ_type	type;
+	char *EPstring;
+d399 1
+a399 1
+			signal_manager(cond_ID, type, proc_vector_time_);
+d411 1
+a411 1
+				Tmk_perrexit("<sendmsg>%s", EPstring);
+d426 2
+a427 2
+						Tmk_err("<timeout: %d>%s: %d seqno == %d\n",
+							manager, EPstring, cond_ID, req_sig.seqno);
+d436 1
+a436 1
+					Tmk_perrexit("<read>%s",EPstring);
+d441 2
+a442 2
+					Tmk_err("<bad seqno: %d>%s: %d seqno == %d (received: %d)\n", 
+						j, EPstring, cond_ID, req_sig.seqno, rep_seqno);
+d467 1
+a467 1
+	condition_req_assist(lock_ID, cond_ID, REQ_COND_BROADCAST, "Tmk_condition_broadcast");
+d480 1
+a480 1
+	condition_req_assist(lock_ID, cond_ID, REQ_COND_SIGNAL, "Tmk_condition_signal");
+d496 1
+a496 1
+	struct	cond   *cond = &cond_array_[req->id2];
+d501 1
+a501 1
+	if (time <= cond->signal_vector_time_[from]) { /* this is an old wait request. */
+d506 3
+d534 1
+a534 1
+	struct	cond   *cond = &cond_array_[req->id2];
+d556 1
+a556 1
+	signal_manager(req->id2, req->type, req->vector_time);
+d603 1
+a603 1
+			struct	cond   *cond = &cond_array_[cond_ID];
+d882 1
+a882 1
+	int	i;
+a891 2
+	}
+	for (i = 0; i < NCONDS; i++) {
+d893 3
+a895 1
+		struct	cond   *cond = &cond_array_[i];
+d897 1
+a897 1
+		cond->waitq_head = NULL;
+d899 2
+a900 1
+		memset(cond->signal_vector_time_, 0, sizeof(cond->signal_vector_time_));
+@
+
+
+10.10
+log
+@Eliminated Tmk_lock_manager and wait_manager_local.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.9 1997/05/21 03:31:12 alc Exp alc $
+d112 4
+a115 2
+struct	req_cond_hdr
+		req_wait = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_WAIT };
+d120 2
+a121 1
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) } };
+d128 4
+a131 2
+struct	req_cond_hdr
+		req_sig = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_SIGNAL };
+d136 2
+a137 1
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) } };
+a331 32
+
+/*
+ *
+ */
+static	void
+wait_complete(req, duplicate)
+	struct req_cond *req;
+	int duplicate;
+{
+	if (req->from == Tmk_proc_id) {
+
+		if ( ! waiting_on_cond)
+			Tmk_errexit(": Managing node not waiting!"); 
+
+		waiting_on_cond = 0;
+	}
+	else {
+		struct req_syn rsyn;
+
+		rsyn.seqno = req->seqno;	/* XXX */
+		rsyn.from  = req->from;
+		rsyn.type  = REQ_LOCK;
+		rsyn.id    = req->id2;
+
+		memcpy(rsyn.vector_time, req->vector_time, sizeof(rsyn.vector_time));
+
+		if (duplicate)
+			Tmk_lock_sigio_duplicate_handler(&rsyn);
+		else
+			Tmk_lock_sigio_handler(&rsyn);
+	}
+}
+d337 2
+a338 2
+void	signal_manager(id, type, vector_time_)
+	unsigned	id;
+d343 1
+a343 1
+	struct	cond   *cond = &cond_array_[id];
+d357 12
+a368 2
+		wait_complete(&we->req, 0);
+	  
+d401 2
+a402 2
+			req_sig.id = cond_ID;
+			req_sig.id2 = lock_ID;
+d490 1
+a490 1
+	struct	cond   *cond = &cond_array_[req->id];
+d500 3
+a502 1
+		wait_complete(req, 0);
+d525 1
+a525 1
+	struct	cond   *cond = &cond_array_[req->id];
+d527 1
+a527 1
+	struct	waitq_entry    *here = cond->waitq_head;
+d529 1
+a529 1
+	while (here != NULL) { 
+d531 1
+a531 1
+		if (here->req.seqno == req->seqno)	/* still waiting, ignore duplicate */
+d534 1
+a534 1
+		here = here->next;
+d536 3
+a538 1
+	wait_complete(req, 1);
+d547 1
+a547 1
+	signal_manager(req->id, req->type, req->vector_time);
+d608 3
+d635 2
+a636 2
+			req_wait.id = cond_ID;
+			req_wait.id2 = lock_ID;
+d876 1
+d892 6
+@
+
+
+10.9
+log
+@Moved all of the condition variable functions into this file.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.8 1997/05/21 03:25:21 alc Exp alc $
+d90 12
+d111 26
+a312 13
+struct	req_cond_hdr
+		req_wait = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_WAIT };
+
+static
+struct	iovec	req_wait_iov[] = {
+    { (caddr_t)&req_wait, sizeof(req_wait) },
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) } };
+
+static
+struct	msghdr	req_wait_hdr =
+    { 0, 0, req_wait_iov, sizeof(req_wait_iov)/sizeof(req_wait_iov[0]), 0, 0 };
+
+static
+a315 26
+static
+struct	waitq_entry {
+	struct	waitq_entry    *next;
+	struct	req_cond	req;
+}	waitq_[NPROCS];
+
+static
+struct	cond	{
+	struct	waitq_entry    *waitq_head;           /* Queued waits kept in increasing TS order */
+	unsigned short	signal_vector_time_[NPROCS]; /* VT of most recently seen signal */
+}	cond_array_[NCONDS];
+
+static
+struct	req_cond_hdr
+		req_sig = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_COND_SIGNAL };
+
+static
+struct	iovec	req_sig_iov[] = {
+    { (caddr_t)&req_sig, sizeof(req_sig)},
+    { (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) } };
+
+static
+struct	msghdr	req_sig_hdr =
+     { 0, 0, req_sig_iov, sizeof(req_sig_iov)/sizeof(req_sig_iov[0]), 0, 0 };
+
+
+d345 1
+a345 1
+		rsyn.seqno = /*rep_seqno_[req->from] =*/ req->seqno /*+ NPROCS*/;	/* XXX */
+d348 1
+a348 1
+		rsyn.id    = Tmk_lock_manager(req->id);
+d402 1
+a402 1
+		int		dest = Tmk_lock_manager(lock_ID);
+d408 3
+a410 5
+		if (Tmk_debug)
+			Tmk_err("signal: %d (to: %d)\n", cond_ID, dest);
+
+		if (dest != Tmk_proc_id) {
+
+d413 1
+a413 1
+			int		fd = req_fd_[dest], j, size;
+d428 3
+d437 1
+a437 1
+							dest, EPstring, cond_ID, req_sig.seqno);
+a462 3
+		else
+			signal_manager(cond_ID, type, proc_vector_time_);
+
+a499 31
+void
+wait_manager_local(unsigned id)
+{
+	struct	cond   *cond = &cond_array_[id];
+
+	unsigned	time = proc_vector_time_[Tmk_proc_id];
+
+	struct waitq_entry *we = &waitq_[Tmk_proc_id];
+	struct waitq_entry **q_head = &cond->waitq_head;
+
+	while ((*q_head != NULL) &&
+	       (time > (*q_head)->req.vector_time[Tmk_proc_id]))
+		q_head = &(*q_head)->next;      
+
+	we->next = *q_head;
+	*q_head = we;
+
+	memcpy(&we->req.vector_time, proc_vector_time_, sizeof(proc_vector_time_));
+
+	assert(time >= cond->signal_vector_time_[Tmk_proc_id]);
+          
+	for (waiting_on_cond = 1; waiting_on_cond; ) {
+
+		sigset_t	empty_mask;
+
+		sigemptyset(&empty_mask);
+
+		sigsuspend(&empty_mask);
+	}
+}
+
+d541 1
+a541 1
+	struct waitq_entry *here = cond->waitq_head;
+d606 21
+a626 1
+			wait_manager_local(cond_ID); /* local node attempts to wait */
+d628 4
+a874 14
+}
+
+/*
+ *
+ */
+int	Tmk_lock_manager(i)
+	unsigned	i;
+{
+	if (i < NLOCKS)
+		return lock_array_[i].manager;
+	else
+		Tmk_errexit("Tmk_lock_manager: id == %d\n", i);
+
+	return -1;
+@
+
+
+10.8
+log
+@Updated Tmk_condition_wait.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.7 1997/05/19 20:09:08 alc Exp alc $
+d287 322
+d916 8
+d925 1
+@
+
+
+10.7
+log
+@Changed the wait loop implementations.  1.  Use sigsuspend instead
+of sigpause.  2.  Spin on lock->next in the local case too.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.6 1997/05/19 07:17:41 alc Exp alc $
+d299 2
+a300 1
+		unsigned	lockmgr = lock->manager;
+d306 8
+d316 3
+a318 1
+		if (lockmgr != Tmk_proc_id) {
+d320 3
+d325 1
+d328 2
+a329 1
+			memcpy(vector_time_, proc_vector_time_, sizeof(proc_vector_time_));
+d335 2
+a336 2
+			if (0 > sendmsg(req_fd_[lockmgr], &req_wait_hdr, 0))
+				Tmk_perrexit("<sendmsg>Tmk_condition_wait");
+d342 1
+a342 13
+			while (lock->next == Tmk_proc_id) {
+
+				sigset_t	empty_mask;
+
+				sigemptyset(&empty_mask);
+
+				sigsuspend(&empty_mask);
+
+				if (Tmk_tout_flag)
+					goto rexmit;
+			}
+			lock->held = 1;
+			lock->next = Tmk_proc_id;
+d347 1
+a347 1
+				Tmk_err("wait: %d (to: %d) ", cond_ID, lockmgr);
+d349 4
+a352 2
+			{
+				fd_set	readfds = req_fds;
+d354 3
+a356 5
+				if (0 > select(req_maxfdp1, &readfds, NULL, NULL, NULL))
+					if (Tmk_tout_flag) {
+						if (Tmk_debug)
+							Tmk_err("<timeout: %d>: %d seqno == %d\n",
+								lockmgr, cond_ID, req_wait.seqno);
+d358 1
+a358 1
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d360 6
+a365 6
+						goto rexmit;
+					}
+					else if (errno == EINTR)
+						goto retry;
+					else
+						Tmk_perrexit("<select>");
+d367 1
+a367 1
+				for (j = 0; j < Tmk_nprocs; j++) {
+d369 2
+a370 2
+					if (j == Tmk_proc_id)
+						continue;
+d372 1
+a372 1
+					fd = req_fd_[j];
+d374 3
+a376 3
+					if (FD_ISSET(fd, &readfds))
+						goto receive;
+				}
+d378 1
+a378 1
+				goto retry;
+d380 1
+a380 1
+				Tmk_errexit("<req_fds>");
+a381 1
+			}
+d387 2
+a388 2
+						Tmk_err("<timeout: %d>: %d seqno == %d\n", 
+							lockmgr, cond_ID, req_wait.seqno);
+d397 1
+a397 1
+					Tmk_perrexit("<read>");
+d402 1
+a402 1
+					Tmk_err("<bad seqno: %d>: %d seqno == %d (received: %d)\n",
+d410 1
+a413 16
+		}
+		else {
+			int	j = wait_manager(&req_wait, 1); /* local node attempts to wait */
+
+			if (j == 0)
+				Tmk_errexit(": Local wait older than most recent signal.");
+
+			while (lock->next == Tmk_proc_id) {
+
+				sigset_t	empty_mask;
+
+				sigemptyset(&empty_mask);
+
+				sigsuspend(&empty_mask);
+			}
+			Tmk_lock_acquire(lock_ID);
+@
+
+
+10.6
+log
+@Removed the reacq access function, and moved the Tmk_condition_wait
+function into this file.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.5 1997/04/12 17:37:31 alc Exp alc $
+d280 1
+a280 1
+    { (caddr_t) &req_wait, sizeof(req_wait) },
+a306 3
+		if (Tmk_debug)
+			Tmk_err("wait: %d (to: %d) ", cond_ID, lockmgr);
+
+d328 3
+a330 1
+				sigpause(0);
+d332 4
+a335 2
+				if (errno != EINTR)
+					Tmk_perrexit("<sigpause>Tmk_lock_reacq_help"); 
+d341 3
+d417 3
+a419 1
+			/*for (waiting_on_cond = 1; waiting_on_cond; )*/ {
+d421 1
+a421 1
+				sigpause(0);
+d423 1
+a423 2
+				if (errno != EINTR)
+					Tmk_perrexit("<sigpause>"); 
+@
+
+
+10.5
+log
+@Added access functions to private data required by the condition
+variable code.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.4 1996/08/24 21:10:49 alc Exp alc $
+d274 13
+d290 122
+a411 4
+void	Tmk_lock_reacq_help(i)
+        unsigned i;
+{
+	struct lock   *lock = &lock_array_[i];
+d413 1
+a413 1
+	while (lock->next == Tmk_proc_id) {
+d415 1
+a415 1
+		int	v = sigpause(0);
+d417 6
+a422 2
+		if (errno != EINTR)
+			Tmk_perrexit("<sigpause>Tmk_lock_reacq_help"); 
+d424 2
+a425 2
+	lock->held = 1;
+	lock->next = Tmk_proc_id;
+d601 1
+@
+
+
+10.4
+log
+@Replaced sigprocmask by sigio_mutex.  Sigio_mutex is defined
+in Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.3 1996/08/24 20:01:11 alc Exp alc $
+d118 14
+d277 19
+d437 17
+@
+
+
+10.3
+log
+@Replaced "seqno += NPROCS" by "+= SEQNO_INCR".
+@
+text
+@d39 1
+a39 1
+ * $Id: lock.c,v 10.2 1996/08/24 18:30:28 alc Exp alc $
+d132 1
+a132 1
+		sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d168 1
+a168 1
+			sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+d184 1
+a184 1
+						sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d223 1
+a223 1
+					sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d242 1
+a242 1
+			sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d254 1
+a254 1
+		sigprocmask(SIG_SETMASK, &mask, NULL);
+d372 1
+a372 1
+			sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d395 1
+a395 1
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.2
+log
+@Use SIG_UNBLOCK before recv rather than SIG_SETMASK.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d153 1
+a153 1
+			req_typ.seqno = req_seqno += NPROCS;
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		lock.c
+d74 1
+a74 2
+ *
+ *****************************************************************************/
+d168 1
+a168 1
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@a119 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+d131 1
+a131 1
+		sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+d167 1
+a167 1
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL, UNLOCK);
+d183 1
+a183 1
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+a211 3
+#if defined(MPL_DEBUG)
+			Tmk_err("lock_a at receive fd=%d ...", fd);
+#endif
+a216 1
+			  {
+d222 1
+a222 1
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+a233 2
+			      }
+
+d236 1
+a236 1
+				if (1 || Tmk_debug)
+d241 1
+a242 2
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+d253 1
+a253 1
+		sigio_mutex(SIG_SETMASK, &mask, NULL, UNLOCK);
+a256 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+a360 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+d371 1
+a371 1
+			sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+d394 1
+a394 1
+			sigio_mutex(SIG_SETMASK, &mask, NULL, UNLOCK);
+a400 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+a416 10
+
+
+
+
+
+
+
+
+
+
+@
+
+
+10.1.4.2
+log
+@Eliminated seqno and extra copying from MPL messages.
+@
+text
+@d155 1
+a155 1
+			req_typ.seqno = req_seqno += SEQNO_INCR;
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@a119 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+d132 1
+a132 3
+#if defined(THREADS)
+		pthread_mutex_lock(&sigio_lock);
+#endif
+d166 1
+a166 3
+#if defined(THREADS)
+			pthread_mutex_unlock(&sigio_lock);
+#endif
+d184 1
+a184 3
+#if defined(THREADS)
+						pthread_mutex_lock(&sigio_lock);
+#endif
+d223 1
+a223 3
+#if defined(THREADS)
+					pthread_mutex_lock(&sigio_lock);
+#endif
+d242 1
+a242 3
+#if defined(THREADS)
+			pthread_mutex_lock(&sigio_lock);
+#endif
+a252 3
+#if defined(THREADS)
+		pthread_mutex_unlock(&sigio_lock);
+#endif
+a256 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+a360 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+d372 1
+a372 3
+#if defined(THREADS)
+			pthread_mutex_lock(&sigio_lock);
+#endif
+d393 1
+a393 3
+#if defined(THREADS)
+			pthread_mutex_unlock(&sigio_lock);
+#endif
+a400 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+@
+
+
+10.1.5.3
+log
+@Changed SIGALRM to be blocked by all threads and unblocked only when
+a recv timeout is needed.
+@
+text
+@d174 1
+a174 1
+			sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+@
+
+
+10.1.5.4
+log
+@Cleaned up sigprocmask/pthread_sigmask/sigthreadmask and sigio
+locking/unlocking with sigio_mutex macro
+@
+text
+@d134 4
+a137 2
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask, LOCK);
+
+d171 4
+a174 2
+
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL, UNLOCK);
+d190 4
+a193 2
+						sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+d231 4
+a234 2
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+d252 4
+a255 2
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+d266 4
+a269 1
+		sigio_mutex(SIG_SETMASK, &mask, NULL, UNLOCK);
+d393 4
+a396 2
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask, LOCK);
+
+d417 4
+a420 2
+
+			sigio_mutex(SIG_SETMASK, &mask, NULL, UNLOCK);
+@
+
+
+10.1.5.5
+log
+@cleaned up signal masks
+@
+text
+@d134 1
+a134 1
+		sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+d380 1
+a380 1
+			sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+a428 10
+
+
+
+
+
+
+
+
+
+
+@
+
+
+10.1.5.6
+log
+@Added $Id$
+@
+text
+@a72 2
+ * $Id$
+ *
+@
+
+
+10.1.5.7
+log
+@Removed monitor_lock calls from Tmk_lock_release
+@
+text
+@d73 1
+a73 1
+ * $Id: lock.c,v 10.1.5.6 1996/08/07 17:32:57 tmiller Exp tmiller $
+d369 3
+d412 3
+d431 10
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.1.2.2
+log
+@Added sigio locking inside existing critical sections (sigprocmask). <SMP>
+@
+text
+@d132 1
+a132 3
+#if   defined(__sgi)
+		spin_lock(&sigio_lock);	/* SMP */
+#endif
+d166 1
+a166 3
+#if defined(__sgi)
+			release_lock(&sigio_lock);	/* SMP */
+#endif
+d184 1
+a184 3
+#if defined(__sgi)
+						spin_lock(&sigio_lock);	/* SMP */
+#endif
+d223 1
+a223 3
+#if defined(__sgi)
+					spin_lock(&sigio_lock);	/* SMP */
+#endif
+d242 1
+a242 3
+#if defined(__sgi)
+			spin_lock(&sigio_lock);	/* SMP */
+#endif
+a252 3
+#if defined(__sgi)
+		release_lock(&sigio_lock);	/* SMP */
+#endif
+d372 1
+a372 3
+#if defined(__sgi)
+			spin_lock(&sigio_lock);	/* SMP */
+#endif
+d393 1
+a393 3
+#if defined(__sgi)
+			release_lock(&sigio_lock);	/* SMP */
+#endif
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d69 4
+d129 3
+a131 1
+		int		mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d167 1
+a167 1
+			sigsetmask(mask);
+d183 1
+a183 1
+						sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d189 4
+d215 1
+a215 1
+			if ((size = recv(fd, &rep, sizeof(rep), 0)) < 0)
+d222 1
+a222 1
+					sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d241 1
+a241 1
+			sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d253 1
+a253 1
+		sigsetmask(mask);
+d283 1
+a283 1
+			if (0 > send(rep_fd_[from], &rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+d303 1
+a303 1
+		if (0 > send(req_fd_[tail], req, sizeof(struct req_syn), 0))
+d333 1
+a333 1
+		if (0 > send(rep_fd_[from], &rep, Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep, 0))
+d347 1
+a347 1
+		if (0 > send(req_fd_[tail_[from]], req, sizeof(struct req_syn), 0))
+d367 5
+a371 2
+			int	mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+			int	id = lock->next;
+d375 1
+a375 1
+			if (id != Tmk_proc_id) {
+d386 1
+a386 1
+				if (0 > send(rep_fd_[id], &rep, Tmk_interval_request(rep.data, vector_time[id]) - (caddr_t)&rep, 0))
+d394 1
+a394 1
+			sigsetmask(mask);
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d160 1
+a160 1
+			bcopy(proc_vector_time_, vector_time_, sizeof(proc_vector_time_));
+d280 1
+a280 1
+			bcopy(req->vector_time, vector_time[from], sizeof(req->vector_time));
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

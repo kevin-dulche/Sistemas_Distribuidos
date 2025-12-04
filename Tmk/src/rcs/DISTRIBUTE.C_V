@@ -1,0 +1,1169 @@
+head	11.2;
+access;
+symbols
+	Tmk-1_0_3_2R:10.6.1.4.0.3
+	Tmk-1_0_3_1R:10.6.1.4.0.3
+	Tmk-2_0:10.6.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.6.1.5
+	Tmk-1_0_3R:10.6.1.4.0.3
+	Tmk-1_2:10.6.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.6.1.4
+	Tmk-1_0_1R:10.6.1.3
+	Tmk-1_1:11
+	Tmk-1_0:10.6.1.4.0
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.6
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks
+	alc:10.6.1.5; strict;
+comment	@ * @;
+
+
+11.2
+date	98.01.09.21.13.54;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.07.24.19.34.03;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	97.05.24.17.41.22;	author alc;	state Exp;
+branches
+	10.6.1.1;
+next	10.5;
+
+10.5
+date	96.08.24.21.10.49;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.08.24.20.01.11;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.08.24.18.30.28;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.06.23.16.22.50;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.48.40;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.1.2.2;
+
+10.0.2.1.2.2
+date	96.03.30.21.20.10;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	10.1.4.2;
+
+10.1.4.2
+date	96.07.30.20.52.50;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.06.28.20.24.01;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.07.02.22.34.57;	author tmiller;	state Exp;
+branches;
+next	10.1.5.5;
+
+10.1.5.5
+date	96.07.03.19.32.35;	author tmiller;	state Exp;
+branches;
+next	10.1.5.6;
+
+10.1.5.6
+date	96.08.07.17.27.24;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.6.1.1
+date	97.07.03.19.47.29;	author alc;	state Exp;
+branches;
+next	10.6.1.2;
+
+10.6.1.2
+date	97.07.04.06.52.19;	author alc;	state Exp;
+branches;
+next	10.6.1.3;
+
+10.6.1.3
+date	98.01.09.21.15.40;	author alc;	state Exp;
+branches;
+next	10.6.1.4;
+
+10.6.1.4
+date	98.05.14.20.10.16;	author alc;	state Exp;
+branches
+	10.6.1.4.0.1;
+next	10.6.1.5;
+
+10.6.1.5
+date	98.07.17.04.49.43;	author alc;	state Exp;
+branches;
+next	;
+
+10.6.1.4.0.1
+date	98.07.17.03.19.43;	author alc;	state Exp;
+branches;
+next	10.6.1.4.0.2;
+
+10.6.1.4.0.2
+date	98.07.17.03.44.22;	author alc;	state Exp;
+branches;
+next	10.6.1.4.0.3;
+
+10.6.1.4.0.3
+date	98.07.17.04.20.40;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.2
+log
+@Use "void *" instead of "char *" for consistency
+with the POSIX specifications of sbrk, malloc, and free.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: distribute.c,v 11.1 1997/07/24 19:34:03 alc Exp alc $
+ *
+ * Description:    
+ *	user initialization routines
+ *
+ * External Functions:
+ *			Tmk_distribute,
+ *			Tmk_distribute_sigio_handler,
+ *			Tmk_distribute_sigio_duplicate_handler
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	13-Aug-1993	Alan L. Cox	Created
+ *	17-Nov-1993	Alan L. Cox	Adapted for RS/6000 (AIX 3.2.5)
+ *
+ *	Version 0.9.1
+ *
+ *	14-Jan-1995	Alan L. Cox	Adapted for STREAMS
+ *
+ *	Version 0.9.2
+ *
+ *	21-May-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *
+ *	Version 0.9.3
+ *
+ *	10-Nov-1995	Alan L. Cox	Adapted for AIX 4.1 (See the #if's.)
+ *
+ *	Version 0.9.6
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigblock and sigsetmask
+ *					 with sigprocmask
+ *	Version 0.10
+ */
+#include "Tmk.h"
+
+/*
+ * On the RS/6000 under AIX 3.2.5, the data segment may appear at a different
+ * virtual address in each process.  Consequently, we use the offset from the
+ * start of the data segment instead of the absolute address.
+ */
+#if defined(_AIX) && defined(_AIX32) && ! defined(_AIX41)
+extern	char	_data[];
+#endif
+
+static	struct	req_dis	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_DISTRIBUTE };
+static	struct	iovec	req_iov[2] = {
+	{ (caddr_t)&req_typ, sizeof(req_typ) },
+	{                 0, 0 } };
+static	struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+
+void	Tmk_distribute(data, size)
+	void   *data;
+	int	size;
+{
+	int	i;
+	int	rep_seqno;
+	sigset_t
+		mask;
+
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+	req_typ.size = req_iov[1].iov_len = size;
+#if defined(_AIX) && defined(_AIX32) && ! defined(_AIX41)
+	req_typ.ptr  = (caddr_t)((req_iov[1].iov_base = data) - _data);
+#else
+	req_typ.ptr  = req_iov[1].iov_base = data;
+#endif
+	for (i = 0; i < Tmk_nprocs; i++) {
+		if (i == Tmk_proc_id)
+			continue;
+
+		req_typ.seqno = req_seqno += SEQNO_INCR;
+	rexmit:
+		if (0 > sendmsg(req_fd_[i], &req_hdr, 0))
+			Tmk_perrexit("<sendmsg>Tmk_distribute");
+
+		Tmk_tout_flag = 0;
+
+		setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+		sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+
+		if (Tmk_debug)
+			Tmk_err("Tmk_distribute: vadr == %8X (to: %d)\n", data, i);
+	retry:
+		if (0 > recv(req_fd_[i], (char *)&rep_seqno, sizeof(rep_seqno), 0))
+			if (Tmk_tout_flag) {
+
+				if (Tmk_debug)
+					Tmk_err("<timeout: %d>Tmk_distribute: seqno == %d\n", i, req_typ.seqno);
+
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+				goto rexmit;
+			}
+			else if (errno == EINTR)
+				goto retry;
+			else
+				Tmk_perrexit("<recv>Tmk_distribute");
+
+		if (rep_seqno != req_typ.seqno) {
+
+			if (Tmk_debug)
+				Tmk_err("<bad seqno: %d>Tmk_distribute: seqno == %d (received: %d)\n", i, req_typ.seqno, rep_seqno);
+
+			goto retry;
+		}
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+		Tmk_stat.messages++;
+		Tmk_stat.bytes += sizeof(rep_seqno);
+	}
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+}
+
+void	Tmk_distribute_sigio_handler(req)
+	struct	req_dis *req;
+{
+#if defined(_AIX) && defined(_AIX32) && ! defined(_AIX41)
+	memcpy((int) _data + req->ptr, &req[1], req->size);
+#else
+	memcpy(              req->ptr, &req[1], req->size);
+#endif
+	if (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_perrexit("<send>Tmk_distribute_sigio_handler");
+}
+
+void	Tmk_distribute_initialize()
+{
+	req_typ.from = Tmk_proc_id;
+}
+@
+
+
+11.1
+log
+@Eliminated the Ultrix-specific code.  (Identical to revision 10.6.1.1.)
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6 1997/05/24 17:41:22 alc Exp alc $
+d90 1
+a90 1
+	caddr_t data;
+@
+
+
+10.6
+log
+@Handle simple duplicate requests, requiring an ack, and nothing else,
+inline in sigio_handler.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.5 1996/08/24 21:10:49 alc Exp alc $
+a86 1
+#if ! defined(ultrix)
+a87 1
+#endif
+a111 4
+#if defined(ultrix)
+		if (0 > writev(req_fd_[i], req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+			Tmk_perrexit("<writev>Tmk_distribute");
+#else
+d114 1
+a114 1
+#endif
+a123 3
+#if defined(ultrix)
+		if (0 > read(req_fd_[i], &rep_seqno, sizeof(rep_seqno)))
+#else
+a124 1
+#endif
+a136 3
+#if defined(ultrix)
+				Tmk_perrexit("<read>Tmk_distribute");
+#else
+d138 1
+a138 1
+#endif
+a161 4
+#if defined(ultrix)
+	if (0 > write(rep_fd_[req->from], req, sizeof(req->seqno)))
+		Tmk_perrexit("<write>Tmk_distribute_sigio_handler");
+#else
+a163 1
+#endif
+@
+
+
+10.6.1.1
+log
+@Eliminated the Ultrix-specific code.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6 1997/05/24 17:41:22 alc Exp alc $
+d87 1
+d89 1
+d114 4
+d120 1
+a120 1
+
+d130 3
+d134 1
+d147 3
+d151 1
+a151 1
+
+d175 4
+d181 1
+@
+
+
+10.6.1.2
+log
+@Added basic Pthreads support.
+@
+text
+@d97 1
+a97 3
+#if defined(PTHREADS)
+	pthread_mutex_lock(&Tmk_monitor_lock);
+#endif
+a151 3
+#if defined(PTHREADS)
+	pthread_mutex_unlock(&Tmk_monitor_lock);
+#endif
+@
+
+
+10.6.1.3
+log
+@Use "void *" instead of "char *" for consistency
+with the POSIX specifications of sbrk, malloc, and free.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6.1.2 1997/07/04 06:52:19 alc Exp alc $
+d90 1
+a90 1
+	void   *data;
+@
+
+
+10.6.1.4
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6.1.3 1998/01/09 21:15:40 alc Exp alc $
+d114 2
+a115 2
+		while (0 > sendmsg(req_fd_[i], &req_hdr, 0))
+			Tmk_errno_check("Tmk_distribute<sendmsg>");
+d167 2
+a168 2
+	while (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_errno_check("Tmk_distribute_sigio_handler<send>");
+@
+
+
+10.6.1.5
+log
+@Integrate revisions 10.6.1.4.0.1 through 10.6.1.4.0.3.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6.1.4.0.3 1998/07/17 04:20:40 alc Exp $
+d89 3
+a91 7
+/*
+ *
+ */
+void
+Tmk_distribute(
+	const void     *ptr,
+	int		size)
+d93 4
+a96 3
+	int		i, rep_seqno;
+	sigset_t	mask;
+
+d104 1
+a104 1
+	req_typ.ptr  = (caddr_t)((req_iov[1].iov_base = (void *) ptr) - _data);
+d106 1
+a106 1
+	req_typ.ptr  = req_iov[1].iov_base = (void *) ptr;
+d124 1
+a124 1
+			Tmk_err("Tmk_distribute: vadr == %8X (to: %d)\n", ptr, i);
+d159 2
+a160 6
+/*
+ *
+ */
+void
+Tmk_distribute_sigio_handler(
+	const struct req_dis *req)
+d171 1
+a171 5
+/*
+ *
+ */
+void
+Tmk_distribute_initialize( void )
+@
+
+
+10.6.1.4.0.1
+log
+@Add void to several function definitions.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6.1.4 1998/05/14 20:10:16 alc Exp alc $
+d171 1
+a171 5
+/*
+ *
+ */
+void
+Tmk_distribute_initialize( void )
+@
+
+
+10.6.1.4.0.2
+log
+@Added the "const" attribute to the sigio handler "req" argument.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6.1.4.0.1 1998/07/17 03:19:43 alc Exp alc $
+d159 2
+a160 6
+/*
+ *
+ */
+void
+Tmk_distribute_sigio_handler(
+	const struct req_dis *req)
+@
+
+
+10.6.1.4.0.3
+log
+@Added the "const" attribute to Tmk_distribute's "ptr" argument.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.6.1.4.0.2 1998/07/17 03:44:22 alc Exp alc $
+d89 3
+a91 7
+/*
+ *
+ */
+void
+Tmk_distribute(
+	const void     *ptr,
+	int		size)
+d93 4
+a96 3
+	int		i, rep_seqno;
+	sigset_t	mask;
+
+d104 1
+a104 1
+	req_typ.ptr  = (caddr_t)((req_iov[1].iov_base = (void *) ptr) - _data);
+d106 1
+a106 1
+	req_typ.ptr  = req_iov[1].iov_base = (void *) ptr;
+d124 1
+a124 1
+			Tmk_err("Tmk_distribute: vadr == %8X (to: %d)\n", ptr, i);
+@
+
+
+10.5
+log
+@Replaced sigprocmask by sigio_mutex.  Sigio_mutex is defined
+in Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.4 1996/08/24 20:01:11 alc Exp alc $
+a174 12
+#if defined(ultrix)
+	if (0 > write(rep_fd_[req->from], req, sizeof(req->seqno)))
+		Tmk_perrexit("<write>Tmk_distribute_sigio_handler");
+#else
+	if (0 > send(rep_fd_[req->from], (char *) req, sizeof(req->seqno), 0))
+		Tmk_perrexit("<send>Tmk_distribute_sigio_handler");
+#endif
+}
+
+void	Tmk_distribute_sigio_duplicate_handler(req)
+	struct	req_dis *req;
+{
+@
+
+
+10.4
+log
+@Replaced "seqno += NPROCS" by "+= SEQNO_INCR".
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.3 1996/08/24 18:30:28 alc Exp alc $
+d100 1
+a100 1
+	sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d125 1
+a125 1
+		sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+d140 1
+a140 1
+				sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d159 1
+a159 1
+		sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d164 1
+a164 1
+	sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.3
+log
+@Use SIG_UNBLOCK before recv rather than SIG_SETMASK.
+@
+text
+@d39 1
+a39 1
+ * $Id: distribute.c,v 10.2 1996/06/23 16:22:50 alc Exp $
+d112 1
+a112 1
+		req_typ.seqno = req_seqno += NPROCS;
+@
+
+
+10.2
+log
+@Moved "struct req_dis" to Tmk.h with the other request structures.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d125 1
+a125 1
+		sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		distribute.c
+d71 1
+a71 2
+ *
+ *****************************************************************************/
+a81 9
+
+struct	req_dis	{
+	unsigned	seqno;
+	unsigned char	from;
+	unsigned char	type;
+	unsigned short	UnUsed;
+	unsigned	size;
+	caddr_t		ptr;
+};
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@d107 2
+a108 4
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+	sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+d133 1
+a133 1
+		sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL, UNLOCK);
+d148 1
+a148 1
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+d167 1
+a167 1
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+d172 1
+a172 4
+	sigio_mutex(SIG_SETMASK, &mask, NULL, UNLOCK);
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+a186 2
+	if(Tmk_debug) Tmk_err("-- dist reply %d %d\n", req->from, rep_fd_[req->from]);
+
+@
+
+
+10.1.4.2
+log
+@Eliminated seqno and extra copying from MPL messages.
+@
+text
+@d122 1
+a122 1
+		req_typ.seqno = req_seqno += SEQNO_INCR;
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@d107 1
+a107 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+d109 1
+a109 3
+#if defined(THREADS)
+	pthread_mutex_lock(&sigio_lock);
+#endif
+d132 1
+a132 3
+#if defined(THREADS)
+		pthread_mutex_unlock(&sigio_lock);
+#endif
+d149 1
+a149 3
+#if defined(THREADS)
+				pthread_mutex_lock(&sigio_lock);
+#endif
+d168 1
+a168 3
+#if defined(THREADS)
+		pthread_mutex_lock(&sigio_lock);
+#endif
+a171 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&sigio_lock);
+#endif
+a172 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&monitor_lock);
+#endif
+@
+
+
+10.1.5.3
+log
+@Changed SIGALRM to be blocked by all threads and unblocked only when
+a recv timeout is needed.
+@
+text
+@d139 1
+a139 1
+		sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+@
+
+
+10.1.5.4
+log
+@Cleaned up sigprocmask/pthread_sigmask/sigthreadmask and sigio
+locking/unlocking with sigio_mutex macro
+@
+text
+@d110 4
+a113 2
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask, LOCK);
+
+d136 4
+a140 2
+		sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL, UNLOCK);
+
+d154 4
+a157 2
+				sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+d175 4
+a178 2
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+d182 4
+a185 1
+	sigio_mutex(SIG_SETMASK, &mask, NULL, UNLOCK);
+@
+
+
+10.1.5.5
+log
+@cleaned up signal masks
+@
+text
+@d110 1
+a110 1
+	sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+@
+
+
+10.1.5.6
+log
+@Added $Id$
+@
+text
+@a69 2
+ * $Id$
+ *
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.1.2.2
+log
+@Added sigio locking inside existing critical sections (sigprocmask). <SMP>
+@
+text
+@d109 1
+a109 3
+#if defined(__sgi)
+	spin_lock(&sigio_lock);	/* SMP */
+#endif
+d132 1
+a132 3
+#if defined(__sgi)
+		release_lock(&sigio_lock);	/* SMP */
+#endif
+d149 1
+a149 3
+#if defined(__sgi)
+				spin_lock(&sigio_lock);	/* SMP */
+#endif
+d168 1
+a168 3
+#if   defined(__sgi)
+		spin_lock(&sigio_lock);	/* SMP */
+#endif
+a171 3
+#if   defined(__sgi)
+	release_lock(&sigio_lock);	/* SMP */
+#endif
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d66 4
+d105 4
+a108 1
+	int	mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d133 1
+a133 1
+		sigsetmask(mask);
+d141 1
+a141 1
+		if (0 > recv(req_fd_[i], &rep_seqno, sizeof(rep_seqno), 0))
+d148 1
+a148 1
+				sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d167 1
+a167 1
+		sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d172 1
+a172 1
+	sigsetmask(mask);
+d187 1
+a187 1
+	if (0 > send(rep_fd_[req->from], req, sizeof(req->seqno), 0))
+d199 1
+a199 1
+	if (0 > send(rep_fd_[req->from], req, sizeof(req->seqno), 0))
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d172 1
+a172 1
+	bcopy(&req[1], (int) _data + req->ptr, req->size);
+d174 1
+a174 1
+	bcopy(&req[1], req->ptr, req->size);
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d50 1
+a50 1
+ *	17-Nov-1993	Alan L. Cox	Adapted for RS/6000
+d62 4
+d70 3
+a72 3
+ * On the RS/6000, the data segment may appear at a different virtual address
+ * in each process.  Consequently, we use the offset from the start
+ * of the data segment instead of the absolute address.
+d74 1
+a74 1
+#if defined(_IBMR2)
+d104 1
+a104 1
+#if defined(_IBMR2)
+d171 1
+a171 1
+#if defined(_IBMR2)
+@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

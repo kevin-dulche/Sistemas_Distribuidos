@@ -1,0 +1,14 @@
+ #
+ # $Id: Makefile,v 1.2 1997/12/15 03:58:39 alc Exp $
+ #
+ARCH	= sparc_sunos4
+
+CC	= gcc
+CFLAGS	= -pipe -g -O2
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm
+
+all: raytrace.udp
+
+include	../.common

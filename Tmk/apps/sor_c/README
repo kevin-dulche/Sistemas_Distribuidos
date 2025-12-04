@@ -1,0 +1,20 @@
+This program performs red-black successive over-relaxation
+on a grid.  The only printed output is the execution time.  By default
+10 iterations are performed on a grid of 1000 by 1000 single-precision
+floating-point numbers.
+
+Examples:
+
+1.  The following command performs 100 iterations on the default grid
+size by the first 4 machines in your $(HOME)/.Tmkrc file.
+
+	sor.udp -i100 -- -n4
+
+2.  The following command performs the default number of iterations
+on a grid of size 2048 by 1024 using all of the machines in your
+$(HOME)/.Tmkrc file.
+
+	sor.udp -m2048 -n512
+
+The width of the grid is set by the argument "-n".  The actual width
+is twice the value provided with "-n".

@@ -1,0 +1,23 @@
+ #
+ # $Id: Makefile,v 1.2 1998/09/13 04:34:22 alc Exp $
+ #
+ARCH	= alpha_linux2
+
+CC	= gcc
+CFLAGS	= -O2
+
+FC	= fort77
+FFLAGS  = -O2
+
+MACHDEP_OBJS= common_symbol.o getopt.o
+MACHDEP_LIBS=
+
+all:
+
+include ../.common
+
+common_symbol.o: $(TmkLIB)/support/common_symbol.s
+	$(AS) -o $@ $(TmkLIB)/support/common_symbol.s
+
+getopt.o: $(TmkLIB)/support/getopt.c
+	$(CC) $(CFLAGS) -c $(TmkLIB)/support/getopt.c

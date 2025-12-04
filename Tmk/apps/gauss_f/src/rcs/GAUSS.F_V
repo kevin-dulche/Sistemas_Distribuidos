@@ -1,0 +1,192 @@
+head	10.3;
+access;
+symbols;
+locks; strict;
+comment	@c @;
+
+
+10.3
+date	97.06.02.05.11.17;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.06.02.05.08.43;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Gaussian Elimination
+@
+
+
+10.3
+log
+@Changed to new API.
+@
+text
+@C
+C $Id: Gauss.f,v 10.2 1997/06/02 05:08:43 alc Exp alc $
+C
+      program Gauss
+
+      include 'Tmk_fortran.h'
+C
+C       -- Solves Ax=b thru Gaussian Elimination with Partial Pivoting --
+C
+      integer size
+
+      parameter (size = 1023)
+
+      real*4 a(0:size, 0:size)
+
+      real*4 b(0:size)
+
+      real*4 amax, factor, temp
+
+      real*8 drand48, time, timer
+
+      integer i, j, k, pivot
+
+      integer first_column, last_column
+
+      common /Tmk_shared_common/ a, b, pivot
+C
+C       -- End of variable declarations --
+C
+      call Tmk_startup()
+C
+C       -- Initialization --
+C
+      if (0.eq.Tmk_proc_id) then
+         do i = 0, size
+            do j = 0, size
+               a(i,j) = drand48()
+            enddo
+            b(i) = drand48()
+         enddo
+      endif
+
+      write (6, 1) size + 1, size + 1
+ 1    format ('Factoring a ', I4, ' by ', I4, ' array')
+C
+C	-- Start timing before the main loop --
+C
+      call Tmk_barrier(0)
+
+      time = timer()
+C
+C       -- Use a round-robin allocation of columns to processors --
+C
+      first_column = Tmk_proc_id
+
+      last_column = size
+
+      do i = 0, size - 1
+C
+C       -- Find the maximum element in column i below the diagonal --
+C
+         if (i.eq.first_column) then
+            pivot = i
+            amax = abs(a(i,i))
+            do j = i + 1, size
+               temp = abs(a(j,i))
+               if (temp.gt.amax) then
+                  pivot = j
+                  amax = temp
+               endif
+            enddo
+         endif
+
+         call Tmk_barrier(0)
+C
+C       -- Swap the pivot row with row i --
+C
+         if (pivot.ne.i) then
+            do k = first_column, last_column, Tmk_nprocs
+               temp = a(i,k)
+               a(i,k) = a(pivot,k)
+               a(pivot,k) = temp
+            enddo
+         endif
+
+         call Tmk_barrier(0)
+C
+C       -- Maintain the round-robin allocation of columns to processors --
+C
+         if (first_column.lt.i + 1) then
+            first_column = first_column + Tmk_nprocs
+         endif
+C
+C       -- Factor --
+C
+         do j = i + 1, size
+
+            factor = a(j,i)/a(i,i)
+
+            do k = first_column, last_column, Tmk_nprocs
+               a(j,k) = a(j,k) - factor*a(i,k)
+            enddo
+
+            if (0.eq.Tmk_proc_id) then
+               b(j) = b(j) - factor*b(i)
+            endif
+         enddo
+      enddo
+
+      call Tmk_barrier(0)
+C
+C       -- Back substitution --
+C
+      if (0.eq.Tmk_proc_id) then
+         do i = size - 1, 0, -1
+            temp = 0.0
+            do j = i + 1, size - 1
+               temp = temp + a(i,j)*b(j)
+            enddo
+            b(i) = (b(i) - temp)/a(i,i)
+         enddo
+      endif
+
+      call Tmk_barrier(0)
+
+      write (6, 2) timer() - time
+ 2    format ('Test completed'/'Elapsed time = ', F6.2)
+
+      call Tmk_exit(0)
+
+      end
+@
+
+
+10.2
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+C $Id$
+d34 1
+a34 1
+      if (0.eq.Tmk_proc_id()) then
+d54 1
+a54 1
+      first_column = Tmk_proc_id()
+d79 1
+a79 1
+            do k = first_column, last_column, Tmk_nprocs()
+d91 1
+a91 1
+            first_column = first_column + Tmk_nprocs()
+d100 1
+a100 1
+            do k = first_column, last_column, Tmk_nprocs()
+d104 1
+a104 1
+            if (0.eq.Tmk_proc_id()) then
+d114 1
+a114 1
+      if (0.eq.Tmk_proc_id()) then
+@

@@ -1,0 +1,3728 @@
+head	11.16;
+access;
+symbols
+	Tmk-1_0_3_2R:10.15.1.9
+	Tmk-1_0_3_1R:10.15.1.9
+	Tmk-2_0:10.15.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.15.1.12
+	Tmk-1_0_3R:10.15.1.9
+	Tmk-1_2:10.15.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.15.1.9
+	Tmk-1_0_1R:10.15.1.6
+	Tmk-1_1:11
+	Tmk-1_0:10.15.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.15
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.16
+date	98.03.02.03.22.36;	author alc;	state Exp;
+branches;
+next	11.15;
+
+11.15
+date	97.09.07.18.02.38;	author alc;	state Exp;
+branches;
+next	11.14;
+
+11.14
+date	97.09.01.07.30.54;	author alc;	state Exp;
+branches;
+next	11.13;
+
+11.13
+date	97.07.26.20.21.51;	author alc;	state Exp;
+branches;
+next	11.12;
+
+11.12
+date	97.07.26.20.10.44;	author alc;	state Exp;
+branches;
+next	11.11;
+
+11.11
+date	97.07.25.06.44.47;	author alc;	state Exp;
+branches;
+next	11.10;
+
+11.10
+date	97.07.24.07.12.33;	author alc;	state Exp;
+branches;
+next	11.9;
+
+11.9
+date	97.07.22.16.43.18;	author alc;	state Exp;
+branches;
+next	11.8;
+
+11.8
+date	97.07.09.22.10.33;	author alc;	state Exp;
+branches;
+next	11.7;
+
+11.7
+date	97.07.09.22.01.33;	author alc;	state Exp;
+branches;
+next	11.6;
+
+11.6
+date	97.07.09.21.52.04;	author alc;	state Exp;
+branches;
+next	11.5;
+
+11.5
+date	97.06.26.22.54.02;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	97.06.26.04.16.16;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.06.25.18.32.52;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.06.02.01.26.24;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.06.02.01.23.46;	author alc;	state Exp;
+branches;
+next	10.15;
+
+10.15
+date	97.05.27.22.21.18;	author alc;	state Exp;
+branches
+	10.15.1.1;
+next	10.14;
+
+10.14
+date	97.03.08.07.44.47;	author alc;	state Exp;
+branches;
+next	10.13;
+
+10.13
+date	97.01.09.06.20.59;	author alc;	state Exp;
+branches;
+next	10.12;
+
+10.12
+date	96.10.14.05.14.37;	author alc;	state Exp;
+branches;
+next	10.11;
+
+10.11
+date	96.10.14.03.27.56;	author alc;	state Exp;
+branches;
+next	10.10;
+
+10.10
+date	96.10.13.19.32.00;	author alc;	state Exp;
+branches;
+next	10.9;
+
+10.9
+date	96.08.25.20.39.36;	author alc;	state Exp;
+branches;
+next	10.8;
+
+10.8
+date	96.08.24.21.10.49;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	96.08.24.20.01.11;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	96.08.09.21.11.24;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	96.08.08.18.32.04;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.08.08.04.54.22;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.08.03.21.12.07;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.08.03.17.23.34;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.43.00;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	9.7.2.2;
+
+9.7.2.2
+date	96.05.17.02.52.11;	author alc;	state Exp;
+branches;
+next	9.7.2.3;
+
+9.7.2.3
+date	96.05.20.21.05.51;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches;
+next	10.0.2.2;
+
+10.0.2.2
+date	96.03.18.01.25.56;	author alc;	state Exp;
+branches
+	10.0.2.2.2.1;
+next	10.0.2.3;
+
+10.0.2.3
+date	96.04.20.23.16.58;	author alc;	state Exp;
+branches;
+next	10.0.2.4;
+
+10.0.2.4
+date	96.05.17.04.51.46;	author alc;	state Exp;
+branches;
+next	10.0.2.5;
+
+10.0.2.5
+date	96.05.20.21.01.09;	author alc;	state Exp;
+branches;
+next	10.0.2.6;
+
+10.0.2.6
+date	96.05.25.17.57.43;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.2.2.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.2.2.2;
+
+10.0.2.2.2.2
+date	96.03.27.05.15.54;	author alc;	state Exp;
+branches;
+next	10.0.2.2.2.3;
+
+10.0.2.2.2.3
+date	96.03.27.06.04.57;	author alc;	state Exp;
+branches;
+next	10.0.2.2.2.4;
+
+10.0.2.2.2.4
+date	96.03.27.06.17.04;	author alc;	state Exp;
+branches;
+next	10.0.2.2.2.5;
+
+10.0.2.2.2.5
+date	96.03.27.07.00.27;	author alc;	state Exp;
+branches;
+next	10.0.2.2.2.6;
+
+10.0.2.2.2.6
+date	96.03.28.04.17.07;	author alc;	state Exp;
+branches;
+next	10.0.2.2.2.7;
+
+10.0.2.2.2.7
+date	96.03.30.22.02.11;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	10.1.2.2;
+
+10.1.2.2
+date	96.08.02.19.32.49;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	10.1.4.2;
+
+10.1.4.2
+date	96.07.30.20.52.50;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.06.28.18.36.26;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.06.28.20.24.01;	author tmiller;	state Exp;
+branches;
+next	10.1.5.5;
+
+10.1.5.5
+date	96.07.02.22.34.57;	author tmiller;	state Exp;
+branches;
+next	10.1.5.6;
+
+10.1.5.6
+date	96.07.03.19.32.35;	author tmiller;	state Exp;
+branches;
+next	10.1.5.7;
+
+10.1.5.7
+date	96.07.03.19.54.11;	author tmiller;	state Exp;
+branches;
+next	10.1.5.8;
+
+10.1.5.8
+date	96.07.03.23.14.21;	author alc;	state Exp;
+branches;
+next	10.1.5.9;
+
+10.1.5.9
+date	96.09.28.20.00.07;	author alc;	state Exp;
+branches;
+next	;
+
+10.15.1.1
+date	97.06.02.01.17.28;	author alc;	state Exp;
+branches;
+next	10.15.1.2;
+
+10.15.1.2
+date	97.07.03.19.32.54;	author alc;	state Exp;
+branches;
+next	10.15.1.3;
+
+10.15.1.3
+date	97.07.22.19.22.37;	author alc;	state Exp;
+branches;
+next	10.15.1.4;
+
+10.15.1.4
+date	97.07.23.06.36.48;	author alc;	state Exp;
+branches;
+next	10.15.1.5;
+
+10.15.1.5
+date	97.07.26.20.12.39;	author alc;	state Exp;
+branches;
+next	10.15.1.6;
+
+10.15.1.6
+date	97.07.27.06.13.12;	author alc;	state Exp;
+branches;
+next	10.15.1.7;
+
+10.15.1.7
+date	98.03.02.03.10.51;	author alc;	state Exp;
+branches;
+next	10.15.1.8;
+
+10.15.1.8
+date	98.05.14.20.14.48;	author alc;	state Exp;
+branches;
+next	10.15.1.9;
+
+10.15.1.9
+date	98.05.26.05.34.10;	author alc;	state Exp;
+branches;
+next	10.15.1.10;
+
+10.15.1.10
+date	98.07.26.05.25.28;	author alc;	state Exp;
+branches;
+next	10.15.1.11;
+
+10.15.1.11
+date	98.08.17.17.39.04;	author alc;	state Exp;
+branches;
+next	10.15.1.12;
+
+10.15.1.12
+date	98.09.06.07.22.11;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.16
+log
+@Rename toggle and toggle2 for clarity.  Their new names are inval_toggle
+and dirty_toggle, respectively.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: page.c,v 11.15 1997/09/07 18:02:38 alc Exp alc $
+ *
+ * Description:    
+ *	page management routines
+ *
+ * External Functions:
+ *			Tmk_page_request,
+ *			Tmk_page_sigio_handler,
+ *			Tmk_page_inval_perform,
+ *			Tmk_page_inval_merge,
+ *			Tmk_page_dirty_merge,
+ *			Tmk_page_initialize
+ *
+ * External Variables:
+ *			Tmk_page_init_to_valid,
+ *			Tmk_page_size,
+ *			Tmk_npages
+ *
+ *			page_array_,
+ *			page_shift,
+ *			page_dirty
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Apr-1993	Alan L. Cox	Created
+ *	22-Jul-1993	Alan L. Cox	Added reliable message protocol
+ *	26-Oct-1993	Alan L. Cox	Validated page early to avoid race
+ *	17-Nov-1993	Alan L. Cox	Adapted for RS/6000
+ *	16-Jun-1994	Alan L. Cox	Adapted for Alpha
+ *					 (changes provided by Povl T. Koch)
+ *	18-Jul-1994	Sandhya Dwarkadas
+ *					Adapted for FORTRAN
+ *	Version 0.9.0
+ *
+ *	Version 0.9.1
+ *
+ *	14-Jan-1995	Alan L. Cox	Adapted for STREAMS
+ *
+ *	Version 0.9.2
+ *
+ *	 4-Apr-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *	10-Apr-1995	Cristiana Amza	Adapted for HPPA/HPUX
+ *	29-Apr-1995	Alan L. Cox	Adapted for Solaris
+ *
+ *	Version	0.9.3
+ *
+ *	30-Jul-1995	Alan L. Cox	Changed the page sigio handler to send
+ *					 the twin when it exists
+ *	Version 0.9.4
+ *
+ *	18-Aug-1995	Alan L. Cox	Changed the page initialization to use
+ *					 a single mprotect
+ *	Version 0.9.5
+ *
+ *	16-Nov-1995	Alan L. Cox	Added mprotect merging
+ *	29-Nov-1995	Sandhya Dwarkadas
+ *					Extended the page array by one entry
+ *					 for mprotect merging to work
+ *	Version 0.9.6			 on the last real page
+ *
+ *	15-Jan-1996	Alan L. Cox	Adapted for FreeBSD 2.1/Intel x86
+ *
+ *	Version 0.9.7
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigblock and sigsetmask
+ *					 with sigprocmask
+ *	Version 0.10
+ *
+ *	20-Apr-1996	Robert J. Fowler
+ *					Adapted to Linux 1.2.13
+ *	Version 0.10.1
+ */
+#include "Tmk.h"
+
+#if   ! defined(MAP_ANONYMOUS)
+#if	defined(MAP_ANON)
+#	define	MAP_ANONYMOUS	MAP_ANON	/* FreeBSD */
+#else
+#	define	MAP_ANONYMOUS	0	/* sgi, sun */
+#endif
+#endif
+
+#if   ! defined(MAP_FILE)
+#	define	MAP_FILE	0	/* sgi, sun */
+#endif
+
+#if   ! defined(MAP_NORESERVE)
+#if	defined(MAP_AUTORESRV)
+#	define	MAP_NORESERVE	MAP_AUTORESRV	/* sgi */
+#else
+#	define	MAP_NORESERVE	0	/* AIX, linux, osf */
+#endif
+#endif
+
+#if   ! defined(MAP_VARIABLE)
+#	define	MAP_VARIABLE	0	/* FreeBSD, linux, sgi, sun */
+#endif
+
+unsigned	Tmk_page_init_to_valid;
+
+protocol_t	Tmk_page_init_proto = single_writer;
+
+/*
+ * Allocate one extra entry at the end of the array for mprotect merging
+ * to use as a partner in case the last real page is invalidated. 
+ *
+ * Warning!  The extra entry also serves as the head of the list used
+ * for mprotect merging.
+ */
+struct	page	page_array_[NPAGES + 1];
+
+/*
+ * The default page size on AIX/RS/6K is double the operating system
+ * page size, currently, 8K bytes.
+ */
+#if	defined(_AIX)
+#	define	PAGE_SHIFT_DEFAULT	1
+#else
+#	define	PAGE_SHIFT_DEFAULT	0
+#endif
+
+/*
+ * Before Tmk_page_initialize, page_shift is the number of bits that the
+ * operating system page size (getpagesize()) is left shifted to compute
+ * Tmk_page_size.  After Tmk_page_initialize, page_shift is the log2 of
+ * Tmk_page_size.  It's used by segv_handler.
+ */
+unsigned	page_shift = PAGE_SHIFT_DEFAULT;
+
+struct	page	page_dirty = { /*prev=*/&page_dirty, /*next=*/&page_dirty/*,...*/};
+
+static	struct	req_typ	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_PAGE };
+
+static	unsigned	rep_seqno;
+static	struct	iovec	rep_iov[] = {
+	{ (caddr_t)&rep_seqno, sizeof(rep_seqno) },
+	{                   0, 0 } };
+static	struct	msghdr	rep_hdr = { 0, 0, rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0]), 0, 0 };
+
+static	struct	iovec	sig_iov[] = {
+	{ 0, sizeof(unsigned) },
+	{ 0, 0 } };
+static	struct	msghdr	sig_hdr = { 0, 0, sig_iov, sizeof(sig_iov)/sizeof(sig_iov[0]), 0, 0 };
+
+/*
+ * The caller must block SIGALRM and SIGIO
+ */
+void	Tmk_page_request(page)
+	page_t		page;
+{
+	sigset_t	mask;
+	int		size;
+
+	req_typ.id = page - page_array_;
+	req_typ.seqno = req_seqno += SEQNO_INCR;
+rexmit:
+	if (0 > send(req_fd_[page->writer], (char *)&req_typ, sizeof(req_typ), 0))
+		Tmk_perrexit("Tmk_page_request<send>");
+
+	Tmk_tout_flag = 0;
+
+	setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+	sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask);
+
+	rep_iov[1].iov_base = page->vadr;
+ retry:
+	if ((size = recvmsg(req_fd_[page->writer], &rep_hdr, 0)) < 0)
+		if (Tmk_tout_flag) {
+
+			if (Tmk_debug)
+				Tmk_err("Tmk_page_request<timeout: %d>: seqno == %d\n", page->writer, req_typ.seqno);
+
+			sigio_mutex(SIG_SETMASK, &mask, NULL);
+
+			goto rexmit;
+		}
+		else if (errno == EINTR)
+			goto retry;
+		else
+			Tmk_perrexit("Tmk_page_request<recvmsg>");
+
+	if (rep_seqno != req_typ.seqno) {
+
+		if (Tmk_debug)
+			Tmk_err("Tmk_page_request<bad seqno: %d>: seqno == %d (received: %d)\n", page->writer, req_typ.seqno, rep_seqno);
+
+		goto retry;
+	}
+	if (Tmk_debug)
+		Tmk_err("size: %d\n", size);
+
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+
+	Tmk_stat.bytes += size;
+	Tmk_stat.bytes_of_data += Tmk_page_size;
+	Tmk_stat.cold_misses++;
+}
+
+/*
+ *
+ */
+void	Tmk_page_sigio_handler(req)
+	struct req_typ *req;
+{
+	page_t		page = &page_array_[req->id];
+
+	sig_iov[0].iov_base = (caddr_t) req;	/* seqno */
+
+	if (page->twin == 0) {
+
+		sig_iov[1].iov_base = page->vadr;
+
+		if (page->state == invalid)
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ))
+				Tmk_perrexit("Tmk_page_sigio_handler<mprotect>");
+	}
+	else
+		sig_iov[1].iov_base = page->twin;
+
+	if (0 > sendmsg(rep_fd_[req->from], &sig_hdr, 0))
+		Tmk_perrexit("Tmk_page_sigio_handler<sendmsg>");
+
+	if (page->state == invalid) {
+
+		if (0 > mprotect(page->vadr, Tmk_page_size, 0))
+			Tmk_perrexit("Tmk_page_sigio_handler<mprotect>");
+	}
+	else if (page->state == exclusive) {
+
+		page->state = shared;
+
+		assert(page->twin == 0);
+
+		if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ))
+			Tmk_perrexit("Tmk_page_sigio_handler<mprotect>");
+	}
+}
+
+#if defined(_AIX)
+/*
+ * In order to use the list head (page_array_[NPAGES]) as a sentinel,
+ * we must sort in descending order.
+ */
+static
+void	merge_sort(page_t curr)
+{
+	caddr_t	vadr = curr->vadr;
+
+	for (;;) {
+
+		page_t	run1start = curr;
+
+	static	struct	page	dummy;	/* dummy.vadr must == 0 */
+
+		caddr_t	prev__vadr;
+
+		do {
+			prev__vadr = vadr;
+			curr = curr->next;
+			vadr = curr->vadr;
+		} while (prev__vadr >= vadr);
+	
+		if (curr == run1start)
+			return;
+
+		(dummy.prev = curr->prev)->next = &dummy;
+
+		while (run1start->vadr >= vadr)
+			run1start = run1start->next;
+
+		(curr->prev = run1start->prev)->next = curr;
+
+		for (;;) {
+
+			page_t	run1ptr;
+
+			prev__vadr = vadr;
+			curr = curr->next;
+			vadr = curr->vadr;
+
+			if (prev__vadr < vadr)
+				break;
+
+			run1ptr = run1start;
+
+			while (run1start->vadr >= vadr)
+				run1start = run1start->next;
+
+			if (run1start != run1ptr) {
+				(run1ptr->prev = curr->prev)->next = run1ptr;
+				(curr->prev = run1start->prev)->next = curr;
+			}
+		}
+		if (run1start != &dummy) {
+			(run1start->prev = curr->prev)->next = run1start;
+			(curr->prev = dummy.prev)->next = curr;
+		}
+	}
+}
+#endif
+
+/*
+ *  The head of the list used for mprotect merging is the extra page entry.
+ */
+#define	head	page_array_[NPAGES]
+
+/*
+ * Called by Tmk_barrier and Tmk_interval_incorporate.
+ */
+void	Tmk_page_inval_perform( void )
+{
+	page_t	end = &head;
+
+	page_t	page = end->prev;
+
+	if (page != end) {
+#if defined(_AIX)
+		if (end->next != page) {
+			/*
+			 * Merge sort the invalidate list on AIX.  Performing the mprotects
+			 * in order takes advantage of the vm_map hint.
+			 */
+			merge_sort(end);
+
+			/*
+			 * Sorting the list may change end->prev.
+			 */
+			page = end->prev;
+		}
+#endif
+		end->prev = end->next = end;
+
+		do {
+			page_t	partner = page->partner + 1;
+
+			partner->inval_toggle = 0;
+
+			if (0 > mprotect(page->vadr, partner->vadr - page->vadr, 0))
+				Tmk_perrexit("Tmk_interval_invalidate<mprotect>");
+
+			page->inval_toggle = 0;
+
+		} while ((page = page->prev) != end);
+	}
+}
+
+/*
+ * Called by Tmk_interval_incorporate.
+ */
+void	Tmk_page_inval_merge(page1)
+	page_t	page1;
+{
+	page_t	page2 = page1 + 1;
+
+	if (page1->inval_toggle ^= 1) {
+
+		page_t	next = &head;
+
+		page_t	prev = next->prev;
+
+		page1->prev = prev;
+		page1->next = next;
+
+		next->prev = prev->next = page1;
+	}
+	else {
+		page1--;
+		page1 = page1->partner;
+	}
+	if ((page2->inval_toggle ^= 1) == 0) {
+
+		page_t	page2__prev = page2->prev;
+		page_t	page2__next = page2->next;
+
+		page2__next->prev = page2__prev;
+		page2__prev->next = page2__next;
+
+		page2 = page2->partner;
+	}
+	else
+		page2--;
+
+	page1->partner = page2;
+	page2->partner = page1;
+}
+
+/*
+ * Called by segv_handler.
+ */
+void	Tmk_page_dirty_merge(page1)
+	page_t	page1;
+{
+	page_t	page2 = page1 + 1;
+
+	unsigned char	toggle = page1->proto;
+
+	if ((page1->dirty_toggle ^= toggle) & toggle) {
+
+		page_t	next = &page_dirty;
+
+		page_t	prev = next->prev;
+
+		page1->prev = prev;
+		page1->next = next;
+
+		next->prev = prev->next = page1;
+	}
+	else {
+		page1--;
+		page1 = page1->partner;
+	}
+	if (((page2->dirty_toggle ^= toggle) & toggle) == 0) {
+
+		page_t	page2__prev = page2->prev;
+		page_t	page2__next = page2->next;
+
+		page2__next->prev = page2__prev;
+		page2__prev->next = page2__next;
+
+		page2 = page2->partner;
+	}
+	else
+		page2--;
+
+	page1->partner = page2;
+	page2->partner = page1;
+}
+
+/*
+ * Warning!  The shared heap must begin above &end.
+ * See Tmk_startup.
+ */
+void	Tmk_page_initialize()
+{
+	int	i;
+
+	Tmk_page_size = getpagesize();
+	Tmk_page_size <<= page_shift;
+
+	for (i = 1 << page_shift; i < Tmk_page_size; i <<= 1)
+		page_shift++;
+
+	/*
+	 * Initialize one extra entry but don't allocate a page
+	 * underneath it.  Its vadr is used if the last real page
+	 * is invalidated.
+	 */
+	for (i = 0; i <= Tmk_npages; i++) {
+
+		page_t	page = &page_array_[i];
+
+		if (i)
+			page->vadr = page_array_[i - 1].vadr + Tmk_page_size;
+		else {
+			size_t	len  = Tmk_npages*Tmk_page_size;
+
+			caddr_t	addr = page->vadr;
+
+			int	prot = PROT_READ|PROT_WRITE;
+
+			int	flags = MAP_PRIVATE|MAP_NORESERVE;
+
+			int	fd;
+
+			if (addr)
+				flags |= MAP_FIXED;
+			else {
+
+			extern	char	end[];
+
+				addr = (caddr_t)((long)(end + 0x4FFFFFFFL) &~ 0x0FFFFFFFL);
+
+				flags |= MAP_VARIABLE;
+			}
+			if ((fd = open("/dev/zero", O_RDWR)) == -1)
+				flags |= MAP_ANONYMOUS;
+			else
+				flags |= MAP_FILE;
+
+			if ((page->vadr = mmap(addr, len, prot, flags, fd, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("Tmk_page_initialize<mmap>: can't allocate the shared memory");
+
+			if (fd != -1)
+				close(fd);
+
+			if (Tmk_page_init_to_valid) {
+
+				if (Tmk_nprocs > 1)
+					if (0 > mprotect(page->vadr, len, PROT_READ))
+						Tmk_perrexit("Tmk_page_initialize<mprotect>");
+			}
+			else {
+				if (Tmk_proc_id)
+					if (0 > mprotect(page->vadr, len, 0))
+						Tmk_perrexit("Tmk_page_initialize<mprotect>");
+			}
+		}
+		if (Tmk_page_init_to_valid) {
+			page->state = shared;
+			page->writer = page->owner = i % Tmk_nprocs;
+		}
+		else {
+			if (Tmk_proc_id == 0)
+				page->state = exclusive;
+			else {
+				page->state = invalid;
+				page->empty = 1;
+			}
+			page->writer = page->owner = 0;
+		}
+		page->proto = Tmk_page_init_proto;
+		page->vector_time_ = proc_array_[0].vector_time_;
+	}
+	head.prev = head.next = &head;
+
+	req_typ.from = Tmk_proc_id;
+
+	rep_iov[1].iov_len = sig_iov[1].iov_len = Tmk_page_size;
+}
+@
+
+
+11.15
+log
+@Added "Tmk_page_init_proto".  It controls the initial protocol
+used by each and every page.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.14 1997/09/01 07:30:54 alc Exp alc $
+d375 1
+a375 1
+			partner->toggle = 0;
+d380 1
+a380 1
+			page->toggle = 0;
+d394 1
+a394 1
+	if (page1->toggle ^= 1) {
+d409 1
+a409 1
+	if ((page2->toggle ^= 1) == 0) {
+d434 1
+a434 1
+	unsigned char	toggle2 = page1->proto;
+d436 1
+a436 1
+	if ((page1->toggle2 ^= toggle2) & toggle2) {
+d451 1
+a451 1
+	if (((page2->toggle2 ^= toggle2) & toggle2) == 0) {
+@
+
+
+11.14
+log
+@Changed the initialization of the page_dirty list to use a static
+initializer.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.13 1997/07/26 20:21:51 alc Exp alc $
+d139 2
+d550 1
+a550 1
+		page->proto = single_writer;
+@
+
+
+11.13
+log
+@Moved the mmap option definitions to the beginning of the file.  Modified
+some spacing for consistency.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.12 1997/07/26 20:10:44 alc Exp alc $
+d166 1
+a166 1
+struct	page	page_dirty;
+a551 2
+
+	page_dirty.prev = page_dirty.next = &page_dirty;
+@
+
+
+11.12
+log
+@Deleted the valloc declaration.  It isn't used.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.11 1997/07/25 06:44:47 alc Exp alc $
+d113 24
+d153 1
+a153 1
+# define	PAGE_SHIFT_DEFAULT	1
+d155 1
+a155 1
+# define	PAGE_SHIFT_DEFAULT	0
+a492 24
+
+#if   ! defined(MAP_ANONYMOUS)
+#if	defined(MAP_ANON)
+#	define	MAP_ANONYMOUS	MAP_ANON	/* FreeBSD */
+#else
+#	define	MAP_ANONYMOUS	0	/* sgi, sun */
+#endif
+#endif
+
+#if   ! defined(MAP_FILE)
+#	define	MAP_FILE	0	/* sgi, sun */
+#endif
+
+#if   ! defined(MAP_NORESERVE)
+#if	defined(MAP_AUTORESRV)
+#	define	MAP_NORESERVE	MAP_AUTORESRV	/* sgi */
+#else
+#	define	MAP_NORESERVE	0	/* AIX, linux, osf */
+#endif
+#endif
+
+#if   ! defined(MAP_VARIABLE)
+#	define	MAP_VARIABLE	0	/* FreeBSD, linux, sgi, sun */
+#endif
+@
+
+
+11.11
+log
+@Use the MAP_NORESERVE option to mmap.  Restructure the handling
+of the platform-specific options to mmap.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.10 1997/07/24 07:12:33 alc Exp alc $
+a111 8
+
+#if	defined(_AIX)
+#include <malloc.h>
+#elif	defined(__alpha)
+void   *valloc();
+#elif	defined(__sun) && ! defined(__SVR4)
+char   *valloc(unsigned size);
+#endif
+@
+
+
+11.10
+log
+@Changed message counting: don't increment two message counters for cold
+misses.  Just use one.  (Identical to revision 10.15.1.4.)
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.9 1997/07/22 16:43:18 alc Exp alc $
+d478 7
+a484 1
+#if	defined(__FreeBSD__)
+d486 3
+a488 2
+#	define	MAP_VARIABLE	0
+#	define	MAP_ANONYMOUS	MAP_ANON
+d490 7
+a496 1
+#elif	defined(__linux)
+d498 3
+a500 3
+#	define	MAP_VARIABLE	0
+
+#elif	defined(__sgi) || defined(__sun) /* both SunOS 4.1.x and 5.x */
+a501 5
+#	define	MAP_VARIABLE	0
+#	define	MAP_ANONYMOUS	0
+#	define	MAP_FILE	0
+
+#endif
+d506 1
+a506 1
+			int	flags = MAP_PRIVATE;
+@
+
+
+11.9
+log
+@If Tmk_page_init_to_valid is true, assign page->writer/owner round-robin
+to the processors.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.8 1997/07/09 22:10:33 alc Exp alc $
+d215 3
+a217 7
+	if (tmk_stat_flag) {
+
+		Tmk_stat.messages++;
+		Tmk_stat.bytes += size;
+		Tmk_stat.bytes_of_data += Tmk_page_size;
+		Tmk_stat.cold_misses++;
+	}
+@
+
+
+11.8
+log
+@Updated and corrected the error messages.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.7 1997/07/09 22:01:33 alc Exp alc $
+d539 1
+a539 1
+		if (Tmk_page_init_to_valid)
+d541 2
+d550 1
+a552 1
+		page->writer = 0;
+@
+
+
+11.7
+log
+@Removed the rest of the Ultrix-specific code.  Yay!
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.6 1997/07/09 21:52:04 alc Exp alc $
+d178 1
+a178 1
+		Tmk_perrexit("<send>page_request");
+d192 1
+a192 1
+				Tmk_err("<timeout: %d>page: seqno == %d\n", page->writer, req_typ.seqno);
+d201 1
+a201 1
+			Tmk_perrexit("<recvmsg>page_request");
+d206 1
+a206 1
+			Tmk_err("<bad seqno: %d>Tmk_page_request: seqno == %d (received: %d)\n", page->writer, req_typ.seqno, rep_seqno);
+d240 1
+a240 1
+				Tmk_perrexit("<mprotect>Tmk_page_sigio_handler");
+d251 1
+a251 1
+			Tmk_perrexit("<mprotect>Tmk_page_sigio_handler");
+d260 1
+a260 1
+			Tmk_perrexit("<mprotect>Tmk_page_sigio_handler");
+d364 1
+a364 1
+				Tmk_perrexit("<mprotect>Tmk_interval_invalidate");
+d522 1
+a522 1
+				Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory");
+d531 1
+a531 1
+						Tmk_perrexit("<mprotect>Tmk_page_initialize");
+d536 1
+a536 1
+						Tmk_perrexit("<mprotect>Tmk_page_initialize");
+@
+
+
+11.6
+log
+@Use the new page states.  Rename "page->mode" to "page->proto".
+
+Removed some Ultrix-specific code.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.5 1997/06/26 22:54:02 alc Exp alc $
+a118 2
+#elif	defined(ultrix)
+#define	valloc	malloc
+a157 1
+#if ! defined(ultrix)
+a158 1
+#endif
+a162 1
+#if ! defined(ultrix)
+a163 1
+#endif
+a176 4
+#if defined(ultrix)
+	if (0 > write(req_fd_[page->writer], &req_typ, sizeof(req_typ)))
+		Tmk_perrexit("<write>page_request");
+#else
+d179 1
+a179 1
+#endif
+a187 3
+#if defined(ultrix)
+	if ((size = readv(req_fd_[page->writer], rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0]))) < 0)
+#else
+a188 1
+#endif
+a200 3
+#if defined(ultrix)
+			Tmk_perrexit("<readv>page_request");
+#else
+d202 1
+a202 1
+#endif
+@
+
+
+11.5
+log
+@Renamed "page->SW_WN_vector_time_" to "page->vector_time_".  Deleted
+"page->time".
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.4 1997/06/26 04:16:16 alc Exp alc $
+d255 1
+a255 2
+		if ((page->state == empty) ||
+		    (page->state == invalid))
+d261 1
+a261 4
+#if defined(ultrix)
+	if (0 > writev(rep_fd_[req->from], sig_iov, sizeof(sig_iov)/sizeof(sig_iov[0])))
+		Tmk_perrexit("<writev>page_sigio_handler");
+#else
+d263 3
+a265 4
+		Tmk_perrexit("<sendmsg>page_sigio_handler");
+#endif
+	if ((page->state == empty) ||
+	    (page->state == invalid)) {
+d270 1
+a270 1
+	else if (page->state == private) {
+d272 1
+a272 1
+		page->state = valid;
+d437 1
+a437 1
+	unsigned char	toggle2 = page1->mode;
+d557 1
+a557 1
+			page->state = valid;
+d560 5
+a564 3
+				page->state = private;
+			else
+				page->state = empty;
+d566 1
+a567 1
+		page->mode = single_writer;
+@
+
+
+11.4
+log
+@Added "page->SW_WN_vector_time_" initialization (alongside "page->time").
+
+Changed the page sigio handler to deal with requests for "empty" pages.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.3 1997/06/25 18:32:52 alc Exp alc $
+d571 1
+a571 2
+		page->SW_WN_vector_time_ = proc_array_[0].vector_time_;
+		page->time = 0;
+@
+
+
+11.3
+log
+@Replaced "page->manager" by "page->writer".
+
+Changed the default protocol to single writer.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.2 1997/06/02 01:26:24 alc Exp alc $
+d255 2
+a256 1
+		if (page->state == invalid)
+d269 2
+a270 1
+	if (page->state == invalid) {
+d571 2
+@
+
+
+11.2
+log
+@Changed the Fortran API to use a common block to hold the proc_id,
+nprocs, page_size and npages.  Dropped the trailing "_" from
+struct Tmk_, and added page_size and npages.  (This is taken
+from revision 10.15.1.1.)
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 11.1 1997/06/02 01:23:46 alc Exp alc $
+d184 1
+a184 1
+	if (0 > write(req_fd_[page->manager], &req_typ, sizeof(req_typ)))
+d187 1
+a187 1
+	if (0 > send(req_fd_[page->manager], (char *)&req_typ, sizeof(req_typ), 0))
+d199 1
+a199 1
+	if ((size = readv(req_fd_[page->manager], rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0]))) < 0)
+d201 1
+a201 1
+	if ((size = recvmsg(req_fd_[page->manager], &rep_hdr, 0)) < 0)
+d206 1
+a206 1
+				Tmk_err("<timeout: %d>page: seqno == %d\n", page->manager, req_typ.seqno);
+d223 1
+a223 1
+			Tmk_err("<bad seqno: %d>Tmk_page_request: seqno == %d (received: %d)\n", page->manager, req_typ.seqno, rep_seqno);
+d567 2
+a568 2
+		page->manager = 0;
+		page->mode = multi_writer;
+@
+
+
+11.1
+log
+@Modified dirty page merge to support the adaptive protocol.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15 1997/05/27 22:21:18 alc Exp alc $
+a123 4
+
+unsigned	Tmk_page_size;
+
+unsigned	Tmk_npages = NPAGES;
+@
+
+
+10.15
+log
+@Corrected the external definitions in the leading comment.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.14 1997/03/08 07:44:47 alc Exp alc $
+d444 3
+a446 1
+	if (page1->toggle2 ^= 1) {
+d461 1
+a461 1
+	if ((page2->toggle2 ^= 1) == 0) {
+d572 1
+@
+
+
+10.15.1.1
+log
+@Changed the Fortran API to use a common block to hold the proc_id,
+nprocs, page_size and npages.  Dropped the trailing "_" from
+struct Tmk_, and added page_size and npages.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15 1997/05/27 22:21:18 alc Exp alc $
+d124 4
+@
+
+
+10.15.1.2
+log
+@Eliminated the Ultrix-specific code.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.1 1997/06/02 01:17:28 alc Exp alc $
+d119 2
+d160 1
+d162 1
+d167 1
+d169 1
+d183 4
+d189 1
+a189 1
+
+d198 3
+d202 1
+d215 3
+d219 1
+a219 1
+
+d261 4
+a264 1
+
+d267 1
+a267 1
+
+@
+
+
+10.15.1.3
+log
+@Added basic Pthreads support.
+@
+text
+@a120 6
+#if (defined(__sgi) || defined(__sun)) && defined(PTHREADS)
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#endif
+
+a185 3
+#if defined(PTHREADS)
+	rep_iov[1].iov_base = page->v_alias;
+#else
+a186 1
+#endif
+a234 6
+#if defined(PTHREADS)
+		sig_iov[1].iov_base = page->v_alias;
+
+		if (page->state == private) {
+
+			page->state = valid;
+a235 4
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ))
+                                Tmk_perrexit("Tmk_page_sigio_handler<mprotect>");
+		}
+#else
+a240 1
+#endif
+d247 1
+a247 1
+#if ! defined(PTHREADS)
+a261 1
+#endif
+d475 1
+a475 1
+		if (i) {
+a476 4
+#if defined(PTHREADS)
+			page->v_alias = page_array_[i - 1].v_alias + Tmk_page_size;
+#endif
+		}
+a479 20
+			caddr_t	addr = page->vadr;
+
+#if defined(PTHREADS) && (defined(__sgi) || defined(__sun))
+
+			int	shmid;
+
+			if ((shmid = shmget(IPC_PRIVATE, len, IPC_CREAT|0600)) < 0)
+				Tmk_perrexit("Tmk_page_initialize<shmget>: can't allocate the shared memory");
+
+			if ((page->vadr = shmat(shmid, addr, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("Tmk_page_initialize<shmat>: can't map the shared memory");
+
+			if ((page->v_alias = shmat(shmid, page->vadr - 2*len, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("Tmk_page_initialize<shmat>: can't create the alias mapping");
+
+			if (0 > shmctl(shmid, IPC_RMID, NULL))
+				Tmk_perrexit("Tmk_page_initialize<shmctl>");
+#else
+			int	prot = PROT_READ|PROT_WRITE;
+
+d496 4
+a499 6
+#if defined(PTHREADS)
+			char	name[MAXPATHLEN];
+			char   *tmpdir;
+			char	c = 0;
+			int	flags = MAP_SHARED;
+#else
+d501 1
+a501 1
+#endif
+a513 21
+#if defined(PTHREADS)
+			if ((tmpdir = getenv("SWAPDIR")) == 0) {
+
+				tmpdir = P_tmpdir;
+
+				Tmk_err("Tmk_startup: SWAPDIR=(null), putting swap file in \"%s\".\n", tmpdir);
+			}
+			sprintf(name, "%s/Tmk_swap.%d", tmpdir, getpid());	/* An extra "/" won't hurt */
+
+			if ((fd = open(name, O_RDWR|O_CREAT|O_TRUNC, 0600)) < 0)
+				Tmk_perrexit("Tmk_page_initialize<open>: open(\"%s\", ... )", name);
+			
+			if (0 > unlink(name))
+				Tmk_perrexit("Tmk_page_initialize<unlink>");
+
+			if ((len - sizeof(c)) != lseek(fd, len - sizeof(c), SEEK_END))
+				Tmk_perrexit("Tmk_page_initialize<lseek>");
+
+			if (0 > write(fd, &c, sizeof(c)))
+				Tmk_perrexit("Tmk_page_initialize<write>");
+#else
+d518 1
+a518 1
+#endif
+d521 1
+a521 4
+#if defined(PTHREADS)
+			if ((page->v_alias = mmap(addr+2*len, len, prot, flags&~MAP_FIXED, fd, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("Tmk_page_initialize<mmap>: can't allocate the shared memory");
+#endif
+d524 1
+a524 1
+#endif
+@
+
+
+10.15.1.4
+log
+@Changed message counting: don't increment two message counters for cold
+misses.  Just use one.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.3 1997/07/22 19:22:37 alc Exp alc $
+d225 7
+a231 3
+	Tmk_stat.bytes += size;
+	Tmk_stat.bytes_of_data += Tmk_page_size;
+	Tmk_stat.cold_misses++;
+@
+
+
+10.15.1.5
+log
+@Deleted the valloc declaration.  (Identical to revision 11.12.)
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.4 1997/07/23 06:36:48 alc Exp alc $
+d112 8
+@
+
+
+10.15.1.6
+log
+@Use the MAP_NORESERVE option to mmap.  (Based on revision 11.11 and
+revision 11.13.)
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.5 1997/07/26 20:12:39 alc Exp alc $
+a118 24
+#if   ! defined(MAP_ANONYMOUS)
+#if	defined(MAP_ANON)
+#	define	MAP_ANONYMOUS	MAP_ANON	/* FreeBSD */
+#else
+#	define	MAP_ANONYMOUS	0	/* sgi, sun */
+#endif
+#endif
+
+#if   ! defined(MAP_FILE)
+#	define	MAP_FILE	0	/* sgi, sun */
+#endif
+
+#if   ! defined(MAP_NORESERVE)
+#if	defined(MAP_AUTORESRV)
+#	define	MAP_NORESERVE	MAP_AUTORESRV	/* sgi */
+#else
+#	define	MAP_NORESERVE	0	/* AIX, linux, osf */
+#endif
+#endif
+
+#if   ! defined(MAP_VARIABLE)
+#	define	MAP_VARIABLE	0	/* FreeBSD, linux, sgi, sun */
+#endif
+
+d135 1
+a135 1
+#	define	PAGE_SHIFT_DEFAULT	1
+d137 1
+a137 1
+#	define	PAGE_SHIFT_DEFAULT	0
+d513 17
+d536 1
+a536 1
+			int	flags = MAP_PRIVATE|MAP_NORESERVE;
+@
+
+
+10.15.1.7
+log
+@Rename toggle and toggle2 for clarity.  Their new names are inval_toggle
+and dirty_toggle, respectively.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.6 1997/07/27 06:13:12 alc Exp alc $
+d395 1
+a395 1
+			partner->inval_toggle = 0;
+d400 1
+a400 1
+			page->inval_toggle = 0;
+d414 1
+a414 1
+	if (page1->inval_toggle ^= 1) {
+d429 1
+a429 1
+	if ((page2->inval_toggle ^= 1) == 0) {
+d454 1
+a454 1
+	if (page1->dirty_toggle ^= 1) {
+d469 1
+a469 1
+	if ((page2->dirty_toggle ^= 1) == 0) {
+@
+
+
+10.15.1.8
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.7 1998/03/02 03:10:51 alc Exp alc $
+d199 2
+a200 2
+	while (0 > send(req_fd_[page->manager], (char *)&req_typ, sizeof(req_typ), 0))
+		Tmk_errno_check("Tmk_page_request<send>");
+d278 2
+a279 2
+	while (0 > sendmsg(rep_fd_[req->from], &sig_hdr, 0))
+		Tmk_errno_check("Tmk_page_sigio_handler<sendmsg>");
+@
+
+
+10.15.1.9
+log
+@Added the "const" attribute to the message argument
+to Tmk_exit_sigio_handler and Tmk_page_sigio_handler.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.8 1998/05/14 20:14:48 alc Exp alc $
+d249 2
+a250 3
+void
+Tmk_page_sigio_handler(
+	const struct req_typ *req)
+@
+
+
+10.15.1.10
+log
+@Changed the definition of "page_t".  The new definition enables
+the use of "const" page pointers.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.9 1998/05/26 05:34:10 alc Exp alc $
+d152 1
+a152 1
+page_t		page_array_[NPAGES + 1];
+d172 1
+a172 1
+page_t		page_dirty;
+d190 2
+a191 3
+void
+Tmk_page_request(
+	const page_t   *page)
+d253 1
+a253 1
+	page_t	       *page = &page_array_[req->id];
+d305 1
+a305 1
+void	merge_sort(page_t *curr)
+d311 1
+a311 1
+		page_t *run1start = curr;
+d313 1
+a313 1
+	static	page_t	dummy;	/* dummy.vadr must == 0 */
+d335 1
+a335 1
+			page_t *run1ptr;
+d372 1
+a372 1
+	page_t *end = &head;
+d374 1
+a374 1
+	page_t *page = end->prev;
+d394 1
+a394 1
+			page_t *partner = page->partner + 1;
+d410 2
+a411 3
+void
+Tmk_page_inval_merge(
+	page_t *page1)
+d413 1
+a413 1
+	page_t *page2 = page1 + 1;
+d417 1
+a417 1
+		page_t *next = &head;
+d419 1
+a419 1
+		page_t *prev = next->prev;
+d432 2
+a433 2
+		page_t *page2__prev = page2->prev;
+		page_t *page2__next = page2->next;
+d450 2
+a451 3
+void
+Tmk_page_dirty_merge(
+	page_t *page1)
+d453 1
+a453 1
+	page_t *page2 = page1 + 1;
+d457 1
+a457 1
+		page_t *next = &page_dirty;
+d459 1
+a459 1
+		page_t *prev = next->prev;
+d472 2
+a473 2
+		page_t *page2__prev = page2->prev;
+		page_t *page2__next = page2->next;
+d508 1
+a508 1
+		page_t *page = &page_array_[i];
+@
+
+
+10.15.1.11
+log
+@Put pages at the front rather than the back of the dirty list.  This
+effectively reverses the order of the write notices in the consistency
+data so that they reflect the order in which pages were written.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.10 1998/07/26 05:25:28 alc Exp alc $
+d460 1
+a460 1
+		page_t *prev = &page_dirty;
+d462 1
+a462 1
+		page_t *next = prev->next;
+@
+
+
+10.15.1.12
+log
+@Sort the write notice ranges in interval create.  This enables
+interval request to use a more compact encoding.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.15.1.11 1998/08/17 17:39:04 alc Exp alc $
+d300 1
+d305 2
+a306 3
+void
+Tmk_page_sort(
+	page_t *curr)
+d361 1
+d384 1
+a384 1
+			Tmk_page_sort(end);
+a620 1
+	page_dirty.vadr = head.vadr;
+@
+
+
+10.14
+log
+@Eliminated Ultrix support from page initialize.  Defined MAP_VARIABLE
+for Linux 1.2.x and Linux 2.0.x.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.13 1997/01/09 06:20:59 alc Exp alc $
+d47 3
+a49 1
+ *			Tmk_page_request,
+d51 9
+@
+
+
+10.13
+log
+@Added the "-v" option that initializes the shared pages
+as valid but write protected on every node.  This option
+generally reduces the number of messages and the
+amount of data transferred early in the execution.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.12 1996/10/14 05:14:37 alc Exp alc $
+a491 1
+#if ! defined(__ultrix)
+d493 1
+a493 1
+# if defined(__FreeBSD__)
+d495 2
+a496 2
+#  define	MAP_VARIABLE	0
+#  define	MAP_ANONYMOUS	MAP_ANON
+d498 1
+a498 1
+# elif defined(__sgi) || defined(__sun) /* both SunOS 4.1.x and 5.x */
+d500 1
+a500 3
+#  define	MAP_VARIABLE	0
+#  define	MAP_ANONYMOUS	0
+#  define	MAP_FILE	0
+d502 7
+a508 1
+# endif
+d537 1
+a537 4
+#else
+			if (page->vadr == 0 && (page->vadr = valloc(len)) == 0)
+				Tmk_errexit("<valloc>Tmk_page_initialize: can't allocate the shared memory\n");
+#endif
+@
+
+
+10.12
+log
+@Refined the merge sort: Use a sentinel.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.11 1996/10/14 03:27:56 alc Exp alc $
+d112 2
+d538 19
+a556 3
+			if (Tmk_proc_id)
+				if (0 > mprotect(page->vadr, len, 0))
+					Tmk_perrexit("<mprotect>Tmk_page_initialize");
+a557 5
+		if (Tmk_proc_id == 0)
+			page->state = private;
+		else
+			page->state = empty;
+
+@
+
+
+10.11
+log
+@Revised and simplified merge sort.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.10 1996/10/13 19:32:00 alc Exp alc $
+d289 1
+a289 1
+		struct	page	dummy;
+d322 1
+a322 1
+			while (run1start != &dummy && run1start->vadr >= vadr)
+@
+
+
+10.10
+log
+@Sort the page invalidation list on AIX.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.9 1996/08/25 20:39:36 alc Exp alc $
+d277 2
+a278 2
+ * In order to use the list head as a sentinal, the sort must produce
+ * descending order.  (The list head is page_array_[NPAGES].)
+d281 1
+a281 1
+void	merge_sort(page_t list)
+d283 1
+a283 1
+	int	sorted;
+d285 1
+a285 2
+	do {
+		page_t curr = list->next;
+d287 1
+a287 1
+		sorted = 1;
+d289 1
+a289 1
+		while (curr != list) {
+d291 12
+a302 17
+			/*
+			 * Identify two consecutive runs
+			 */
+			page_t	run1start = curr;
+			page_t	run1end;
+			page_t	run2start;
+			page_t	run2end;
+			page_t	run2ptr;
+
+			caddr_t	prev__vadr;
+			caddr_t	curr__vadr = curr->vadr;
+
+			do {
+				prev__vadr = curr__vadr;
+				curr       = curr->next;
+				curr__vadr = curr->vadr;
+			} while (prev__vadr >= curr__vadr);
+d304 2
+a305 2
+			if (curr == list)
+				break;
+d307 1
+a307 1
+			sorted = 0;
+d309 1
+a309 1
+			run1end = run2start = curr;
+d311 1
+a311 5
+			do {
+				prev__vadr = curr__vadr;
+				curr       = curr->next;
+				curr__vadr = curr->vadr;
+			} while (prev__vadr >= curr__vadr);
+d313 3
+a315 1
+			run2end = curr;
+d317 2
+a318 4
+			/*
+			 * Merge runs by inserting chunks of run2 into run1
+			 */
+			for (run2ptr = run2start;; run1start = run1start->next) {
+d320 1
+a320 1
+				caddr_t vadr = run1start->vadr;
+d322 2
+a323 2
+				while (run2ptr != run2end && run2ptr->vadr >= vadr)
+					run2ptr = run2ptr->next;
+d325 3
+a327 13
+				if (run2ptr != run2start) {
+					/*
+					 * Insert list from run2start to run2ptr->prev just before run1start
+					 */
+					run1start->prev->next = run2start;
+					run2start->prev = run1start->prev;
+					run2ptr->prev->next = run1start;
+					run1start->prev = run2ptr->prev;
+
+					run2start = run2ptr;
+				}
+				if (run1start->next == run1end)
+					break;
+a328 2
+			run2start->prev = run1start;
+			run1start->next = run2start;
+d330 5
+a334 1
+	} while ( ! sorted);
+d354 12
+a365 10
+		/*
+		 * Merge sort the list on AIX.  Performing the mprotects
+		 * in order takes advantage of the vm_map hint.
+		 */
+		merge_sort(end);
+
+		/*
+		 * Sorting the list may change end->prev.
+		 */
+		page = end->prev;
+@
+
+
+10.9
+log
+@Standardize the sigio handler interfaces.  Specifically, eliminate
+the "fd" parameter.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.8 1996/08/24 21:10:49 alc Exp alc $
+d275 81
+d371 12
+a382 1
+
+@
+
+
+10.8
+log
+@Replaced sigprocmask by sigio_mutex.  Sigio_mutex is defined
+in Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.7 1996/08/24 20:01:11 alc Exp alc $
+d235 1
+a235 2
+void	Tmk_page_sigio_handler(fd, req)
+	int		fd;
+d253 1
+a253 1
+	if (0 > writev(fd, sig_iov, sizeof(sig_iov)/sizeof(sig_iov[0])))
+d256 1
+a256 1
+	if (0 > sendmsg(fd, &sig_hdr, 0))
+@
+
+
+10.7
+log
+@Replaced "seqno += NPROCS" by "+= SEQNO_INCR".
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.6 1996/08/09 21:11:24 alc Exp alc $
+d185 1
+a185 1
+	sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask);
+d199 1
+a199 1
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+d221 1
+a221 1
+	sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.6
+log
+@Replace "page->private" with "page->state".
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.5 1996/08/08 18:32:04 alc Exp alc $
+d172 1
+a172 1
+	req_typ.seqno = req_seqno += NPROCS;
+@
+
+
+10.5
+log
+@Changed page_dirty list and intervals to use ranges.  (Imported
+from the 10.1.2 branch.)
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.4 1996/08/08 04:54:22 alc Exp alc $
+d265 1
+a265 1
+	else if (page->private) {
+d267 1
+a267 1
+		page->private = 0;
+d465 3
+a467 5
+		if (Tmk_proc_id == 0) {
+			page->state = valid;
+			page->private = 1;
+		}
+		else {
+d469 1
+a469 2
+			page->private = 0;
+		}
+@
+
+
+10.4
+log
+@Replace "page->valid" and "page->empty" with "page->state".
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.3 1996/08/03 21:12:07 alc Exp alc $
+d143 1
+a143 1
+page_t		page_dirty;
+d292 2
+d295 1
+a295 3
+			page_t	partner = page->partner;
+
+			page->partner = 0;
+d297 1
+a297 1
+			partner->partner = 0;
+d302 2
+a304 2
+
+		end->prev = end->next = end;
+d316 1
+a316 1
+	page_t	partner = page1->partner;
+d318 6
+a323 1
+	if (partner) {
+d325 1
+a325 2
+		page1->partner = 0;
+		page1 = partner;
+d328 31
+a358 1
+		page_t	next = &head;
+d367 5
+a371 4
+
+	partner = page2->partner;
+
+	if (partner) {
+d379 1
+a379 2
+		page2->partner = 0;
+		page2 = partner;
+d381 3
+d476 2
+@
+
+
+10.3
+log
+@Replaced "copyset" bit mask by "private" Boolean.
+@
+text
+@d39 1
+a39 1
+ * $Id: page.c,v 10.2 1996/08/03 17:23:34 alc Exp alc $
+a229 1
+	page->empty = 0;
+d247 1
+a247 1
+		if (page->valid == 0)
+d260 1
+a260 1
+	if (page->valid == 0) {
+d429 1
+a429 2
+			page->valid = 1;
+			page->empty = 0;
+d433 1
+a433 2
+			page->valid = 0;
+			page->empty = 1;
+@
+
+
+10.2
+log
+@Eliminated "toggle" from the page list merging procedures.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d148 1
+a148 1
+static	struct	iovec	rep_iov[3] = {
+a149 1
+	{                   0, sizeof(page_array_[0].copyset) },
+d155 1
+a155 1
+static	struct	iovec	sig_iov[3] = {
+a156 1
+	{ 0, sizeof(page_array_[0].copyset) },
+d187 1
+a187 2
+	rep_iov[1].iov_base = (caddr_t)&page->copyset;
+	rep_iov[2].iov_base = (caddr_t) page->vadr;
+d219 1
+a219 1
+		Tmk_err("copyset: %d (size: %d)\n", page->copyset, size);
+d242 1
+a242 6
+	unsigned	copyset = page->copyset;
+
+	page->copyset = copyset | (1 << req->from);
+
+	sig_iov[0].iov_base = (caddr_t) req;
+	sig_iov[1].iov_base = (caddr_t)&page->copyset;
+d246 1
+a246 1
+		sig_iov[2].iov_base = page->vadr;
+d253 1
+a253 1
+		sig_iov[2].iov_base = page->twin;
+d266 3
+a268 1
+	else if (copyset == (1 << Tmk_proc_id)) {
+d432 1
+d437 1
+a438 1
+		page->copyset = 1;
+d445 1
+a445 1
+	rep_iov[2].iov_len = sig_iov[2].iov_len = Tmk_page_size;
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		page.c
+d99 1
+a99 4
+ *
+ * $Id: page.c,v 10.0.2.6 1996/05/25 17:57:43 alc Exp $
+ *
+ *****************************************************************************/
+d302 3
+a304 1
+			partner->toggle = 0;
+a308 2
+			page->toggle = 0;
+
+d323 3
+a325 1
+	if (page1->toggle ^= 1) {
+d327 4
+a339 2
+	else
+		page1 = page1->partner;
+d341 3
+a343 1
+	if ((page2->toggle ^= 1) == 0) {
+d351 2
+a352 1
+		page2 = page2->partner;
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1 1996/05/27 04:43:00 alc Rel $
+@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.8 1996/07/03 23:14:21 alc Exp $
+d188 1
+a188 1
+	sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask, UNLOCK);
+a190 3
+#if defined(THREADS)
+	rep_iov[2].iov_base = (caddr_t) page->v_alias;
+#else
+a191 1
+#endif
+d203 1
+a203 1
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+d225 1
+a225 1
+	sigio_mutex(SIG_SETMASK, &mask, NULL, LOCK);
+a254 7
+#if defined(THREADS)
+		sig_iov[2].iov_base = page->v_alias;
+
+		if (copyset == (1 << Tmk_proc_id))
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ))
+                                Tmk_perrexit("<mprotect>Tmk_page_sigio_handler");
+#else
+a259 1
+#endif
+a269 1
+#if ! defined(THREADS)
+d271 1
+a281 1
+#endif
+d375 1
+a375 1
+		if (i) {
+a376 5
+#if defined(THREADS)
+			page->v_alias = page_array_[i - 1].v_alias + Tmk_page_size;
+#endif
+	}
+
+a378 2
+
+			caddr_t	addr = page->vadr;
+d393 2
+d396 1
+a396 6
+# if defined(THREADS)
+			int	flags = MAP_SHARED;
+			char	name[32];
+			char	*tmpdir;
+			char	c = 0;
+# else
+d398 1
+a398 1
+# endif
+a410 21
+# if defined(THREADS)
+			if ((tmpdir = getenv("SWAPDIR")) == 0) {
+
+				tmpdir = P_tmpdir;
+
+				Tmk_err("Tmk_startup: SWAPDIR=(null), putting swap file in %s\n", tmpdir);
+			}
+			sprintf(name, "%s/__Tmk_swap%d", tmpdir, getpid());	/* An extra "/" won't hurt */
+
+			if ((fd = open(name, O_RDWR|O_CREAT|O_TRUNC, 0600)) < 0)
+				Tmk_perrexit("<open>Tmk_page_initialize: open(\"%s\", ... )", name);
+			
+			if (0 > unlink(name))
+				Tmk_perrexit("<unlink>Tmk_page_initialize");
+
+			if ((len - sizeof(c)) != lseek(fd, len - sizeof(c), SEEK_END))
+				Tmk_perrexit("<lseek>Tmk_page_initialize");
+
+			if (0 > write(fd, &c, sizeof(c)))
+				Tmk_perrexit("<write>Tmk_page_initialize");
+# else
+d415 1
+a415 1
+# endif
+d418 1
+a418 4
+# if defined(THREADS)
+			if ((page->v_alias = mmap(addr+2*len, len, prot, flags&~MAP_FIXED, fd, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory");
+# endif
+@
+
+
+10.1.4.2
+log
+@Eliminated seqno and extra copying from MPL messages.
+@
+text
+@d149 1
+a149 2
+
+static	struct	iovec	rep_iov[2] = {
+d151 1
+a152 1
+
+d157 1
+a157 1
+static	struct	iovec	sig_iov[2] = {
+d159 1
+a160 2
+
+
+d175 1
+a175 1
+	req_typ.seqno = req_seqno += SEQNO_INCR;
+d190 1
+d192 1
+a192 1
+	rep_iov[1].iov_base = (caddr_t) page->v_alias;
+d194 1
+a194 1
+	rep_iov[1].iov_base = (caddr_t) page->vadr;
+a225 3
+
+	page->copyset |= (1 << page->manager);
+
+d255 1
+d260 1
+a260 1
+		sig_iov[1].iov_base = page->v_alias;
+d266 1
+a266 1
+		sig_iov[1].iov_base = page->vadr;
+d274 1
+a274 1
+		sig_iov[1].iov_base = page->twin;
+d491 1
+a491 1
+	rep_iov[1].iov_len = sig_iov[1].iov_len = Tmk_page_size;
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1 1996/05/27 04:43:00 alc Rel $
+a101 3
+#if	defined(THREADS)
+#include <sys/shm.h>
+#endif
+a190 3
+#if defined(THREADS)
+	rep_iov[2].iov_base = (caddr_t) page->v_alias;
+#else
+a191 1
+#endif
+a254 7
+#if defined(THREADS)
+		sig_iov[2].iov_base = page->v_alias;
+
+		if (copyset == (1 << Tmk_proc_id))
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ))
+                                Tmk_perrexit("<mprotect>Tmk_page_sigio_handler");
+#else
+a259 1
+#endif
+a269 1
+#if ! defined(THREADS)
+d271 1
+a281 1
+#endif
+d375 1
+a375 1
+		if (i) {
+a376 5
+#if defined(THREADS)
+			page->v_alias = page_array_[i - 1].v_alias + Tmk_page_size;
+#endif
+	}
+
+d379 1
+a379 14
+
+			caddr_t	addr = page->vadr;
+#if defined(THREADS)
+#	if ! (defined(__sun) && defined(__SVR4))
+#	error in Tmk_page_initialize: pthreads only supported under Solaris
+#	endif
+
+			int     shmid;
+
+			if ((shmid = shmget(IPC_PRIVATE, len, IPC_CREAT|0600)) < 0)
+				Tmk_perrexit("<shmget>Tmk_page_initialize: can't allocate the shared memory");
+
+			if ((page->vadr = shmat(shmid, addr, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<shmat>Tmk_page_initialize: can't allocate the shared memory");
+a380 8
+			if ((page->v_alias = shmat(shmid, addr + 2*len, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<shmat>Tmk_page_initialize: can't allocate the shared memory");
+
+			if (0 > shmctl(shmid, IPC_RMID, NULL))
+				Tmk_perrexit("<shmctl>Tmk_page_initialize");
+
+#elif ! defined(__ultrix)
+
+d393 2
+@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.1 1996/06/27 16:38:16 tmiller Exp tmiller $
+d190 1
+a190 3
+#if defined(THREADS)
+	pthread_mutex_unlock(&sigio_lock);
+#endif
+d211 1
+a211 3
+#if defined(THREADS)
+			pthread_mutex_lock(&sigio_lock);
+#endif
+d233 1
+a233 3
+#if defined(THREADS)
+	pthread_mutex_lock(&sigio_lock);
+#endif
+@
+
+
+10.1.5.3
+log
+@replaces shared memory calls with mmap to explicitly created file
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.2 1996/06/27 23:05:15 tmiller Exp tmiller $
+d102 3
+d408 9
+a416 1
+#if ! defined(__ultrix)
+d418 11
+d442 1
+a442 3
+#if defined(THREADS)
+			int	flags = MAP_SHARED;
+#else
+d444 1
+a444 1
+#endif
+a456 13
+#if defined(THREADS)
+#	if ! (defined(__sun) && defined(__SVR4))
+#	error in Tmk_page_initialize: pthreads only supported under Solaris
+#	endif
+			if ((fd = open("/tmp/__Tmk-swap", O_RDWR|O_CREAT|O_TRUNC, 0600)) < 0)
+				Tmk_perrexit("<open>Tmk_page_initialize");
+			
+			if (0 > unlink("/tmp/__Tmk-swap"))
+				Tmk_perrexit("<unlink>Tmk_page_initialize");
+
+			if (0 > pwrite(fd, (void *)"", 1, len-1))
+				Tmk_perrexit("<pwrite>Tmk_page_initialize");
+#else
+d461 1
+a461 1
+#endif
+d464 1
+a464 4
+#if defined(THREADS)
+			if ((page->v_alias = mmap(addr+2*len, len, prot, flags&~MAP_FIXED, fd, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<mmap2>Tmk_page_initialize: can't allocate the shared memory");
+#endif
+@
+
+
+10.1.5.4
+log
+@Changed SIGALRM to be blocked by all threads and unblocked only when
+a recv timeout is needed.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.3 1996/06/28 18:36:26 tmiller Exp tmiller $
+d459 1
+a459 1
+				Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory");
+@
+
+
+10.1.5.5
+log
+@Cleaned up sigprocmask/pthread_sigmask/sigthreadmask and sigio
+locking/unlocking with sigio_mutex macro
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.4 1996/06/28 20:24:01 tmiller Exp tmiller $
+d187 4
+a190 2
+
+	sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask, UNLOCK);
+d209 4
+a212 2
+			sigio_mutex(SIG_SETMASK, &mask, NULL, LOCK);
+
+d233 4
+a236 2
+	sigio_mutex(SIG_SETMASK, &mask, NULL, LOCK);
+
+a421 1
+			char	name[L_tmpnam];
+d438 4
+a441 7
+			/*tmpnam(name);*/
+
+			sprintf(name, "/tmp/__Tmk_swap%d", getpid());
+
+			printf ("%s\n", name);
+
+			if ((fd = open(name, O_RDWR|O_CREAT|O_TRUNC, 0600)) < 0)
+d444 1
+a444 1
+			if (0 > unlink(name))
+@
+
+
+10.1.5.6
+log
+@cleaned up signal masks
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.5 1996/07/02 22:34:57 tmiller Exp $
+d207 1
+a207 1
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+d416 1
+a416 1
+			char	name[32];
+d433 2
+d436 2
+@
+
+
+10.1.5.7
+log
+@swap file directory controlled by SWAPDIR environment variable
+@
+text
+@a416 1
+			char	*tmpdir;
+d433 1
+a433 8
+			if ((tmpdir = getenv("SWAPDIR")) == 0) {
+				Tmk_err("SWAPDIR=(null), putting swap file in /tmp\n");
+				sprintf(name, "/tmp");
+			}
+			else
+				sprintf(name, "%s", tmpdir);
+			
+			sprintf(name, "%s/__Tmk_swap%d", name, getpid());
+@
+
+
+10.1.5.8
+log
+@Replace pwrite with lseek/write.  Pwrite doesn't exist under AIX 4.1.
+Use P_tmpdir from stdio.h as the default swap directory.  More
+elaborate error and/or warning messages.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.7 1996/07/03 19:54:11 tmiller Exp alc $
+d414 1
+a414 1
+# if defined(THREADS)
+d418 1
+a418 2
+			char	c = 0;
+# else
+d420 1
+a420 1
+# endif
+d433 1
+a433 1
+# if defined(THREADS)
+d435 2
+a436 4
+
+				tmpdir = P_tmpdir;
+
+				Tmk_err("Tmk_startup: SWAPDIR=(null), putting swap file in %s\n", tmpdir);
+d438 4
+a441 1
+			sprintf(name, "%s/__Tmk_swap%d", tmpdir, getpid());	/* An extra "/" won't hurt */
+d444 1
+a444 1
+				Tmk_perrexit("<open>Tmk_page_initialize: open(\"%s\", ... )", name);
+d449 3
+a451 6
+			if ((len - sizeof(c)) != lseek(fd, len - sizeof(c), SEEK_END))
+				Tmk_perrexit("<lseek>Tmk_page_initialize");
+
+			if (0 > write(fd, &c, sizeof(c)))
+				Tmk_perrexit("<write>Tmk_page_initialize");
+# else
+d456 1
+a456 1
+# endif
+d459 1
+a459 1
+# if defined(THREADS)
+d462 1
+a462 1
+# endif
+@
+
+
+10.1.5.9
+log
+@Due to an apparent memory inconsistency on SVR4-derived VM systems,
+namely, Slowaris and IRIX, I've changed page initialize
+to use a Sys V shared memory segment for the double-mapped
+TreadMarks heap.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.1.5.8 1996/07/03 23:14:21 alc Exp alc $
+a112 6
+#if (defined(__sgi) || defined(__sun)) && defined(THREADS)
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#endif
+
+d393 2
+a394 1
+		}
+d399 1
+a399 17
+
+#if (defined(__sgi) || defined(__sun)) && defined(THREADS)
+
+			int	shmid;
+
+			if ((shmid = shmget(IPC_PRIVATE, len, IPC_CREAT|0600)) < 0)
+				Tmk_perrexit("<shmget>Tmk_page_initialize: can't allocate the shared memory");
+
+			if ((page->vadr = shmat(shmid, addr, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<shmat>Tmk_page_initialize: can't map the shared memory");
+
+			if ((page->v_alias = shmat(shmid, page->vadr - 2*len, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<shmat>Tmk_page_initialize: can't create the alias mapping");
+
+			if (0 > shmctl(shmid, IPC_RMID, NULL))
+				Tmk_perrexit("<shmctl>Tmk_page_initialize");
+#elif ! defined(__ultrix)
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@d98 1
+a98 3
+ *	 7-Jun-1996	Tim Miller	Changed dirty page list, intervals,
+ *					 release messages to use ranges
+ *					 of pages
+a99 2
+ * $Id: page.c,v 10.1.1.2 1996/06/12 22:49:23 tmiller Exp $
+ *
+d144 1
+a144 2
+struct page     Page;
+page_t		page_dirty = &Page;
+d301 1
+a301 1
+			page_t	partner = page->partner + 1;
+d303 1
+a303 1
+			partner->toggle &= ~INVAL;
+d308 1
+a308 1
+			page->toggle &= ~INVAL;
+d317 1
+a317 2
+ * Called by Tmk_interval_incorporate (as Tmk_page_inval_merge).
+ * Called by segv_handler (as Tmk_page_dirty_merge).
+d319 2
+a320 3
+void	Tmk_page_merge(page1, list_head, bitmask)
+	page_t	page1, list_head;
+	unsigned char bitmask;
+d322 1
+a322 1
+	page_t page2 = page1 + 1;
+d324 1
+a324 1
+	if ((page1->toggle ^= bitmask) & bitmask) {
+d326 1
+a326 1
+		page_t	next = list_head;
+d336 1
+a336 1
+		page1 = (page1 - 1)->partner;
+d338 1
+a338 1
+	if (((page2->toggle ^= bitmask) & bitmask) == 0) {
+a347 3
+	else
+		page2 = page2 - 1;
+	
+a444 2
+
+	page_dirty->next = page_dirty->prev = page_dirty;
+@
+
+
+10.1.2.2
+log
+@Eliminated the extra level of indirection in the page dirty list.
+@
+text
+@d102 1
+a102 1
+ * $Id: page.c,v 10.1.2.1 1996/06/25 19:28:51 tmiller Exp alc $
+d148 2
+a149 1
+struct	page	page_dirty;
+d456 1
+a456 1
+	page_dirty.prev = page_dirty.next = &page_dirty;
+@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@d94 6
+d126 17
+a142 1
+unsigned	page_shift;
+a145 1
+
+d188 1
+a188 1
+	sigprocmask(SIG_SETMASK, &BUS_or_SEGV_mask, &mask);
+a352 2
+ * The initial Tmk_page_size is ...
+ *
+d360 2
+a361 1
+/*	Tmk_npages >>= Tmk_page_size; */
+d363 1
+a363 3
+	Tmk_page_size = getpagesize() << Tmk_page_size;
+
+	for (i = 1; i < Tmk_page_size; i <<= 1)
+d378 7
+a384 1
+			if (page->vadr == 0) {
+d386 8
+a393 6
+				size_t	len  = Tmk_npages*Tmk_page_size;
+#if defined(__ultrix)
+				if ((page->vadr = valloc(len)) == 0)
+					Tmk_errexit("<valloc>Tmk_page_initialize: can't allocate the shared memory\n");
+#else
+			extern	char	end[];
+d395 1
+a395 1
+				caddr_t	addr = (caddr_t)((long)(end + 0x4FFFFFFFL) &~ 0x0FFFFFFFL);
+d397 1
+a397 1
+				int	prot = PROT_READ|PROT_WRITE;
+d399 1
+a399 1
+#if defined(_AIX) || defined(__alpha) || defined(__hpux)
+d401 3
+a403 2
+				if ((page->vadr = mmap(addr, len, prot, MAP_PRIVATE|MAP_VARIABLE|MAP_ANONYMOUS, -1, 0)) == (caddr_t) -1L)
+					Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory");
+d405 1
+a405 1
+#elif defined(__FreeBSD__) || defined(__sgi) || defined(__sun)
+d407 1
+a407 1
+				int	fd;
+d409 6
+a414 2
+				if ((fd = open("/dev/zero", O_RDWR)) == -1)
+					Tmk_perrexit("<open>Tmk_page_initialize");
+d416 2
+a417 2
+				if ((page->vadr = mmap(addr, len, prot, MAP_PRIVATE, fd, 0)) == (caddr_t) -1L)
+					Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory");
+d419 1
+d422 2
+a423 1
+#error in Tmk_page_initialize: incomplete port
+a424 2
+#endif
+			}
+d426 1
+a426 1
+				if (0 > mprotect(page->vadr, Tmk_npages*Tmk_page_size, 0))
+@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@d373 1
+a373 1
+#if defined(_AIX) || defined(__alpha) || defined(__hpux) || defined(linux)
+@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.2
+log
+@Eliminated empty_mask and BUS_or_SEGV_mask.  Use SIG_UNBLOCK instead.
+@
+text
+@d167 1
+a167 1
+	sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask);
+@
+
+
+10.0.2.3
+log
+@Ported to Linux 1.2.13.  Changes provided by Robert J. Fowler.
+@
+text
+@a93 6
+ *	20-Apr-1996	Robert J. Fowler
+ *					Adapted to Linux 1.2.13
+ *	Version 0.10.1
+ *
+ * $Id$
+ *
+d373 1
+a373 1
+#if defined(_AIX) || defined(__alpha) || defined(__hpux) || defined(__linux)
+@
+
+
+10.0.2.4
+log
+@This change was brought over from revision 9.7.2.2.  Use MAP_FIXED
+in Tmk_page_initialize when page_array_[0].vadr is non-zero.  The "-m"
+option and the Fortran startup set this value.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.0.2.3 1996/04/20 23:16:58 alc Exp alc $
+d366 1
+a366 2
+			size_t	len  = Tmk_npages*Tmk_page_size;
+#if ! defined(__ultrix)
+d368 6
+a373 10
+# if defined(__FreeBSD__)
+
+#  define	MAP_VARIABLE	0
+#  define	MAP_ANONYMOUS	MAP_ANON
+
+# elif defined(__sgi) || (defined(__sun) && ! defined(__SVR4))
+
+#  define	MAP_VARIABLE	0
+#  define	MAP_ANONYMOUS	0
+#  define	MAP_FILE	0
+d375 1
+a375 2
+# endif
+			caddr_t	addr = page->vadr;
+d377 1
+a377 1
+			int	prot = PROT_READ|PROT_WRITE;
+d379 1
+a379 1
+			int	flags = MAP_PRIVATE;
+d381 2
+a382 1
+			int	fd;
+d384 1
+a384 3
+			if (addr)
+				flags |= MAP_FIXED;
+			else {
+d386 1
+a386 3
+			extern	char	end[];
+
+				addr = (caddr_t)((long)(end + 0x4FFFFFFFL) &~ 0x0FFFFFFFL);
+d388 2
+a389 6
+				flags |= MAP_VARIABLE;
+			}
+			if ((fd = open("/dev/zero", O_RDWR)) == -1)
+				flags |= MAP_ANONYMOUS;
+			else
+				flags |= MAP_FILE;
+d391 2
+a392 2
+			if ((page->vadr = mmap(addr, len, prot, flags, fd, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory");
+a393 1
+			if (fd != -1)
+d396 1
+a396 2
+			if (page->vadr == 0 && (page->vadr = valloc(len)) == 0)
+				Tmk_errexit("<valloc>Tmk_page_initialize: can't allocate the shared memory\n");
+d398 2
+d401 1
+a401 1
+				if (0 > mprotect(page->vadr, len, 0))
+@
+
+
+10.0.2.5
+log
+@Fixed the MAP_* arguments to mmap in page initialize for Slowaris.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.0.2.4 1996/05/17 04:51:46 alc Exp alc $
+d374 1
+a374 1
+# elif defined(__sgi) || defined(__sun) /* both SunOS 4.1.x and 5.x */
+@
+
+
+10.0.2.6
+log
+@Changed the Tmk_page_size computation method.  Before Tmk_page_initialize,
+page_shift is the number of bits that the operating system page size is
+left shifted to compute Tmk_page_size.  page_shift is set to a default
+value in page.c and modified in Tmk_startup under the "-X" option.
+@
+text
+@d98 1
+a98 1
+ * $Id: page.c,v 10.0.2.5 1996/05/20 21:01:09 alc Exp alc $
+d126 1
+a126 9
+/*
+ * The default page size on AIX/RS/6K is double the operating system
+ * page size, currently, 8K bytes.
+ */
+#if	defined(_AIX)
+# define	PAGE_SHIFT_DEFAULT	1
+#else
+# define	PAGE_SHIFT_DEFAULT	0
+#endif
+d128 1
+a128 7
+/*
+ * Before Tmk_page_initialize, page_shift is the number of bits that the
+ * operating system page size (getpagesize()) is left shifted to compute
+ * Tmk_page_size.  After Tmk_page_initialize, page_shift is the log2 of
+ * Tmk_page_size.  It's used by segv_handler.
+ */
+unsigned	page_shift = PAGE_SHIFT_DEFAULT;
+a129 1
+page_t		page_dirty;
+d338 2
+d347 3
+a349 2
+	Tmk_page_size = getpagesize();
+	Tmk_page_size <<= page_shift;
+d351 1
+a351 1
+	for (i = 1 << page_shift; i < Tmk_page_size; i <<= 1)
+@
+
+
+10.0.2.2.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.2.2.2
+log
+@Changed the shared memory allocation to use shmget/shmat.
+@
+text
+@d104 1
+a104 6
+#	define	valloc	malloc
+#endif
+
+#if	defined(__sgi)
+#include <sys/ipc.h>
+#include <sys/shm.h>
+d378 1
+a378 1
+#elif defined(__FreeBSD__) || defined(__sun)
+a388 11
+#elif defined(__sgi)
+				int	shmid;
+
+				if ((shmid = shmget(IPC_PRIVATE, len, IPC_CREAT|0600)) < 0)
+					Tmk_perrexit("<shmget>Tmk_page_initialize: can't allocate the shared memory");
+
+				if ((page->vadr = shmat(shmid, addr, 0)) == (caddr_t) -1L)
+					Tmk_perrexit("<shmat>Tmk_page_initialize: can't allocate the shared memory");
+
+				if (0 > shmctl(shmid, IPC_RMID))
+					Tmk_perrexit("<shmctl>Tmk_page_initialize");
+@
+
+
+10.0.2.2.2.3
+log
+@Modified page initialize to create the v_alias mapping.
+@
+text
+@d362 1
+a362 1
+		if (i) {
+a363 4
+#if defined(__sgi)
+			page->v_alias = page_array_[i - 1].v_alias + Tmk_page_size;
+#endif
+		}
+a400 3
+					Tmk_perrexit("<shmat>Tmk_page_initialize: can't allocate the shared memory");
+
+				if ((page->v_alias = shmat(shmid, addr + 2*len, 0)) == (caddr_t) -1L)
+@
+
+
+10.0.2.2.2.4
+log
+@Modified page sigio handler to use the v_alias mapping, and
+to eliminate the mprotect operations.
+@
+text
+@d238 1
+a238 3
+#if defined(__sgi)
+		sig_iov[2].iov_base = page->v_alias;
+#else
+a243 1
+#endif
+d255 1
+a255 1
+#if ! defined(__sgi)
+a257 1
+#endif
+@
+
+
+10.0.2.2.2.5
+log
+@Modified page request to use the v_alias mapping.
+@
+text
+@a174 3
+#if defined(__sgi)
+	rep_iov[2].iov_base = (caddr_t) page->v_alias;
+#else
+a175 1
+#endif
+@
+
+
+10.0.2.2.2.6
+log
+@Modified the page sigio handler to perform the mprotect before sending
+the page.
+@
+text
+@a243 4
+
+		if (copyset == (1 << Tmk_proc_id))
+			if (0 > mprotect(page->vadr, Tmk_page_size, PROT_READ))
+				Tmk_perrexit("<mprotect>Tmk_page_sigio_handler");
+d261 1
+a262 1
+	if (page->valid == 0) {
+d265 1
+a273 1
+#endif
+@
+
+
+10.0.2.2.2.7
+log
+@Added sigio locking inside existing critical sections (sigprocmask). <SMP>
+@
+text
+@d171 1
+a171 3
+#if defined(__sgi)
+	release_lock(&sigio_lock);	/* SMP */
+#endif
+d192 1
+a192 3
+#if defined(__sgi)
+			spin_lock(&sigio_lock);	/* SMP */
+#endif
+d214 1
+a214 3
+#if defined(__sgi)
+	spin_lock(&sigio_lock);	/* SMP */
+#endif
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d90 4
+d150 1
+a150 1
+	int		mask;
+d160 1
+a160 1
+	if (0 > send(req_fd_[page->manager], &req_typ, sizeof(req_typ), 0))
+d167 1
+a167 1
+	mask = sigsetmask(sigmask(SIGBUS_or_SEGV));
+d182 1
+a182 1
+			sigsetmask(mask);
+d204 1
+a204 1
+	sigsetmask(mask);
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@a207 5
+
+		Tmk_stat.page_reply++;
+		Tmk_stat.page_reply_bytes += size;
+
+
+@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@@
+
+
+9.7.2.2
+log
+@Use MAP_FIXED in Tmk_page_initialize when page_array_[0].vadr is non-zero.
+The "-m" option and the Fortran startup set this value.
+@
+text
+@d356 1
+a356 2
+			size_t	len  = Tmk_npages*Tmk_page_size;
+#if ! defined(__ultrix)
+d358 6
+a363 10
+# if defined(__FreeBSD__)
+
+#  define	MAP_VARIABLE	0
+#  define	MAP_ANONYMOUS	MAP_ANON
+
+# elif defined(__sgi) || (defined(__sun) && ! defined(__SVR4))
+
+#  define	MAP_VARIABLE	0
+#  define	MAP_ANONYMOUS	0
+#  define	MAP_FILE	0
+d365 1
+a365 2
+# endif
+			caddr_t	addr = page->vadr;
+d367 1
+a367 1
+			int	prot = PROT_READ|PROT_WRITE;
+d369 1
+a369 1
+			int	flags = MAP_PRIVATE;
+d371 2
+a372 1
+			int	fd;
+d374 1
+a374 3
+			if (addr)
+				flags |= MAP_FIXED;
+			else {
+d376 1
+a376 3
+			extern	char	end[];
+
+				addr = (caddr_t)((long)(end + 0x4FFFFFFFL) &~ 0x0FFFFFFFL);
+d378 2
+a379 6
+				flags |= MAP_VARIABLE;
+			}
+			if ((fd = open("/dev/zero", O_RDWR)) == -1)
+				flags |= MAP_ANONYMOUS;
+			else
+				flags |= MAP_FILE;
+d381 2
+a382 2
+			if ((page->vadr = mmap(addr, len, prot, flags, fd, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory");
+a383 1
+			if (fd != -1)
+d386 1
+a386 2
+			if (page->vadr == 0 && (page->vadr = valloc(len)) == 0)
+				Tmk_errexit("<valloc>Tmk_page_initialize: can't allocate the shared memory\n");
+d388 2
+d391 1
+a391 1
+				if (0 > mprotect(page->vadr, len, 0))
+@
+
+
+9.7.2.3
+log
+@Fixed the MAP_* arguments to mmap in page initialize for Slowaris.
+N.B. Version 0.9.x does not support Solaris.  The purpose for this change
+is to keep the 0.9.8 and 0.10.1 sources in sync.
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1996						     *
+a89 2
+ * $Id$
+ *
+d364 1
+a364 1
+# elif defined(__sgi) || defined(__sun) /* both SunOS 4.1.x and 5.x */
+@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@d86 4
+d97 1
+a97 5
+#elif	defined(__hpux)
+#include <sys/unistd.h>
+
+#define	getpagesize()	sysconf(_SC_PAGE_SIZE)
+#elif	defined(sparc) && ! defined(__SVR4)
+d163 1
+a163 1
+	mask = sigsetmask(sigmask(SIGSEGV));
+d329 3
+d358 8
+a365 1
+#if defined(__alpha) || defined(sparc) || defined(ultrix)
+d367 8
+a374 3
+				if ((page->vadr = valloc(Tmk_npages*Tmk_page_size)) == 0)
+					Tmk_errexit("<valloc>Tmk_page_initialize: can't allocate the shared memory\n");
+#elif defined(_AIX) || defined(__hpux)
+a375 3
+				if ((page->vadr = mmap(0, Tmk_npages*Tmk_page_size, PROT_READ|PROT_WRITE, MAP_ANONYMOUS|MAP_PRIVATE|MAP_VARIABLE, -1, 0)) == (caddr_t) -1L)
+					Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory\n");
+#elif defined(sgi)
+d381 2
+a382 2
+				if ((page->vadr = mmap((void *) 0x40000000L, Tmk_npages*Tmk_page_size, PROT_READ|PROT_WRITE, MAP_PRIVATE, fd, 0)) == (caddr_t) -1L)
+					Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory\n");
+d385 3
+@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@d81 4
+a85 2
+ *	Version 0.9.6
+ *
+d107 8
+a114 1
+struct	page	page_array_[NPAGES];
+a119 1
+static	struct	page	head = { &head, &head };
+d212 3
+d260 6
+a265 1
+ *
+d269 1
+a269 1
+	page_t	page = head.next;
+d271 1
+a271 1
+	if (page != &head) {
+d273 2
+d285 1
+a285 1
+		} while ((page = page->next) != &head);
+d287 1
+a287 1
+		head.prev = head.next = &head;
+d292 1
+a292 1
+ *
+d299 3
+a301 1
+	if (page1->toggle = ! page1->toggle) {
+d303 1
+a303 1
+		page_t	next = head.next;
+d305 2
+a306 2
+		page1->prev = &head;
+		page1->next =  next;
+d308 1
+a308 1
+		head.next = next->prev = page1;
+d313 1
+a313 1
+	if ((page2->toggle = ! page2->toggle) == 0) {
+d334 1
+a334 1
+/*	Tmk_npages >>= Tmk_page_size;*/
+d341 6
+a346 5
+	req_typ.from = Tmk_proc_id;
+
+	rep_iov[2].iov_len = sig_iov[2].iov_len = Tmk_page_size;
+
+	for (i = 0; i < Tmk_npages; i++) {
+d390 5
+@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d80 6
+d89 3
+a91 1
+#if	defined(__alpha)
+d93 1
+a93 1
+#elif	defined(__hppa)
+a96 4
+#elif	defined(mips)
+#define	valloc	malloc
+#elif	defined(_IBMR2)
+#include <malloc.h>
+d99 2
+d107 8
+a114 1
+struct	page	page_array_[NPAGES];
+d120 1
+d163 1
+a163 1
+	mask = sigsetmask(0);
+d202 1
+a202 3
+	Tmk_stat.messages++;
+	Tmk_stat.bytes += size;
+	Tmk_stat.bytes_of_data += Tmk_page_size;
+d204 5
+d212 3
+d260 68
+d334 1
+a334 1
+	Tmk_npages >>= Tmk_page_size;
+d341 6
+a346 5
+	req_typ.from = Tmk_proc_id;
+
+	rep_iov[2].iov_len = sig_iov[2].iov_len = Tmk_page_size;
+
+	for (i = 0; i < Tmk_npages; i++) {
+d354 1
+d356 1
+d359 2
+a360 1
+#elif defined(__hppa) || defined(_IBMR2)
+d390 5
+@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@d77 4
+d240 3
+d247 4
+a250 1
+	Tmk_page_size = getpagesize();
+d264 2
+a265 1
+		else if (page->vadr == 0)
+d267 2
+a268 2
+			if ((page->vadr = valloc(NPAGES*Tmk_page_size)) == 0)
+				Tmk_errexit("<valloc>Tmk_page_initialize: can't allocate the shared memory\n");
+d270 2
+a271 2
+			if ((page->vadr = mmap(0, NPAGES*Tmk_page_size, PROT_READ|PROT_WRITE, MAP_ANONYMOUS|MAP_PRIVATE|MAP_VARIABLE, -1, 0)) == (caddr_t) -1)
+				Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory\n");
+d273 1
+a273 2
+		{
+			int	fd;
+d275 2
+a276 2
+			if ((fd = open("/dev/zero", O_RDWR)) == -1)
+				Tmk_perrexit("<open>Tmk_page_initialize");
+d278 2
+a279 2
+			if ((page->vadr = mmap((void *) 0x40000000L, NPAGES*Tmk_page_size, PROT_READ|PROT_WRITE, MAP_PRIVATE, fd, 0)) == (caddr_t) -1L)
+				Tmk_perrexit("<mmap>Tmk_page_initialize: can't allocate the shared memory\n");
+d281 6
+a286 1
+			close(fd);
+a287 1
+#endif
+a294 3
+
+			if (0 > mprotect(page->vadr, Tmk_page_size, 0))
+				Tmk_perrexit("<mprotect>Tmk_page_initialize");
+@

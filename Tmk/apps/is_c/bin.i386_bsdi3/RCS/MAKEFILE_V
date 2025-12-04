@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.08.07.44.59;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Makefile for BSD/OS 3.0.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= i386_bsdi3
+
+CC	= cc
+CFLAGS	= -g -O2
+
+MACHDEP_OBJS=
+MACHDEP_LIBS= -lm -lcompat
+
+all: is.udp
+
+include ../.common
+@

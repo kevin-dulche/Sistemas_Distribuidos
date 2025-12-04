@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.23.22.03.38;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@bin.alpha_linux2/Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= alpha_linux2
+
+CC	= gcc
+CFLAGS	= -g -O2
+
+MACHDEP_OBJS= getopt.o
+MACHDEP_LIBS= -lm
+
+all: water.udp
+
+include ../.common
+
+getopt.o: $(TmkLIB)/support/getopt.c
+	$(CC) $(CFLAGS) -c $(TmkLIB)/support/getopt.c
+@

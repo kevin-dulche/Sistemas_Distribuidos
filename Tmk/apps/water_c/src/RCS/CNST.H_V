@@ -1,0 +1,25 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	97.06.02.08.31.06;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Water
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@extern double UNITT,UNITL,UNITM,BOLTZ,AVGNO,PCC[11];
+@

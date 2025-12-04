@@ -1,0 +1,55 @@
+head	10.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.2
+date	97.09.03.19.16.38;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@BSD/OS-specific information.
+@
+
+
+10.2
+log
+@Initial revision.
+@
+text
+@--- Version 1.0.0 /  2 Sep 1997 -----------------------------------------------
+
+The BSD/OS version 3.0 kernel doesn't pass the faulting address
+to the handler for the SIGSEGV signal.  The following patch was
+provided by Ceriel Jacobs <ceriel@@cs.vu.nl>.  It stores the faulting
+address in an unused field of the sigcontext.
+
+The following patch should be applied to /usr/src/sys/i386/i386/machdep.c
+
+*** machdep.c.orig	Tue Jun 17 16:52:57 1997
+--- machdep.c	Tue Jun 17 16:57:38 1997
+***************
+*** 467,472 ****
+--- 467,479 ----
+  	 */
+  	f.sf_sc.sc_onstack = oonstack;
+  	f.sf_sc.sc_mask = mask;
++ #ifndef ORIGINAL
++ 	/* VU modification for TreadMarks:
++ 	 * We pass the offending address to the user program
++ 	 * (sc_ap is unused otherwise).
++ 	 */
++ 	f.sf_sc.sc_ap = rcr2();
++ #endif
+  	if (frmtrap) {
+  		f.sf_sc.sc_sp = regs[tESP];
+  		f.sf_sc.sc_fp = regs[tEBP];
+
+-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-
+
+$Id: ReleaseNotes,v 10.8 1997/07/27 06:51:07 alc Exp $
+@

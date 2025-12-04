@@ -1,0 +1,72 @@
+\documentstyle[11pt]{article}
+
+\textheight 9in         % 1in top and bottom margin for U.S. letter paper
+\textwidth 6.5in        % 1in left and right margin
+\oddsidemargin 0in      % Both side margins are now 1in
+\evensidemargin 0in
+\topmargin -.5in \headsep .5in
+
+\begin{document}
+
+\begin{center}
+\Large \bf TreadMarks$^{\rm TM}$ Installation
+\end{center}
+
+\noindent
+{\bf Hardware/Software Requirements:}
+\begin{itemize}
+\item A minimum of 40~MBytes of available swap space on each of your machines.
+\item A file system that is shared by all of your machines and mounted
+at the {\em same directory\/} on each one
+\item A C or C++ compiler, either gcc version 2.x or the machine
+manufacturer's compiler
+\end{itemize}
+
+\noindent
+{\bf Instructions:}
+You have received a uuencoded, compressed tar file.  To install the
+TreadMarks$^{\rm TM}$ libraries and example applications:
+\begin{enumerate}
+\item
+Uudecode, uncompress, and untar the TreadMarks$^{\rm TM}$ distribution
+file on a file system shared by all of the machines on which you
+intend to run TreadMarks$^{\rm TM}$ programs.
+This will create a directory called ``Tmk'', with subdirectories 
+for libraries on each supported platform, for each example
+application, and for the TreadMarks$^{\rm TM}$ header file. 
+\item Make the libraries and applications by cd'ing into the ``Tmk''
+directory and typing ``make sparc'' or ``make mips'', depending on
+your architecture. 
+\item
+Create a {\tt .netrc} file in your home directory containing an
+entry for each machine that you intend to use\footnote{For further
+information read ``man 5 netrc''.}. 
+Entries should use fully qualified machine names and be of the form:
+\begin{verbatim}
+     machine atm0.cs.rice.edu login myuserid password mypassword
+\end{verbatim}
+Without the {\tt .netrc} file, you will be prompted for a user id and
+a password for each slave process spawned on a remote machine.
+\item
+Create a {\tt .Tmkrc\/} file in your home directory.  It should
+contain the same list of machines that you included in your {\tt
+.netrc\/} file.  Each line should contain exactly one machine name.
+\end{enumerate}
+At this point, you are ready to run the example applications.
+You can ``cd'' into the platform-specific subdirectory (e.g.,
+``Tmk/apps/tsp/sparc'') and type the name of the executable (e.g.,
+``tsp.udp'').  {\bf You must start the applications from a shell on
+the first machine listed in your {\tt .Tmkrc} file.}
+(For more complete details on other methods for running applications
+please refer to the documentation.)
+No arguments are required to execute with the default input. 
+
+\vfill
+
+\noindent
+Copyright \copyright 1994 by TreadMarks$^{\rm TM}$, L.L.C.
+
+\noindent
+All rights reserved.
+
+\end{document}

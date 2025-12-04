@@ -1,0 +1,27 @@
+head	10.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.2
+date	97.06.02.05.23.45;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@README
+@
+
+
+10.2
+log
+@Initial revision
+@
+text
+@The AIX xlf compiler doesn't pass the "-I" directive to the C
+preprocessor.  A symbolic link from this directory to the
+Tmk_fortran.h header file solves the problem.
+@

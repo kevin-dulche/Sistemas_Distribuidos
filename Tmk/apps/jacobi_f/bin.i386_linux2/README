@@ -1,0 +1,2 @@
+The Linux 1.2.13 f2c requires the soft link to include/Tmk_fortran.h
+to be in bin.linux rather than src.

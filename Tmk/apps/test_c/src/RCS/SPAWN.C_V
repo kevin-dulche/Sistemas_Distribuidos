@@ -1,0 +1,70 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	97.05.27.03.07.57;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.05.27.02.48.05;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@A simple test program for Tmk_spawn.
+@
+
+
+1.2
+log
+@Added the hostname argument to Tmk_spawn.
+@
+text
+@/*
+ * $Id: spawn.c,v 1.1 1997/05/27 02:48:05 alc Exp alc $
+ */
+#include <sys/time.h>
+#include <stdio.h>
+
+#include "Tmk.h"
+
+main(argc, argv)
+	int		argc;
+	char	       *argv[];
+{
+	int		c, i;
+
+	while ((c = getopt(argc, argv, "")) != -1)
+		switch (c) {
+		}
+
+	Tmk_startup(argc, argv);
+
+	if (Tmk_proc_id == 0)
+		Tmk_spawn("acpc.cs.rice.edu", argc, argv);
+
+	Tmk_barrier(0);
+
+	Tmk_exit(0);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ * $Id: lock.c,v 1.1 1997/04/12 08:56:48 alc Exp $
+d22 1
+a22 1
+		Tmk_spawn(argc, argv);
+@

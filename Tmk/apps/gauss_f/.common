@@ -1,0 +1,33 @@
+ #
+ # $Id: .common,v 1.2 1998/11/03 05:17:39 alc Exp $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) Gauss.o drand48.o timer.o
+
+Gauss.atm: $(OBJS) $(TmkLIB)/libTmk_atm.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_atm -L/usr/fore/lib -latm $(MACHDEP_LIBS)
+
+Gauss.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+Gauss.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+Gauss.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(FC) $(FFLAGS) -o $@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+Gauss.o: ../src/Gauss.f
+	$(FC) $(FFLAGS) -c ../src/Gauss.f
+
+drand48.o: ../src/drand48.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/drand48.c
+
+timer.o: ../src/timer.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/timer.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll

@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	97.12.24.07.53.03;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@bin.mips_irix6/Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ #
+ # $Id$
+ #
+ARCH	= mips_irix6
+
+CC	= cc
+CFLAGS	= -g3 -O
+
+FC	= f77
+FFLAGS  = -g3 -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS=
+
+all:
+
+include ../.common
+@

@@ -1,0 +1,14 @@
+ #
+ # $Id: Makefile,v 10.3 1997/11/16 07:39:00 alc Exp $
+ #
+ARCH	= mips_irix6
+
+CC	= cc
+CFLAGS	= -g3 -O
+
+MACHDEP_OBJS=
+MACHDEP_LIBS=
+
+all: gauss.udp
+
+include ../.common

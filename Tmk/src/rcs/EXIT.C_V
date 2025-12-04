@@ -1,0 +1,1792 @@
+head	11.7;
+access;
+symbols
+	Tmk-1_0_3_2R:10.6.1.12
+	Tmk-1_0_3_1R:10.6.1.12
+	Tmk-2_0:10.6.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.6.1.12
+	Tmk-1_2:10.6.1
+	Tmk-1_0_3R:10.6.1.12
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.6.1.12
+	Tmk-1_0_1R:10.6.1.10
+	Tmk-1_1:11
+	Tmk-1_0:10.6.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.6
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks
+	alc:10.6.1.12; strict;
+comment	@ * @;
+
+
+11.7
+date	97.10.28.22.17.35;	author alc;	state Exp;
+branches;
+next	11.6;
+
+11.6
+date	97.09.02.00.01.35;	author alc;	state Exp;
+branches;
+next	11.5;
+
+11.5
+date	97.09.01.23.38.47;	author alc;	state Exp;
+branches;
+next	11.4;
+
+11.4
+date	97.07.24.06.21.49;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.07.24.05.57.18;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.07.15.07.34.29;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.07.10.06.25.02;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	97.01.10.16.45.39;	author alc;	state Exp;
+branches
+	10.6.1.1;
+next	10.5;
+
+10.5
+date	97.01.10.16.25.28;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.08.24.21.10.49;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.08.24.20.01.11;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.08.24.18.30.28;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.48.40;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.17.18.00.32;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches
+	10.0.2.1.2.1;
+next	;
+
+10.0.2.1.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.1.2.2;
+
+10.0.2.1.2.2
+date	96.03.30.21.21.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	10.1.4.2;
+
+10.1.4.2
+date	96.07.30.20.52.50;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.27.23.05.15;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.06.28.18.27.47;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.06.28.20.24.01;	author tmiller;	state Exp;
+branches;
+next	10.1.5.5;
+
+10.1.5.5
+date	96.07.02.22.34.57;	author tmiller;	state Exp;
+branches;
+next	10.1.5.6;
+
+10.1.5.6
+date	96.07.03.19.32.35;	author tmiller;	state Exp;
+branches;
+next	10.1.5.7;
+
+10.1.5.7
+date	96.08.07.17.29.09;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.6.1.1
+date	97.07.03.19.41.44;	author alc;	state Exp;
+branches;
+next	10.6.1.2;
+
+10.6.1.2
+date	97.07.22.18.16.04;	author alc;	state Exp;
+branches;
+next	10.6.1.3;
+
+10.6.1.3
+date	97.07.22.19.25.16;	author alc;	state Exp;
+branches;
+next	10.6.1.4;
+
+10.6.1.4
+date	97.07.22.19.54.45;	author alc;	state Exp;
+branches;
+next	10.6.1.5;
+
+10.6.1.5
+date	97.07.22.22.48.02;	author alc;	state Exp;
+branches;
+next	10.6.1.6;
+
+10.6.1.6
+date	97.07.23.06.42.57;	author alc;	state Exp;
+branches;
+next	10.6.1.7;
+
+10.6.1.7
+date	97.07.24.05.27.41;	author alc;	state Exp;
+branches;
+next	10.6.1.8;
+
+10.6.1.8
+date	97.07.24.06.15.50;	author alc;	state Exp;
+branches;
+next	10.6.1.9;
+
+10.6.1.9
+date	97.09.01.23.48.39;	author alc;	state Exp;
+branches;
+next	10.6.1.10;
+
+10.6.1.10
+date	97.11.05.07.00.12;	author alc;	state Exp;
+branches;
+next	10.6.1.11;
+
+10.6.1.11
+date	98.05.14.20.10.16;	author alc;	state Exp;
+branches;
+next	10.6.1.12;
+
+10.6.1.12
+date	98.05.26.05.34.10;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.7
+log
+@Eliminated DoMmapExitStuff.  It was called implicitly by Tmk_exit
+to flush changes to mmap'ed pages.  It is replaced by the explicitly
+(user) called Tmk_msync.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: exit.c,v 11.6 1997/09/02 00:01:35 alc Exp alc $
+ *
+ * Description:    
+ *	collect execution statistics and exit
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	10-Sep-1993	Alan L. Cox	Created
+ *
+ *	Version 0.9.0
+ *
+ *	Version 0.9.1
+ *
+ *	14-Jan-1995	Alan L. Cox	Adapted for STREAMS
+ *
+ *	Version 0.9.2
+ *
+ *	21-May-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *
+ *	Version 0.9.3
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigblock and sigsetmask
+ *					 with sigprocmask
+ *	Version 0.10
+ */
+#include "Tmk.h"
+
+struct	Tmk_stat	Tmk_stat;
+
+unsigned		tmk_stat_flag;
+
+static	int volatile	exit_flag;
+
+static	struct	req_typ	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_EXIT };
+
+static	unsigned	rep_seqno;
+static	struct	iovec	rep_iov[2] = {
+	{ (caddr_t)&rep_seqno, sizeof(rep_seqno) },
+	{ (caddr_t)&Tmk_stat,  sizeof(struct Tmk_stat) } };
+static	struct	msghdr	rep_hdr = { 0, 0, rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0]), 0, 0 };
+
+static
+void	print_stat( int proc_id, struct Tmk_stat *stat )
+{
+	if (proc_id == Tmk_nprocs)
+		Tmk_err("[ Tmk: cumulative statistics\n"
+			"\n"
+			"  barriers:   %9d\n"
+			"  repos:      %9d\n",
+			stat->arrivals,
+			stat->repos);
+	else
+		Tmk_err("[ Tmk: %s statistics\n",
+			Tmk_hostlist[proc_id]);
+
+	Tmk_err("\n"
+		"  acquires:   %9d (acquire messages: %d)\n"
+		"  broadcasts: %9d\n"
+		"  signals:    %9d\n"
+		"  waits:      %9d\n"
+		"  pages:      %9d\n"
+		"  ownership:  %9d (yes: %d)\n"
+		"  bytes:      %9d (application data: %d)\n"
+		"  messages:   %9d (average size: %d)\n"
+		"  rexmits:    %9d\n"
+		"  diffs:      %9d (average size: %d)\n"
+		"  twins:      %9d ]\n"
+		"\n",
+		stat->acquires,	stat->messages_for_acquires,
+		stat->broadcasts,
+		stat->signals,
+		stat->waits,
+		stat->cold_misses,
+		stat->messages_for_ownership,
+				stat->yes,
+		stat->bytes,	stat->bytes_of_data,
+		stat->messages,	stat->messages ? (stat->bytes/stat->messages) : 0,
+		stat->rexmits,
+		stat->diffs,	stat->diffs ? (stat->total_diff_size/stat->diffs) : 0,
+		stat->twins);
+}
+
+void	Tmk_exit(value)
+	int			value;
+{
+	struct	Tmk_stat	stat;
+	sigset_t		mask;
+
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+	if (Tmk_proc_id) {
+
+		while (exit_flag == 0)
+			sigio_handler();
+
+		if (0 > sendmsg(rep_fd_[0], &rep_hdr, 0))
+			Tmk_perrexit("<sendmsg>Tmk_exit");
+	}
+	else {
+		int	i;
+
+		Tmk_stat.messages += Tmk_stat.messages_for_acquires + Tmk_stat.messages_for_ownership + Tmk_stat.cold_misses;
+
+		if (tmk_stat_flag > 1)
+			print_stat(Tmk_proc_id, &Tmk_stat);
+
+		for (i = 1; i < Tmk_nprocs; i++) {
+
+			req_typ.seqno = req_seqno += SEQNO_INCR;
+		rexmit:
+			if (0 > send(req_fd_[i], (char *)&req_typ, sizeof(req_typ), 0))
+				Tmk_perrexit("<send>Tmk_exit");
+
+			Tmk_tout_flag = 0;
+
+			setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+
+			if (Tmk_debug)
+				Tmk_err("Tmk_exit: %d\n", i);
+
+			rep_iov[1].iov_base = (caddr_t)&stat;
+		retry:
+			if (0 > recvmsg(req_fd_[i], &rep_hdr, 0))
+				if (Tmk_tout_flag) {
+
+					if (Tmk_debug)
+						Tmk_err("<timeout>Tmk_exit\n");
+
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+					Tmk_perrexit("<recvmsg>Tmk_exit");
+
+			if (rep_seqno != req_typ.seqno) {
+
+				if (Tmk_debug)
+					Tmk_err("<bad seqno: %d>Tmk_exit: seqno == %d (received: %d)\n", i, req_typ.seqno, rep_seqno);
+
+				goto retry;
+			}
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+			stat.messages += stat.messages_for_acquires + stat.messages_for_ownership + stat.cold_misses;
+
+			if (tmk_stat_flag > 1)
+				print_stat(i, &stat);
+
+			Tmk_stat.acquires		+= stat.acquires;
+			Tmk_stat.acquire_time		+= stat.acquire_time;
+			Tmk_stat.bytes			+= stat.bytes;
+			Tmk_stat.bytes_of_data		+= stat.bytes_of_data;
+			Tmk_stat.cold_misses		+= stat.cold_misses;
+			Tmk_stat.messages		+= stat.messages;
+			Tmk_stat.messages_for_acquires	+= stat.messages_for_acquires;
+			Tmk_stat.messages_for_ownership	+= stat.messages_for_ownership;
+			Tmk_stat.yes			+= stat.yes;
+			Tmk_stat.rexmits		+= stat.rexmits;
+			Tmk_stat.diffs			+= stat.diffs;
+			Tmk_stat.twins			+= stat.twins;
+			Tmk_stat.total_diff_size	+= stat.total_diff_size;
+		}
+		if (tmk_stat_flag)
+			print_stat(Tmk_nprocs, &Tmk_stat);
+	}
+	exit(value);
+}
+
+void	Tmk_exit_sigio_handler(req)
+	struct	req_typ	*req;
+{
+	exit_flag = 1;
+
+	rep_seqno = req->seqno;
+}
+@
+
+
+11.6
+log
+@BSD/OS's msync doesn't have the "flags" argument.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 11.5 1997/09/01 23:38:47 alc Exp alc $
+a80 29
+void	DoMmapExitStuff( void )
+{
+	int	i;
+
+	/* have all processes hit a barrier so that page update
+	   info gets exchanged */
+	Tmk_barrier(0);
+
+	for (i = 0; i < Tmk_npages; i++) {
+
+		page_t	page = &page_array_[i];
+
+		if (page->isMmapped) {
+
+			/* we must touch page to potentially update it */
+			*(volatile char *) page->vadr;
+
+			/* once the page is consistent, sync it */
+#if	defined(__bsdi)
+			if (0 > msync(page->vadr, Tmk_page_size))
+#else
+			if (0 > msync(page->vadr, Tmk_page_size, MS_ASYNC))
+#endif
+				Tmk_perrexit("DoMmapExitStuff<msync>");
+		}
+	}
+}
+
+static
+a125 2
+
+	DoMmapExitStuff();
+@
+
+
+11.5
+log
+@Corrected the loop termination condition: It was off by one.
+
+Reindented to match the coding standard.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 11.4 1997/07/24 06:21:49 alc Exp alc $
+d99 5
+a103 1
+			if (msync(page->vadr, Tmk_page_size, MS_ASYNC) < 0)
+@
+
+
+11.4
+log
+@Update the statistics printing, including the addition of per processor
+statistics.  (See revision 10.6.1.5 thru revision 10.6.1.8 for details.)
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 11.3 1997/07/24 05:57:18 alc Exp alc $
+d80 2
+a81 1
+static void DoMmapExitStuff(void)
+d83 1
+a83 1
+  int i;
+d85 3
+a87 3
+  /* have all processes hit a barrier so that page update
+     info gets exchanged */
+  Tmk_barrier(0);
+d89 1
+a89 2
+  for (i = 0; i <= Tmk_npages; i++) {
+    page_t page = &page_array_[i];
+d91 1
+a91 1
+    if (page->isMmapped) {
+d93 1
+a93 2
+      /* we must touch page to potentially update it */
+      *(volatile char *) page->vadr;
+d95 8
+a102 5
+      /* once the page is consistent, sync it */
+      if (msync(page->vadr, Tmk_page_size, MS_ASYNC) < 0)
+	Tmk_perrexit("<msync>DoMmapExitStuff");
+    }
+  }
+@
+
+
+11.3
+log
+@Eliminated the Ultrix-specific code.  (Identical to revision 10.6.1.1.)
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 11.2 1997/07/15 07:34:29 alc Exp alc $
+d103 41
+d165 5
+d212 5
+a218 1
+			Tmk_stat.arrivals		+= stat.arrivals;
+a225 1
+			Tmk_stat.repos			+= stat.repos;
+d228 1
+d231 2
+a232 23
+		if (tmk_stat_flag) {
+			Tmk_stat.messages += Tmk_stat.messages_for_acquires;
+			Tmk_stat.messages += Tmk_stat.messages_for_ownership;
+			Tmk_err("[ Tmk arrivals:  %9d (barriers: %d)\n"
+				"  Tmk acquires:  %9d (remote: %d w/ avg usec wait: %d)\n"
+				"  Tmk page:      %9d\n"
+				"  Tmk ownership: %9d (yes: %d)\n"
+				"  Tmk bytes:     %9d (user: %d)\n"
+				"  Tmk messages:  %9d (bytes per message: %d)\n"
+				"  Tmk repos:     %9d\n"
+				"  Tmk rexmits:   %9d\n"
+				"  Tmk diffs:     %9d (avg size: %d) ]\n",
+				Tmk_stat.arrivals, Tmk_stat.arrivals/Tmk_nprocs,
+				Tmk_stat.acquires, Tmk_stat.messages_for_acquires,
+				Tmk_stat.messages_for_acquires ? (Tmk_stat.acquire_time / Tmk_stat.messages_for_acquires) : 0,
+				Tmk_stat.cold_misses,
+				Tmk_stat.messages_for_ownership, Tmk_stat.yes,
+				Tmk_stat.bytes,    Tmk_stat.bytes_of_data,
+				Tmk_stat.messages, Tmk_stat.messages ? (Tmk_stat.bytes/Tmk_stat.messages) : 0,
+				Tmk_stat.repos/Tmk_nprocs,
+				Tmk_stat.rexmits,
+				Tmk_stat.diffs, Tmk_stat.diffs ? (Tmk_stat.total_diff_size / Tmk_stat.diffs) : 0);
+		}
+@
+
+
+11.2
+log
+@Added repo count to the statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 11.1 1997/07/10 06:25:02 alc Exp alc $
+a77 1
+#if ! defined(ultrix)
+a78 1
+#endif
+d117 1
+a117 4
+#if defined(ultrix)
+		if (0 > writev(rep_fd_[0], rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0])))
+			Tmk_perrexit("<writev>Tmk_exit");
+#else
+a119 1
+#endif
+a127 4
+#if defined(ultrix)
+			if (0 > write(req_fd_[i], &req_typ, sizeof(req_typ)))
+				Tmk_perrexit("<write>Tmk_exit");
+#else
+d130 1
+a130 1
+#endif
+a141 3
+#if defined(ultrix)
+			if (0 > readv(req_fd_[i], rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0])))
+#else
+a142 1
+#endif
+a154 3
+#if defined(ultrix)
+					Tmk_perrexit("<readv>Tmk_exit");
+#else
+d156 1
+a156 1
+#endif
+@
+
+
+11.1
+log
+@Added counters to Tmk_stat for ownership requests and successes.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6 1997/01/10 16:45:39 alc Exp alc $
+d193 1
+d207 1
+d217 1
+@
+
+
+10.6
+log
+@Use volatile instead of a dummy int to trigger the page fault
+on a MAP_SHARED page.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.5 1997/01/10 16:25:28 alc Exp alc $
+d191 2
+d199 9
+a207 7
+			Tmk_err("[ Tmk arrivals: %9d (barriers: %d)\n"
+				"  Tmk acquires: %9d (remote: %d w/ avg usec wait: %d)\n"
+				"  Tmk cold:     %9d\n"
+				"  Tmk bytes:    %9d (user: %d)\n"
+				"  Tmk messages: %9d (bytes per message: %d)\n"
+				"  Tmk rexmits:  %9d\n"
+				"  Tmk diffs:    %9d (avg size: %d) ]\n",
+d212 1
+@
+
+
+10.6.1.1
+log
+@Eliminated the Ultrix-specific code.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6 1997/01/10 16:45:39 alc Exp alc $
+d78 1
+d80 1
+d119 4
+a122 1
+
+d125 1
+d134 4
+d140 1
+a140 1
+
+d152 3
+d156 1
+d169 3
+d173 1
+a173 1
+
+@
+
+
+10.6.1.2
+log
+@Added basic Pthreads support.
+@
+text
+@d110 1
+a110 3
+#if defined(PTHREADS)
+	pthread_mutex_lock(&Tmk_monitor_lock);
+#endif
+@
+
+
+10.6.1.3
+log
+@Added twin and repo count to the statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.2 1997/07/22 18:16:04 alc Exp alc $
+a177 1
+			Tmk_stat.twins			+= stat.twins;
+d188 1
+a188 3
+				"  Tmk diffs:    %9d (avg size: %d)\n"
+				"  Tmk twins:    %9d\n"
+				"  Tmk repos:    %9d\n",
+d196 1
+a196 3
+				Tmk_stat.diffs, Tmk_stat.diffs ? (Tmk_stat.total_diff_size / Tmk_stat.diffs) : 0,
+				Tmk_stat.twins,
+				Tmk_stat.repos);
+@
+
+
+10.6.1.4
+log
+@Changed message counting: don't increment two message counters for cold
+misses.  Just use one.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.3 1997/07/22 19:25:16 alc Exp alc $
+d182 1
+a182 1
+			Tmk_stat.messages += Tmk_stat.messages_for_acquires + Tmk_stat.cold_misses;
+@
+
+
+10.6.1.5
+log
+@Added per process statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.4 1997/07/22 19:54:45 alc Exp alc $
+a102 47
+static
+void	print_stat( int proc_id, struct Tmk_stat *stat )
+{
+	if (proc_id != Tmk_nprocs)
+		Tmk_err("\n"
+			"[ Tmk: %s statistics\n"
+			"\n"
+			"  acquires: %9d (acquire messages: %d)\n"
+			"  pages:    %9d\n"
+			"  bytes:    %9d (application data: %d)\n"
+			"  messages: %9d (average size: %d)\n"
+			"  rexmits:  %9d\n"
+			"  diffs:    %9d (average size: %d)\n"
+			"  twins:    %9d ]\n",
+			Tmk_hostlist[proc_id],
+			stat->acquires,	stat->messages_for_acquires,
+			stat->cold_misses,
+			stat->bytes,	stat->bytes_of_data,
+			stat->messages,	stat->messages ? (stat->bytes/stat->messages) : 0,
+			stat->rexmits,
+			stat->diffs,	stat->diffs ? (stat->total_diff_size/stat->diffs) : 0,
+			stat->twins);
+	else
+		Tmk_err("\n"
+			"[ Tmk: overall statistics\n"
+			"\n"
+			"  barriers: %9d\n"
+			"  repos:    %9d\n"
+			"\n"
+			"  acquires: %9d (acquire messages: %d)\n"
+			"  pages:    %9d\n"
+			"  bytes:    %9d (application data: %d)\n"
+			"  messages: %9d (average size: %d)\n"
+			"  rexmits:  %9d\n"
+			"  diffs:    %9d (average size: %d)\n"
+			"  twins:    %9d ]\n",
+			stat->arrivals,
+			stat->repos,
+			stat->acquires,	stat->messages_for_acquires,
+			stat->cold_misses,
+			stat->bytes,	stat->bytes_of_data,
+			stat->messages,	stat->messages ? (stat->bytes/stat->messages) : 0,
+			stat->rexmits,
+			stat->diffs,	stat->diffs ? (stat->total_diff_size/stat->diffs) : 0,
+			stat->twins);
+}
+
+a125 3
+		if (tmk_stat_flag)
+			print_stat(Tmk_proc_id, &Tmk_stat);
+
+d168 34
+a201 18
+			if (tmk_stat_flag) {
+
+				stat.messages += stat.messages_for_acquires + stat.cold_misses;
+
+				print_stat(i, &stat);
+
+				Tmk_stat.acquires		+= stat.acquires;
+				Tmk_stat.acquire_time		+= stat.acquire_time;
+				Tmk_stat.bytes			+= stat.bytes;
+				Tmk_stat.bytes_of_data		+= stat.bytes_of_data;
+				Tmk_stat.cold_misses		+= stat.cold_misses;
+				Tmk_stat.messages		+= stat.messages;
+				Tmk_stat.messages_for_acquires	+= stat.messages_for_acquires;
+				Tmk_stat.rexmits		+= stat.rexmits;
+				Tmk_stat.diffs			+= stat.diffs;
+				Tmk_stat.twins			+= stat.twins;
+				Tmk_stat.total_diff_size	+= stat.total_diff_size;
+			}
+a202 2
+		if (tmk_stat_flag)
+			print_stat(Tmk_nprocs, &Tmk_stat);
+@
+
+
+10.6.1.6
+log
+@Added the "-S" option for reporting per processor statistics.
+
+Simplified the statistics printing procedure.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.5 1997/07/22 22:48:02 alc Exp alc $
+d106 22
+a127 2
+	if (proc_id == Tmk_nprocs)
+		Tmk_err("[ Tmk: cumulative statistics\n"
+d130 9
+a138 1
+			"  repos:    %9d\n",
+d140 8
+a147 21
+			stat->repos);
+	else
+		Tmk_err("[ Tmk: %s statistics\n",
+			Tmk_hostlist[proc_id]);
+
+	Tmk_err("\n"
+		"  acquires: %9d (acquire messages: %d)\n"
+		"  pages:    %9d\n"
+		"  bytes:    %9d (application data: %d)\n"
+		"  messages: %9d (average size: %d)\n"
+		"  rexmits:  %9d\n"
+		"  diffs:    %9d (average size: %d)\n"
+		"  twins:    %9d ]\n"
+		"\n",
+		stat->acquires,	stat->messages_for_acquires,
+		stat->cold_misses,
+		stat->bytes,	stat->bytes_of_data,
+		stat->messages,	stat->messages ? (stat->bytes/stat->messages) : 0,
+		stat->rexmits,
+		stat->diffs,	stat->diffs ? (stat->total_diff_size/stat->diffs) : 0,
+		stat->twins);
+d173 1
+a173 1
+		if (tmk_stat_flag > 1)
+d218 3
+a220 1
+			stat.messages += stat.messages_for_acquires + stat.cold_misses;
+a221 1
+			if (tmk_stat_flag > 1)
+d224 12
+a235 11
+			Tmk_stat.acquires		+= stat.acquires;
+			Tmk_stat.acquire_time		+= stat.acquire_time;
+			Tmk_stat.bytes			+= stat.bytes;
+			Tmk_stat.bytes_of_data		+= stat.bytes_of_data;
+			Tmk_stat.cold_misses		+= stat.cold_misses;
+			Tmk_stat.messages		+= stat.messages;
+			Tmk_stat.messages_for_acquires	+= stat.messages_for_acquires;
+			Tmk_stat.rexmits		+= stat.rexmits;
+			Tmk_stat.diffs			+= stat.diffs;
+			Tmk_stat.twins			+= stat.twins;
+			Tmk_stat.total_diff_size	+= stat.total_diff_size;
+@
+
+
+10.6.1.7
+log
+@Added broadcasts, signals, and waits to the printed statistics.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.6 1997/07/23 06:42:57 alc Exp alc $
+d109 2
+a110 2
+			"  barriers:   %9d\n"
+			"  repos:      %9d\n",
+d118 7
+a124 10
+		"  acquires:   %9d (acquire messages: %d)\n"
+		"  broadcasts: %9d\n"
+		"  signals:    %9d\n"
+		"  waits:      %9d\n"
+		"  pages:      %9d\n"
+		"  bytes:      %9d (application data: %d)\n"
+		"  messages:   %9d (average size: %d)\n"
+		"  rexmits:    %9d\n"
+		"  diffs:      %9d (average size: %d)\n"
+		"  twins:      %9d ]\n"
+a126 3
+		stat->broadcasts,
+		stat->signals,
+		stat->waits,
+@
+
+
+10.6.1.8
+log
+@Corrected the computation of the message count for processor zero.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.7 1997/07/24 05:27:41 alc Exp alc $
+a162 2
+
+		Tmk_stat.messages += Tmk_stat.messages_for_acquires + Tmk_stat.cold_misses;
+@
+
+
+10.6.1.9
+log
+@Corrected the loop termination condition: It was off by one.
+
+Reindented to match the coding standard.
+
+(Identical to revision 11.5.)
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.8 1997/07/24 06:15:50 alc Exp alc $
+d80 1
+a80 2
+static
+void	DoMmapExitStuff( void )
+d82 1
+a82 1
+	int	i;
+d84 3
+a86 3
+	/* have all processes hit a barrier so that page update
+	   info gets exchanged */
+	Tmk_barrier(0);
+d88 2
+a89 1
+	for (i = 0; i < Tmk_npages; i++) {
+d91 1
+a91 1
+		page_t	page = &page_array_[i];
+d93 2
+a94 1
+		if (page->isMmapped) {
+d96 5
+a100 8
+			/* we must touch page to potentially update it */
+			*(volatile char *) page->vadr;
+
+			/* once the page is consistent, sync it */
+			if (msync(page->vadr, Tmk_page_size, MS_ASYNC) < 0)
+				Tmk_perrexit("DoMmapExitStuff<msync>");
+		}
+	}
+@
+
+
+10.6.1.10
+log
+@Eliminated DoMmapExitStuff.  It was called implicitly by Tmk_exit
+to flush changes to mmap'ed pages.  It is replaced by the explicitly
+(user) called Tmk_msync.  (Identical to revision 11.7.)
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.9 1997/09/01 23:48:39 alc Exp alc $
+d81 25
+d149 1
+@
+
+
+10.6.1.11
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.10 1997/11/05 07:00:12 alc Exp alc $
+d134 2
+a135 2
+		while (0 > sendmsg(rep_fd_[0], &rep_hdr, 0))
+			Tmk_errno_check("Tmk_exit<sendmsg>");
+d149 2
+a150 2
+			while (0 > send(req_fd_[i], (char *)&req_typ, sizeof(req_typ), 0))
+				Tmk_errno_check("Tmk_exit<send>");
+@
+
+
+10.6.1.12
+log
+@Added the "const" attribute to the message argument
+to Tmk_exit_sigio_handler and Tmk_page_sigio_handler.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.6.1.11 1998/05/14 20:10:16 alc Exp alc $
+d210 2
+a211 3
+void
+Tmk_exit_sigio_handler(
+	const struct req_typ *req)
+@
+
+
+10.5
+log
+@Added code to pull pages that belong to MAP_SHARED files.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.4 1996/08/24 21:10:49 alc Exp alc $
+a83 1
+  int bogusInt = 0;		/* used for touching pages */
+d96 1
+a96 1
+      bogusInt += *((int *) page->vadr);
+a101 7
+  }
+
+  /* put in something unoptimizable so that bogusInt
+     doesn't get optimized away */
+  if (getpid() == 0) {
+    printf("bogus print value %d\n", bogusInt);
+    printf("if you see this line, ignore it and the line above\n");
+@
+
+
+10.4
+log
+@Replaced sigprocmask by sigio_mutex.  Sigio_mutex is defined
+in Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.3 1996/08/24 20:01:11 alc Exp alc $
+d82 31
+d118 2
+@
+
+
+10.3
+log
+@Replaced "seqno += NPROCS" by "+= SEQNO_INCR".
+@
+text
+@d39 1
+a39 1
+ * $Id: exit.c,v 10.2 1996/08/24 18:30:28 alc Exp alc $
+d88 1
+a88 1
+	sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d120 1
+a120 1
+			sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+d137 1
+a137 1
+					sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d156 1
+a156 1
+			sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+@
+
+
+10.2
+log
+@Use SIG_UNBLOCK before recv rather than SIG_SETMASK.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d107 1
+a107 1
+			req_typ.seqno = req_seqno += NPROCS;
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		exit.c
+d42 1
+a42 1
+ *	what it does.
+d63 1
+a63 2
+ *
+ *****************************************************************************/
+d120 1
+a120 1
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@d87 2
+a88 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+d92 1
+a92 4
+			;
+
+		sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+
+a103 2
+		sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+
+d119 1
+a119 1
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL, UNLOCK);
+d136 1
+a136 1
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+d155 1
+a155 1
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+@
+
+
+10.1.4.2
+log
+@Eliminated seqno and extra copying from MPL messages.
+@
+text
+@d112 1
+a112 1
+			req_typ.seqno = req_seqno += SEQNO_INCR;
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@Added sigio_lock and monitor_lock. Changed segv_handler to avoid race condition.
+@
+text
+@a86 3
+#if defined(THREADS)
+	pthread_mutex_lock(&monitor_lock);
+#endif
+d91 1
+a91 7
+		while (exit_flag == 0) {
+#if defined(THREADS)
+			const struct timespec timeout = {1,0};
+			if (0 > sigtimedwait(&mask, NULL, &timeout));
+				if ((errno != EINTR) && (errno != EAGAIN))
+					Tmk_perrexit("<sigtimedwait>Tmk_barrier");
+#else
+a92 5
+#endif
+		}
+#if defined(THREADS)
+		pthread_mutex_lock(&sigio_lock);
+#endif
+d103 1
+a103 3
+#if defined(THREADS)
+		pthread_mutex_lock(&sigio_lock);
+#endif
+d118 1
+a118 3
+#if defined(THREADS)
+			pthread_mutex_unlock(&sigio_lock);
+#endif
+d137 1
+a137 3
+#if defined(THREADS)
+					pthread_mutex_lock(&sigio_lock);
+#endif
+d156 1
+a156 3
+#if defined(THREADS)
+			pthread_mutex_lock(&sigio_lock);
+#endif
+@
+
+
+10.1.5.3
+log
+@eliminated sigtimedwait (explicitly unblock signals instead)
+@
+text
+@d89 1
+a89 1
+#else
+d91 1
+a91 1
+#endif
+d96 4
+a99 1
+			/* NOTHING */
+a104 2
+		sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+		
+a117 2
+		sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+@
+
+
+10.1.5.4
+log
+@Changed SIGALRM to be blocked by all threads and unblocked only when
+a recv timeout is needed.
+@
+text
+@d138 1
+a138 1
+			sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+@
+
+
+10.1.5.5
+log
+@Cleaned up sigprocmask/pthread_sigmask/sigthreadmask and sigio
+locking/unlocking with sigio_mutex macro
+@
+text
+@d89 2
+d94 12
+a105 5
+		while (exit_flag == 0)
+			;
+
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask, LOCK);
+
+d116 2
+d119 2
+a120 2
+		sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask, LOCK);
+
+d135 4
+a139 2
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL, UNLOCK);
+
+d155 4
+a158 2
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+d176 4
+a179 2
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL, LOCK);
+
+@
+
+
+10.1.5.6
+log
+@cleaned up signal masks
+@
+text
+@d95 1
+a95 1
+		sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+d108 1
+a108 1
+		sigio_mutex(SIG_BLOCK, &IO_mask, &mask, LOCK);
+@
+
+
+10.1.5.7
+log
+@Added $Id$
+@
+text
+@a61 2
+ * $Id$
+ *
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.1.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.1.2.2
+log
+@Added sigio locking inside existing critical sections (sigprocmask). <SMP>
+@
+text
+@d88 1
+a88 3
+#if defined(__sgi)
+	spin_lock(&sigio_lock);	/* SMP */
+#endif
+d118 1
+a118 3
+#if defined(__sgi)
+			release_lock(&sigio_lock);	/* SMP */
+#endif
+d137 1
+a137 3
+#if defined(__sgi)
+					spin_lock(&sigio_lock);	/* SMP */
+#endif
+d156 1
+a156 3
+#if defined(__sgi)
+			spin_lock(&sigio_lock);	/* SMP */
+#endif
+@
+
+
+10.0.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d58 4
+a83 1
+	int			mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d85 3
+d112 1
+a112 1
+			if (0 > send(req_fd_[i], &req_typ, sizeof(req_typ), 0))
+d119 1
+a119 1
+			sigsetmask(mask);
+d136 1
+a136 1
+					sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d155 1
+a155 1
+			sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@a153 6
+
+			Tmk_stat.gather                 += stat.gather;
+			Tmk_stat.distribute_work        += stat.distribute_work;
+			Tmk_stat.get_work               += stat.get_work;
+
+
+a154 3
+			Tmk_stat.barrier_child_resendbytes += stat.barrier_child_resendbytes;
+			Tmk_stat.newbarrier_child_resendbytes += stat.newbarrier_child_resendbytes;
+
+a157 4
+
+			Tmk_stat.barrier_child_resend += stat.barrier_child_resend;
+			Tmk_stat.newbarrier_child_resend += stat.newbarrier_child_resend;
+
+a161 38
+
+
+			Tmk_stat.barrier_child_request += stat.barrier_child_request;
+			Tmk_stat.barrier_child_request_bytes += stat.barrier_child_request_bytes;
+			Tmk_stat.newbarrier_child_request += stat.newbarrier_child_request;
+			Tmk_stat.newbarrier_child_request_bytes += stat.newbarrier_child_request_bytes;
+			Tmk_stat.connect_request += stat.connect_request;
+			Tmk_stat.connect_request_bytes += stat.connect_request_bytes;
+			Tmk_stat.diff_request += stat.diff_request;
+			Tmk_stat.diff_request_bytes += stat.diff_request_bytes;
+			Tmk_stat.distribute_request += stat.distribute_request;
+			Tmk_stat.distribute_request_bytes += stat.distribute_request_bytes;
+			Tmk_stat.exit_request += stat.exit_request;
+			Tmk_stat.exit_request_bytes += stat.exit_request_bytes;
+			Tmk_stat.lock_request += stat.lock_request;
+			Tmk_stat.lock_request_bytes += stat.lock_request_bytes;
+			Tmk_stat.page_request += stat.page_request;
+			Tmk_stat.page_request_bytes += stat.page_request_bytes;
+			Tmk_stat.repo_request += stat.repo_request;
+			Tmk_stat.repo_request_bytes += stat.repo_request_bytes;
+			
+			
+			
+			Tmk_stat.barrier_reply += stat.barrier_reply;
+			Tmk_stat.barrier_reply_bytes += stat.barrier_reply_bytes;
+			Tmk_stat.newbarrier_reply += stat.newbarrier_reply;
+			Tmk_stat.newbarrier_reply_bytes += stat.newbarrier_reply_bytes;
+			Tmk_stat.diff_reply += stat.diff_reply;
+			Tmk_stat.diff_reply_bytes += stat.diff_reply_bytes;
+			Tmk_stat.repo_reply += stat.repo_reply;
+			Tmk_stat.repo_reply_bytes += stat.repo_reply_bytes;
+			Tmk_stat.page_reply += stat.page_reply;
+			Tmk_stat.page_reply_bytes += stat.page_reply_bytes;
+			Tmk_stat.diff_reply += stat.diff_reply;
+			Tmk_stat.diff_reply_bytes += stat.diff_reply_bytes;
+
+
+
+d165 7
+a171 55
+			Tmk_err("[ Tmk arrivals:                             %9d (barriers: %d)\n"
+				"  Tmk acquires:                             %9d (remote: %d w/ avg usec wait: %d)\n"
+
+
+				
+
+				"  Tmk gather:                               %9d\n"
+				"  Tmk distribute_work:                      %9d\n"
+				"  Tmk get_work:                             %9d\n"
+
+				"  Tmk cold:                                 %9d\n"
+				"  Tmk bytes:                                %11d (user: %d)\n"
+				"  Tmk barrier_resend_bytes:                 %9d\n"
+				"  Tmk newbarrier_resend_bytes:              %9d\n"
+				"  Tmk messages:                             %9d (bytes per message: %d)\n"
+				"  Tmk barrier_resend_messages:              %9d\n"
+				"  Tmk newbarrier_resend_messages:           %9d\n"
+				"  Tmk rexmits:                              %9d\n"
+				"  Tmk diffs:                                %9d (avg size: %d) ]\n"
+				"  Tmk diffs_total_bytes:                    %9d \n"
+#if 0
+				"  Tmk barrier_child_request:                %9d \n"
+				"  Tmk barrier_child_request_bytes:          %9d \n"
+				"  Tmk newbarrier_child_request:             %9d \n"
+				"  Tmk newbarrier_child_request_bytes:       %9d \n"
+				"  Tmk connect_request:                      %9d \n"
+				"  Tmk connect_request_bytes:                %9d \n"
+				"  Tmk diff_request:                         %9d \n"
+				"  Tmk diff_request_bytes:                   %9d \n"
+				"  Tmk distribute_request:                   %9d \n"
+				"  Tmk distribute_request_bytes:             %9d \n"
+				"  Tmk exit_request:                         %9d \n"
+				"  Tmk exit_request_bytes:                   %9d \n"
+				"  Tmk lock_request:                         %9d \n"
+				"  Tmk lock_request_bytes:                   %9d \n"
+#endif
+				"  Tmk page_request:                         %9d \n"
+#if 0
+				"  Tmk page_request_bytes:                   %9d \n"
+#endif
+				"  Tmk repo_request:                         %9d \n"
+				"  Tmk repo_request_bytes:                   %9d \n"
+#if 0
+				"  Tmk barrier_reply:                        %9d \n"
+				"  Tmk barrier_reply_bytes:                  %9d \n"
+				"  Tmk newbarrier_reply:                     %9d \n"
+				"  Tmk newbarrier_reply_bytes:               %9d \n"
+#endif
+				"  Tmk diff_reply:                           %9d \n"
+				"  Tmk diff_reply_bytes:                     %9d \n"
+				"  Tmk repo_reply:                           %9d \n"
+				"  Tmk repo_reply_bytes:                     %9d \n"
+				"  Tmk page_reply:                           %9d \n"
+				"  Tmk page_reply_bytes:                     %9d \n",
+
+a173 1
+
+a174 7
+
+
+				Tmk_stat.gather,
+				Tmk_stat.distribute_work,
+				Tmk_stat.get_work,
+
+
+a176 2
+				Tmk_stat.barrier_child_resendbytes,
+				Tmk_stat.newbarrier_child_resendbytes,
+a177 2
+				Tmk_stat.barrier_child_resend,
+				Tmk_stat.newbarrier_child_resend,
+d179 1
+a179 38
+				Tmk_stat.diffs, (Tmk_stat.diffs ? (Tmk_stat.total_diff_size / Tmk_stat.diffs) : 0),
+				Tmk_stat.total_diff_size,
+#if 0
+
+				Tmk_stat.barrier_child_request,
+				Tmk_stat.barrier_child_request_bytes,
+				Tmk_stat.newbarrier_child_request,
+				Tmk_stat.newbarrier_child_request_bytes,
+				Tmk_stat.connect_request,
+				Tmk_stat.connect_request_bytes,
+				Tmk_stat.diff_request,
+				Tmk_stat.diff_request_bytes,
+				Tmk_stat.distribute_request,
+				Tmk_stat.distribute_request_bytes,
+				Tmk_stat.exit_request,
+				Tmk_stat.exit_request_bytes,
+				Tmk_stat.lock_request,
+				Tmk_stat.lock_request_bytes,
+#endif
+				Tmk_stat.page_request,
+#if 0
+				Tmk_stat.page_request_bytes,
+#endif
+				Tmk_stat.repo_request,
+				Tmk_stat.repo_request_bytes,
+#if 0
+				Tmk_stat.barrier_reply,
+				Tmk_stat.barrier_reply_bytes,
+				Tmk_stat.newbarrier_reply,
+				Tmk_stat.newbarrier_reply_bytes,
+#endif
+				Tmk_stat.diff_reply,
+				Tmk_stat.diff_reply_bytes,
+				Tmk_stat.repo_reply,
+				Tmk_stat.repo_reply_bytes,
+				Tmk_stat.page_reply,
+				Tmk_stat.page_reply_bytes);
+
+a191 8
+
+
+
+
+
+
+
+
+@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@a161 1
+			Tmk_stat.repos			+= stat.repos;
+d171 1
+a171 2
+				"  Tmk diffs:    %9d (avg size: %d)\n"
+				"  Tmk repos:    %9d ]\n",
+d179 1
+a179 2
+				Tmk_stat.diffs, Tmk_stat.diffs ? (Tmk_stat.total_diff_size / Tmk_stat.diffs) : 0,
+				Tmk_stat.repos);
+@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d156 1
+d167 1
+d175 1
+@
+
+
+9.5.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@*** empty log message ***
+@
+text
+@@

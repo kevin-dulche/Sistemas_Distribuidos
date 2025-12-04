@@ -1,0 +1,219 @@
+head	10.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+10.2
+date	97.03.18.21.33.11;	author alc;	state Exp;
+branches;
+next	10.0;
+
+10.0
+date	96.03.17.17.39.21;	author alc;	state Rel;
+branches;
+next	9.7;
+
+9.7
+date	96.03.17.17.33.03;	author alc;	state Rel;
+branches;
+next	9.6;
+
+9.6
+date	96.03.17.04.57.26;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.16.07.50.20;	author alc;	state Exp;
+branches
+	9.5.1.1;
+next	;
+
+9.5.1.1
+date	96.03.16.21.37.15;	author alc;	state Exp;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.17.16.35.57;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+10.2
+log
+@Added $Id$ tag.
+@
+text
+@Release Notes for the TreadMarks(tm) extension to support LoadLeveler. 
+
+This distribution includes two versions of the TreadMarks library.
+They are both in ./lib.rs6k:
+
+libTmk_udp.a	is the standard TreadMarks library.  This version runs
+		on SP2 nodes that allow interactive logins.  This is
+		useful for development and debugging.
+
+libTmk_udp_ll.a is the extended version of TreadMarks library that
+		runs in EITHER interactive mode like the standard
+		TreadMarks library OR in batch mode under LoadLeveler.
+		Furthermore, it is capable of autosensing whether it
+		was started by LoadLeveler or by an interactive shell. 
+
+		Under LoadLever, the interactive debugging and display
+		options are disabled.  Since LoadLeveler determines
+		which hosts are used, the .Tmkrc file and the "-h"
+		command line directive are ignored.
+
+		This version of TreadMarks still uses the UDP/IP
+		protocol through sockets.  The LoadLeveler command
+		file determines whether TreadMarks uses Ethernet or
+		the high-speed switch.  (Please see the sample command
+		file below.)  We are testing a version of TreadMarks
+		that uses the PE/MPL user-space CSS directly.  This
+		will be released in the near future. 
+
+To make the LoadLeveler version of a sample application, run "make"
+in the application directory, "./apps/?/bin.rs6k".
+
+What follows is a LoadLeveler command file that will run the barrier
+test program (./apps/test/bin.rs6k/barrier.udp_ll) on 4 processors
+using the high speed switch at the Cornell Theory Center.  Command
+files for other applications and/or installations will be similar.
+Please refer to your site's configuration documents for details such
+as the available job classes. 
+
+#!/bin/ksh
+#@@ job_name = barrier
+#@@ class = small_short
+#@@ requirements = (Adapter == "hps_ip")
+#@@ data_limit = 50mb
+#@@ initialdir = .
+#@@ environment = COPY_ALL
+#@@ output = Log.$(cluster).$(process).out
+#@@ error = Log.$(cluster).$(process).err
+#@@ job_type = parallel
+#@@ min_processors = 4
+#@@ max_processors = 4
+#@@ queue
+barrier.udp_ll
+
+$Id: ReleaseNotes.LoadLeveler,v 10.2 1997/03/18 21:03:24 alc Exp $
+@
+
+
+10.0
+log
+@Tmk-0.10R
+@
+text
+@d53 2
+@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@@
+
+
+9.6
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+9.6.1.1
+log
+@FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 2
+Note that there are two versions of the TreadMarks Library 
+in lib.rs6k:
+d3 50
+a52 31
+libTmk_udp.a    is the standard TreadMarks.  This version can
+  be run on SP2 nodes that allow interactive logins.  This is
+  useful for development and debugging, but performance can suffer
+  because interactive nodes are usually shared with other users.
+
+libTmk_udp_ll.a  is a version of TreadMarks that can run in batch mode
+  under LoadLeveler.  
+
+  In batch mode debugging and display options are inappropriate, so
+  they are disabled.
+
+  This version is still using the UDP/IP communication protocol.
+  If the LoadLeveler command file requests it, this version will
+  use the IP over the high performance switch of the SP2.  We are
+  testing a version that uses the PE/MPL user-space CSS directly.
+  This will be released in the near future.
+
+  This version expects LoadLeveler to provide the set of hosts
+  on which to run.  Any use of a .Tmkrc file or -hhostname on 
+  the command line are ignored.
+
+  The maximum number of nodes in this demo version is 8.
+
+To
+make the LoadLeveler versions run "make ll" in the directories
+"Tmkll.demo/apps/*/bin.rs6k".
+
+In the directory Tmkll.demo/apps/test/bin.rs6k/LoadL.commands, there
+are LoadLeveler command files that were used to run the test programs
+at the Cornell Theory Center.  You can use them as examples for
+creating your own.
+@
+
+
+9.5.1.1
+log
+@*** empty log message ***
+@
+text
+@a0 8
+This should be updated for 0.9.5 -Alan
+
+ ---
+
+This is a demo copy of TreadMarks-0.9.3 with pre-release extensions
+to run under LoadLeveler on IBM SP2s.  It has been used internally
+by the TreadMarks group as well as by employees of IBM and APR.
+
+d9 1
+a9 7
+  There is one  small extension beyond the standard version 0.9.3 
+  described elsewhere --    
+  The standard version must be started on the first host mentioned.
+  This version can generally be started from any of the hosts specified, 
+  either on the command line or in a .Tmkrc file.
+
+libTmk_lludp.a  is a version of TreadMarks that can run in batch mode
+d27 1
+a27 2
+We provide a few simple demo applications.  Look in the "apps"
+directory.  The udp versions of the applications are pre-made.  To
+a29 1
+
+@

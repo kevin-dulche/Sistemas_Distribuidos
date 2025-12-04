@@ -1,0 +1,828 @@
+head	10.7;
+access;
+symbols
+	Tmk-1_0_3_2R:10.7
+	Tmk-1_0_3_1R:10.7
+	Tmk-1_0_3R:10.7
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.7
+	Tmk-1_0_1R:10.7
+	Tmk-1_1:11
+	Tmk-1_0:10
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.7;
+locks; strict;
+comment	@ * @;
+
+
+10.7
+date	97.03.07.23.59.28;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	96.10.05.19.46.07;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	96.08.24.18.47.18;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.08.09.05.06.48;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.08.09.04.33.27;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.07.29.21.07.35;	author rjf;	state Exp;
+branches
+	10.2.1.1;
+next	;
+
+10.2.1.1
+date	96.07.30.20.59.00;	author rjf;	state Exp;
+branches;
+next	;
+
+
+desc
+@Socket emulation in MPL
+@
+
+
+10.7
+log
+@Eliminated tmk_MTU.  This variable exists to work-around an Ultrix
+ATM driver bug.
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: open_mpl.c,v 10.6 1996/10/05 19:46:07 alc Exp alc $
+ *
+ * Description:    
+ *	Provides initialization stuff for the US CSS version.
+ *
+ * External Functions:
+ *			Tmk_connect_initialize
+ *			Tmk_connect_sigio_duplicate_handler
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *
+ *	 1-Jul-1995	Rob Fowler	Created
+ *
+ *	Version 0.9.4
+ *
+ *	29-Jul-1996	Rob Fowler	Socket emulation version
+ *
+ *	Version 0.10.2
+ */
+#include "Tmk.h"
+
+unsigned	Tmk_port_[NPROCS][NPROCS];
+
+/* 
+ * Instead of file descriptors, the *_fd_[] arrays contain
+ * encodings of the destination and MPL message type to use.
+ * req_fd_[j] == j 
+ * rep_fd_[j] == j & 128
+ * The choice is critical to make lock work.
+ */
+char            req_fd_[NPROCS];
+fd_set          req_fds;
+int             req_maxfdp1;
+unsigned        req_seqno;
+
+char            rep_fd_[NPROCS];
+fd_set          rep_fds;
+int             rep_maxfdp1;
+unsigned        rep_seqno_[NPROCS];
+
+/*
+ *
+ */
+void	Tmk_connect_initialize( void )
+{
+	int	i;
+    
+	req_seqno = Tmk_proc_id;
+
+	for (i = 0; i < Tmk_nprocs; i++) {
+		if (i == Tmk_proc_id)
+			continue;
+
+		req_fd_[i] = i;
+	    /*
+	     *	FD_SET(i, &req_fds);
+	     */
+		req_maxfdp1 = MAX(i + 1, req_maxfdp1);
+	}
+	/*
+	 * Ensure that every processor is prepared to handle a request.
+	 */
+	if (0 > mpc_sync(ALLGRP))
+		Tmk_MPLerrexit("<mpc_sync>Tmk_connect_initialize");
+}
+
+/*
+ *
+ */
+void	Tmk_accept_initialize( int i )
+{
+	rep_fd_[i] = i | 0x80;
+    /*
+     *	FD_SET(i, &rep_fds);
+     */
+	rep_maxfdp1 = MAX(i + 1, rep_maxfdp1);
+}
+@
+
+
+10.6
+log
+@Reduced the interface to the essential functions.  Revised
+these functions to closer match their open_udp.c counterparts.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_mpl.c,v 10.5 1996/08/24 18:47:18 alc Exp alc $
+a59 2
+
+unsigned	tmk_MTU = MTU;
+@
+
+
+10.5
+log
+@Updated the file header.  Added a dummy Tmk_port_ array.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_mpl.c,v 10.4 1996/08/09 05:06:48 alc Exp alc $
+a44 1
+ *			tmk_mplmutex
+a70 3
+ *
+ * Never use sequence numbers 0, 1, ..., NPROCS-1.  Sequence number 0
+ * would break sigio_handler.
+d85 1
+a85 18
+void    Tmk_connect(i)
+        int                     i;
+{
+}
+
+/*
+ *
+ */
+void	Tmk_connect_sigio_duplicate_handler(req)
+	struct	req_con	       *req;
+{
+	Tmk_errexit("Tmk_connect_sigio_duplicate_handler called.\n");
+}
+
+/*
+ *
+ */
+void	Tmk_connect_initialize()
+d92 2
+d96 4
+a99 1
+		rep_fd_[i] = i | 0x80;
+d101 5
+a105 12
+	rep_maxfdp1 = req_maxfdp1 = Tmk_nprocs;
+
+	FD_ZERO(&req_fds);
+	FD_ZERO(&rep_fds);
+}
+
+/*
+ *
+ */
+void	Tmk_accept_initialize(i)
+	int			i;
+{
+d111 1
+a111 2
+void	Tmk_accept(i)
+	int			i;
+d113 5
+a118 5
+
+
+
+
+
+@
+
+
+10.4
+log
+@Added several do nothing functions for compatibility with open_*.c.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_mpl.c,v 10.3 1996/08/09 04:33:27 alc Exp alc $
+d52 1
+a52 2
+ *	Version 0.9.3
+ *	July-1995	Rob Fowler	Created
+d54 1
+a54 1
+ *	Version 0.10.1
+d56 3
+a58 1
+ *	July-29-1996	Rob Fowler	Socket emulation version
+d63 2
+@
+
+
+10.3
+log
+@Split the MPL-specific code into two files.  Only the functions
+and variables that are shared with the other open_*.c are defined
+herein.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+a60 2
+/* #define MPL_DEBUG */
+
+d63 7
+a69 1
+/*
+a82 8
+/* 
+ *  Instead of file descriptors, the *_fd_[] arrays contain
+ *  encodings of the destination and MPL message type to use.
+ *  req_fd_[j] == j 
+ *  rep_fd_[j] == j & 128
+ *  The choice is critical to make lock work.
+ */
+
+a88 1
+	return;
+d97 1
+a97 1
+        Tmk_errexit("Tmk_connect_sigio_duplicate_hadler called");
+d105 1
+a105 1
+    int i;
+d107 12
+a118 1
+    req_seqno = Tmk_proc_id;
+d120 14
+a133 8
+    for (i = 0; i<Tmk_nprocs; i++){
+	req_fd_[i] = i ;
+        rep_fd_[i] = i | 0x80;
+
+    }
+    rep_maxfdp1 = req_maxfdp1 = Tmk_nprocs;
+    FD_ZERO(&req_fds);
+    FD_ZERO(&rep_fds);
+@
+
+
+10.2
+log
+@Initial version
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+d37 4
+a40 2
+/*****************************************************************************
+ * File:		open_mpl.c
+a42 1
+ *      Derived from open_udp.c 
+d47 1
+a47 6
+ *			Tmk_connect_jsigio_duplicate_handler
+ *			Tmk_send
+ *			Tmk_sendmsg
+ *			Tmk_recv
+ *			Tmk_recvmsg
+ *			Tmk_select
+d58 1
+a58 2
+ *
+ *****************************************************************************/
+d61 2
+a86 75
+int probe_source, probe_type, probe_mstat;
+
+#if defined(HACK)
+/*  This speeds up MPL code a bit by
+ *  disabling interrupts and polling.  Unfortunately, it
+ *  uses undocumented internal procedures and variables in
+ *  the css library.
+ */
+
+extern int interrupts;
+
+void css_disable_interrupts()
+{
+    interrupts = 0;
+    disablercvint();
+}
+
+void css_enable_interrupts()
+{
+    int st =DONTCARE;
+    int ty =DONTCARE;
+    int ms, rc;
+    interrupts=1;
+    rc = mp_probe(&st, &ty, &ms);
+}
+#endif
+
+void tmk_mplmutex(how, set, oset)
+    int how;
+    sigset_t *set , *oset;
+{
+    int  dummy;
+
+    if (oset == NULL) oset = (sigset_t *) &dummy;
+
+    switch( how) {
+    case SIG_BLOCK:
+	mpc_lockrnc( 1, (int *) oset);
+	break;
+    case SIG_UNBLOCK:
+	mpc_lockrnc( 0, (int *) oset);
+	break;
+    case SIG_SETMASK:
+	mpc_lockrnc(  * (int *) set, (int *) oset);
+    }
+}
+
+static size_t css_spinwait(msgid, source, type, threshold)
+    int msgid, source, type, threshold;
+{
+    int rc, count = 0;
+    int count2 = 0;
+    char *tstring;
+
+    if (type == MPL_REPLY) tstring = "REPLY";
+    else tstring = "REQ";
+
+#if defined(HACK)
+    css_disable_interrupts();
+#endif
+    while ( (rc = mpc_status(msgid)) <= 0)
+	      if(++count>= threshold  ) {
+		if(Tmk_debug | count2 >9) Tmk_err("spin on %s id %d from %d\n",
+				      tstring,  msgid, source);
+		count =0;
+		count2++;
+	      }
+
+#if defined(HACK)
+    css_enable_interrupts();
+#endif
+    return (size_t) rc;
+}
+
+
+d93 1
+a93 1
+    return;
+a107 1
+
+a122 166
+
+
+
+/**********  Emulation of socket calls in css library ****/
+
+int	Tmk_send(s, msg, len, flags)
+     int s;
+     char *msg;
+     int len, flags;
+{
+    int msg_type;
+
+    if (s & 0x80) {
+	s = s & ~0x80;
+	msg_type = MPL_REPLY;
+    }
+    else msg_type = MPL_REQ;
+
+#if defined (MPL_DEBUG)
+    Tmk_err("%d --> %d, t= %d d= %08x %08x\n",
+	    Tmk_proc_id, s, msg_type, *(unsigned *) msg,
+	    *(unsigned *) (msg+4));
+#endif
+
+    return mpc_bsend(msg, len, s, msg_type);
+}
+
+
+int Tmk_recv(s, buf, len, flags)
+     int s;
+     char *buf;
+     int len, flags;
+{
+    int             repsource;
+    int             reptype;
+    int             repmsgid;
+    int 	    size;	
+
+    /* Note that this is the reverse of the send side */
+    if (s & 0x80) {
+	/* Bad news:  reptype == MPL_REQ shouldn't happen in TMK*/
+	Tmk_errexit("<Tmk_recv> Called to receive a request.");
+    }
+    else {
+	reptype = MPL_REPLY;
+	repsource = s; 
+    }
+
+/*  
+ *  WARNING!  Do not be tempted to turn the recv into a brecv
+ *  and thus get rid of the spinwait.  Using brecv blocks
+ *  the rcvncall handler.  This results in deadlocks.
+ */ 
+
+   /*  repsource = DONTCARE; */
+    
+    if (0>  mpc_recv(buf, len,  &repsource, &reptype, &repmsgid))
+	Tmk_MPLerrexit("<mpc_recv>: node %d", repsource);
+
+    size = css  _spinwait(repmsgid, repsource, reptype, 50000000);
+
+#if defined(MPL_DEBUG)
+    Tmk_err("%d <-- %d, t= %d s=%d  %08x %08x\n",
+	    Tmk_proc_id, repsource, reptype, size,
+	    * (unsigned *) buf, * (unsigned *) (buf+4));
+#endif
+
+    return size;
+}
+
+
+int	Tmk_sendmsg(int s, struct msghdr *msg,  int flags)
+{
+	char	buffer[MTU];
+	char   *base = buffer;
+	int	iovlen = msg->msg_iovlen;
+	int	i;
+	int	msg_type;
+
+	for (i = 0; i < iovlen; i++) { 
+
+		int	len = msg->msg_iov[i].iov_len;
+
+		memcpy(base, msg->msg_iov[i].iov_base, len);
+	  	
+		base += len;
+	}
+
+	return Tmk_send(s, buffer, base-buffer, flags);
+}
+ 
+
+int	Tmk_recvmsg(int s, struct msghdr *msg,  int flags)
+{
+	char	buffer[MTU];
+	char   *base = buffer;
+	int	iovlen = msg->msg_iovlen;
+	int	i;
+	int	remainder;
+	int	size = 0;
+
+	for (i = 0; i < iovlen; i++)
+		size += msg->msg_iov[i].iov_len;
+
+	remainder = size = Tmk_recv( s, buffer, size, flags);
+
+	for (i = 0; remainder > 0; i++) { 
+
+		int	len = MIN(remainder, msg->msg_iov[i].iov_len);
+
+		memcpy(msg->msg_iov[i].iov_base, base, len);
+
+		base += len;
+
+		remainder -= len;
+	}
+	return size;
+}
+
+int Tmk_select (width, readfds, writefds, exceptfds, timeout)
+     int width;
+     fd_set *readfds, *writefds, *exceptfds;
+     struct timeval *timeout;
+{
+  /* 
+   * 
+   * The code around this has to deal with the weird semantics
+   * in a reasonable way.  Under MPL, the only remaining select 
+   * in TreadMarks is in lock.c and it can deal with the dumied-up
+   * semantics of this operation.  
+   */
+   int rc;
+
+   int source;
+   int type;
+   int mstat = 0 ;
+
+   int count = 0;
+
+   do {
+     type = DONTCARE;
+     source = DONTCARE;
+       if ((rc = mpc_probe( &source, &type, &mstat)) <0)
+	   Tmk_perrexit("<mpc_probe> Tmk_select");
+
+       if (Tmk_debug && (count++ > 5000000 )) {
+	   Tmk_err(" spin for REPLY in select %d\n", Tmk_proc_id);
+	   count = 0;
+       }
+
+#if defined(MPL_DEBUG)
+   if (mstat>=0) Tmk_err("**probe f %d t %d s %d\n", source, type, mstat);
+#endif
+   } while ((mstat < 0) || (type != MPL_REPLY));
+
+#if defined(MPL_DEBUG)
+   Tmk_err("**select %d %d %d ", source, type, mstat);
+#endif
+
+    FD_SET(source, readfds);
+
+  return 1;
+}
+
+
+
+@
+
+
+10.2.1.1
+log
+@Elimination of seqno and extra copying from MPL messages.
+@
+text
+@a66 2
+/* #define MPL_DEBUG */
+
+a92 1
+
+d208 1
+a208 12
+/*  WARNING!
+ *  These calls are specific to Tmk-0.10.1 (and later revisions).
+ *  The first 4 bytes (an int) of every message into and out
+ *  of these routines is asumed to be a sequence number that
+ *  is redundant on top of a reliable message layer.
+ *  This code strips off the seqno's on the sending side and
+ *  it adds a dummy seqno on the receiving side.
+ */
+
+
+
+static  css_send(s, msg, len)
+d211 1
+a211 1
+     int len;
+a213 1
+    int *buf;
+d222 3
+a224 3
+    buf = (int*) msg;
+    Tmk_err("s%d --> %d, t= %d d= %08x %08x %08x\n",
+	    Tmk_proc_id, s, msg_type, buf[0], buf[1], buf[2]);
+d227 1
+a227 9
+    if (len == 0) {
+	msg = (char *) &len;
+	len = sizeof(len);
+    }
+
+    if (0 > mpc_bsend(msg, len, s, msg_type))
+	Tmk_MPLerrexit("<css_send>"); 
+
+
+d231 1
+a231 3
+static int dummy_message_buf;
+
+static int css_recv(s, msg, len)
+d233 2
+a234 2
+     char *msg;
+     int len;
+d241 3
+a243 1
+    if (s & 0x80) {   /* Bad news:  reptype == MPL_REQ shouldn't happen in TMK*/
+d250 1
+d257 3
+a259 7
+    if(len == 0) {
+	msg = (char *) & dummy_message_buf;
+	size = sizeof(dummy_message_buf);
+    }
+    else  size = len;
+
+    if (0>  mpc_recv(msg, size,  &repsource, &reptype, &repmsgid))
+d262 1
+a262 1
+    size = css_spinwait(repmsgid, repsource, reptype, 1000000);
+d265 1
+a265 3
+    {     int	* buf = (int *) msg;
+
+    Tmk_err("%d <-- %d, t= %d s=%d  %08x %08x %08x\n",
+d267 1
+a267 2
+	    buf[0], buf[1], buf[2]);
+      }
+a269 2
+    if (len < size) size = len;
+
+a272 27
+int	Tmk_send(s, msg, len, flags)
+     int s;
+     char *msg;
+     int len, flags;
+{
+    int msg_type;
+
+    css_send(s, &(msg[4]), len-sizeof(int));
+
+    return len;
+}
+
+int Tmk_recv(s, buf, len, flags)
+     int s;
+     char *buf;
+     int len, flags;
+{
+    int             repsource;
+    int             reptype;
+    int             repmsgid;
+
+    int 	    size = css_recv(s,  &(buf[4]), len-4);
+
+    *(unsigned *) buf = Tmk_proc_id;
+
+    return size+4;
+}
+d280 1
+a280 15
+
+	int	len;
+
+#if defined(MPL_DEBUG)
+	Tmk_err("sendmsg iovlen %d ", iovlen);
+#endif
+	if (iovlen == 1)
+	    Tmk_errexit("Tmk_sendmsg: attempt to send 1 element iov.\n");
+
+	if ((iovlen == 2) && (msg->msg_iov[0].iov_len == sizeof(int)) )
+	  return css_send(s, msg->msg_iov[1].iov_base,
+			   msg->msg_iov[1].iov_len);
+
+
+	len = msg->msg_iov[0].iov_len - sizeof(int);
+d282 1
+a282 9
+#if defined(MPL_DEBUG)
+	Tmk_err("(len[0]-4) %d ", len);
+#endif
+
+	memcpy(base, (msg->msg_iov[0].iov_base) + sizeof(int) , len);
+	  	
+	base += len;
+	
+	for (i = 1; i < iovlen; i++) { 
+d284 1
+a284 1
+		len = msg->msg_iov[i].iov_len;
+d291 1
+a291 3
+	css_send(s, buffer, base-buffer);
+
+	return base-buffer;
+d304 2
+a305 10
+	if (msg->msg_iovlen == 2 ) {
+	    
+	  size = css_recv( s, msg->msg_iov[1].iov_base,
+			  msg->msg_iov[1].iov_len);
+	}
+	else {
+	
+
+	  for (i = 1; i < iovlen; i++)
+	    size += msg->msg_iov[i].iov_len;
+d307 1
+a307 1
+	  remainder = size = css_recv( s, buffer, size);
+d309 1
+d311 1
+a311 1
+	  for (i = 1; remainder > 0; i++) { 
+d313 1
+a313 1
+	    int	len = MIN(remainder, msg->msg_iov[i].iov_len);
+d315 1
+a315 1
+	    memcpy(msg->msg_iov[i].iov_base, base, len);
+d317 1
+a317 4
+	    base += len;
+
+	    remainder -= len;
+	  }
+d319 1
+a319 5
+
+	*(unsigned *) msg->msg_iov[0].iov_base = Tmk_proc_id;
+
+	return size + 4;
+
+@

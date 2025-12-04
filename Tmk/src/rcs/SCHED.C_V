@@ -1,0 +1,1597 @@
+head	11.4;
+access;
+symbols
+	Tmk-1_0_3_2R:10.11.1.12
+	Tmk-1_0_3_1R:10.11.1.12
+	Tmk-2_0:10.11.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.11.1.12
+	Tmk-1_0_3R:10.11.1.11
+	Tmk-1_2:10.11.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.11.1.11
+	Tmk-1_0_1R:10.11.1.3
+	Tmk-1_1:11
+	Tmk-1_0:10.11.1
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.11;
+locks; strict;
+comment	@ * @;
+
+
+11.4
+date	98.05.21.02.33.39;	author alc;	state Exp;
+branches;
+next	11.3;
+
+11.3
+date	97.12.14.03.12.52;	author alc;	state Exp;
+branches;
+next	11.2;
+
+11.2
+date	97.07.24.19.00.39;	author alc;	state Exp;
+branches;
+next	11.1;
+
+11.1
+date	97.05.27.02.25.29;	author alc;	state Exp;
+branches;
+next	10.11;
+
+10.11
+date	97.03.07.06.40.11;	author alc;	state Exp;
+branches
+	10.11.1.1;
+next	10.10;
+
+10.10
+date	96.08.24.21.10.49;	author alc;	state Exp;
+branches;
+next	10.9;
+
+10.9
+date	96.08.24.18.30.28;	author alc;	state Exp;
+branches;
+next	10.8;
+
+10.8
+date	96.08.08.18.33.35;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	96.07.29.23.12.25;	author alc;	state Exp;
+branches;
+next	10.6;
+
+10.6
+date	96.07.29.05.33.43;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	96.07.28.19.48.45;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.07.28.07.23.56;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.07.28.02.53.46;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.07.26.20.00.01;	author alc;	state Exp;
+branches;
+next	;
+
+10.11.1.1
+date	97.07.03.07.18.10;	author alc;	state Exp;
+branches;
+next	10.11.1.2;
+
+10.11.1.2
+date	97.12.14.03.14.27;	author alc;	state Exp;
+branches;
+next	10.11.1.3;
+
+10.11.1.3
+date	98.01.07.07.27.29;	author alc;	state Exp;
+branches;
+next	10.11.1.4;
+
+10.11.1.4
+date	98.03.21.23.59.32;	author alc;	state Exp;
+branches;
+next	10.11.1.5;
+
+10.11.1.5
+date	98.05.14.20.10.16;	author alc;	state Exp;
+branches;
+next	10.11.1.6;
+
+10.11.1.6
+date	98.05.20.04.14.00;	author alc;	state Exp;
+branches;
+next	10.11.1.7;
+
+10.11.1.7
+date	98.06.11.22.22.55;	author alc;	state Exp;
+branches;
+next	10.11.1.8;
+
+10.11.1.8
+date	98.06.13.18.39.11;	author alc;	state Exp;
+branches;
+next	10.11.1.9;
+
+10.11.1.9
+date	98.06.14.06.27.56;	author alc;	state Exp;
+branches;
+next	10.11.1.10;
+
+10.11.1.10
+date	98.06.14.06.35.12;	author alc;	state Exp;
+branches;
+next	10.11.1.11;
+
+10.11.1.11
+date	98.06.16.04.59.14;	author alc;	state Exp;
+branches;
+next	10.11.1.12;
+
+10.11.1.12
+date	98.08.17.16.31.41;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Loop scheduling routines created by Zheng-Hua Li.
+@
+
+
+11.4
+log
+@Changed "NPROCS" to "SEQNO_INCR".  (Must have missed this earlier.)
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: sched.c,v 11.3 1997/12/14 03:12:52 alc Exp alc $
+ *
+ * Description:    
+ *	loop scheduling routines
+ *
+ * External Functions:
+ *			Tmk_sched_start,
+ *			Tmk_sched_fork,
+ *                      Tmk_sched_terminate
+ *
+ * External Variables:
+ *			Tmk_sched_sigio_handler
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	15-Jul-1996	Zheng-Hua Li	Created
+ *
+ *	Version 0.10.2
+ */
+#include "Tmk.h"
+
+static	struct	sched	{
+	unsigned char		manager;
+	unsigned volatile	mask;
+}			sched_[NPROCS];
+
+static	struct	arrival	{
+	struct	req_syn	       *req;
+	unsigned		size;
+}			arrival_[NPROCS];
+
+
+static	struct	req_typ	req_typ;
+
+static	char		req_data[MTU - sizeof(req_typ) - sizeof(proc_vector_time_)];
+
+static	struct	iovec	req_iov[3] = {
+	{ (caddr_t)&req_typ, sizeof(req_typ) },
+	{ (caddr_t) proc_vector_time_, sizeof(proc_vector_time_) },
+	{ req_data, 0 } };
+static	struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+
+struct	reply_struct	{
+        unsigned	seqno;
+	unsigned short	repo;
+	unsigned short	dummy;
+	void          (*func_ptr)( Tmk_sched_arg_t ); /* the function pointer */
+	struct	Tmk_sched_arg   arg;
+};
+
+static	struct	rep_typ	{
+        unsigned	seqno;
+	unsigned short	repo;
+	unsigned short	dummy;
+	void          (*func_ptr)( Tmk_sched_arg_t ); /* the function pointer */
+	struct	Tmk_sched_arg   arg;
+	char		data[MTU - sizeof(struct reply_struct)];
+}			rep_msg;
+
+static	void	default_handler(req, size)
+	struct req_syn *req;
+	int		size;
+{
+	int		pid = req->from;
+
+	struct arrival *arrival = &arrival_[pid];
+
+	sched_[req->id].mask |= 1 << pid;
+
+	arrival->req = req;
+	arrival->size = size;
+}
+
+static	void	special_handler(req, size)
+	struct req_syn *req;
+	int		size;
+{
+	int		pid = req->from;
+
+	struct arrival *arrival = &arrival_[pid];
+
+	sched_[req->id].mask |= 1 << pid;
+
+	arrival->req = req;
+
+	if (req->type == REQ_JOIN_REPO)
+		rep_msg.repo = 1;
+
+	Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], size - sizeof(struct req_syn), 0);
+}
+
+void  (*Tmk_sched_sigio_handler)() = default_handler;
+
+void	Tmk_sched_sigio_duplicate_handler(req)
+	struct req_syn *req;
+{
+	int		pid = req->from;
+	struct	sched  *sched = &sched_[req->id];
+
+	if ((sched->mask & (1 << pid)) == 0) {
+
+		int	size = Tmk_interval_request(rep_msg.data, req->vector_time) - (caddr_t)&rep_msg;
+
+		rep_msg.seqno = req->seqno;
+	/*	rep_msg.repo = ? */
+
+		if (0 > send(rep_fd_[pid], (char *)&rep_msg, size, 0))
+			Tmk_perrexit("<send>Tmk_sched_sigio_duplicate_handler");
+
+		if (Tmk_debug)
+			Tmk_err("<repeated seqno: %d>Tmk_sched_sigio_duplicate_handler: seqno == %d\n", pid, req->seqno);
+	}
+}
+
+/*
+ * Called by the master process.  At termination, "sched->mask" is full.
+ * This prevents a "duplicate" reply by Tmk_sched_sigio_duplicate_handler
+ * until the initial reply is sent by Tmk_sched_fork.
+ */
+void	Tmk_sched_join( void )
+{
+	struct sched   *sched = &sched_[Tmk_proc_id];
+	sigset_t	mask;
+	int		j, t;
+
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+	/*
+	 * In order to merge invalidations from different processors, the last
+	 * argument to Tmk_interval_incorporate must be NULL.  The last
+	 * argument can only be NULL if all dirty pages have write notices.
+	 */
+	Tmk_interval_create(proc_vector_time_);
+
+	if ((t = Tmk_diff_repo_test()) == 0)
+		t = Tmk_interval_repo_test();
+
+	rep_msg.repo = t;
+
+	for (j = 0; j < Tmk_nprocs; j++) {
+		if (j == Tmk_proc_id)
+			continue;
+
+		if ((1 << j) & sched->mask) {
+
+			struct arrival *arrival = &arrival_[j];
+			struct req_syn *req;
+
+			if ((req = arrival->req)->type == REQ_JOIN_REPO)
+				rep_msg.repo = 1;
+
+			Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], arrival->size - sizeof(struct req_syn), 0);
+		}
+	}
+	Tmk_sched_sigio_handler = special_handler;
+
+	while (sched->mask ^ Tmk_spinmask)
+		sigio_handler();
+
+	Tmk_sched_sigio_handler = default_handler;
+
+	sigio_buffer_initialize();
+
+	/*
+	 * Perform the merged mprotects.
+	 */
+	Tmk_page_inval_perform();
+
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+}
+
+/*
+ *
+ */
+int	Tmk_sched_start(manager)
+	unsigned	manager;
+{
+	if (Tmk_debug)
+		Tmk_err("sched: manager %d ", manager);
+
+	if (manager == Tmk_proc_id) {
+	
+		Tmk_sched_join();
+
+		return 1;
+	}
+	else if (manager < Tmk_nprocs)
+		for (;;) {
+
+			int		j, t, size;
+			sigset_t	mask;
+
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+			Tmk_interval_create(proc_vector_time_);
+
+			if ((t = Tmk_diff_repo_test()) == 0)
+				t = Tmk_interval_repo_test();
+
+			req_typ.type = t ? REQ_JOIN_REPO : REQ_JOIN;
+			req_typ.id = manager;
+			
+			req_iov[2].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, MAX(inverse_time_[manager], proc_array_[manager].prev->vector_time_[Tmk_proc_id])) - req_data;
+			req_typ.seqno = req_seqno += SEQNO_INCR;
+		rexmit:
+			if (0 > sendmsg(req_fd_[manager], &req_hdr, 0))
+				Tmk_perrexit("<sendmsg>Tmk_sched_start");
+
+			Tmk_tout_flag = 0;
+
+			setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+
+			sigio_mutex(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+		retry:
+			if ((size = recv(req_fd_[manager], (char *)&rep_msg, sizeof(rep_msg), 0)) < 0)
+				if (Tmk_tout_flag) {
+
+					if (Tmk_debug)
+						Tmk_err("<timeout: %d>Tmk_sched_start: seqno == %d\n", manager, req_typ.seqno);
+
+					sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+					goto rexmit;
+				}
+				else if (errno == EINTR)
+					goto retry;
+				else
+					Tmk_perrexit("<recv>Tmk_sched_start");
+
+			if (rep_msg.seqno != req_typ.seqno) {
+
+				if (Tmk_debug)
+					Tmk_err("<bad seqno: %d>Tmk_sched_start: seqno == %d (received: %d)\n", manager, req_typ.seqno, rep_msg.seqno);
+
+				goto retry;
+			}
+			sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+
+			Tmk_stat.messages++;
+			Tmk_stat.bytes += size;
+
+			Tmk_interval_incorporate(rep_msg.data, size - sizeof(struct reply_struct), proc_vector_time_);
+
+			for (j = 0; j < Tmk_nprocs; j++) {
+				if (j == Tmk_proc_id)
+					continue;
+
+				inverse_time_[j] = proc_vector_time_[Tmk_proc_id];
+			}
+			if (rep_msg.repo)
+				Tmk_repo();
+
+			sigio_mutex(SIG_SETMASK, &mask, NULL);
+			
+			if (rep_msg.func_ptr)
+				(*rep_msg.func_ptr)(&rep_msg.arg);
+			else
+				return 0;
+		}
+	else
+		Tmk_errexit("Tmk_sched_start: manager == %d\n", manager);
+
+	/*
+	 * This statement is unreachable but necessary to pacify
+	 * some compilers.
+	 */
+	return -1;
+}
+
+/*
+ *
+ */
+void	Tmk_sched_fork(func_ptr, arg)
+	void	      (*func_ptr)( Tmk_sched_arg_t arg );
+	Tmk_sched_arg_t arg;
+{
+	int		j, size;
+	struct req_syn *req;
+	sigset_t	mask;
+
+	rep_msg.func_ptr = func_ptr;
+
+	if (arg)
+		rep_msg.arg = *arg;
+
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+
+	sched_[Tmk_proc_id].mask = 0;
+
+	Tmk_interval_create(proc_vector_time_);
+
+	for (j = 0; j < Tmk_nprocs; j++) {
+		if (j == Tmk_proc_id)
+			continue;
+
+		rep_msg.seqno = (req = arrival_[j].req)->seqno;
+
+		size = Tmk_interval_request(rep_msg.data, req->vector_time) - (caddr_t)&rep_msg;
+
+		if (0 > send(rep_fd_[j], (char *)&rep_msg, size, 0))
+			Tmk_perrexit("<send>Tmk_sched_fork (proc: %d)", j);
+	}
+	for (j = 0; j < Tmk_nprocs; j++) {
+		if (j == Tmk_proc_id)
+			continue;
+
+		inverse_time_[j] = proc_vector_time_[Tmk_proc_id];
+	}
+	if (rep_msg.repo)
+		Tmk_repo();
+
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+
+	if (func_ptr)
+		(*func_ptr)(arg);
+}
+
+/*
+ *
+ */
+void	Tmk_sched_exit( void )
+{
+	Tmk_sched_fork(NULL, NULL);
+}
+
+/*
+ *
+ */
+void	Tmk_sched_initialize( void )
+{
+	int	i;
+
+	for (i = 0; i < NPROCS; i++)
+		sched_[i].manager = i % Tmk_nprocs;
+
+	req_typ.from = Tmk_proc_id;
+}
+@
+
+
+11.3
+log
+@Added the argument type to the "func_ptr" in the reply message structures.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 11.2 1997/07/24 19:00:39 alc Exp alc $
+d242 1
+a242 1
+			req_typ.seqno = req_seqno += NPROCS;
+@
+
+
+11.2
+log
+@Eliminated the Ultrix-specific code.  (Identical to revision 10.11.1.1.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 11.1 1997/05/27 02:25:29 alc Exp alc $
+d85 1
+a85 1
+	void          (*func_ptr)(); /* the function pointer */
+d93 1
+a93 1
+	void          (*func_ptr)(); /* the function pointer */
+@
+
+
+11.1
+log
+@Replaced static spinmask by extern Tmk_spinmask.  (Required
+by Tmk_spawn.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11 1997/03/07 06:40:11 alc Exp alc $
+a78 1
+#if ! defined(ultrix)
+a79 1
+#endif
+a144 10
+#if defined(ultrix)
+		/*
+		 * The ATM driver doesn't check the message size.
+		 */
+		if (size > tmk_MTU)
+			Tmk_errexit("<size == %d>Tmk_sched_sigio_duplicate_handler\n", size);
+
+		if (0 > write(rep_fd_[pid], &rep_msg, size))
+			Tmk_perrexit("<write>Tmk_sched_sigio_duplicate_handler");
+#else
+d147 1
+a147 1
+#endif
+a241 7
+#if defined(ultrix)
+			/*
+			 * The ATM driver doesn't check the message size.
+			 */
+			if (req_iov[2].iov_len + sizeof(struct req_syn) > tmk_MTU)
+				Tmk_errexit("<size == %d>Tmk_sched_start\n", req_iov[2].iov_len);
+#endif
+a243 4
+#if defined(ultrix)
+			if (0 > writev(req_fd_[manager], req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+				Tmk_perrexit("<writev>Tmk_sched_start");
+#else
+d246 1
+a246 1
+#endif
+a252 3
+#if defined(ultrix)
+			if ((size = read(req_fd_[manager], &rep_msg, sizeof(rep_msg))) < 0)
+#else
+a253 1
+#endif
+a265 3
+#if defined(ultrix)
+					Tmk_perrexit("<read>Tmk_sched_start");
+#else
+d267 1
+a267 1
+#endif
+d337 1
+a337 10
+#if defined(ultrix)
+		/*
+		 * The ATM driver doesn't check the message size.
+		 */
+		if (size > tmk_MTU)
+			Tmk_errexit("<size == %d>Tmk_sched_fork (proc: %d)\n", size, j);
+
+		if (0 > write(rep_fd_[j], &rep_msg, size))
+			Tmk_perrexit("<write>Tmk_sched_fork (proc: %d)", j);
+#else
+a339 1
+#endif
+@
+
+
+10.11
+log
+@Added a return statement to Tmk_sched_start to pacify some compilers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.10 1996/08/24 21:10:49 alc Exp alc $
+a99 2
+static	unsigned	spinmask;
+
+d207 1
+a207 1
+	while (spinmask ^ sched->mask)
+a412 2
+
+	spinmask = ((1 << Tmk_nprocs) - 1) &~ (1 << Tmk_proc_id);
+@
+
+
+10.11.1.1
+log
+@Eliminated the Ultrix-specific code.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11 1997/03/07 06:40:11 alc Exp alc $
+d79 1
+d81 1
+d149 10
+d161 1
+a161 1
+
+d256 7
+d265 4
+d271 1
+a271 1
+
+d278 3
+d282 1
+d295 3
+d299 1
+a299 1
+
+d369 10
+a378 1
+
+d381 1
+@
+
+
+10.11.1.2
+log
+@Added the argument type to the "func_ptr" in the reply message structures.
+(Identical to revision 11.3.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.1 1997/07/03 07:18:10 alc Exp alc $
+d85 1
+a85 1
+	void          (*func_ptr)( Tmk_sched_arg_t ); /* the function pointer */
+d93 1
+a93 1
+	void          (*func_ptr)( Tmk_sched_arg_t ); /* the function pointer */
+@
+
+
+10.11.1.3
+log
+@Use a single GLOBAL spinmask instead of multiple static spinmasks.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.2 1997/12/14 03:14:27 alc Exp alc $
+d98 2
+d197 1
+a197 1
+	while (sched->mask ^ Tmk_spinmask)
+d375 2
+@
+
+
+10.11.1.4
+log
+@Change NPROCS to Tmk_nprocs.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.3 1998/01/07 07:27:29 alc Exp alc $
+d369 1
+a369 1
+	int	i = 0;
+d371 1
+a371 1
+	do {
+a372 1
+	} while (++i < Tmk_nprocs);
+@
+
+
+10.11.1.5
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.4 1998/03/21 23:59:32 alc Exp alc $
+d145 2
+a146 2
+		while (0 > send(rep_fd_[pid], (char *)&rep_msg, size, 0))
+			Tmk_errno_check("Tmk_sched_sigio_duplicate_handler<send>");
+d244 2
+a245 2
+			while (0 > sendmsg(req_fd_[manager], &req_hdr, 0))
+				Tmk_errno_check("Tmk_sched_start<sendmsg>");
+d338 2
+a339 2
+		while (0 > send(rep_fd_[j], (char *)&rep_msg, size, 0))
+			Tmk_errno_check("Tmk_sched_fork<send>");
+@
+
+
+10.11.1.6
+log
+@Changed "NPROCS" to "SEQNO_INCR".  (Must have missed this earlier.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.5 1998/05/14 20:10:16 alc Exp alc $
+d242 1
+a242 1
+			req_typ.seqno = req_seqno += SEQNO_INCR;
+@
+
+
+10.11.1.7
+log
+@Use the global req_from_[] instead of the (now defunct) private arrival_[].
+req_from_[] is updated by the sigio handler instead of the individual
+barrier and sched sigio handlers.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.6 1998/05/20 04:14:00 alc Exp alc $
+d65 6
+d104 2
+d107 3
+d118 1
+a118 1
+	req_entry_t    *arrival = &req_from_[pid];
+d122 2
+d184 1
+a184 1
+			req_entry_t    *arrival = &req_from_[j];
+d334 1
+a334 1
+		rep_msg.seqno = (req = req_from_[j].req)->seqno;
+@
+
+
+10.11.1.8
+log
+@Made changes to barrier and sched to facilitate integration
+of the FASTLINK barriers:
+
+1. Use a single sigio handler for barriers and scheds (regardless
+of whether the manager has arrived or not).
+
+2. Use barrier->mask and sched->mask to determine whether or not
+the manager has arrived/joined.
+
+3. Redefine Tmk_spinmask to include the "host" processor.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.7 1998/06/11 22:22:55 alc Exp alc $
+d92 12
+a103 7
+/*
+ *
+ */
+void
+Tmk_sched_sigio_handler(
+	const struct req_syn *req,
+	int		size)
+d105 3
+a107 1
+	if ((sched_[req->id].mask |= (1 << req->from)) & (1 << Tmk_proc_id)) {
+d109 1
+a109 2
+		if (req->type == REQ_JOIN_REPO)
+			rep_msg.repo = 1;
+d111 4
+a114 2
+		Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], size - sizeof(struct req_syn), NULL);
+	}
+d117 2
+d180 1
+a180 1
+	sched->mask |= 1 << Tmk_proc_id;
+d184 2
+@
+
+
+10.11.1.9
+log
+@Quite a number of minor (harmless) changes.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.8 1998/06/13 18:39:11 alc Exp alc $
+d90 39
+a128 1
+}			rep;
+d135 1
+a135 2
+void
+Tmk_sched_join( void )
+a136 1
+	int		j, repo;
+a137 1
+	struct req_syn *req;
+d139 1
+d150 2
+a151 2
+	if ((repo = Tmk_diff_repo_test()) == 0)
+		repo = Tmk_interval_repo_test();
+d153 1
+a153 1
+	rep.repo = repo;
+d161 2
+a162 1
+			req = req_from_[j].req;
+d164 2
+a165 3
+			Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS],
+						 req_from_[j].size - sizeof(struct req_syn),
+						 NULL);
+d167 1
+a167 2
+			if (req->type == REQ_JOIN_REPO)
+				rep.repo = 1;
+d188 2
+a189 3
+int
+Tmk_sched_start(
+	unsigned	manager)
+d203 1
+a203 2
+			int		j, repo, size;
+			unsigned	time;
+d210 2
+a211 2
+			if ((repo = Tmk_diff_repo_test()) == 0)
+				repo = Tmk_interval_repo_test();
+d213 1
+a213 1
+			req_typ.type = repo ? REQ_JOIN_REPO : REQ_JOIN;
+d215 2
+a216 5
+
+			time = MAX(inverse_time_[manager], proc_array_[manager].prev->vector_time_[Tmk_proc_id]);
+
+			req_iov[2].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, time) - req_data;
+
+d228 1
+a228 1
+			if ((size = recv(req_fd_[manager], (char *)&rep, sizeof(rep), 0)) < 0)
+d232 1
+a232 2
+						Tmk_err("Tmk_sched_start: %d timed out (seqno %d)\n",
+							manager, req_typ.seqno);
+d241 1
+a241 1
+					Tmk_perrexit("Tmk_sched_start<recv>");
+d243 1
+a243 1
+			if (rep.seqno != req_typ.seqno) {
+d246 1
+a246 2
+					Tmk_err("Tmk_sched_start: bad seqno %d from %d (received %d)\n",
+						req_typ.seqno, manager, rep.seqno);
+d255 1
+a255 1
+			Tmk_interval_incorporate(rep.data, size - sizeof(struct reply_struct), proc_vector_time_);
+d263 1
+a263 1
+			if (rep.repo)
+d268 2
+a269 2
+			if (rep.func_ptr)
+				(*rep.func_ptr)(&rep.arg);
+d286 3
+a288 4
+void
+Tmk_sched_fork(
+	void	      (*func_ptr)( Tmk_sched_arg_t arg ),
+	Tmk_sched_arg_t arg)
+d294 1
+a294 1
+	rep.func_ptr = func_ptr;
+d297 1
+a297 1
+		rep.arg = *arg;
+d309 1
+a309 3
+		req = req_from_[j].req;
+
+		rep.seqno = req->seqno;
+d311 1
+a311 1
+		size = Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep;
+d313 1
+a313 1
+		while (0 > send(rep_fd_[j], (char *)&rep, size, 0))
+d322 1
+a322 1
+	if (rep.repo)
+d334 1
+a334 2
+void
+Tmk_sched_exit( void )
+d342 1
+a342 45
+void
+Tmk_sched_sigio_handler(
+	const struct req_syn *req,
+	int		size)
+{
+	if ((sched_[req->id].mask |= (1 << req->from)) & (1 << Tmk_proc_id)) {
+
+		Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], size - sizeof(struct req_syn), NULL);
+
+		if (req->type == REQ_JOIN_REPO)
+			rep.repo = 1;
+	}
+}
+
+/*
+ *
+ */
+void
+Tmk_sched_sigio_duplicate_handler(
+	const struct req_syn *req,
+	int		size)
+{
+	int		from = req->from;
+
+	if ((sched_[req->id].mask & (1 << from)) == 0) {
+
+		int	size = Tmk_interval_request(rep.data, req->vector_time) - (caddr_t)&rep;
+
+		rep.seqno = req->seqno;
+	/*	rep.repo = ? */
+
+		while (0 > send(rep_fd_[from], (char *)&rep, size, 0))
+			Tmk_errno_check("Tmk_sched_sigio_duplicate_handler<send>");
+
+		if (Tmk_debug)
+			Tmk_err("Tmk_sched_sigio_duplicate_handler: repeated seqno %d from %d\n",
+				req->seqno, from);
+	}
+}
+
+/*
+ *
+ */
+void
+Tmk_sched_initialize( void )
+@
+
+
+10.11.1.10
+log
+@The sigio_buffer_initialize should be in Tmk_sched_fork and not
+Tmk_sched_join.  Otherwise, a retransmitted message may overwrite
+a buffer that stills holds a vector timestamp used in Tmk_sched_fork.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.9 1998/06/14 06:27:56 alc Exp alc $
+d140 2
+a290 2
+	sigio_buffer_initialize();
+
+@
+
+
+10.11.1.11
+log
+@Switch to Tmk_sigio_buffer_release for buffer management.  (Stop
+using sigio_buffer_initialize.)
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.10 1998/06/14 06:35:12 alc Exp alc $
+a285 2
+		Tmk_sigio_buffer_release(req);
+
+d289 2
+@
+
+
+10.11.1.12
+log
+@Use "inverse_time_" exclusively to determine the consistency data
+that is sent to the manager.  It always contains the correct value.
+The MAX was pointless.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.11.1.11 1998/06/16 04:59:14 alc Exp alc $
+d168 1
+d181 3
+a183 1
+			req_iov[2].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, inverse_time_[manager]) - req_data;
+@
+
+
+10.10
+log
+@Replaced sigprocmask by sigio_mutex.  Sigio_mutex is defined
+in Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.9 1996/08/24 18:30:28 alc Exp alc $
+d332 6
+@
+
+
+10.9
+log
+@Use SIG_UNBLOCK before recv rather than SIG_SETMASK.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.8 1996/08/08 18:33:35 alc Exp $
+d178 1
+a178 1
+	sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d221 1
+a221 1
+	sigprocmask(SIG_SETMASK, &mask, NULL);
+d245 1
+a245 1
+			sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d276 1
+a276 1
+			sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, NULL);
+d288 1
+a288 1
+					sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d307 1
+a307 1
+			sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, NULL);
+d323 1
+a323 1
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+d350 1
+a350 1
+	sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d386 1
+a386 1
+	sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.8
+log
+@Use "manager" instead of "proc_id" as the argument.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.7 1996/07/29 23:12:25 alc Exp alc $
+d273 1
+a273 1
+			
+d275 2
+a276 2
+			
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.7
+log
+@Eliminated the call to Tmk_sched_join from Tmk_sched_fork.  The program
+must call Tmk_sched_join explicitly.  Moved sigio_buffer_initialize
+to Tmk_sched_join.  (Where it belongs.)  Moved argument initialization
+outside of the critical section.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.6 1996/07/29 05:33:43 alc Exp alc $
+d227 2
+a228 2
+int	Tmk_sched_start(proc_id)
+	unsigned	proc_id;
+d231 1
+a231 1
+		Tmk_err("sched: proc_id %d ", proc_id);
+d233 1
+a233 1
+	if (proc_id == Tmk_proc_id) {
+d239 1
+a239 2
+	else if (proc_id < Tmk_nprocs) {
+
+d242 1
+a242 1
+			int		j, size, t;
+d253 1
+a253 1
+			req_typ.id = proc_id;
+d255 1
+a255 1
+			req_iov[2].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, MAX(inverse_time_[proc_id], proc_array_[proc_id].prev->vector_time_[Tmk_proc_id])) - req_data;
+d266 1
+a266 1
+			if (0 > writev(req_fd_[proc_id], req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+d269 1
+a269 1
+			if (0 > sendmsg(req_fd_[proc_id], &req_hdr, 0))
+d279 1
+a279 1
+			if ((size = read(req_fd_[proc_id], &rep_msg, sizeof(rep_msg))) < 0)
+d281 1
+a281 1
+			if ((size = recv(req_fd_[proc_id], (char *)&rep_msg, sizeof(rep_msg), 0)) < 0)
+d286 1
+a286 1
+						Tmk_err("<timeout: %d>Tmk_sched_start: seqno == %d\n", proc_id, req_typ.seqno);
+d303 1
+a303 1
+					Tmk_err("<bad seqno: %d>Tmk_sched_start: seqno == %d (received: %d)\n", proc_id, req_typ.seqno, rep_msg.seqno);
+d326 1
+a326 1
+				(*rep_msg.func_ptr)(&rep_msg.arg);	/* XXX is this still valid? - repo/sigsetmask */
+a329 1
+	}
+d331 1
+a331 1
+		Tmk_errexit("Tmk_sched_start: proc_id == %d\n", proc_id);
+d393 1
+a393 1
+ * tell everyone to stop
+@
+
+
+10.6
+log
+@Delete the Tmk_sched_sigio_handler assignment from Tmk_sched_start.  Move
+the assignments in Tmk_sched_join.  Export Tmk_sched_join.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.5 1996/07/28 19:48:45 alc Exp alc $
+d168 3
+a170 1
+ * master process calls this
+d180 5
+d214 2
+d347 5
+a357 5
+	rep_msg.func_ptr = func_ptr;
+
+	if (arg)
+		rep_msg.arg = *arg;
+
+a378 2
+	sigio_buffer_initialize();
+
+d390 1
+a390 2
+	if (func_ptr) {
+
+a391 3
+
+		Tmk_sched_join();	/* XXX */
+	}
+@
+
+
+10.5
+log
+@Added type casts to pacify the Slowaris compiler.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.4 1996/07/28 07:23:56 alc Exp alc $
+a169 1
+static
+a184 2
+	Tmk_sched_sigio_handler = special_handler;
+
+d200 2
+d205 2
+a211 2
+	Tmk_sched_sigio_handler = default_handler;
+
+a369 2
+	Tmk_sched_sigio_handler = default_handler;
+
+@
+
+
+10.4
+log
+@Create req_typ_type REQ_JOIN, replacing NEW_REQ_ARRIVAL.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.3 1996/07/28 02:53:46 alc Exp alc $
+d159 1
+a159 1
+		if (0 > send(rep_fd_[pid], &rep_msg, size, 0))
+d274 1
+a274 1
+			if ((size = recv(req_fd_[proc_id], &rep_msg, sizeof(rep_msg), 0)) < 0)
+d367 1
+a367 1
+		if (0 > send(rep_fd_[j], &rep_msg, size, 0))
+@
+
+
+10.3
+log
+@Made extensive modifications.  Changed signal management
+for POSIX compliance.  Fixed a bug in Tmk_sched_start.  It didn't
+block signals after the first iteration on the slave.
+@
+text
+@d39 1
+a39 1
+ * $Id: sched.c,v 10.2 1996/07/26 20:00:01 alc Exp alc $
+d128 1
+a128 1
+	if (req->type == NEW_REQ_ARRIVAL_REPO)
+d197 1
+a197 1
+			if ((req = arrival->req)->type == NEW_REQ_ARRIVAL_REPO)
+d245 1
+a245 1
+			req_typ.type = t ? NEW_REQ_ARRIVAL_REPO : NEW_REQ_ARRIVAL;
+@
+
+
+10.2
+log
+@Initial integration of the loop scheduling routines.
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d60 1
+a60 5
+#define DOWORK          1
+#define NOWORK_CONTINUE 2
+#define NOWORK_EXIT     3
+
+static	struct	barrier	{
+d63 1
+a63 1
+}			barrier_[NPROCS];
+d86 3
+a88 3
+	struct	Tmk_sched_arg   sharedArg;
+	unsigned        startWork;   /* tells children there is work to do */
+	void            (*functionPtr)(); /* the function pointer */
+d94 3
+a96 3
+	struct	Tmk_sched_arg   sharedArg;
+	unsigned        startWork;   /* tells children there is work to do */
+	void            (*functionPtr)(); /* the function pointer */
+a101 2
+static  unsigned        replymask; /* only reply if this mask is set */
+
+d110 1
+a110 1
+	barrier_[req->id].mask |= 1 << pid;
+d124 1
+a124 1
+	barrier_[req->id].mask |= 1 << pid;
+d129 1
+a129 2
+	  rep_msg.repo = 1;
+
+d140 1
+a140 1
+	struct barrier *barrier = &barrier_[req->id];
+d142 1
+a142 1
+	if (((barrier->mask & (1 << pid)) == 0) && replymask) {
+d154 1
+a154 1
+			Tmk_errexit("<size == %d>Tmk_barrier_sigio_duplicate_handler\n", size);
+d157 1
+a157 1
+			Tmk_perrexit("<write>Tmk_barrier_sigio_duplicate_handler");
+d160 1
+a160 1
+			Tmk_perrexit("<send>Tmk_barrier_sigio_duplicate_handler");
+d163 1
+a163 1
+			Tmk_err("<repeated seqno: %d>Tmk_barrier_sigio_duplicate_handler: seqno == %d\n", pid, req->seqno);
+d170 2
+a171 1
+static	void	Tmk_barrier_gather_proc( void )
+d173 6
+a178 5
+	struct req_syn *req;
+	struct barrier *barrier = &barrier_[Tmk_proc_id];
+	int		mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+	int		j, manager, size, t;
+	
+d192 1
+a192 1
+		if ((1 << j) & barrier->mask) {
+d195 1
+d200 1
+a200 2
+			Tmk_interval_incorporate((caddr_t)&req->vector_time[NPROCS], 
+						 arrival->size - sizeof(struct req_syn), 0);
+d203 1
+a203 1
+	while (spinmask ^ barrier->mask)
+a205 4
+	barrier->mask = 0;
+
+	replymask = 0;
+
+d213 1
+a213 1
+	sigsetmask(mask);
+d223 1
+a223 3
+		Tmk_err("sched: %d ", proc_id);
+  
+	if (proc_id < Tmk_nprocs) {
+d225 3
+a227 2
+		struct barrier *barrier = &barrier_[proc_id];
+		int		manager;
+d229 5
+a233 3
+		if ((manager = barrier->manager) == Tmk_proc_id) {
+	
+			Tmk_barrier_gather_proc();
+a234 4
+			return 1;
+		}
+		else {
+			int		mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d236 1
+a236 1
+			unsigned	getout;
+d238 1
+a238 3
+		requestLoop:
+
+			getout = 0;
+d244 1
+a244 1
+			
+d248 1
+a248 1
+			req_iov[2].iov_len = Tmk_interval_request_proc(req_data, Tmk_proc_id, MAX(inverse_time_[manager], proc_array_[manager].prev->vector_time_[Tmk_proc_id])) - req_data;
+d254 1
+a254 1
+				Tmk_errexit("<size == %d>Tmk_barrier\n", req_iov[2].iov_len);
+d259 2
+a260 2
+			if (0 > writev(req_fd_[manager], req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+				Tmk_perrexit("<writev>Tmk_barrier");
+d262 2
+a263 2
+			if (0 > sendmsg(req_fd_[manager], &req_hdr, 0))
+				Tmk_perrexit("<sendmsg>Tmk_barrier");
+d269 1
+a269 1
+			sigsetmask(mask);
+d272 1
+a272 1
+			if ((size = read(req_fd_[manager], &rep_msg, sizeof(rep_msg))) < 0)
+d274 1
+a274 1
+			if ((size = recv(req_fd_[manager], &rep_msg, sizeof(rep_msg), 0)) < 0)
+d279 1
+a279 1
+						Tmk_err("<timeout: %d>Tmk_barrier: seqno == %d\n", manager, req_typ.seqno);
+d281 1
+a281 1
+					sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d289 1
+a289 1
+					Tmk_perrexit("<read>Tmk_barrier");
+d291 1
+a291 1
+					Tmk_perrexit("<recv>Tmk_barrier");
+d296 1
+a296 1
+					Tmk_err("<bad seqno: %d>Tmk_barrier: seqno == %d (received: %d)\n", manager, req_typ.seqno, rep_msg.seqno);
+d300 2
+a301 6
+			sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+			
+			getout = rep_msg.startWork;
+#if 0			
+			Tmk_stat.get_work++;
+#endif /* alc */
+d303 4
+a306 9
+			Tmk_stat.bytes += (size - sizeof(struct reply_struct) + 6);	/* XXX */
+#if 0			
+			Tmk_stat.newbarrier_reply++;
+			Tmk_stat.newbarrier_reply_bytes += (size - sizeof(struct reply_struct) + 6);
+#endif /* alc */
+			Tmk_interval_incorporate(rep_msg.data, 
+						 size - sizeof(struct reply_struct),
+						 proc_vector_time_);
+			
+d315 2
+d318 4
+a321 13
+			sigsetmask(mask);
+			
+			if(getout == DOWORK){ /* there is some work to do*/
+				(*rep_msg.functionPtr)(&rep_msg.sharedArg);	/* XXX is this still valid - repo/sigsetmask */
+			}
+			else if (getout == NOWORK_EXIT)
+				goto out;
+#if 0			
+			Tmk_stat.gather++;
+#endif /* alc */
+			goto requestLoop;
+		out:
+			return 0;
+d325 1
+a325 1
+		Tmk_errexit("Tmk_barrier_gather: id == %d\n", proc_id);
+d328 6
+a333 4
+static	void	Tmk_barrier_distribute(functionPtr, sharedArg, flag)
+	void (*functionPtr)(Tmk_sched_arg_t);
+	Tmk_sched_arg_t sharedArg;
+	int flag;
+d335 1
+a335 1
+	int j, size;
+d337 1
+a337 1
+	int t;
+d339 3
+a341 1
+	int	mask =  sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+a343 15
+#if 0
+	if ((t = Tmk_diff_repo_test()) == 0)
+		t = Tmk_interval_repo_test();
+			
+	if (t == 1)
+		rep_msg.repo = 1;
+#endif
+	if (functionPtr == NULL) {
+		if(flag != -1)
+			rep_msg.startWork = NOWORK_CONTINUE;
+		else
+			rep_msg.startWork = NOWORK_EXIT;
+	}
+	else {
+		rep_msg.functionPtr = functionPtr;
+d345 1
+a345 2
+		if (sharedArg != NULL)
+			rep_msg.sharedArg = *sharedArg;
+d347 2
+a348 3
+		rep_msg.startWork = DOWORK;
+	}
+	replymask = 1;
+d362 1
+a362 1
+			Tmk_errexit("<size == %d>Tmk_barrier (proc: %d)\n", size, j);
+d365 1
+a365 1
+			Tmk_perrexit("<write>Tmk_barrier (proc: %d)", j);
+d368 1
+a368 1
+			Tmk_perrexit("<send>Tmk_barrier (proc: %d)", j);
+a380 1
+#if 1
+a382 2
+#endif
+	sigsetmask(mask);
+d384 5
+a388 1
+	if (rep_msg.startWork != NOWORK_EXIT) {
+d390 1
+a390 6
+		if(functionPtr != NULL)
+			(*functionPtr)(sharedArg);
+#if 0
+		Tmk_stat.gather++;
+#endif /* alc */
+		Tmk_barrier_gather_proc();	/* XXX ? */
+d399 1
+a399 17
+#if 0
+	Tmk_stat.distribute_work++;
+#endif /* alc */
+	Tmk_barrier_distribute(NULL, NULL, -1);
+}
+
+/*
+ * give work to everyone
+ */
+void	Tmk_sched_fork(functionPtr, Arg)
+	void	      (*functionPtr)(Tmk_sched_arg_t);
+	Tmk_sched_arg_t	Arg;
+{
+#if 0
+	Tmk_stat.distribute_work++;
+#endif /* alc */
+	Tmk_barrier_distribute(functionPtr, Arg, 0);
+d409 2
+a410 2
+	for (i = 0; i < NBARRIERS; i++)
+		barrier_[i].manager = i % Tmk_nprocs;
+a412 2
+
+	replymask = 0;
+@

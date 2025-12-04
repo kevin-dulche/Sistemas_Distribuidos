@@ -1,0 +1,1310 @@
+head	10.5;
+access;
+symbols
+	Tmk-1_0_1R:10.3;
+locks; strict;
+comment	@ * @;
+
+
+10.5
+date	98.09.13.17.44.52;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	98.04.18.05.37.02;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	97.12.20.20.29.48;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	97.06.02.07.56.00;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.06.02.07.43.15;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Barnes-Hut galaxy simulation
+@
+
+
+10.5
+log
+@Restored a barrier.
+(Fixing an error in the output.)
+@
+text
+@/* This code was derived from the original barnes code.c. It has the following
+   changes:
+
+        1. The barrier Global->Barcom in stepsystem() has been removed. This
+	   barrier is not needed.
+	2. The changes to Global->min[] and Global->max[] inside a critical
+	   section in stepsystem() have been changed. Each process now merely
+	   stores its min[] and max[] in a portion of the global space.
+	3. After the barrier Global->Barpos, proc0 computes the overall min[]
+	   and max[]. 
+	4. Changes have also been made to code_io.c:output(). Proc 0 prints out
+	   values there, which have now been shifted to after the barrier
+	   Global->Barpos.
+	
+    code.c hence has only two barriers (and no locks) per iteration. A number
+    of debug printf's and gettimeofday()s have also been removed.
+
+    						-ram (rrk@@rice.edu)
+*/
+
+#include <math.h>
+
+#include <Tmk.h>
+
+#define global
+
+#include "code.h"
+
+struct GlobalMemory *Global;
+privGlobalMemory *privGlobal[MAX_PROC];
+
+#define MAXNBODY 16384
+
+#ifdef USE_ORB
+extern ORBNodeptr makeORBcell();
+bodyptr BodinSplit[NUMSPLITS][MAXNBODY];
+int SplitIndex[NUMSPLITS];
+float WorkTolerance;
+#endif
+
+int seed;
+
+#if DEBUG || defined(INTERNAL_STAT)
+FILE *junk;
+#endif
+
+#ifdef	INTERNAL_STAT
+extern unsigned tmk_stat_flag;
+#endif
+
+void readparam()
+{
+  FILE *fp;
+
+  if ((fp = fopen("sample.in", "r")) == NULL) {
+    printf("Cannot open sample.in\n");
+    exit(0);
+  }
+
+  fscanf(fp,"%d%d", &nbody, &seed);                 /*   get nbody parameter    */
+  if (nbody < 1)                                    /*   is value absurd?       */
+    barnes_error("startrun: absurd nbody\n");
+  fscanf(fp, "%lf%lf%lf%lf%lf%lf%d", 
+	   &dtime, &eps, &tol, &fcells, &tstop, &dtout, &debug);
+
+#ifdef USE_ORB
+  fscanf(fp, "%lf", &WorkTolerance);
+#endif
+
+  fclose(fp);
+}
+
+/*
+ * ANLINIT : initialize ANL macros
+ */
+void ANLinit()
+{
+    int i;
+
+    /* Allocate global, shared memory */
+
+    fprintf(stderr,"Allocating Global Memory, size: %d \n",sizeof(struct GlobalMemory));
+    Global = (struct GlobalMemory *) Tmk_malloc(sizeof(struct GlobalMemory));
+    for (i = 0; i < Tmk_nprocs; i++)
+	privGlobal[i]=(privGlobalMemory *) Tmk_malloc(sizeof(privGlobalMemory));
+
+    if (Global==NULL) barnes_error("No initialization for Global\n");
+    else
+    {
+      Tmk_distribute((char *)&Global, sizeof(Global));
+      for (i = 0; i < Tmk_nprocs; i++)
+	   Tmk_distribute((char *)&privGlobal[i], sizeof(privGlobal[i]));
+    }
+    
+    /* Initialize the barriers     */
+    Global->Barload = 0;
+    Global->Bartree = 0;
+    Global->Barcom = 0;
+    Global->Baraccel = 0;
+    Global->Barstart = 0;
+    Global->Barpos = 0;
+#ifdef USE_ORB
+    Global->BarExchange = 0;
+#endif
+
+    /* Initialize the Locks */
+    Global->NcellLock = 1;
+    Global->CountLock = 2;
+    Global->io_lock = 3;
+#ifdef USE_ORB
+    Global->ORBNcellLock = 4;
+    Global->Gworklock = 5;
+#endif     
+    /* Initialize the distributed loops   */
+    Global->body_loopLock = 6;
+    Global->Barbody_loop = 0;
+    Global->Subbody_loop = 0;
+    Global->Countbody_loop = 0;
+    Global->CellLoopLock = 7;
+    Global->BarCellLoop = 0;
+    Global->SubCellLoop = 0;
+    Global->CountCellLoop = 0;
+
+    /* Zero out privglobal - setting of min and max done later -rrk */
+    for (i = 0; i < Tmk_nprocs; i++)
+        memset(privGlobal[i], 0, sizeof(privGlobalMemory));
+}
+
+/*
+ * INIT_ROOT: Processor 0 reinitialize the global root at each time step
+ */
+void init_root()
+{
+    int i;
+
+    Global->G_root=ctab;               /* Global->G_root= 1st cell of ctab */
+    Type(Global->G_root) = CELL;       /* initialize the fields of G_root  */
+    Done(Global->G_root) = FALSE;
+    for (i = 0; i < NSUB; i++)         /*        Clear the children        */
+        Subp(Global->G_root)[i] = NULL;
+    Global->ncell=1;                   /* only one cell created  : G_root  */
+}
+
+#ifdef USE_ORB
+init_ORB_root()
+{
+    int i,k;
+    int temp;
+    ORBNodeptr q;
+    int intpow();
+
+    Global->ORB_root = ORBtab;
+    q = Global->ORB_root;
+
+    /* set all fields of ORB tree root */
+    q->channel = Log_base_2(Tmk_nprocs) - 1; 
+    /* put all procs in gray code order in currprocs array */
+    q->currprocs[0] = 0;
+    for (k=0; k<=q->channel; k++) {
+        for (i = (int) intpow(2,k); i<=(int) intpow(2,(k+1))-1; i++){
+            temp = (int) (1 << k);
+            q->currprocs[i]=q->currprocs[(int) intpow(2,(k+1))-i-1]+temp; 
+        }
+    }
+    for (i=0; i<NUMSPLITS; i++)
+        q->GWork[i] = 0;
+    q->X = 0;
+    q->rx0 = 0;
+    q->rx1 = 0;
+    q->CartDir = 0;          /* by default will split along x*/
+    q->TotalWork = 0;
+    for (i = 0; i < NDIM; i++) {
+        q->currmin[i] = Global->rmin[i];
+        q->currmax[i] = Global->rmin[i] + Global->rsize;
+    }
+    q->work_tol = Global->work_tolerance;
+    q->left = NULL;
+    q->right = NULL;
+    Global->nORBcell = 1;
+}
+#endif
+    
+int Log_base_2(number)
+int number;
+{
+   int cumulative;
+   int out;
+
+   cumulative = 1;
+   for (out = 0; out < 20; out++)
+      if (cumulative == number)
+         return(out);
+      else
+         cumulative = cumulative * 2;
+
+   fprintf(stderr,"Log_base_2: couldn't find log2 of %d\n", number);
+   exit(-1);
+}
+
+/*
+ * TAB_INIT : allocate body and cell data space
+ */
+
+void tab_init()
+{
+  cellptr pc;
+  int i;
+#ifdef USE_ORB
+  ORBNodeptr q;
+#endif
+
+  /*allocate cell space */
+  maxcell = fcells * nbody;                       /*   typ. need: 0.5 nbody   */
+  if (Tmk_proc_id == 0) {
+    ctab = (cellptr) Tmk_malloc(maxcell*sizeof(cell));
+    Tmk_distribute((char *)&ctab, sizeof(ctab));
+  }
+
+#ifdef USE_ORB
+  if (Tmk_proc_id == 0) {
+    ORBtab = (ORBNodeptr) Tmk_malloc(2*Tmk_nprocs*sizeof(ORBNode));
+    Tmk_distribute((char *)&ORBtab, sizeof(ORBtab));
+  
+#ifdef	notdef
+    if (Tmk_proc_id == 0) {
+      for (i = 0; i < NUMSPLITS; i ++) {
+	BodinSplit[i] = (bodyptr *) Tmk_malloc(50000 * sizeof(bodyptr));
+	Tmk_distribute((char *)&BodinSplit[i], sizeof(BodinSplit[i]));
+      }
+    }
+#endif
+    for (q = ORBtab; q < ORBtab + 2*Tmk_nprocs; q++) {
+      q->BarFindSplit = 0;
+      q->BarSplitDir = 0;
+    }
+  }
+#endif
+  /*allocate space for personal lists of body pointers */
+  maxmybody = (nbody+maxcell)/Tmk_nprocs; /* space is allocated so that every */
+
+  if (Tmk_proc_id == 0) {
+    /* allocate Locks on Cells */
+    CellLock = (struct CellLockType *) Tmk_malloc(sizeof(struct CellLockType));
+    Tmk_distribute((char *)&CellLock, sizeof(CellLock));
+    for (i = 0; i < MAXLOCK; i++)
+      CellLock->CL[i] = i + 8;
+
+    /* process can have a maximum of maxmybody pointers to bodies */ 
+    /* then there is an array of bodies called bodytab which is  */
+    /* allocated in the distribution generation or when the distr. */
+    /* file is read */
+  }
+
+  fprintf(stderr, "Allocating mybodytabs, size: %d\n", Tmk_nprocs*maxmybody*sizeof(bodyptr));
+  mybodytab = (bodyptr *) malloc(maxmybody*sizeof(bodyptr));
+
+/******
+#ifdef OWNEDCELLS
+  maxmycell = maxcell;
+  if (Tmk_proc_id == 0) {
+    fprintf(stderr,"Allocating mycelltabs, size: %d\n",Tmk_nprocs*maxmycell*sizeof(cellptr));
+    mycelltab=(cellptr *) Tmk_malloc(Tmk_nprocs*maxmycell*sizeof(cellptr));
+    Tmk_distribute((char *)&mycelltab, sizeof(mycelltab));
+  }
+#endif
+**********/
+}
+
+/*
+ * PICKSHELL: pick a random point on a sphere of specified radius.
+ */
+
+void pickshell(vec, rad)
+real vec[];                     /* coordinate vector chosen */
+real rad;                       /* radius of chosen point */
+{
+    register int k;
+    double rsq, xrand( double, double ), rsc;
+
+    do {                                        /* pick point in NDIM-space */
+        for (k = 0; k < NDIM; k++){             /*   loop over dimensions   */
+            vec[k] = xrand(-1.0, 1.0);          /*     pick from unit cube  */
+        }
+        DOTVP(rsq, vec, vec);                   /*   compute radius squared */
+    } while (rsq > 1.0);                        /* reject if outside sphere */
+
+    rsc = rad / sqrt(rsq);                      /* compute scaling factor   */
+    MULVS(vec, vec, rsc);                       /* rescale to radius given  */
+}
+
+/*
+ * TESTDATA: generate Plummer model initial conditions for test runs,
+ * scaled to units such that M = -4E = G = 1 (Henon, Hegge, etc).
+ * See Aarseth, SJ, Henon, M, & Wielen, R (1974) Astr & Ap, 37, 183.
+ */
+
+#define MFRAC  0.999                /* mass cut off at MFRAC of total */
+
+void testdata()
+{
+    real rsc, vsc, xrand( double, double ), r, v, x, y;
+    vector cmr, cmv;
+    register bodyptr p;
+    int rejects = 0;
+#ifdef TWO_CLUSTER
+    int halfnbody, i;
+    float offset;
+    register bodyptr cp;
+#endif    
+#ifdef UNIFORM
+    int k;
+    double rsq;
+#endif
+
+    headline = "Hack code: Plummer model";      /* supply default headline  */
+    tnow = 0.0;                                 /* reset elapsed model time */
+    if (Tmk_proc_id == 0) {
+      bodytab = (bodyptr)Tmk_malloc(nbody * sizeof(body));
+                                                /* alloc space for bodies   */
+      if (bodytab == NULL)                      /* check space is available */
+        barnes_error("testdata: not enuf memory\n");   /*   if not, cry            */
+      else
+	Tmk_distribute((char *)&bodytab, sizeof(bodytab));
+    }
+    rsc = 3 * PI / 16;                          /* set length scale factor  */
+
+    vsc = sqrt(1.0 / rsc);                      /* and recip. speed scale   */
+    CLRV(cmr);                                  /* init cm pos, vel         */
+    CLRV(cmv);
+
+#ifdef TWO_CLUSTER
+    halfnbody = nbody / 2;
+    if (nbody % 2 != 0) halfnbody++;
+    for (p = bodytab; p < bodytab+halfnbody; p++) { /* loop over particles      */
+#else
+    for (p = bodytab; p < bodytab+nbody; p++) { /* loop over particles      */
+#endif
+        Type(p) = BODY;                         /*   tag as a body          */
+        Mass(p) = 1.0 / nbody;                  /*   set masses equal       */
+        Cost(p) = 1;                            /*  identical initial costs */
+
+#ifdef UNIFORM
+        do {                                    /* pick point in NDIM-space */
+            for (k = 0; k < NDIM; k++) {        /*   loop over dimensions   */
+                Pos(p)[k] = xrand(-1.0, 1.0);   /*     pick from unit cube  */
+            }
+            DOTVP(rsq, Pos(p), Pos(p));               /*   compute radius squared */
+        } while (rsq > 1.0);                    /* reject if outside sphere */
+        r = sqrt(rsq);
+
+#else          
+        r = 1 / sqrt(pow(xrand(0.0, MFRAC),     /*   pick r in struct units */
+                             -2.0/3.0) - 1);
+        /*   reject radii greater than 10 */
+        while (r > 9.0) {
+            rejects++;
+            r = 1 / sqrt(pow(xrand(0.0, MFRAC), /*   pick r in struct units */
+                             -2.0/3.0) - 1);
+        }        
+        pickshell(Pos(p), rsc * r);             /*   pick scaled position   */
+#endif
+        ADDV(cmr, cmr, Pos(p));                 /*   add to running sum     */
+        do {                                    /*   select from fn g(x)    */
+            x = xrand(0.0, 1.0);                /*     for x in range 0:1   */
+            y = xrand(0.0, 0.1);                /*     max of g(x) is 0.092 */
+
+        } while (y > x*x * pow(1 - x*x, 3.5));  /*   using von Neumann tech */
+
+        v = sqrt(2.0) * x / pow(1 + r*r, 0.25); /*   find v in struct units */
+        pickshell(Vel(p), vsc * v);             /*   pick scaled velocity   */
+        ADDV(cmv, cmv, Vel(p));                 /*   add to running sum     */
+    }
+
+#ifdef TWO_CLUSTER
+
+#ifdef UNIFORM
+    offset = 1.5;
+#else
+    offset = 2.0;
+#endif
+
+    for (p = bodytab + halfnbody; p < bodytab+nbody; p++) { /* loop over particles      */
+        Type(p) = BODY;                         /*   tag as a body          */
+        Mass(p) = 1.0 / nbody;                  /*   set masses equal       */
+        Cost(p) = 1;                            /*  identical initial costs */
+
+        cp = p - halfnbody;
+        for (i = 0; i < NDIM; i++){
+            Pos(p)[i] = Pos(cp)[i] + offset; 
+            ADDV(cmr, cmr, Pos(p));             /*   add to running sum     */
+            Vel(p)[i] = Vel(cp)[i];
+            ADDV(cmv, cmv, Vel(p));             /*   add to running sum     */
+        }
+    }
+#endif
+
+    fprintf(stderr,"rejects = %d\n",rejects);
+    DIVVS(cmr, cmr, (real) nbody);              /* normalize cm coords      */
+    DIVVS(cmv, cmv, (real) nbody);
+
+    for (p = bodytab; p < bodytab+nbody; p++) { /* loop over particles      */
+        SUBV(Pos(p), Pos(p), cmr);              /*   offset by cm coords    */
+        SUBV(Vel(p), Vel(p), cmv);
+    }
+}
+
+#ifdef TRACK
+global int mywork;
+#endif 
+
+int intpow(i,j)
+  int i,j;
+{   
+    int k;
+    int temp = 1;
+
+    for (k = 0; k < j; k++)
+        temp = temp*i;
+    return temp;
+}
+
+/*
+ * FIND_MY_BODIES: puts into mybodytab the list of bodies the proc must treat
+ * after this, the cost of the elements can be modified.
+ */
+void find_my_bodies(mycell,work)
+  nodeptr mycell;
+  int work;
+{
+    int i;
+    nodeptr qptr;
+    
+    if (Type(mycell)==BODY) {           /*       This is a body        */
+        if (work>=workMin-.1) {         /* if it falls in my work area */
+            if((mynbody+2)>maxmybody) 	/* can replace 2 by 1 */
+                barnes_error("find_my_bodies: Processor %d needs more than %d bodies; increase fcells\n",Tmk_proc_id, maxmybody);
+            mybodytab[mynbody++]=(bodyptr) mycell; /*add it to my body array*/
+        }
+    }
+    else                               /*        This is a cell        */
+        for(i=0;(i<NSUB) && (work < workMax-.1);i++) { /* for all children */
+            qptr=Subp(mycell)[i];            /*     which overlap      */
+            if (qptr!=NULL) {                /*     my work area       */
+                if( (work+Cost(qptr)) >= workMin-.1 ) 
+                    find_my_bodies(qptr,work); /* recursively call find_my_bodies */
+                work += Cost(qptr);          /*      update cost       */
+            }
+        }
+}
+
+/*
+ * STEPSYSTEM: advance N-body system one time-step.
+ */
+
+void stepsystem()
+{
+  struct timeval      start, end;  
+  int i;
+  real Cavg;
+  bodyptr p,*pp;
+  vector acc1, dacc, dvel, vel1, dpos;
+  int intpow();
+
+  /* I've inlined and combined Housekeep here -rrk */
+
+  if (Tmk_proc_id == 0) {                       /* clear global root       */
+      init_root();
+
+      maketree(bodytab, nbody);			/* load bodies into tree   */
+
+      Global->n2bcalc = Global->nbccalc = Global->selfint = 0;
+      Global->mtot = 0.0;			/* zero total mass          */
+      Global->etot[1] = Global->etot[2] = 0.0; 	/* zero total KE and PE     */
+      CLRM(Global->keten);                     	/* zero ke tensor           */
+      CLRM(Global->peten);                     	/* zero pe tensor           */
+      CLRV(Global->cmphase[0]);                	/* zero c. of m. position   */
+      CLRV(Global->cmphase[1]);                	/* zero c. of m. velocity   */
+      CLRV(Global->amvec);                     	/* zero am vector           */
+  }
+  Tmk_barrier(ALL_PROCS);
+  {     /* now zero out the private global stuff -rrk */
+      privGlobal[Tmk_proc_id]->n2bcalc = privGlobal[Tmk_proc_id]->nbccalc =
+                privGlobal[Tmk_proc_id]->selfint = 0;
+      privGlobal[Tmk_proc_id]->mtot = 0.0;
+      privGlobal[Tmk_proc_id]->etot[1] = privGlobal[Tmk_proc_id]->etot[2] = 0.0;
+      CLRM(privGlobal[Tmk_proc_id]->keten);
+      CLRM(privGlobal[Tmk_proc_id]->peten);
+      CLRV(privGlobal[Tmk_proc_id]->cmphase[0]);
+      CLRV(privGlobal[Tmk_proc_id]->cmphase[1]);
+      CLRV(privGlobal[Tmk_proc_id]->amvec);
+  }
+
+  myn2bcalc = mynbccalc = myselfint = 0;  /* clear my interaction counts */
+  SETVS(min,1E99);
+  SETVS(max,-1E99);
+
+#ifndef USE_ORB
+    Cavg= (real)Cost(Global->G_root) / (real)Tmk_nprocs ; /* average workload     */
+    workMin= (int)(Cavg*Tmk_proc_id);                  /* start of work area   */
+    workMax= (int)(Cavg*(Tmk_proc_id +1))+(Tmk_proc_id==Tmk_nprocs-1);/*end of wk area*/
+#endif
+
+
+#ifdef USE_ORB
+    if (Global->ORB_root->channel >= 0)
+        ORB(Global->ORB_root);
+#else
+    mynbody = 0;
+    find_my_bodies((nodeptr) Global->G_root,0); /* find bodies I must process */
+		/* at the end of find_my_bodies, mybodytab has pointers to */
+		/* my bodies */
+#endif
+    /* The following barrier is not needed -rrk */
+#ifdef	notdef
+    Tmk_barrier(ALL_PROCS); /* Global->Barcom); */ /* tree is OK, start interac. */
+#endif
+
+    for (pp = mybodytab;pp< mybodytab+mynbody;pp++){  /* for all my bodyptrs*/
+      p= *pp;                                         /* corresponding body */
+      SETV(acc1, Acc(p));                      /*   save old acceleration  */
+      Cost(p)=0;                               /* reset interaction count  */
+      hackgrav(p);                             /*   compute new acc for p  */
+      myn2bcalc += myn2bterm;                  /*   count 2-body terms     */
+      mynbccalc += mynbcterm;                  /*   and body-cell terms    */
+#ifdef TRACK
+      if (Cost(p) < Global->minbodywork[Tmk_proc_id]) 
+          Global->minbodywork[Tmk_proc_id] = Cost(p);
+      if (Cost(p) > Global->maxbodywork[Tmk_proc_id]) 
+          Global->maxbodywork[Tmk_proc_id] = Cost(p);
+      Global->sqbodywork[Tmk_proc_id] += Cost(p) * Cost(p);
+#endif
+      if (! skipself)                          /*   did we miss self-int?  */
+        myselfint++;                           /*   count another goofup   */
+      if (nstep > 0) {                         /*   past the first step?   */
+					       /*   use change in accel    */
+					       /*   to make 2nd order      */
+ 				               /*   correction to vel      */
+        SUBV(dacc, Acc(p), acc1);      	/* dacc = new accl. - old accl. */  
+        MULVS(dvel, dacc, dthf);        /* mult dacc by half timestep to get */
+					/* change in vel (dvel) 	*/
+        ADDV(Vel(p), Vel(p), dvel);  
+      }
+    }
+
+    Tmk_barrier(ALL_PROCS);
+
+    output();        /* do major or minor output, and synchronize processors */
+
+    for (pp = mybodytab; pp < mybodytab+mynbody; pp++) {/* advance my bodies */
+        p= *pp;
+        MULVS(dvel, Acc(p), dthf);              /*   use current accel'n    */
+        ADDV(vel1, Vel(p), dvel);               /*   find vel at midpoint   */
+        MULVS(dpos, vel1, dtime);               /*   find pos at endpoint   */
+        ADDV(Pos(p), Pos(p), dpos);             /*   advance position       */
+        ADDV(Vel(p), vel1, dvel);               /*   advance velocity       */
+        
+        for (i=0; i<NDIM;i++) { /* compute minimum and maximum of x,y and z  */
+          if (Pos(p)[i]<min[i]) min[i]=Pos(p)[i] ;
+          if (Pos(p)[i]>max[i]) max[i]=Pos(p)[i] ;
+        }
+    }
+    nstep++;                                    /* count another step       */
+
+    /* Write the local min[] and max[] into global space. -rrk */ 
+    for (i=0; i<NDIM;i++) {
+        privGlobal[Tmk_proc_id]->min[i] = min[i];
+        privGlobal[Tmk_proc_id]->max[i] = max[i];
+    }
+
+    Tmk_barrier(ALL_PROCS); /* Global->Barpos); */ /* synchronize end of time step */
+	/* bar needed to make sure that every process has computed its min */
+	/* and max coordinates, and has accumulated them into the global   */
+	/* min and max, before the new dimensions are computed		   */
+
+    if (Tmk_proc_id==0)
+    {
+	/* This is the code that was in output() -rrk */
+
+	int nttot, nbavg, ncavg;
+	{
+	    int j, k;
+
+	    for (j = 0; j < Tmk_nprocs; j++)
+	    {
+		Global->n2bcalc += privGlobal[j]->n2bcalc;
+		Global->nbccalc += privGlobal[j]->nbccalc;
+		Global->selfint += privGlobal[j]->selfint;
+		ADDM(Global->keten, Global->keten, privGlobal[j]->keten);
+		ADDM(Global->peten, Global->peten, privGlobal[j]->peten);
+		for (k = 0; k < 3; k++)
+		    Global->etot[k] += privGlobal[j]->etot[k];
+		ADDV(Global->amvec, Global->amvec, privGlobal[j]->amvec);
+
+		ADDV(Global->cmphase[0], Global->cmphase[0],
+			privGlobal[j]->cmphase[0]);
+		ADDV(Global->cmphase[1], Global->cmphase[1],
+			privGlobal[j]->cmphase[1]);
+		Global->mtot += privGlobal[j]->mtot;
+	    }
+	    DIVVS(Global->cmphase[0], Global->cmphase[0], Global->mtot); 
+	    DIVVS(Global->cmphase[1], Global->cmphase[1], Global->mtot); 
+	}
+        nttot = Global->n2bcalc + Global->nbccalc;
+        nbavg = (int) ((real) Global->n2bcalc / (real) nbody);
+        ncavg = (int) ((real) Global->nbccalc / (real) nbody);
+
+
+        fprintf(outstr,"\n%9s%9s%9s%9s%9s%9s\n", "tnow", "T",
+               "U", "nttot", "nbavg", "ncavg");
+        fprintf(outstr,"%.9f%.9f%.9f%9d%9d%9d\n",
+               tnow, Global->etot[1],
+               Global->etot[2], nttot, nbavg, ncavg);
+
+
+        PRTV("cm pos", Global->cmphase[0]);
+        PRTV("cm vel", Global->cmphase[1]);
+        PRTV("am vec", Global->amvec);
+        fflush(stdout);
+	fflush(stderr);
+        /*end minor output */
+    }
+
+
+    if (Tmk_proc_id==0) {     /* compute new root cell dimensional parameters */
+      {
+	  /* Compute the GLobal->min[] and ->max[]. -rrk */
+
+	  int i, j;
+	  for (i = 0; i < NDIM; i++)
+	  {
+	      real a = privGlobal[0]->min[i], b = privGlobal[0]->max[i];
+	      for (j = 1; j < Tmk_nprocs; j++)
+	      {
+		  if (a > privGlobal[j]->min[i]) a = privGlobal[j]->min[i];
+		  if (b < privGlobal[j]->max[i]) b = privGlobal[j]->max[i];
+	      }
+	      Global->min[i] = a;
+	      Global->max[i] = b;
+	  }
+      }
+
+      Global->rsize=0;
+      SUBV(Global->max,Global->max,Global->min);
+      for (i=0; i<NDIM;i++) 
+        if (Global->rsize < Global->max[i])  Global->rsize = Global->max[i];
+
+      ADDVS(Global->rmin,Global->min,-Global->rsize/100000.0);
+      Global->rsize = 1.00002*Global->rsize;
+      SETVS(Global->min,1E99);
+      SETVS(Global->max,-1E99);
+    }
+}
+
+struct timeval g_start, g_end;
+
+/*
+ * SLAVESTART: main task for each processor
+ */
+void SlaveStart()
+{
+  int i;
+
+/*********
+#ifdef OWNEDCELLS
+  mycelltab=mycelltab+maxmycell*Tmk_proc_id;
+#endif
+***********/
+#ifdef USE_ORB
+  Global->Mybodystart[Tmk_proc_id] = mybodytab;
+#endif
+
+#ifdef	notdef
+  find_my_initial_bodies(bodytab,nbody);
+#endif
+#if	DEBUG
+  fprintf(junk, "Found initial bodies\n");
+  fflush(junk);
+#endif
+  i = 0;
+
+  gettimeofday(&g_start, NULL);
+     
+  while (tnow < tstop + 0.1 * dtime)  {          /* while not past tstop     */
+    if ((i++)==3) {
+      printf("Timing starts now\n");
+      gettimeofday(&g_start, NULL);
+    }
+
+    stepsystem();  				/*   advance N-body system  */
+    tnow = tnow + dtime;                        /* finally, advance time    */
+  }
+
+  gettimeofday(&g_end, NULL);
+  if (Tmk_proc_id == 0)
+    fprintf(stderr, "Elapsed time: %.2f seconds\n",
+            (((g_end.tv_sec * 1000000.0) + g_end.tv_usec) -
+             ((g_start.tv_sec * 1000000.0) + g_start.tv_usec)) / 1000000.0);
+#if	DEBUG
+  rrk_stat();
+#endif
+  Tmk_exit(0);
+}
+
+/* 
+ * FIND_MY_INITIAL_BODIES: puts into mybodytab the initial list of bodies 
+ * assigned to the processor.  These bodies are assigned using a 
+ * self-scheduled loop.
+ */
+
+#if 0
+find_my_initial_bodies(btab, nbody)
+bodyptr btab;
+int nbody;
+{
+    int Myindex;
+    int intpow();
+    int equalbodies;
+
+    mynbody = 0;
+    equalbodies = nbody / Tmk_nprocs + 1;
+    if (nbody % Tmk_nprocs == 0) equalbodies = equalbodies - 1;
+
+    Tmk_barrier(ALL_PROCS); /* Global->Barstart); */ /* to try to make sure everyone
+                                         starts getting bodies at the
+                                         same time (ignoring system load) */
+
+        /* get an indexx into the bodytab */
+    /* GETSUB(Global->body_loop, Myindex,nbody-1,Tmk_nprocs); */
+    Tmk_lock_acquire(Global->body_loopLock);
+    if (Global->Subbody_loop <= (nbody-1))
+      Myindex = Global->Subbody_loop++;
+    else {
+      Myindex = -1;
+      if (++Global->Countbody_loop == Tmk_nprocs) {
+	Global->Countbody_loop = 0;
+	Global->Subbody_loop = 0;
+      }
+    }
+    Tmk_lock_release(Global->body_loopLock);
+
+    while (Myindex != -1) {
+        mybodytab[mynbody++] = &(btab[Myindex]);
+        if (mynbody > maxmybody) 
+            barnes_error("Skewed initial distribution of bodies to processors.");
+        /* GETSUB(Global->body_loop, Myindex,nbody-1,Tmk_nprocs); */
+	Tmk_lock_acquire(Global->body_loopLock);
+	if (Global->Subbody_loop <= (nbody-1))
+	  Myindex = Global->Subbody_loop++;
+	else {
+	  Myindex = -1;
+	  if (++Global->Countbody_loop == Tmk_nprocs) {
+	    Global->Countbody_loop = 0;
+	    Global->Subbody_loop = 0;
+	  }
+	}
+	Tmk_lock_release(Global->body_loopLock);
+
+    }
+    Tmk_barrier(ALL_PROCS); /* Global->Barbody_loop); */
+#ifdef USE_ORB
+    Global->Mynumbodies[Tmk_proc_id] = mynbody;
+#endif
+}
+#endif
+
+#ifdef USE_ORB
+ORB(q)
+  ORBNodeptr q;
+{
+    bool side;			/* 0 for below split, 1 for above */
+    int i,partner;
+    bodyptr p, *pp,*start,*end;
+    int intpow();
+    int PWork = 0;
+
+    if (Tmk_proc_id == q->currprocs[0]){
+        Split_Dir(q); 
+        q->rx0 = q->currmin[q->CartDir];
+        q->rx1 = q->currmax[q->CartDir];
+    }
+
+    BARRIER(q->BarSplitDir,(int) intpow(2,q->channel + 1));
+        
+    for (pp = mybodytab; pp < mybodytab+mynbody; pp++) {
+        p= *pp;
+        PWork += Cost(p);
+        }
+    
+    Tmk_lock_acquire(Global->Gworklock);
+    q->TotalWork += PWork;
+    Tmk_lock_release(Global->Gworklock);
+
+    Find_Split(q,0,1);
+    
+    side = 1;  
+    for (i = 0; i < (int) intpow(2,(q->channel)); i++)
+        if (Tmk_proc_id == q->currprocs[i]) {
+            side = 0;
+            break;
+        }
+    
+    /* 
+     * send bodies of this processor to gray code partner if 
+     * they go after split 
+     */
+    
+    partner = Tmk_proc_id ^ (int)(1<<q->channel);
+    
+    for (pp = mybodytab; pp< (mybodytab+mynbody); pp++) {
+        p = *pp;
+        if (((Pos(p)[q->CartDir] > q->X) && (side == 0)) || ((Pos(p)[q->CartDir] <=q->X) && (side ==1))) {
+            if (Global->Mynumbodies[partner] > maxmybody) {
+                barnes_error("Too many bodies in gray code partner\n");
+            }
+            *(Global->Mybodystart[partner]+Global->Mynumbodies[partner]) = p;
+            (Global->Mynumbodies[partner])++;
+            *pp = 0;
+        }
+    }
+
+    Tmk_barrier(ALL_PROCS); /* Global->BarExchange); */
+
+    /* compact the mybodytab arrays and set mynbody */
+        
+    start = mybodytab;
+    end = (mybodytab + Global->Mynumbodies[Tmk_proc_id] - 1);
+
+    while ((end >= start) && (*end == NULL)) {
+        (Global->Mynumbodies[Tmk_proc_id])--;
+        end--;
+    }
+
+    while (start <= end) {
+        if (*start == NULL) {
+            *start = *end;
+            do {
+                (Global->Mynumbodies[Tmk_proc_id])--;
+                end--;
+            } while (*end == NULL) ;
+        }
+        start++;
+    }
+    mynbody = Global->Mynumbodies[Tmk_proc_id];
+  
+    if (q->channel > 0) {
+        if (Tmk_proc_id == q->currprocs[0]) {
+            q->left = makeORBcell(q,0);
+            q->right = makeORBcell(q,1);
+        }
+      
+        BARRIER(q->BarSplitDir,(int) intpow(2,q->channel + 1));
+            
+        if (side == 0) 
+            ORB(q->left);
+        else 
+            ORB(q->right);
+    }
+}
+
+
+
+Find_Split(q,RunSum,firsttime)
+  ORBNodeptr q;
+  int RunSum;
+  int firsttime;
+{
+  bool found = 0;			/* true if region to be resplit found */
+
+  int i;
+  real tempx0,tempx1,temprx0;
+  bodyptr p,*pp;
+  int Work[NUMSPLITS];
+  int intpow();
+  int splitnum;
+
+
+  for (i = 0; i<NUMSPLITS; i++) {
+      Work[i] = 0;
+      SplitIndex[i] = 0;
+      q->GWork[i] = 0;
+  }
+
+  BARRIER(q->BarFindSplit,(int) intpow(2,q->channel + 1));
+
+  if (firsttime) {
+      for (pp = mybodytab; pp < mybodytab+mynbody; pp++) {
+          p= *pp;
+          splitnum = fabs(Pos(p)[q->CartDir] - q->rx0) * NUMSPLITS / fabs(q->rx1 - q->rx0);
+          Work[splitnum] += Cost(p);
+          BodinSplit[splitnum][SplitIndex[splitnum]++] = p;
+      }
+  }
+  else {
+      for (i = 0; (i < nbody) && ((p = BodinSplit[q->currsplit][i]) != (bodyptr) (-1)); i++) {
+          splitnum = fabs(Pos(p)[q->CartDir] - q->rx0) * NUMSPLITS / fabs(q->rx1 - q->rx0);
+          Work[splitnum] += Cost(p);
+          BodinSplit[splitnum][SplitIndex[splitnum]++] = p;
+      }
+  }
+          
+          
+  Tmk_lock_acquire(Global->Gworklock);
+  for (i = 0; i<NUMSPLITS; i++) {
+      q->GWork[i] = q->GWork[i] + Work[i];
+  }
+  Tmk_lock_release(Global->Gworklock);
+
+  BARRIER(q->BarFindSplit,(int) intpow(2,q->channel + 1));
+
+  found = 0;
+  i = 0;
+  while (!found) {
+      RunSum += q->GWork[i];
+      if (RunSum > (HALF * q->TotalWork)) {
+          found = 1;
+          RunSum -= q->GWork[i];
+      }
+      i++;
+      if (i > NUMSPLITS) {
+
+         Tmk_lock_acquire(Global->io_lock);
+	 fprintf(stderr," Process %d would have examined region %d with RunSum = %d and Gwork = %d\n",Tmk_proc_id,i,RunSum,q->GWork[i-1]);
+	 fflush(stderr);
+	 Tmk_lock_release(Global->io_lock);
+      
+      
+      barnes_error("Process got past region\n");
+      }
+  }
+
+  q->currsplit = i - 1;
+  BodinSplit[q->currsplit][SplitIndex[q->currsplit]] = (bodyptr) (-1);
+
+  /* Reset currORBNodeptr fields rx0 and rx1   */
+  
+  if (Tmk_proc_id == q->currprocs[0]) {
+      temprx0 = q->rx0;
+      q->rx0 = (fabs(q->rx1 - temprx0))/NUMSPLITS * (i-1) + temprx0;
+      q->rx1 = (fabs(q->rx1 - temprx0))/NUMSPLITS * i + temprx0;
+      if ((RunSum < ((HALF+q->work_tol)*q->TotalWork)) && (RunSum > ((HALF-q->work_tol)*q->TotalWork))) 
+          q->X = q->rx0;
+  }
+
+  BARRIER(q->BarFindSplit,(int) intpow(2,q->channel + 1));
+
+  if ( ! ((RunSum < ((HALF+q->work_tol)*q->TotalWork)) && (RunSum > ((HALF-q->work_tol)*q->TotalWork))))
+      Find_Split(q,RunSum,0);
+}
+
+Split_Dir(q)
+  ORBNodeptr q;
+{
+  real sidelen[NDIM];
+  int tempdir,i;
+
+  tempdir = -1;
+  for (i=0; i<NDIM; i++) 
+     sidelen[i] = fabs(q->currmax[i]-q->currmin[i]);
+  if (NDIM == 3) {
+    if ((sidelen[0] >= sidelen[1]) && (sidelen[0] >= sidelen[2]))
+      tempdir = 0;           			/*longest side x */
+    else if ((sidelen[1] >= sidelen[2]) && (sidelen[1] >= sidelen[0]))
+      tempdir = 1;           			/*longest side y */
+    else
+      tempdir = 2;	  			/*longest side z */
+  }
+  else if (NDIM==2) {
+    if (sidelen[0] >= sidelen[1])
+       tempdir = 0;
+    else
+       tempdir = 1;
+  }
+
+  if (sidelen[tempdir] > 1.2*(fabs(q->currmax[q->CartDir] - q->currmin[q->CartDir])))
+    q->CartDir = tempdir;
+}
+#endif
+
+/*
+ * HOUSEKEEP: reinitialize the different variables (in particular global
+ * variables) between each time step.
+ */
+
+void Housekeep()
+{
+    myn2bcalc = mynbccalc = myselfint = 0;  /* clear my interaction counts */
+    if (Tmk_proc_id == 0) {
+      Global->n2bcalc = Global->nbccalc = Global->selfint = 0;
+      Global->mtot = 0.0;                    /* zero total mass          */
+      Global->etot[1] = Global->etot[2] = 0.0; /* zero total KE and PE     */
+      CLRM(Global->keten);                     /* zero ke tensor           */
+      CLRM(Global->peten);                     /* zero pe tensor           */
+      CLRV(Global->cmphase[0]);                /* zero c. of m. position   */
+      CLRV(Global->cmphase[1]);                /* zero c. of m. velocity   */
+      CLRV(Global->amvec);                     /* zero am vector           */
+    }
+    SETVS(min,1E99);
+    SETVS(max,-1E99);
+}
+
+/*
+ * SETBOUND: Compute the initial size of the root of the tree; only done
+ * before first time step, and only processor 0 does it
+ */
+void setbound()
+{
+    int i;
+    real side ;
+    bodyptr p;
+    
+    SETVS(min,1E99);
+    SETVS(max,-1E99);
+    side=0;
+    
+    for (p = bodytab; p < bodytab+nbody; p++)
+        for (i=0; i<NDIM;i++) {
+            if (Pos(p)[i]<min[i]) min[i]=Pos(p)[i] ;
+            if (Pos(p)[i]>max[i])  max[i]=Pos(p)[i] ;
+        }
+    fprintf(stderr,"min_x = %lf\tmin_y = %lf\tmin_z = %lf\n", min[0],min[1],min[2]);
+    fprintf(stderr,"max_x = %lf\tmax_y = %lf\tmax_z = %lf\n", max[0],max[1],max[2]);
+    fflush(stderr);
+    
+    SUBV(max,max,min);
+    for (i=0; i<NDIM;i++) if (side<max[i]) side=max[i];
+    ADDVS(Global->rmin,min,-side/100000.0);
+    Global->rsize = 1.00002*side;
+    SETVS(Global->max,-1E99);
+    SETVS(Global->min,1E99);
+}
+
+/*
+ * STARTRUN: startup hierarchical N-body code.
+ */
+void startrun()
+{
+  if (Tmk_proc_id == 0) {
+
+    srand(seed);                       /* set appropriate random generator */
+
+    testdata();                                /* make actual distribution */
+    
+    setbound();                         /* computes boundaries whole space */
+  }
+  dthf = 0.5 * dtime;                          /* set basic half-step      */
+  epssq = eps*eps;                             /* and its square           */
+  tolsq = tol*tol;                             /* and its square           */
+  nstep = 0;                                   /* start counting steps     */
+  tout = tnow+dtout;                           /* schedule first output    */
+}
+
+#if	DEBUG
+void rrk_stat()
+{
+  fprintf(junk, 
+" [ Tmk arrivals: %9d (barriers: %d)\n"
+"   Tmk acquires: %9d (remote: %d w/ total usec wait: %d)\n"
+"   Tmk bytes:    %9d (user: %d)\n"
+"   Tmk messages: %9d\n"
+"   Tmk diffs:    %9d (total size: %d) ]\n",
+	  Tmk_stat.arrivals, Tmk_stat.arrivals/Tmk_nprocs,
+	  Tmk_stat.acquires, Tmk_stat.messages_for_acquires,
+	  Tmk_stat.messages_for_acquires ? Tmk_stat.acquire_time : 0,
+	  Tmk_stat.bytes,    Tmk_stat.bytes_of_data,
+	  Tmk_stat.messages, 
+	  Tmk_stat.diffs, Tmk_stat.diffs ? Tmk_stat.total_diff_size : 0);
+  
+  fflush(junk);
+}
+#endif
+
+#ifdef INTERNAL_STAT
+void print_stat()
+{
+ static struct Tmk_stat mystat;
+
+ if (tmk_stat_flag) {
+  mystat.arrivals = Tmk_stat.arrivals - mystat.arrivals;
+  mystat.acquires = Tmk_stat.acquires - mystat.acquires;
+  mystat.messages_for_acquires = Tmk_stat.messages_for_acquires - mystat.messages_for_acquires;
+  mystat.acquire_time = Tmk_stat.acquire_time - mystat.acquire_time;
+  mystat.bytes = Tmk_stat.bytes - mystat.bytes;
+  mystat.bytes_of_data = Tmk_stat.bytes_of_data - mystat.bytes_of_data;
+  mystat.messages = Tmk_stat.messages - mystat.messages;
+  mystat.rexmits = Tmk_stat.rexmits - mystat.rexmits;
+  mystat.diffs = Tmk_stat.diffs - mystat.diffs;
+  mystat.total_diff_size = Tmk_stat.total_diff_size - mystat.total_diff_size;
+
+  fprintf(junk, 
+" [ Tmk arrivals: %9d (barriers: %d)\n"
+"   Tmk acquires: %9d (remote: %d w/ total usec wait: %d)\n"
+"   Tmk bytes:    %9d (user: %d)\n"
+"   Tmk messages: %9d\n"
+"   Tmk rexmits:  %9d\n"
+"   Tmk diffs:    %9d (total size: %d) ]\n",
+	  mystat.arrivals, mystat.arrivals/Tmk_nprocs,
+	  mystat.acquires, mystat.messages_for_acquires,
+	  mystat.messages_for_acquires ? mystat.acquire_time : 0,
+	  mystat.bytes,    mystat.bytes_of_data,
+	  mystat.messages, 
+	  mystat.rexmits,
+	  mystat.diffs, mystat.diffs ? mystat.total_diff_size : 0);
+  
+  fflush(junk);
+
+  mystat.arrivals = Tmk_stat.arrivals;
+  mystat.acquires = Tmk_stat.acquires;
+  mystat.messages_for_acquires = Tmk_stat.messages_for_acquires;
+  mystat.acquire_time = Tmk_stat.acquire_time;
+  mystat.bytes = Tmk_stat.bytes;
+  mystat.bytes_of_data = Tmk_stat.bytes_of_data;
+  mystat.messages = Tmk_stat.messages;
+  mystat.rexmits = Tmk_stat.rexmits;
+  mystat.diffs = Tmk_stat.diffs;
+  mystat.total_diff_size = Tmk_stat.total_diff_size;
+ }
+
+}
+#endif
+
+main(argc, argv)
+int argc;
+string argv[];
+{
+  int c;
+
+  while ((c = getopt(argc, argv, "")) != -1)
+    switch (c) {
+    }
+
+  readparam();                                    /* Read input parameters from file */
+
+  Tmk_startup(argc, argv);
+
+#if	DEBUG
+  {
+      char buf[32];
+      sprintf (buf, "junk.%d", Tmk_proc_id);
+      junk = fopen(buf, "w");
+  }
+  fprintf(junk, "I am here \n");
+  fflush(junk);
+#endif
+
+  if (Tmk_proc_id == 0) {
+    ANLinit();
+  }
+#if	DEBUG
+  else {
+        char buf[32];
+        sprintf (buf, "./err.%d", Tmk_proc_id);
+        freopen(buf, "w", stderr); setbuf(stderr, NULL);
+  }
+  fprintf(junk, "ANLinit() done\n");
+  fflush(junk);
+#endif
+
+  startrun();
+
+#if	DEBUG
+  fprintf(junk, "startrun done\n");
+  fflush(junk);
+#endif
+
+#ifdef USE_ORB
+  Global->work_tolerance = WorkTolerance/nbody; 
+#endif 
+
+  if (Tmk_proc_id == 0)                                /* set params, input data   */
+    initoutput();                                /* begin system output      */
+
+#if	DEBUG
+  fprintf(junk, "initoutput done\n");
+  fflush(junk);
+#endif
+
+  tab_init();                       /* initialize particle and cell arrays */
+
+#if	DEBUG
+  fprintf(junk, "tab_init done\n");
+  fflush(junk);
+#endif
+
+  Tmk_barrier(ALL_PROCS);
+
+#if	DEBUG
+  fprintf(junk, "After initialization\n");
+  fflush(junk);
+#endif
+
+  SlaveStart();
+  if (Tmk_proc_id == 0)
+    stopoutput();                              /* finish up output           */
+  
+  Tmk_barrier(ALL_PROCS);
+}
+@
+
+
+10.4
+log
+@Eliminated a race condition in stepsystem.
+@
+text
+@d545 3
+a547 1
+  output();        /* do major or minor output, and synchronize processors */
+@
+
+
+10.3
+log
+@Added a cast to pacify the compiler.
+@
+text
+@d480 1
+a480 1
+
+a495 2
+
+  Tmk_barrier(ALL_PROCS);
+@
+
+
+10.2
+log
+@Eliminated TMK_DISTRIBUTE.
+@
+text
+@d511 1
+a511 1
+    find_my_bodies(Global->G_root,0);          /* find bodies I must process */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d90 1
+a90 1
+      TMK_DISTRIBUTE(Global);
+d92 1
+a92 1
+	   TMK_DISTRIBUTE(privGlobal[i]);
+d216 1
+a216 1
+    TMK_DISTRIBUTE(ctab);
+d222 1
+a222 1
+    TMK_DISTRIBUTE(ORBtab);
+d228 1
+a228 1
+	TMK_DISTRIBUTE(BodinSplit[i]);
+d244 1
+a244 1
+    TMK_DISTRIBUTE(CellLock);
+d263 1
+a263 1
+    TMK_DISTRIBUTE(mycelltab);
+d323 1
+a323 1
+	TMK_DISTRIBUTE(bodytab);
+@

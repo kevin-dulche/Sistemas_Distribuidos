@@ -1,0 +1,76 @@
+head	1.2;
+access;
+symbols
+	Tmk-1_0_3_2R:1.2
+	Tmk-1_0_3_1R:1.1
+	Tmk-1_0:1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	98.11.03.16.16.40;	author alc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	98.08.07.03.32.52;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Architecture independent portion of the Makefile.
+@
+
+
+1.2
+log
+@Fixed an "OBJ" vs. "OBJS" confusion.
+
+Added "mg.mpl" rule.
+@
+text
+@ #
+ # $Id: .common,v 1.1 1998/08/07 03:32:52 alc Exp alc $
+ #
+TmkDIR	= ../../..
+TmkLIB	= $(TmkDIR)/lib.$(ARCH)
+
+CPPFLAGS= -I$(TmkDIR)/include
+
+OBJS	= $(MACHDEP_OBJS) mg.o
+
+mg.mpl: $(OBJS) $(TmkLIB)/libTmk_mpl.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_mpl $(MACHDEP_LIBS)
+
+mg.udp: $(OBJS) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+
+mg.udp_ll: $(OBJS) $(TmkLIB)/libTmk_udp_ll.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJS) -L$(TmkLIB) -lTmk_udp_ll -L$(LL)/lib -lllapi $(MACHDEP_LIBS)
+
+mg.o: ../src/mg.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c ../src/mg.c
+
+clean:
+	rm -f *.o *.atm *.udp *.udp_ll
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ # $Id$
+d9 1
+a9 1
+OBJ	= $(MACHDEP_OBJS) mg.o
+d11 5
+a15 2
+mg.udp: $(OBJ) $(TmkLIB)/libTmk_udp.a
+	$(CC) $(CFLAGS) -o $@@ $(OBJ) -L$(TmkLIB) -lTmk_udp $(MACHDEP_LIBS)
+@

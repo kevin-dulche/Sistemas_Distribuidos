@@ -1,0 +1,1572 @@
+head	11.1;
+access;
+symbols
+	Tmk-1_0_3_2R:10.7.1.5.0.1
+	Tmk-1_0_3_1R:10.7.1.5.0.1
+	Tmk-2_0:10.7.1
+	Tmk-1_2_TO-2_0_BRANCH_POINT:10.7.1.8
+	Tmk-1_0_3R:10.7.1.5.0.1
+	Tmk-1_2:10.7.1
+	Tmk-1_0_TO-1_2_BRANCH_POINT:10.7.1.5
+	Tmk-1_0_1R:10.7.1.2
+	Tmk-1_1:11
+	Tmk-1_0:10.7.1.5.0
+	Tmk-1_0_TO-1_1_BRANCH_POINT:10.7
+	Tmk-0_10_1_2R:10.1.3.1
+	Tmk-0_10_1_1R:10.1.3.1
+	Tmk-0_10_1R:10.1;
+locks; strict;
+comment	@ * @;
+
+
+11.1
+date	97.07.24.19.40.22;	author alc;	state Exp;
+branches;
+next	10.7;
+
+10.7
+date	97.03.07.23.58.16;	author alc;	state Exp;
+branches
+	10.7.1.1;
+next	10.6;
+
+10.6
+date	97.03.07.23.51.45;	author alc;	state Exp;
+branches;
+next	10.5;
+
+10.5
+date	96.08.24.21.10.49;	author alc;	state Exp;
+branches;
+next	10.4;
+
+10.4
+date	96.07.26.04.01.23;	author alc;	state Exp;
+branches;
+next	10.3;
+
+10.3
+date	96.06.23.16.47.14;	author alc;	state Exp;
+branches;
+next	10.2;
+
+10.2
+date	96.06.22.20.54.38;	author alc;	state Exp;
+branches;
+next	10.1;
+
+10.1
+date	96.05.27.04.45.30;	author alc;	state Rel;
+branches
+	10.1.2.1
+	10.1.3.1
+	10.1.4.1
+	10.1.5.1;
+next	10.0;
+
+10.0
+date	96.03.15.09.47.40;	author alc;	state Rel;
+branches
+	10.0.1.1
+	10.0.2.1
+	10.0.3.1;
+next	9.7;
+
+9.7
+date	96.03.15.09.39.04;	author alc;	state Rel;
+branches
+	9.7.2.1
+	9.7.6.1;
+next	9.6;
+
+9.6
+date	96.03.15.09.30.03;	author alc;	state Rel;
+branches
+	9.6.1.1;
+next	9.5;
+
+9.5
+date	96.03.15.09.24.56;	author alc;	state Rel;
+branches
+	9.5.1.1;
+next	9.4;
+
+9.4
+date	96.03.15.09.20.45;	author alc;	state Rel;
+branches;
+next	;
+
+9.5.1.1
+date	96.03.15.09.27.09;	author alc;	state Rel;
+branches;
+next	;
+
+9.6.1.1
+date	96.03.15.09.32.19;	author alc;	state Rel;
+branches;
+next	;
+
+9.7.2.1
+date	96.03.15.10.06.18;	author alc;	state Exp;
+branches;
+next	9.7.2.2;
+
+9.7.2.2
+date	96.03.17.20.54.45;	author alc;	state Exp;
+branches;
+next	9.7.2.3;
+
+9.7.2.3
+date	96.04.11.07.03.13;	author alc;	state Exp;
+branches;
+next	;
+
+9.7.6.1
+date	96.07.23.18.42.25;	author zhenghua;	state Exp;
+branches;
+next	;
+
+10.0.1.1
+date	96.03.15.09.51.03;	author alc;	state Rel;
+branches;
+next	;
+
+10.0.2.1
+date	96.03.17.18.12.04;	author alc;	state Exp;
+branches;
+next	10.0.2.2;
+
+10.0.2.2
+date	96.03.18.01.27.59;	author alc;	state Exp;
+branches;
+next	10.0.2.3;
+
+10.0.2.3
+date	96.03.20.19.46.27;	author alc;	state Exp;
+branches
+	10.0.2.3.2.1;
+next	;
+
+10.0.2.3.2.1
+date	96.03.25.21.00.30;	author alc;	state Exp;
+branches;
+next	10.0.2.3.2.2;
+
+10.0.2.3.2.2
+date	96.03.30.21.27.07;	author alc;	state Exp;
+branches;
+next	;
+
+10.0.3.1
+date	96.04.22.16.59.08;	author alc;	state Exp;
+branches;
+next	;
+
+10.1.2.1
+date	96.06.25.19.28.51;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.1.3.1
+date	96.11.14.06.25.07;	author alc;	state Rel;
+branches;
+next	;
+
+10.1.4.1
+date	96.07.29.21.09.00;	author rjf;	state Exp;
+branches;
+next	;
+
+10.1.5.1
+date	96.06.27.16.38.16;	author tmiller;	state Exp;
+branches;
+next	10.1.5.2;
+
+10.1.5.2
+date	96.06.28.20.24.01;	author tmiller;	state Exp;
+branches;
+next	10.1.5.3;
+
+10.1.5.3
+date	96.07.02.22.34.57;	author tmiller;	state Exp;
+branches;
+next	10.1.5.4;
+
+10.1.5.4
+date	96.07.03.19.32.35;	author tmiller;	state Exp;
+branches;
+next	10.1.5.5;
+
+10.1.5.5
+date	96.08.07.17.36.01;	author tmiller;	state Exp;
+branches;
+next	;
+
+10.7.1.1
+date	97.07.03.07.23.56;	author alc;	state Exp;
+branches;
+next	10.7.1.2;
+
+10.7.1.2
+date	97.07.22.22.51.18;	author alc;	state Exp;
+branches;
+next	10.7.1.3;
+
+10.7.1.3
+date	98.05.14.20.10.16;	author alc;	state Exp;
+branches;
+next	10.7.1.4;
+
+10.7.1.4
+date	98.06.16.20.53.33;	author alc;	state Exp;
+branches;
+next	10.7.1.5;
+
+10.7.1.5
+date	98.06.16.22.29.32;	author alc;	state Exp;
+branches
+	10.7.1.5.0.1;
+next	10.7.1.6;
+
+10.7.1.6
+date	98.07.17.05.33.19;	author alc;	state Exp;
+branches;
+next	10.7.1.7;
+
+10.7.1.7
+date	98.07.17.18.45.09;	author alc;	state Exp;
+branches;
+next	10.7.1.8;
+
+10.7.1.8
+date	98.07.26.05.21.17;	author alc;	state Exp;
+branches;
+next	;
+
+10.7.1.5.0.1
+date	98.07.17.18.37.43;	author alc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+11.1
+log
+@Eliminated the Ultrix-specific code.  (Identical to revision 10.7.1.1.)
+@
+text
+@/*****************************************************************************
+ *                                                                           *
+ *  Copyright (c) 1991-1996						     *
+ *  by ParallelTools, L.L.C. (PTOOLS), Houston, Texas			     *
+ *                                                                           *
+ *  This software is furnished under a license and may be used and copied    *
+ *  only in accordance with the terms of such license and with the	     *
+ *  inclusion of the above copyright notice.  This software or any other     *
+ *  copies thereof may not be provided or otherwise made available to any    *
+ *  other person.  No title to or ownership of the software is hereby	     *
+ *  transferred.                                                             *
+ *									     *
+ *  The recipient of this software (RECIPIENT) acknowledges and agrees that  *
+ *  the software contains information and trade secrets that are	     *
+ *  confidential and proprietary to PTOOLS.  RECIPIENT agrees to take all    *
+ *  reasonable steps to safeguard the software, and to prevent its	     *
+ *  disclosure.								     * 
+ *                                                                           *
+ *  The information in this software is subject to change without notice     *
+ *  and should not be construed as a commitment by PTOOLS.		     *
+ *                                                                           *
+ *  This software is furnished AS IS, without warranty of any kind, either   *
+ *  express or implied (including, but not limited to, any implied warranty  *
+ *  of merchantability or fitness), with regard to the software.  PTOOLS     *
+ *  assumes no responsibility for the use or reliability of its software.    *
+ *  PTOOLS shall not be liable for any special,	incidental, or		     *
+ *  consequential damages, or any damages whatsoever due to causes beyond    *
+ *  the reasonable control of PTOOLS, loss of use, data or profits, or from  *
+ *  loss or destruction of materials provided to PTOOLS by RECIPIENT.	     *
+ *									     *
+ *  PTOOLS's liability for damages arising out of or in connection with the  *
+ *  use or performance of this software, whether in an action of contract    *
+ *  or tort including negligence, shall be limited to the purchase price,    *
+ *  or the total amount paid by RECIPIENT, whichever is less.		     *
+ *                                                                           *
+ *****************************************************************************/
+
+/*
+ * $Id: open_udp.c,v 10.7 1997/03/07 23:58:16 alc Exp alc $
+ *
+ * Description:    
+ *	establishes connections
+ *
+ * Facility:	TreadMarks Distributed Shared Memory System
+ * History:
+ *	21-Jun-1993	Alan L. Cox	Created
+ *	 7-Jan-1994	Alan L. Cox	Correct MTU for UDP over ATM
+ *	14-Jun-1994	Alan L. Cox	Included <arpa/inet.h> for Alpha
+ *	 1-Aug-1994	Alan L. Cox	Dynamic port allocation
+ *					 (changes provided by Cristiana Amza)
+ *	Version 0.9.1
+ *
+ *	10-Dec-1994	Alan L. Cox	Changed to a single seqno counter
+ *					 (suggested by Pete Keleher)
+ *	14-Jan-1995	Alan L. Cox	Adapted for STREAMS
+ *	21-Jan-1995	Alan L. Cox	Changed the name from open_ether.c
+ *
+ *	Version 0.9.2
+ *
+ *	10-Apr-1995	Cristiana Amza	Added ioctl's for HPPA/HPUX
+ *	21-May-1995	Alan L. Cox	Adapted for SGI/IRIX
+ *
+ *	Version 0.9.3
+ *
+ *	27-Jan-1996	Alan L. Cox	Replaced sigblock and sigsetmask
+ *					 with sigprocmask
+ *	Version 0.10
+ */
+#include "Tmk.h"
+
+#include <netinet/in.h>
+
+#include <arpa/inet.h>
+
+static	struct	req_typ	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_CONNECT };
+
+static	struct	iovec	req_iov[2] = {
+	{ (caddr_t)&req_typ, sizeof(req_typ) },
+	{                 0, sizeof(Tmk_port_[0]) } };
+static	struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+
+struct	rep_con	{
+	unsigned	seqno;
+};
+
+unsigned	Tmk_port_[NPROCS][NPROCS];
+
+/*
+ * Never use sequence numbers 0, 1, ..., NPROCS-1.  Sequence number 0
+ * would break sigio_handler.
+ */
+char		req_fd_[NPROCS];
+fd_set		req_fds;
+int		req_maxfdp1;
+unsigned	req_seqno;
+
+char		rep_fd_[NPROCS];
+fd_set		rep_fds;
+int		rep_maxfdp1;
+unsigned	rep_seqno_[NPROCS];
+
+#if	defined(__sun) && ! defined(__SVR4)
+/*
+ * Maximum allowed by SunOS 4.1.3
+ */
+#	define	fd_RCVBUF_size	52428
+#elif	defined(__linux)
+/*
+ * Maximum allowed by Linux 2.0.0
+ */
+#	define  fd_RCVBUF_size  65535
+#else
+#	define	fd_RCVBUF_size	2*(MTU + sizeof(struct sockaddr))
+#endif
+
+#	define	fd_SNDBUF_size	MTU
+
+/*
+ *
+ */
+static	int	fd_create( void )
+{
+	int	fd;
+
+	int	optval;
+	int	optlen = sizeof(optval);
+
+	struct	sockaddr_in addr;
+
+	if ((fd = socket(PF_INET, SOCK_DGRAM, 0)) < 0)
+		Tmk_perrexit("<socket>fd_create");
+
+	if (0 > getsockopt(fd, SOL_SOCKET, SO_RCVBUF, (char *)&optval, &optlen))
+		Tmk_perrexit("<getsockopt>fd_create");
+
+	if (optval < fd_RCVBUF_size) {
+
+		optval = fd_RCVBUF_size;
+
+		while (0 > setsockopt(fd, SOL_SOCKET, SO_RCVBUF, (char *)&optval, sizeof(optval)))
+			if ((errno == ENOBUFS) &&
+			    (optval == fd_RCVBUF_size)) {
+
+				optval = MTU + sizeof(struct sockaddr);
+
+				Tmk_err("<setsockopt>fd_create: Low buffer space. Increase MAXUSERS or NMBCLUSTERS.\n");
+			}
+			else
+				Tmk_perrexit("<setsockopt>fd_create");
+	}
+	if (0 > getsockopt(fd, SOL_SOCKET, SO_SNDBUF, (char *)&optval, &optlen))
+		Tmk_perrexit("<getsockopt>fd_create");
+
+	if (optval < fd_SNDBUF_size) {
+
+		optval = fd_SNDBUF_size;
+
+		if (0 > setsockopt(fd, SOL_SOCKET, SO_SNDBUF, (char *)&optval, sizeof(optval)))
+			Tmk_perrexit("<setsockopt>fd_create");
+	}
+	addr.sin_family      = AF_INET;
+ 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	addr.sin_port        = htons(0);
+
+	if (0 > bind(fd, (struct sockaddr *)&addr, sizeof(addr)))
+		Tmk_perrexit("<bind>fd_create");
+
+	return fd;
+}
+
+/*
+ *
+ */
+void	Tmk_connect(i)
+	int			i;
+{
+	int			fd = fd_create();
+
+        struct	hostent	       *hp;
+	struct	sockaddr_in	addr;
+
+	struct	rep_con		rep;
+
+	req_fd_[i] = fd;
+
+	if ((hp = gethostbyname(Tmk_hostlist[i])) == NULL)
+		Tmk_herrexit("Tmk_connect: %s", Tmk_hostlist[i]);
+
+	addr.sin_family = AF_INET;
+
+	memcpy(&addr.sin_addr, hp->h_addr, hp->h_length);
+
+	addr.sin_port = htons(Tmk_port_[i][Tmk_proc_id]);
+
+        if (0 > connect(fd, (struct sockaddr *)&addr, sizeof(addr)))
+		Tmk_perrexit("<connect>Tmk_connect");
+
+	if (Tmk_debug)
+		Tmk_err("Tmk_connect address: %s port: %d\n", inet_ntoa(addr.sin_addr), ntohs(addr.sin_port));
+
+	req_typ.seqno = req_seqno += NPROCS;
+
+	req_iov[1].iov_base = (caddr_t) Tmk_port_[Tmk_proc_id];
+rexmit:
+	if (0 > sendmsg(fd, &req_hdr, 0))
+		Tmk_perrexit("<sendmsg>Tmk_connect");
+
+	Tmk_tout_flag = 0;
+
+	setitimer(ITIMER_REAL, &Tmk_tout, NULL);
+ retry:
+	if (0 > recv(fd, (char *)&rep, sizeof(rep), 0))
+		if (Tmk_tout_flag) {
+
+			if (Tmk_debug)
+				Tmk_err("<timeout: %d>Tmk_connect: seqno == %d\n", i, req_typ.seqno);
+
+			goto rexmit;
+		}
+		else if (errno == EINTR)
+			goto retry;
+		else
+			Tmk_perrexit("<recv>Tmk_connect");
+
+	if (req_typ.seqno != rep.seqno) {
+
+		if (Tmk_debug)
+			Tmk_err("<bad seqno: %d>Tmk_connect: seqno == %d (received: %d)\n", i, req_typ.seqno, rep.seqno);
+
+		goto retry;
+	}
+	FD_SET(fd, &req_fds);
+
+	req_maxfdp1 = MAX(fd + 1, req_maxfdp1);
+}
+
+/*
+ *
+ */
+void	Tmk_connect_sigio_duplicate_handler(req)
+	struct	req_con	       *req;
+{
+	if (0 > send(rep_fd_[req->from], (char *)&req->seqno, sizeof(req->seqno), 0))
+		Tmk_perrexit("<send>Tmk_connect_sigio_duplicate_handler");
+}
+
+/*
+ *
+ */
+void	Tmk_connect_initialize()
+{
+	req_typ.from = req_seqno = Tmk_proc_id;
+}
+
+/*
+ *
+ */
+void	Tmk_accept_initialize(i)
+	int			i;
+{
+	int			fd = fd_create();
+
+	struct	sockaddr_in	addr;
+	int			addrlen = sizeof(addr);
+
+	rep_fd_[i] = fd;
+
+	if (0 > getsockname(fd, (struct sockaddr *)&addr, &addrlen))
+		Tmk_perrexit("<getsockname>Tmk_create");
+
+	Tmk_port_[Tmk_proc_id][i] = ntohs(addr.sin_port);
+}
+
+/*
+ * Recvmsg in SGI/IRIX doesn't return the sockaddr_in when a signal occurs.
+ */
+void	Tmk_accept(i)
+	int			i;
+{
+	int			fd = rep_fd_[i];
+#if  defined(sgi)
+	sigset_t		mask;
+#endif
+static	struct	req_typ		rep_typ;
+static	struct	iovec		rep_iov[2] = { { (caddr_t)&rep_typ, sizeof(rep_typ) }, { 0, sizeof(Tmk_port_[0]) } };
+static	struct	sockaddr_in	rep_addr;
+static	struct	msghdr		rep_hdr = { (caddr_t)&rep_addr, sizeof(rep_addr), rep_iov, 2, 0, 0 };
+
+	rep_iov[1].iov_base = (caddr_t) Tmk_port_[i];
+#if defined(sgi)
+	sigio_mutex(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+#endif
+ retry:
+	if (0 > recvmsg(fd, &rep_hdr, 0))
+		if (errno == EINTR)
+			goto retry;
+		else
+			Tmk_perrexit("<recvmsg>Tmk_accept");
+#if defined(sgi)
+	sigio_mutex(SIG_SETMASK, &mask, NULL);
+#endif
+	rep_seqno_[i] = rep_typ.seqno;
+
+	if (0 > connect(fd, (struct sockaddr *)&rep_addr, sizeof(rep_addr)))
+		Tmk_perrexit("<connect>Tmk_accept");
+
+	if (Tmk_debug)
+		Tmk_err("Tmk_accept address: %s port: %d\n", inet_ntoa(rep_addr.sin_addr), ntohs(rep_addr.sin_port));
+
+	if (0 > send(fd, (char *)&rep_typ.seqno, sizeof(rep_typ.seqno), 0))
+		Tmk_perrexit("<send>Tmk_accept");
+
+	FD_SET(fd, &rep_fds);
+
+	rep_maxfdp1 = MAX(fd + 1, rep_maxfdp1);
+
+#if defined(_AIX) || defined(__hpux)
+	{
+		int	pid = getpid();
+
+		if (0 > ioctl(fd, SIOCSPGRP, &pid))
+			Tmk_perrexit("<ioctl>Tmk_accept");
+	}
+#else
+	if (0 > fcntl(fd, F_SETOWN, getpid()))
+		Tmk_perrexit("<fcntl>Tmk_accept");
+#endif
+
+#if defined(_AIX) || defined(__hpux)
+	{
+		int	flag = 1;
+
+		if (0 > ioctl(fd, FIOASYNC, &flag))
+			Tmk_perrexit("<ioctl>Tmk_accept");
+	}
+#else
+	if (0 > fcntl(fd, F_SETFL, FASYNC))
+		Tmk_perrexit("<fcntl>Tmk_accept");
+#endif
+}
+@
+
+
+10.7
+log
+@Eliminated tmk_MTU.  This variable exists to work-around an Ultrix
+ATM driver bug.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.6 1997/03/07 23:51:45 alc Exp alc $
+a79 1
+#if ! defined(ultrix)
+a80 1
+#endif
+a204 4
+#if defined(ultrix)
+	if (0 > writev(fd, req_iov, sizeof(req_iov)/sizeof(req_iov[0])))
+		Tmk_perrexit("<writev>Tmk_connect");
+#else
+d207 1
+a207 1
+#endif
+a211 3
+#if defined(ultrix)
+	if (0 > read(fd, &rep, sizeof(rep)))
+#else
+a212 1
+#endif
+a222 3
+#if defined(ultrix)
+			Tmk_perrexit("<read>Tmk_connect");
+#else
+d224 1
+a224 1
+#endif
+a242 4
+#if defined(ultrix)
+	if (0 > write(rep_fd_[req->from], &req->seqno, sizeof(req->seqno)))
+		Tmk_perrexit("<write>Tmk_connect_sigio_duplicate_handler");
+#else
+a244 1
+#endif
+d309 1
+a309 4
+#if defined(ultrix)
+	if (0 > write(fd, &rep_typ.seqno, sizeof(rep_typ.seqno)))
+		Tmk_perrexit("<write>Tmk_accept");
+#else
+d312 1
+a312 1
+#endif
+@
+
+
+10.7.1.1
+log
+@Eliminated the Ultrix-specific code.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7 1997/03/07 23:58:16 alc Exp alc $
+d80 1
+d82 1
+d207 4
+d213 1
+a213 1
+
+d218 3
+d222 1
+d233 3
+d237 1
+a237 1
+
+d256 4
+d262 1
+d327 4
+a330 1
+
+d333 1
+a333 1
+
+@
+
+
+10.7.1.2
+log
+@Added basic Pthreads support.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.1 1997/07/03 07:23:56 alc Exp alc $
+d181 1
+a181 3
+#if defined(PTHREADS)
+	sigset_t		mask;
+#endif
+a210 3
+#if defined(PTHREADS)
+	sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask);
+#endif
+d217 1
+a217 3
+#if defined(PTHREADS)
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+#endif
+a231 3
+#if defined(PTHREADS)
+	sigprocmask(SIG_SETMASK, &mask, NULL);
+#endif
+@
+
+
+10.7.1.3
+log
+@Add Tmk_errno_check, replacing Tmk_perrexit after send and sendmsg.  It
+handles the ENOBUF returned by BSD/OS and FreeBSD.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.2 1997/07/22 22:51:18 alc Exp alc $
+d207 2
+a208 2
+	while (0 > sendmsg(fd, &req_hdr, 0))
+		Tmk_errno_check("Tmk_connect<sendmsg>");
+d253 2
+a254 2
+	while (0 > send(rep_fd_[req->from], (char *)&req->seqno, sizeof(req->seqno), 0))
+		Tmk_errno_check("Tmk_connect_sigio_duplicate_handler<send>");
+d320 2
+a321 2
+	while (0 > send(fd, (char *)&rep_typ.seqno, sizeof(rep_typ.seqno), 0))
+		Tmk_errno_check("Tmk_accept<send>");
+@
+
+
+10.7.1.4
+log
+@X/Open says that the optlen argument to setsockopt is of size_t type.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.3 1998/05/14 20:10:16 alc Exp alc $
+d126 1
+a126 1
+	size_t	optlen = sizeof(optval);
+d274 1
+a274 1
+	size_t			addrlen = sizeof(addr);
+@
+
+
+10.7.1.5
+log
+@Tmk_connect_sigio_duplicate_handler duplicates Tmk_ack.  Delete it.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.4 1998/06/16 20:53:33 alc Exp alc $
+d245 10
+@
+
+
+10.7.1.5.0.1
+log
+@Use "rep_seqno" instead of a structure.  (Identical to revision 10.7.1.6.)
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.5 1998/06/16 22:29:32 alc Exp $
+d82 4
+d184 1
+a184 1
+	unsigned		rep_seqno;
+d217 1
+a217 1
+	if (0 > recv(fd, (char *)&rep_seqno, sizeof(rep_seqno), 0))
+d232 1
+a232 1
+	if (req_typ.seqno != rep_seqno) {
+d235 1
+a235 1
+			Tmk_err("<bad seqno: %d>Tmk_connect: seqno == %d (received: %d)\n", i, req_typ.seqno, rep_seqno);
+@
+
+
+10.7.1.6
+log
+@Use "rep_seqno" instead of a structure.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.5 1998/06/16 22:29:32 alc Exp alc $
+d82 4
+d184 1
+a184 1
+	unsigned		rep_seqno;
+d217 1
+a217 1
+	if (0 > recv(fd, (char *)&rep_seqno, sizeof(rep_seqno), 0))
+d232 1
+a232 1
+	if (req_typ.seqno != rep_seqno) {
+d235 1
+a235 1
+			Tmk_err("<bad seqno: %d>Tmk_connect: seqno == %d (received: %d)\n", i, req_typ.seqno, rep_seqno);
+@
+
+
+10.7.1.7
+log
+@Reorganized the #define's, extern's and static's.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.6 1998/07/17 05:33:19 alc Exp alc $
+d75 1
+a75 13
+#if	defined(__sun) && ! defined(__SVR4)
+/*
+ * Maximum allowed by SunOS 4.1.3
+ */
+#	define	fd_RCVBUF_size	52428
+#elif	defined(__linux)
+/*
+ * Maximum allowed by Linux 2.0.0
+ */
+#	define  fd_RCVBUF_size  65535
+#else
+#	define	fd_RCVBUF_size	2*(MTU + sizeof(struct sockaddr))
+#endif
+d77 4
+a80 1
+#	define	fd_SNDBUF_size	MTU
+d98 1
+d100 1
+a100 1
+ *
+d102 2
+a103 6
+static	struct	req_typ	req_typ = { /*seqno=*/0, /*from=*/0, /*type=*/REQ_CONNECT };
+static	struct	iovec	req_iov[2] = {
+	{ (caddr_t)&req_typ, sizeof(req_typ) },
+	{                 0, sizeof(Tmk_port_[0]) } };
+static	struct	msghdr	req_hdr = { 0, 0, req_iov, sizeof(req_iov)/sizeof(req_iov[0]), 0, 0 };
+
+d105 1
+a105 1
+ *
+d107 6
+a112 5
+static	struct	req_typ	rep_typ;
+static	struct	iovec	rep_iov[2] = { { (caddr_t)&rep_typ, sizeof(rep_typ) }, { 0, sizeof(Tmk_port_[0]) } };
+static	struct	sockaddr_in
+			rep_addr;
+static	struct	msghdr	rep_hdr = { (caddr_t)&rep_addr, sizeof(rep_addr), rep_iov, sizeof(rep_iov)/sizeof(rep_iov[0]), 0, 0 };
+d280 4
+@
+
+
+10.7.1.8
+log
+@Changed several function definitions to ANSI C-style.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.7.1.7 1998/07/17 18:45:09 alc Exp alc $
+d128 1
+a128 2
+static	int
+fd_create( void )
+d130 1
+a130 1
+	int		fd;
+d132 2
+a133 2
+	int		optval;
+	size_t		optlen = sizeof(optval);
+d135 1
+a135 2
+	struct	sockaddr_in
+			addr;
+d181 2
+a182 3
+void
+Tmk_connect(
+	int		i)
+d184 1
+a184 1
+	int		fd = fd_create();
+d186 2
+a187 4
+        struct	hostent
+		       *hp;
+	struct	sockaddr_in
+			addr;
+d189 1
+a189 1
+	sigset_t	mask;
+d191 1
+a191 1
+	unsigned	rep_seqno;
+d257 1
+a257 2
+void
+Tmk_connect_initialize( void )
+d265 2
+a266 3
+void
+Tmk_accept_initialize(
+	int		i)
+d268 1
+a268 1
+	int		fd = fd_create();
+d270 2
+a271 3
+	struct	sockaddr_in
+			addr;
+	size_t		addrlen = sizeof(addr);
+d284 2
+a285 3
+void
+Tmk_accept(
+	int		i)
+d287 1
+a287 1
+	int		fd = rep_fd_[i];
+d289 1
+a289 1
+	sigset_t	mask;
+@
+
+
+10.6
+log
+@Updated fd_RCVBUF_size for Linux 2.0.x.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.5 1996/08/24 21:10:49 alc Exp alc $
+a86 12
+
+/*
+ * On DECstation subtract IP/UDP header size from MTU
+ * for correct operation of AAL3/4
+ */
+#if	defined(__ultrix)
+#	define	ADJ_AAL34_MTU	28
+#else
+#	define	ADJ_AAL34_MTU	0
+#endif
+
+unsigned	tmk_MTU = MTU - ADJ_AAL34_MTU;
+@
+
+
+10.5
+log
+@Replaced sigprocmask by sigio_mutex.  Sigio_mutex is defined
+in Tmk.h.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.4 1996/07/26 04:01:23 alc Exp alc $
+d121 5
+@
+
+
+10.4
+log
+@Replaced the call to herror with a call to Tmk_herrexit.
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.3 1996/06/23 16:47:14 alc Exp alc $
+d316 1
+a316 1
+	sigprocmask(SIG_BLOCK, &ALRM_and_IO_mask, &mask);
+d325 1
+a325 1
+	sigprocmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.3
+log
+@Use "herror" to report the error returned by "gethostbyname".
+@
+text
+@d39 1
+a39 1
+ * $Id: open_udp.c,v 10.2 1996/06/22 20:54:38 alc Exp alc $
+d195 2
+a196 1
+	if ((hp = gethostbyname(Tmk_hostlist[i])) == NULL) {
+a197 4
+		herror(Tmk_hostlist[i]);
+
+		exit(-1);
+	}
+@
+
+
+10.2
+log
+@This change was brought over from revision 9.7.2.3.  (In addition,
+a few minor modifications were made to the file header.)
+@
+text
+@d39 1
+a39 1
+ * $Id$
+d72 1
+d195 3
+a197 2
+	if ((hp = gethostbyname(Tmk_hostlist[i])) == NULL)
+		Tmk_errexit("<gethostbyname>Tmk_connect");
+d199 2
+@
+
+
+10.1
+log
+@Tmk-0.10.1R
+@
+text
+@d37 4
+a40 2
+/*****************************************************************************
+ * File:		open_udp.c
+a43 5
+ * External Functions:
+ *			Tmk_connect,
+ *			Tmk_accept_initialize,
+ *			Tmk_accept
+ *
+d68 1
+a68 2
+ *
+ *****************************************************************************/
+d148 10
+a157 2
+		if (0 > setsockopt(fd, SOL_SOCKET, SO_RCVBUF, (char *)&optval, sizeof(optval)))
+			Tmk_perrexit("<setsockopt>fd_create");
+@
+
+
+10.1.3.1
+log
+@Tmk-0.10.1.1R: IRIX 6.2 support.
+@
+text
+@@
+
+
+10.1.4.1
+log
+@MPL Support
+@
+text
+@d185 1
+a185 3
+#if defined(THREADS)
+	sigset_t		mask;
+#endif
+a218 3
+#if defined(THREADS)
+	pthread_sigmask(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask);
+#endif
+d229 1
+a229 3
+#if defined(THREADS)
+			pthread_sigmask(SIG_SETMASK, &mask, NULL);
+#endif
+a246 3
+#if defined(THREADS)
+	pthread_sigmask(SIG_SETMASK, &mask, NULL);
+#endif
+d311 1
+a311 1
+	sig_mask(SIG_BLOCK, &IO_mask, &mask);
+d320 1
+a320 1
+	sig_mask(SIG_SETMASK, &mask, NULL);
+a363 9
+
+
+
+
+
+
+
+
+
+@
+
+
+10.1.5.1
+log
+@Start of 0.10.1 THREADS branch. Incorporated alias code from SMP branch.
+@
+text
+@@
+
+
+10.1.5.2
+log
+@Changed SIGALRM to be blocked by all threads and unblocked only when
+a recv timeout is needed.
+@
+text
+@d185 1
+a185 3
+#if defined(THREADS)
+	sigset_t		mask;
+#endif
+a218 3
+#if defined(THREADS)
+	sigprocmask(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask);
+#endif
+d229 1
+a229 3
+#if defined(THREADS)
+			sigprocmask(SIG_SETMASK, &mask, NULL);
+#endif
+a246 3
+#if defined(THREADS)
+	sigprocmask(SIG_SETMASK, &mask, NULL);
+#endif
+@
+
+
+10.1.5.3
+log
+@Cleaned up sigprocmask/pthread_sigmask/sigthreadmask and sigio
+locking/unlocking with sigio_mutex macro
+@
+text
+@d222 1
+a222 1
+	pthread_sigmask(SIG_UNBLOCK, &ALRM_and_IO_mask, &mask);
+d235 1
+a235 1
+			pthread_sigmask(SIG_SETMASK, &mask, NULL);
+d255 1
+a255 1
+	pthread_sigmask(SIG_SETMASK, &mask, NULL);
+@
+
+
+10.1.5.4
+log
+@cleaned up signal masks
+@
+text
+@d321 1
+a321 1
+	sig_mask(SIG_BLOCK, &IO_mask, &mask);
+d330 1
+a330 1
+	sig_mask(SIG_SETMASK, &mask, NULL);
+a373 9
+
+
+
+
+
+
+
+
+
+@
+
+
+10.1.5.5
+log
+@Added $Id$
+@
+text
+@a71 2
+ * $Id$
+ *
+@
+
+
+10.1.2.1
+log
+@changed page_dirty list and intervals to use ranges
+@
+text
+@@
+
+
+10.0
+log
+@POSIX Version
+@
+text
+@d95 2
+a96 2
+#if defined(mips)
+#define		ADJ_AAL34_MTU	28
+d98 1
+a98 1
+#define		ADJ_AAL34_MTU	0
+d119 1
+d123 6
+a128 1
+#define		fd_RCVBUF_size	52428
+d148 1
+a148 1
+	if (optval < MIN(fd_RCVBUF_size, 2*MTU)) {
+d150 1
+a150 1
+		optval = MIN(fd_RCVBUF_size, 2*MTU);
+d158 1
+a158 1
+	if (optval < MTU) {
+d160 1
+a160 1
+		optval = MTU;
+d339 2
+a340 1
+#if defined(__hpux)
+d352 1
+a352 1
+#if defined(__hpux)
+@
+
+
+10.0.3.1
+log
+@Initial Linux port by Rob Fowler.
+@
+text
+@a317 7
+	if(Tmk_debug){
+	    int p;
+	    Tmk_err(".. ports...");
+	    for (p=0; p <NPROCS; p++ ) Tmk_err(" %d",Tmk_port_[i][p]);
+	    Tmk_err("\n");
+	}
+
+d322 1
+a322 3
+	    Tmk_err("Tmk_accept address: %s port: %d\n",
+		    inet_ntoa(rep_addr.sin_addr), ntohs(rep_addr.sin_port));
+
+@
+
+
+10.0.2.1
+log
+@Start of the 0.10.1 development branch
+@
+text
+@@
+
+
+10.0.2.2
+log
+@Enlarge send and receive buffer sizes.  The HPUX and IRIX ports
+should be tested.  (Taken from the 9.7.2 branch.)
+@
+text
+@d95 2
+a96 2
+#if	defined(__ultrix)
+#	define	ADJ_AAL34_MTU	28
+d98 1
+a98 1
+#	define	ADJ_AAL34_MTU	0
+a118 1
+#if	defined(__sun) && ! defined(__SVR4)
+d122 1
+a122 6
+#	define	fd_RCVBUF_size	52428
+#else
+#	define	fd_RCVBUF_size	2*(MTU + sizeof(struct sockaddr))
+#endif
+
+#	define	fd_SNDBUF_size	MTU
+d142 1
+a142 1
+	if (optval < fd_RCVBUF_size) {
+d144 1
+a144 1
+		optval = fd_RCVBUF_size;
+d152 1
+a152 1
+	if (optval < fd_SNDBUF_size) {
+d154 1
+a154 1
+		optval = fd_SNDBUF_size;
+@
+
+
+10.0.2.3
+log
+@Use ioctl instead of fcntl under AIX 3.2.5/4.1.  fcntl fails
+silently under AIX 4.1, unless -lbsd is used.
+@
+text
+@d339 1
+a339 2
+
+#if defined(_AIX) || defined(__hpux)
+d351 1
+a351 1
+#if defined(_AIX) || defined(__hpux)
+@
+
+
+10.0.2.3.2.1
+log
+@Start of the 0.10.1 multiprocessor development branch
+@
+text
+@@
+
+
+10.0.2.3.2.2
+log
+@Added sigio locking inside existing critical sections (sigprocmask). <SMP>
+@
+text
+@d301 1
+a301 1
+#if  defined(__sgi)
+d310 1
+a310 1
+#if defined(__sgi)
+a311 2
+
+	spin_lock(&sigio_lock);	/* SMP */
+d319 1
+a319 3
+#if defined(__sgi)
+	release_lock(&sigio_lock);	/* SMP */
+
+@
+
+
+10.0.1.1
+log
+@Tmk-0.10R: FASTLINK Version
+@
+text
+@@
+
+
+9.7
+log
+@Tmk-0.9.7R
+@
+text
+@d3 1
+a3 1
+ *  Copyright (c) 1991-1995						     *
+d68 4
+a76 1
+#include <netdb.h>
+d139 1
+a139 1
+	if (0 > getsockopt(fd, SOL_SOCKET, SO_RCVBUF, &optval, &optlen))
+d146 1
+a146 1
+		if (0 > setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &optval, sizeof(optval)))
+d149 1
+a149 1
+	if (0 > getsockopt(fd, SOL_SOCKET, SO_SNDBUF, &optval, &optlen))
+d156 1
+a156 1
+		if (0 > setsockopt(fd, SOL_SOCKET, SO_SNDBUF, &optval, sizeof(optval)))
+d217 1
+a217 1
+	if (0 > recv(fd, &rep, sizeof(rep), 0))
+d256 1
+a256 1
+	if (0 > send(rep_fd_[req->from], &req->seqno, sizeof(req->seqno), 0))
+d296 1
+a296 1
+	int			mask;
+d305 1
+a305 1
+	mask = sigblock(sigmask(SIGALRM)|sigmask(SIGIO));
+d314 1
+a314 1
+	sigsetmask(mask);
+d327 1
+a327 1
+	if (0 > send(fd, &rep_typ.seqno, sizeof(rep_typ.seqno), 0))
+@
+
+
+9.7.6.1
+log
+@with newbarrier
+@
+text
+@@
+
+
+9.7.2.1
+log
+@Start of the 0.9.8 development branch
+@
+text
+@d92 1
+a92 1
+#if defined(__ultrix)
+a115 1
+#if	defined(__sun) && ! defined(SVR4)
+d119 1
+a119 4
+#	define	fd_RCVBUF_size	52428
+#else
+#	define	fd_RCVBUF_size	2*(MTU + sizeof(struct sockaddr))
+#endif
+d139 1
+a139 1
+	if (optval < MIN(fd_RCVBUF_size, 2*(MTU + sizeof(struct sockaddr)))) {
+d141 1
+a141 1
+		optval = MIN(fd_RCVBUF_size, 2*(MTU + sizeof(struct sockaddr)));
+@
+
+
+9.7.2.2
+log
+@Enlarge send and receive buffer sizes.  The HPUX and IRIX ports
+should be tested.
+@
+text
+@d92 2
+a93 2
+#if	defined(__ultrix)
+#	define	ADJ_AAL34_MTU	28
+d95 1
+a95 1
+#	define	ADJ_AAL34_MTU	0
+d116 1
+a116 1
+#if	defined(__sun) && ! defined(__SVR4)
+a124 2
+#	define	fd_SNDBUF_size	MTU
+
+d143 1
+a143 1
+	if (optval < fd_RCVBUF_size) {
+d145 1
+a145 1
+		optval = fd_RCVBUF_size;
+d153 1
+a153 1
+	if (optval < fd_SNDBUF_size) {
+d155 1
+a155 1
+		optval = fd_SNDBUF_size;
+@
+
+
+9.7.2.3
+log
+@Modified fd_create to retry the receive buffer allocation with a smaller
+size if it fails.  If the first allocation fails, fd_create prints
+a warning.  If the second allocation fails, fd_create panics.
+@
+text
+@d149 2
+a150 10
+		while (0 > setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &optval, sizeof(optval)))
+			if ((errno == ENOBUFS) &&
+			    (optval == fd_RCVBUF_size)) {
+
+				optval = MTU + sizeof(struct sockaddr);
+
+				Tmk_err("<setsockopt>fd_create: Low buffer space. Increase MAXUSERS or NMBCLUSTERS.\n");
+			}
+			else
+				Tmk_perrexit("<setsockopt>fd_create");
+@
+
+
+9.6
+log
+@Tmk-0.9.6R
+@
+text
+@d186 1
+a186 1
+        bcopy(hp->h_addr, &addr.sin_addr, hp->h_length);
+@
+
+
+9.6.1.1
+log
+@Tmk-0.9.6R: FASTLINK Version
+@
+text
+@@
+
+
+9.5
+log
+@Tmk-0.9.5R
+@
+text
+@d3 2
+a4 2
+ *  Copyright (c) 1991-1994                                                  *
+ *  by TreadMarks, L.L.C. (TREADMARKS), Houston, Texas	  		     *
+d6 5
+a10 5
+ *  This software is furnished under a license and may be used and  copied   *
+ *  only  in  accordance  with  the  terms  of  such  license and with the   *
+ *  inclusion of the above copyright notice.  This software or  any  other   *
+ *  copies  thereof may not be provided or otherwise made available to any   *
+ *  other person.  No title to or ownership of  the  software  is  hereby    *
+d15 2
+a16 2
+ *  confidential and proprietary to TREADMARKS.  RECIPIENT agrees to take    *
+ *  all reasonable steps to safeguard the software, and to prevent its       *
+d19 2
+a20 2
+ *  The information in this software is subject to change  without  notice   *
+ *  and should  not  be  construed  as  a commitment by TREADMARKS.	     *
+d24 6
+a29 7
+ *  of merchantability or fitness), with regard to the software.  	     *
+ *  TREADMARKS assumes no responsibility for the use or reliability of its   *
+ *  software.  TREADMARKS shall not be liable for any special, incidental,   *
+ *  or consequential damages, or any damages whatsoever due to causes beyond *
+ *  the reasonable control of TREADMARKS, loss of use, data or profits, or   *
+ *  from loss or destruction of materials provided to TREADMARKS by	     *
+ *  RECIPIENT.								     *
+d31 4
+a34 4
+ *  TREADMARKS's liability for damages arising out of or in connection with  *
+ *  the use or performance of this software, whether in an action of	     *
+ *  contract or tort including negligence, shall be limited to the purchase  *
+ *  price, or the total amount paid by RECIPIENT, whichever is less.	     *
+@
+
+
+9.5.1.1
+log
+@Tmk-0.9.5R: FASTLINK Version
+@
+text
+@@
+
+
+9.4
+log
+@Tmk-0.9.4R
+@
+text
+@@
